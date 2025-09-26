@@ -301,9 +301,196 @@ class HTMLToPDFConverter {
         return `${originalNum + additionalNum}${unit}`;
     }
 
+    validateLetterheadAccess(password) {
+        const requiredPassword = process.env.LETTERHEAD_PASSWORD || 
+            (process.env.NODE_ENV !== 'production' ? '102005' : null);
+        
+        if (!requiredPassword) {
+            throw new Error('Letterhead access is disabled. Configure LETTERHEAD_PASSWORD environment variable.');
+        }
+        return password === requiredPassword;
+    }
+
+    injectFirstPageLetterhead(htmlContent, letterheadType, logoData, landscape = false, format = 'A4') {
+        const letterheadHTML = this.generateFirstPageLetterheadHTML(letterheadType, logoData, landscape);
+        const letterheadCSS = this.generateFirstPageLetterheadCSS(letterheadType, landscape, format);
+        
+        // Check if HTML has head and body tags
+        if (!htmlContent.includes('<head>')) {
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <style>${letterheadCSS}</style>
+                </head>
+                <body>
+                    ${letterheadHTML}
+                    <div class="main-content">
+                        ${htmlContent}
+                    </div>
+                </body>
+                </html>
+            `;
+        } else {
+            // Insert CSS into existing head and letterhead after body open
+            let processedHTML = htmlContent.replace('</head>', `<style>${letterheadCSS}</style></head>`);
+            processedHTML = processedHTML.replace(/<body[^>]*>/, (match) => `${match}${letterheadHTML}<div class="main-content">`);
+            processedHTML = processedHTML.replace('</body>', '</div></body>');
+            return processedHTML;
+        }
+    }
+
+    generateFirstPageLetterheadHTML(letterheadType, logoData, landscape = false) {
+        if (letterheadType === 'dazzlo') {
+            return `
+                <div class="first-page-letterhead">
+                    <table>
+                        <tr>
+                            <td class="logo-cell">
+                                ${logoData['logo.png'] ? `<img src="${logoData['logo.png']}" alt="Dazzlo Logo">` : ''}
+                            </td>
+                            <td class="company-info">
+                                <div class="company-name">Dazzlo Enterprises Pvt Ltd</div>
+                                <div class="tagline">Redefining lifestyle with Innovations and Dreams</div>
+                            </td>
+                            <td class="contact-info">
+                                Tel: +91 9373015503<br>
+                                Email: info@dazzlo.co.in<br>
+                                Address: Kalyan, Maharashtra 421301
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="letterhead-border"></div>
+                </div>
+            `;
+        } else {
+            return `
+                <div class="first-page-letterhead">
+                    <table>
+                        <tr>
+                            <td class="logo-cell">
+                                ${logoData['trivanta.png'] ? `<img src="${logoData['trivanta.png']}" alt="Trivanta Logo">` : ''}
+                            </td>
+                            <td class="company-info">
+                                <div class="company-name">Trivanta Edge</div>
+                                <div class="tagline">From Land to Legacy – with Edge</div>
+                            </td>
+                            <td class="contact-info">
+                                sales@trivantaedge.com<br>
+                                info@trivantaedge.com<br>
+                                +91 9373015503<br>
+                                Kalyan, Maharashtra
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="letterhead-border"></div>
+                </div>
+            `;
+        }
+    }
+
+    generateFirstPageLetterheadCSS(letterheadType, landscape = false, format = 'A4') {
+        const logoSize = landscape ? '50px' : '60px';
+        const companyNameSize = letterheadType === 'dazzlo' ? (landscape ? '20px' : '24px') : (landscape ? '18px' : '22px');
+        const taglineSize = letterheadType === 'dazzlo' ? (landscape ? '11px' : '13px') : (landscape ? '9px' : '11px');
+        const contactSize = letterheadType === 'dazzlo' ? (landscape ? '10px' : '12px') : (landscape ? '8px' : '10px');
+        const borderColor = letterheadType === 'dazzlo' ? '#d4af37' : '#2c5282';
+        const companyColor = letterheadType === 'dazzlo' ? '#333' : '#1a365d';
+        const taglineColor = letterheadType === 'dazzlo' ? '#666' : '#2c5282';
+        
+        return `
+            @page {
+                size: ${format} ${landscape ? 'landscape' : 'portrait'};
+            }
+            
+            .first-page-letterhead {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: ${landscape ? '10px 20px' : '15px 25px'};
+                margin-bottom: 20px;
+                font-family: 'Times New Roman', serif;
+                z-index: 1000;
+            }
+            
+            .first-page-letterhead table {
+                width: 100%;
+                border-collapse: collapse;
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .first-page-letterhead td {
+                border: none;
+                vertical-align: middle;
+                padding: 0;
+            }
+            
+            .first-page-letterhead .logo-cell {
+                width: 70px;
+            }
+            
+            .first-page-letterhead img {
+                width: ${logoSize};
+                height: ${logoSize};
+                border: none;
+            }
+            
+            .first-page-letterhead .company-info {
+                padding-left: 20px;
+            }
+            
+            .first-page-letterhead .company-name {
+                font-size: ${companyNameSize};
+                font-weight: bold;
+                color: ${companyColor};
+                margin-bottom: 5px;
+                line-height: 1.2;
+            }
+            
+            .first-page-letterhead .tagline {
+                font-size: ${taglineSize};
+                font-style: italic;
+                color: ${taglineColor};
+                line-height: 1.2;
+            }
+            
+            .first-page-letterhead .contact-info {
+                text-align: right;
+                font-size: ${contactSize};
+                font-weight: bold;
+                color: ${companyColor};
+                line-height: 1.4;
+            }
+            
+            .letterhead-border {
+                border-bottom: 3px solid ${borderColor};
+                margin-top: 10px;
+            }
+            
+            .main-content {
+                margin-top: ${landscape ? '80px' : '100px'};
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        `;
+    }
+
     async convertHTMLToPDF(htmlContent, outputPath, customOptions = {}) {
         if (!this.browser) {
             throw new Error('Converter not initialized. Call initialize() first.');
+        }
+
+        // Check for letterhead password if letterhead is requested
+        if (customOptions.letterhead && !this.validateLetterheadAccess(customOptions.password)) {
+            throw new Error('Invalid or missing password for letterhead access');
         }
 
         const options = { ...this.defaultOptions, ...customOptions };
@@ -327,18 +514,30 @@ class HTMLToPDFConverter {
             // Handle letterhead
             if (options.letterhead) {
                 const logoData = await this.loadLogosAsDataURI();
-                const { headerTemplate, footerTemplate } = await this.generateLetterheadTemplates(
-                    options.letterheadType, 
-                    options.letterheadMode, 
-                    logoData, 
-                    options.landscape
-                );
+                
+                if (options.letterheadMode === 'first') {
+                    // For first page only, inject letterhead into HTML body
+                    processedHTML = this.injectFirstPageLetterhead(htmlContent, options.letterheadType, logoData, options.landscape, options.format);
+                    // Only adjust top margin for first page
+                    pdfOptions.margin = {
+                        ...options.margin,
+                        top: this.addMargin(options.margin.top || '12mm', options.landscape ? '25mm' : '30mm')
+                    };
+                } else {
+                    // For all pages, use header/footer templates
+                    const { headerTemplate, footerTemplate } = await this.generateLetterheadTemplates(
+                        options.letterheadType, 
+                        options.letterheadMode, 
+                        logoData, 
+                        options.landscape
+                    );
 
-                // Adjust margins for letterhead
-                pdfOptions.margin = this.adjustMarginsForLetterhead(options.margin, options.landscape);
-                pdfOptions.displayHeaderFooter = true;
-                pdfOptions.headerTemplate = headerTemplate;
-                pdfOptions.footerTemplate = footerTemplate;
+                    // Adjust margins for letterhead
+                    pdfOptions.margin = this.adjustMarginsForLetterhead(options.margin, options.landscape);
+                    pdfOptions.displayHeaderFooter = true;
+                    pdfOptions.headerTemplate = headerTemplate;
+                    pdfOptions.footerTemplate = footerTemplate;
+                }
             }
 
             // Add enhanced CSS
@@ -412,11 +611,21 @@ class HTMLToPDFConverter {
     }
 
     async convertFile(inputPath, outputPath, options = {}) {
+        // Check for letterhead password if letterhead is requested
+        if (options.letterhead && !this.validateLetterheadAccess(options.password)) {
+            throw new Error('Invalid or missing password for letterhead access');
+        }
+        
         const htmlContent = await fs.readFile(inputPath, 'utf8');
         return this.convertHTMLToPDF(htmlContent, outputPath, options);
     }
 
     async convertURL(url, outputPath, options = {}) {
+        // Check for letterhead password if letterhead is requested
+        if (options.letterhead && !this.validateLetterheadAccess(options.password)) {
+            throw new Error('Invalid or missing password for letterhead access');
+        }
+        
         const page = await this.browser.newPage();
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
         const htmlContent = await page.content();

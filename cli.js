@@ -59,7 +59,7 @@ Letterhead Companies:
 • Trivanta Edge - Real estate and property development
 • Dazzlo Enterprises - Lifestyle and innovation solutions
 
-Password required for letterhead access: 102005
+Password required for letterhead access (configure via LETTERHEAD_PASSWORD environment variable)
         `);
     }
 
@@ -230,17 +230,20 @@ Password required for letterhead access: 102005
             return;
         }
 
-        // Prompt for password
-        const password = readline.question('🔐 Enter letterhead password: ', { hideEchoBack: true });
-        
-        if (password !== '102005') {
-            console.log('❌ Invalid password. Letterhead access denied.');
+        // Check if letterhead password is configured
+        if (!process.env.LETTERHEAD_PASSWORD && process.env.NODE_ENV === 'production') {
+            console.log('❌ Letterhead access disabled. Set LETTERHEAD_PASSWORD environment variable.');
             this.options.letterhead = false;
             return;
         }
-
+        
+        // Prompt for password
+        const password = readline.question('🔐 Enter letterhead password: ', { hideEchoBack: true });
+        
+        // Store password for validation in converter
+        this.options.password = password;
         this.options.letterhead = true;
-        console.log('✅ Letterhead access granted');
+        console.log('🔐 Password will be validated during conversion');
 
         // Select letterhead type
         console.log('\n🏢 LETTERHEAD TYPE');
