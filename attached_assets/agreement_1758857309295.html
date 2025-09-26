@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Empanelment - Recruitment Services - Trivanta Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 10px;
+            line-height: 1.3;
+            color: #333;
+            background: white;
+            padding: 12px;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 12px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .agreement-date {
+            text-align: center;
+            margin: 8px 0;
+            font-style: italic;
+            color: #2c5282;
+            font-size: 10px;
+        }
+        
+        .parties {
+            margin: 10px 0;
+            background: #f8fafc;
+            padding: 8px;
+            border-left: 4px solid #2c5282;
+            font-size: 9px;
+        }
+        
+        .party {
+            margin: 4px 0;
+        }
+        
+        .party-label {
+            font-weight: bold;
+            color: #1a365d;
+        }
+        
+        .quotation-section {
+            margin: 12px 0;
+            border: 2px solid #2c5282;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .quotation-header {
+            background: #2c5282;
+            color: white;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        
+        .quotation-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9px;
+        }
+        
+        .quotation-table th {
+            background: #e2e8f0;
+            color: #1a365d;
+            font-weight: bold;
+            padding: 6px 4px;
+            text-align: left;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        
+        .quotation-table td {
+            padding: 4px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .amount {
+            text-align: right;
+            font-weight: bold;
+        }
+        
+        .total-row {
+            background: #f1f5f9;
+            font-weight: bold;
+        }
+        
+        .section {
+            margin: 8px 0;
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 6px 0 4px 0;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2px;
+        }
+        
+        .subsection {
+            margin: 3px 0;
+            padding-left: 8px;
+            font-size: 9px;
+        }
+        
+        .subsection-number {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        
+        .payment-schedule {
+            background: #f8fafc;
+            padding: 6px;
+            margin: 6px 0;
+            border-left: 3px solid #2c5282;
+            font-size: 9px;
+        }
+        
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 2px 0;
+        }
+        
+        ul {
+            margin: 4px 0;
+            padding-left: 12px;
+        }
+        
+        li {
+            margin: 1px 0;
+            font-size: 9px;
+        }
+        
+        .signature-section {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .signature-box {
+            width: 48%;
+            border: 2px solid #2c5282;
+            padding: 15px;
+            text-align: center;
+            background: #f8fafc;
+            font-size: 10px;
+            border-radius: 6px;
+        }
+        
+        .signature-line {
+            border-bottom: 2px solid #1a365d;
+            margin: 30px 0 8px 0;
+            height: 1px;
+        }
+        
+        .signature-title {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 11px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .signature-details {
+            font-size: 9px;
+            color: #2c5282;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 4px 0;
+            font-size: 8px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .section {
+                margin: 12px 0;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            
+            .subsection {
+                margin: 5px 0;
+                padding-left: 10px;
+            }
+            
+            .signature-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .signature-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Document Title -->
+    <div class="document-title">
+        Vendor Empanelment for Recruitment Services
+    </div>
+    
+    <div class="agreement-date">
+        <span id="current-date">This Communication is made on this <strong>24th</strong> day of <strong>September</strong>, 2025 at <strong>Kalyan, Maharashtra</strong>.</span>
+    </div>
+    
+    <script>
+        // Function to get ordinal suffix (st, nd, rd, th)
+        function getOrdinalSuffix(day) {
+            if (day > 3 && day < 21) return 'th';
+            switch (day % 10) {
+                case 1: return 'st';
+                case 2: return 'nd'; 
+                case 3: return 'rd';
+                default: return 'th';
+            }
+        }
+        
+        // Update date when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const day = today.getDate();
+            const month = today.toLocaleString('default', { month: 'long' });
+            const year = today.getFullYear();
+            const ordinal = day + getOrdinalSuffix(day);
+            
+            document.getElementById('current-date').innerHTML = 
+                `This Communication is made on this <strong>${ordinal}</strong> day of <strong>${month}</strong>, ${year} at <strong>Kalyan, Maharashtra</strong>.`;
+        });
+    </script>
+    
+    <!-- Parties -->
+    <div class="parties">
+        <div class="party">
+            <span class="party-label">Hello Hiring team at:</span> <span class="highlight">Market HR Solutions</span>
+        </div>
+        <div class="party">
+            <span class="party-label">From:</span> M/s. <strong>Trivanta Edge</strong>, having its registered office at <strong>Kalyan, Maharashtra</strong> (hereinafter referred to as the <strong>"Client"</strong>),
+        </div>
+        <div style="margin-top: 6px; font-weight: bold; color: #1a365d;">We are Trivanta Edge currently hiring for Multiple roles at our company those are as follows:</div>
+    </div>
+    
+    <!-- Current Hiring Requirements -->
+    <div class="quotation-section">
+        <div class="quotation-header">CURRENT HIRING REQUIREMENTS</div>
+        <table class="quotation-table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Number of Openings</th>
+                    <th>Employment Type</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fitter</td>
+                    <td class="amount">75 Nos.</td>
+                    <td>Full Time</td>
+                    <td>Blue Collar</td>
+                </tr>
+                <tr>
+                    <td>Helper</td>
+                    <td class="amount">100 Nos.</td>
+                    <td>Full Time</td>
+                    <td>Blue Collar</td>
+                </tr>
+                <tr>
+                    <td>Site Supervisor</td>
+                    <td class="amount">50 Nos.</td>
+                    <td>Full Time</td>
+                    <td>Blue Collar</td>
+                </tr>
+                <tr>
+                    <td>Parking System Operator</td>
+                    <td class="amount">25 Nos.</td>
+                    <td>Full Time</td>
+                    <td>Blue Collar</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right; padding-right: 8px;"><strong>Total Workers Required:</strong></td>
+                    <td class="amount"><strong>250 Workers</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Two Column Layout for Sections -->
+    <div class="two-column">
+        <div class="column">
+            <!-- Section 1 -->
+            <div class="section">
+                <div class="section-title">1. Vendor Payment Terms</div>
+                <div class="subsection">
+                    <span class="subsection-number">Commercial:</span> ₹ 4,000 per candidate with 60 Days payment terms and 60 Days replacement guarantee.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">Note:</span> Payment made post completion of <strong>60 Days</strong> from the joining of the candidate. All payments are <strong>excluding GST</strong> - GST will be provided as per applicable rates.
+                </div>
+            </div>
+            
+            <!-- Section 3 -->
+            <div class="section">
+                <div class="section-title">3. Vendor Responsibilities</div>
+                <div class="subsection">
+                    <span class="subsection-number">3.1</span> Source and screen candidates as per job requirements and company standards.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">3.2</span> Conduct preliminary interviews and skill assessments before forwarding candidates.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">3.3</span> Ensure all candidates have valid documentation and meet legal employment requirements.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">3.4</span> Provide replacement candidates if selected candidates leave within the guarantee period.
+                </div>
+            </div>
+            
+            <!-- Section 5 -->
+            <div class="section">
+                <div class="section-title">5. Replacement Policy</div>
+                <div class="subsection">
+                    <span class="subsection-number">5.1</span> Free replacement shall be provided if any candidate leaves within the specified guarantee period.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">5.2</span> Replacement candidates must be provided within 15 days of notification.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">5.3</span> No additional charges for replacement candidates during the guarantee period.
+                </div>
+            </div>
+            
+            <!-- Section 7 -->
+            <div class="section">
+                <div class="section-title">7. Compliance Requirements</div>
+                <div class="subsection">
+                    <span class="subsection-number">7.1</span> All statutory compliances including Labor Law, ESI, PF registration to be maintained.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">7.2</span> Valid GST registration and other business licenses required.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">7.3</span> Maintain confidentiality of company information and candidate details.
+                </div>
+            </div>
+        </div>
+        
+        <div class="column">
+            <!-- Section 2 -->
+            <div class="section">
+                <div class="section-title">2. Job Requirements</div>
+                <div class="subsection">
+                    <span class="subsection-number">Note:</span> All positions are <strong>Blue Collar</strong> workers. We are specifically hiring for <strong>250 workers</strong> across various operational roles.
+                </div>
+                
+                <div class="payment-schedule">
+                    <div style="font-weight: bold; margin-bottom: 4px; color: #1a365d;">Position Details:</div>
+                    <div class="payment-item">
+                        <span><strong>Fitter:</strong> Machine maintenance & repair</span>
+                        <span><strong>75 positions</strong></span>
+                    </div>
+                    <div class="payment-item">
+                        <span><strong>Helper:</strong> General assistance & support</span>
+                        <span><strong>100 positions</strong></span>
+                    </div>
+                    <div class="payment-item">
+                        <span><strong>Site Supervisor:</strong> On-site coordination</span>
+                        <span><strong>50 positions</strong></span>
+                    </div>
+                    <div class="payment-item">
+                        <span><strong>Parking System Operator:</strong> System operations</span>
+                        <span><strong>25 positions</strong></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4 -->
+            <div class="section">
+                <div class="section-title">4. Candidate Selection Process</div>
+                <div class="subsection">
+                    The selection process shall include:
+                    <ul>
+                        <li>Initial screening by vendor based on job requirements.</li>
+                        <li>Document verification and background checks.</li>
+                        <li>Skill assessment and technical evaluation (if applicable).</li>
+                        <li>Final interview and selection by Trivanta Edge team.</li>
+                        <li>Medical fitness and joining formalities completion.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 6 -->
+            <div class="section">
+                <div class="section-title">6. Payment Terms & Conditions</div>
+                <div class="subsection">
+                    <span class="subsection-number">6.1</span> Payment shall be released only after candidate completes 60 days of continuous employment.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">6.2</span> GST shall be charged extra as per applicable rates and proper GST invoice required.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">6.3</span> Payment processing time: 15-20 working days from completion of 60 days employment.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">6.4</span> All payments shall be made through RTGS/NEFT only.
+                </div>
+            </div>
+            
+            <!-- Section 8 -->
+            <div class="section">
+                <div class="section-title">8. Next Steps</div>
+                <div class="subsection">
+                    <span class="subsection-number">8.1</span> Kindly confirm your interest and acceptance of the payment terms.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">8.2</span> Share your company profile and recruitment capabilities.
+                </div>
+                <div class="subsection">
+                    <span class="subsection-number">8.3</span> Upon mutual agreement, formal vendor empanelment process shall be initiated.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Information -->
+    <div class="quotation-section">
+        <div class="quotation-header">CONTACT INFORMATION</div>
+        <div style="padding: 8px; font-size: 9px;">
+            <div style="margin: 2px 0;"><strong>For immediate response:</strong> sales@trivantaedge.com</div>
+            <div style="margin: 2px 0;"><strong>HR Queries:</strong> info@trivantaedge.com</div>
+            <div style="margin: 2px 0;"><strong>Phone:</strong> +91 9373015503</div>
+            <div style="margin: 2px 0;"><strong>Address:</strong> Kalyan, Maharashtra</div>
+        </div>
+    </div>
+    
+    <!-- Signature Section -->
+    <div class="signature-section">
+        <div class="signature-box">
+            <div class="signature-title">For Trivanta Edge</div>
+            <div class="signature-line"></div>
+            <div style="font-weight: bold; margin: 8px 0;">Authorized Signatory</div>
+            <div class="signature-details">
+                Name: _________________________<br>
+                Designation: ___________________<br>
+                Date: _________________________<br>
+                Company Seal
+            </div>
+        </div>
+        
+        <div class="signature-box">
+            <div class="signature-title">For Market HR Solutions</div>
+            <div class="signature-line"></div>
+            <div style="font-weight: bold; margin: 8px 0;">Authorized Signatory</div>
+            <div class="signature-details">
+                Name: _________________________<br>
+                Designation: ___________________<br>
+                Date: _________________________<br>
+                Company Seal
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>
