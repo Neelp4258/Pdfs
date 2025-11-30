@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions - Inventory Management System</title>
+    <style>
+        /* A4 Page Setup */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #ffffff;
+        }
+        
+        .page-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-table {
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .content-table {
+            width: 100%;
+            background-color: #ffffff;
+        }
+        
+        .logo-cell {
+            padding: 20px;
+            vertical-align: middle;
+            width: 80px;
+        }
+        
+        .company-info-cell {
+            padding: 20px 10px;
+            vertical-align: middle;
+            width: auto;
+        }
+        
+        .contact-cell {
+            padding: 20px;
+            vertical-align: middle;
+            text-align: right;
+            width: 200px;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 5px 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline {
+            font-size: 11px;
+            color: #6b7280;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            font-size: 12px;
+            color: #4b5563;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .content-cell {
+            padding: 30px;
+        }
+        
+        .date-text {
+            text-align: right;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+        
+        .doc-title {
+            font-size: 22px;
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .doc-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .system-badge {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0 auto 25px auto;
+            display: table;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-text {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: #ffffff;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 15px;
+            margin: 25px 0 15px 0;
+            border-radius: 8px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+        
+        .feature-desc {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-left: 4px solid #ea580c;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-text {
+            color: #ea580c;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .module-list {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        
+        .module-item {
+            padding: 8px 0;
+            color: #374151;
+            font-size: 13px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .module-item:last-child {
+            border-bottom: none;
+        }
+        
+        .module-item strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+        
+        .tech-stack {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 6px 12px;
+            margin: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        .footer-section {
+            background-color: #f9fafb;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 11px;
+            color: #9ca3af;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 30px;
+        }
+        
+        .website {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+            .page-container {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <table class="header-table" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td class="logo-cell" width="80">
+                    <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="60" height="60" rx="12" fill="#2563eb"/>
+                        <text x="30" y="40" font-family="Arial" font-size="28" font-weight="bold" fill="white" text-anchor="middle">A</text>
+                    </svg>
+                </td>
+                <td class="company-info-cell">
+                    <div class="company-name">Ambivare Solutions</div>
+                    <div class="tagline">BREAKING DEADLINES SINCE NEVER — AMBIVARE</div>
+                </td>
+                <td class="contact-cell">
+                    <div class="contact-info">
+                        operations@ambivare.com<br>
+                        +91 9373015503<br>
+                        www.ambivare.com
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- Content -->
+        <table class="content-table" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td class="content-cell">
+                    <div class="date-text" id="currentDate"></div>
+                    
+                    <div class="doc-title">Inventory Management System</div>
+                    <div class="doc-subtitle">Complete Feature Documentation & System Overview</div>
+                    
+                    <div class="system-badge">Enterprise-Grade IMS Platform</div>
+                    
+                    <div class="main-text">
+                        The <strong>Ambivare Inventory Management System (IMS)</strong> is a comprehensive web-based solution designed for efficient inventory tracking, project management, and activity monitoring. Built with modern web technologies and Firebase backend, it offers real-time synchronization, offline capabilities, and multi-user access control.
+                    </div>
+                    
+                    <!-- Key Statistics -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">LOCATIONS</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">6+</div>
+                            <div class="stat-label">MODULES</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">CLOUD-BASED</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Core Features -->
+                    <div class="section-header">🎯 Core Features</div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📦</div>
+                            <div class="feature-title">Multi-Location Inventory</div>
+                            <div class="feature-desc">Track inventory across Store, Office, and Kitchen locations with dedicated dashboards and filtering.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-title">Real-Time Dashboard</div>
+                            <div class="feature-desc">Live statistics, charts, and low-stock alerts with visual analytics using Chart.js.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <div class="feature-title">Role-Based Access</div>
+                            <div class="feature-desc">Admin and User roles with permission-based features and secure authentication.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <div class="feature-title">Barcode Scanner</div>
+                            <div class="feature-desc">Built-in camera-based barcode scanning using ZXing library for quick item lookup.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <div class="feature-title">Project Management</div>
+                            <div class="feature-desc">Allocate inventory to projects, track usage, and return remaining stock seamlessly.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📥</div>
+                            <div class="feature-title">PDF Export</div>
+                            <div class="feature-desc">Generate professional reports with company branding for all modules and time periods.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <div class="feature-title">Activity Logging</div>
+                            <div class="feature-desc">Comprehensive audit trail of all actions with user tracking and date filtering.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <div class="feature-title">Offline Support</div>
+                            <div class="feature-desc">Offline mode detection with automatic sync when connection is restored.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Highlight Box -->
+                    <div class="highlight-box">
+                        <div class="highlight-text">
+                            <strong>🔥 Advanced Capabilities:</strong> Session persistence • Real-time Firebase integration • Responsive design • Low stock alerts • Category-based filtering • Search functionality • Stock status tracking (Good/Medium/Low)
+                        </div>
+                    </div>
+                    
+                    <!-- System Modules -->
+                    <div class="section-header">🔧 System Modules</div>
+                    
+                    <div class="module-list">
+                        <div class="module-item">
+                            <strong>Dashboard:</strong> Overview statistics, charts, and low-stock alerts with visual insights
+                        </div>
+                        <div class="module-item">
+                            <strong>Store Inventory:</strong> Manage electronics, hardware, tools with barcode support
+                        </div>
+                        <div class="module-item">
+                            <strong>Office Inventory:</strong> Track stationery, furniture, equipment with category filters
+                        </div>
+                        <div class="module-item">
+                            <strong>Kitchen Inventory:</strong> Monitor utensils, cookware, appliances, and supplies
+                        </div>
+                        <div class="module-item">
+                            <strong>Projects:</strong> Create projects, allocate resources, track status, return items
+                        </div>
+                        <div class="module-item">
+                            <strong>Activities:</strong> Complete audit trail with filtering by date range and user
+                        </div>
+                        <div class="module-item">
+                            <strong>User Management:</strong> Admin-only module for creating and managing user accounts
+                        </div>
+                    </div>
+                    
+                    <!-- Technology Stack -->
+                    <div class="section-header">💻 Technology Stack</div>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-badge">HTML5</div>
+                        <div class="tech-badge">CSS3</div>
+                        <div class="tech-badge">JavaScript ES6+</div>
+                        <div class="tech-badge">Firebase Firestore</div>
+                        <div class="tech-badge">Chart.js</div>
+                        <div class="tech-badge">jsPDF</div>
+                        <div class="tech-badge">ZXing</div>
+                        <div class="tech-badge">Responsive Design</div>
+                    </div>
+                    
+                    <!-- Key Operations -->
+                    <div class="section-header">⚙️ Key Operations</div>
+                    
+                    <div class="module-list">
+                        <div class="module-item">
+                            <strong>Add Inventory:</strong> Create new items with name, barcode, category, quantity, unit, description
+                        </div>
+                        <div class="module-item">
+                            <strong>Edit Inventory:</strong> Update item details with validation and activity logging
+                        </div>
+                        <div class="module-item">
+                            <strong>Add Stock:</strong> Increase inventory quantities with notes and automatic tracking
+                        </div>
+                        <div class="module-item">
+                            <strong>Use Inventory:</strong> Allocate items to projects with quantity tracking and validation
+                        </div>
+                        <div class="module-item">
+                            <strong>Return Stock:</strong> Return unused items from projects back to inventory
+                        </div>
+                        <div class="module-item">
+                            <strong>Delete Items:</strong> Admin-only deletion with confirmation and activity logs
+                        </div>
+                        <div class="module-item">
+                            <strong>Barcode Scan:</strong> Quick lookup and add items using camera-based scanning
+                        </div>
+                        <div class="module-item">
+                            <strong>Export Reports:</strong> Generate filtered PDF reports for any time period
+                        </div>
+                    </div>
+                    
+                    <!-- Reporting Features -->
+                    <div class="section-header">📄 Reporting & Export Features</div>
+                    
+                    <div class="main-text">
+                        The system includes comprehensive PDF export functionality with professional formatting:
+                    </div>
+                    
+                    <div class="module-list">
+                        <div class="module-item">
+                            <strong>Location Reports:</strong> Filtered inventory lists with current filters applied
+                        </div>
+                        <div class="module-item">
+                            <strong>Project Reports:</strong> Detailed project information with allocated items
+                        </div>
+                        <div class="module-item">
+                            <strong>Activity Reports:</strong> 6 time periods (Day, Week, Month, Quarter, Half Year, Year)
+                        </div>
+                        <div class="module-item">
+                            <strong>Report Features:</strong> Company branding, summaries, statistics, page numbers
+                        </div>
+                    </div>
+                    
+                    <!-- User Management -->
+                    <div class="section-header">👥 User Management Features</div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <div class="feature-title">Authentication</div>
+                            <div class="feature-desc">Secure login with session persistence and automatic logout.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">👨‍💼</div>
+                            <div class="feature-title">Role Management</div>
+                            <div class="feature-desc">Admin and User roles with different permission levels.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">✅</div>
+                            <div class="feature-title">User Status</div>
+                            <div class="feature-desc">Active/Inactive status control for account management.</div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <div class="feature-title">Session Control</div>
+                            <div class="feature-desc">Persistent sessions with localStorage and secure token handling.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Benefits -->
+                    <div class="section-header">✨ System Benefits</div>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-text">
+                            <strong>Business Value:</strong> Real-time visibility • Reduced stock-outs • Better project tracking • Audit compliance • Data-driven decisions • Multi-user collaboration • Mobile accessibility • Cost reduction through efficient inventory management
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- Footer -->
+        <div class="footer-section">
+            © 2025 Ambivare Solutions. Innovation Through Technology. | <span class="website">www.ambivare.com</span>
+        </div>
+    </div>
+    
+    <script>
+        // Set current date
+        function setCurrentDate() {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const currentDate = new Date().toLocaleDateString('en-US', options);
+            document.getElementById('currentDate').textContent = currentDate;
+        }
+        
+        setCurrentDate();
+    </script>
+</body>
+</html>

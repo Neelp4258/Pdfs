@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Solutions - Automated Parking Systems</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .page {
+            background: white;
+            max-width: 210mm;
+            margin: 0 auto;
+            box-shadow: 0 0 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        /* Page Break Controls for A4 PDF */
+        .page-section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+        
+        /* Letterhead - Professional Sky Blue Design */
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            background: linear-gradient(165deg, #0a4b7c 0%, #2e78aa 50%, #1d5e8c 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid #e2d9c2;
+        }
+        
+        .letterhead::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(226,217,194,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            gap: 25px;
+        }
+        
+        .logo-placeholder {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #4aa1e8 0%, #e2d9c2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #0a4b7c;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(74,161,232,0.4);
+            border: 3px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+        
+        .logo-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #4aa1e8, transparent, #4aa1e8) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+        
+        .company-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2d9c2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .company-info p {
+            font-size: 16px;
+            font-style: italic;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 13px;
+            line-height: 2;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+        }
+        
+        .contact-info strong {
+            font-weight: 600;
+            color: #e2d9c2;
+        }
+        
+        /* Hero Section - Premium */
+        .hero-section {
+            background: linear-gradient(165deg, #0a4b7c 0%, #2e78aa 50%, #1d5e8c 100%);
+            color: white;
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(226,217,194,0.03) 2px, rgba(226,217,194,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(226,217,194,0.03) 2px, rgba(226,217,194,0.03) 4px);
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e2d9c2, transparent);
+        }
+        
+        .hero-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        
+        .hero-section p {
+            font-size: 24px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: rgba(10,75,124,0.8);
+            border: 1px solid rgba(74,161,232,0.3);
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tagline::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50px;
+            padding: 3px;
+            background: linear-gradient(45deg, #4aa1e8, transparent 30%, #e2d9c2 70%, transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0.8;
+        }
+        
+        /* Product Showcase Section - Elegant Cards */
+        .products-section {
+            padding: 80px 60px;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: #0a4b7c;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2d9c2;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 30%;
+            right: 30%;
+            height: 3px;
+            background: #4aa1e8;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            border: 1px solid rgba(226,217,194,0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(10,75,124,0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #999;
+            border-bottom: 1px solid #e2d9c2;
+        }
+        
+        .product-details {
+            padding: 25px;
+        }
+        
+        .product-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0a4b7c;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .product-details h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 40px;
+            height: 2px;
+            background: #4aa1e8;
+        }
+        
+        .product-details p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #4aa1e8;
+            background: rgba(74,161,232,0.1);
+        }
+        
+        /* Why Choose Us Section */
+        .why-us-section {
+            background: #f9f7f2;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #e2d9c2;
+            border-bottom: 1px solid #e2d9c2;
+        }
+        
+        .why-us-section::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(74,161,232,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .why-us-section::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(226,217,194,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reason-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid rgba(226,217,194,0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(10,75,124,0.1);
+        }
+        
+        .reason-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #0a4b7c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(10,75,124,0.2);
+            border: 3px solid #e2d9c2;
+            position: relative;
+        }
+        
+        .reason-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #0a4b7c;
+        }
+        
+        .reason-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* Specifications Section */
+        .specs-section {
+            padding: 80px 60px;
+            background: white;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 30px;
+        }
+        
+        .spec-category {
+            padding: 30px;
+            border: 1px solid rgba(226,217,194,0.8);
+            border-radius: 8px;
+            background: rgba(249,247,242,0.5);
+        }
+        
+        .spec-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #0a4b7c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2d9c2;
+            position: relative;
+        }
+        
+        .spec-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #4aa1e8;
+        }
+        
+        .spec-table {
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .spec-table tr {
+            border-bottom: 1px solid rgba(226,217,194,0.3);
+        }
+        
+        .spec-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-table td {
+            padding: 10px 0;
+            color: #333;
+        }
+        
+        .spec-table td:first-child {
+            font-weight: 600;
+            color: #0a4b7c;
+            width: 50%;
+        }
+        
+        /* Project Showcase */
+        .projects-section {
+            background: #0a4b7c;
+            color: white;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .projects-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(226,217,194,0.02) 2px, rgba(226,217,194,0.02) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(226,217,194,0.02) 2px, rgba(226,217,194,0.02) 4px);
+            z-index: -1;
+        }
+        
+        .projects-section .section-title {
+            color: white;
+            border-bottom-color: rgba(226,217,194,0.3);
+        }
+        
+        .projects-section .section-title::after {
+            background: #e2d9c2;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            color: white;
+        }
+        
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #e2d9c2;
+        }
+        
+        .project-table {
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .project-table tr {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .project-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .project-table td {
+            padding: 8px 0;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .project-table td:first-child {
+            font-weight: 600;
+            color: rgba(226,217,194,0.8);
+            width: 45%;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 80px 60px;
+            background: white;
+        }
+        
+        .testimonial-card {
+            background: #f9f7f2;
+            border-left: 4px solid #4aa1e8;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-card p {
+            font-size: 16px;
+            font-style: italic;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-card p::before {
+            content: '"';
+            color: #4aa1e8;
+            font-size: 30px;
+            margin-right: 5px;
+            font-family: 'Playfair Display', serif;
+            vertical-align: sub;
+        }
+        
+        .testimonial-card p::after {
+            content: '"';
+            color: #4aa1e8;
+            font-size: 30px;
+            margin-left: 5px;
+            font-family: 'Playfair Display', serif;
+            vertical-align: sub;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-weight: 600;
+            color: #0a4b7c;
+        }
+        
+        /* Clients Section */
+        .clients-section {
+            background: #0a4b7c;
+            padding: 80px 60px;
+            text-align: center;
+            color: white;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .client-logo {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226,217,194,0.2);
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+        }
+        
+        .client-logo:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Gallery Section */
+        .images-section {
+            padding: 80px 60px;
+            background: white;
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .image-placeholder {
+            background: #f9f7f2;
+            height: 150px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+            border: 1px solid #e2d9c2;
+        }
+        
+        .large-image-placeholder {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 315px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(165deg, #0a4b7c 0%, #2e78aa 50%, #1d5e8c 100%);
+            color: white;
+            padding: 60px;
+            text-align: center;
+        }
+        
+        .footer h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .footer-info strong {
+            display: block;
+            color: #e2d9c2;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .footer-social {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .letterhead {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .hero-section {
+                padding: 60px 20px;
+            }
+            
+            .hero-section h2 {
+                font-size: 40px;
+            }
+            
+            .hero-section p {
+                font-size: 18px;
+            }
+            
+            .products-section, 
+            .why-us-section, 
+            .specs-section, 
+            .projects-section,
+            .testimonials-section,
+            .clients-section,
+            .images-section,
+            .footer {
+                padding: 50px 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .clients-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 15px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Letterhead -->
+        <div class="letterhead">
+            <div class="logo-section">
+                <div class="logo-placeholder">IS</div>
+                <div class="company-info">
+                    <h1>Infinite Solutions</h1>
+                    <p>Automated Parking Systems</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div><strong>Phone:</strong> +91 9373015503</div>
+                <div><strong>Email:</strong> info@infinitesolutions.com</div>
+                <div><strong>Web:</strong> www.infinitesolutions.com</div>
+            </div>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h2>Premium Parking Systems</h2>
+            <p>Space-Efficient Solutions for Modern Infrastructure</p>
+            <div class="tagline">Parking, Perfected</div>
+        </div>
+        
+        <!-- Product Showcase Section -->
+        <div class="products-section">
+            <h2 class="section-title">Our Premium Systems</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">[Tower Parking System Image]</div>
+                    <div class="product-details">
+                        <h3>Tower Parking System</h3>
+                        <p>Our vertical tower parking system maximizes space utilization by stacking vehicles in a compact vertical arrangement, ideal for high-density urban areas.</p>
+                        <ul class="feature-list">
+                            <li>Space efficiency ratio: 1:12</li>
+                            <li>Fully automated retrieval system</li>
+                            <li>High-speed operation</li>
+                            <li>Secure storage with anti-theft features</li>
+                            <li>Customizable capacity (8-50 cars)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">[Hydraulic Puzzle System Image]</div>
+                    <div class="product-details">
+                        <h3>Hydraulic Puzzle System</h3>
+                        <p>The puzzle system offers horizontal and vertical movement capabilities, allowing for high-density parking in compact spaces with efficient vehicle retrieval.</p>
+                        <ul class="feature-list">
+                            <li>Space efficiency ratio: 1:8</li>
+                            <li>Multi-level horizontal & vertical movement</li>
+                            <li>Low maintenance hydraulic mechanism</li>
+                            <li>Modular design for custom installations</li>
+                            <li>Integrated safety features</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">[Stack Parking System Image]</div>
+                    <div class="product-details">
+                        <h3>Stack Parking System</h3>
+                        <p>Our hydraulic stack parking system provides a simple yet effective solution for doubling parking capacity in residential and commercial settings.</p>
+                        <ul class="feature-list">
+                            <li>Space efficiency ratio: 1:2</li>
+                            <li>Robust hydraulic lifting mechanism</li>
+                            <li>Easy installation and operation</li>
+                            <li>Low maintenance requirements</li>
+                            <li>Ideal for residential complexes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">[Rotary Parking System Image]</div>
+                    <div class="product-details">
+                        <h3>Rotary Parking System</h3>
+                        <p>The carousel-style rotary system offers efficient space utilization with a simple mechanical rotation mechanism for quick vehicle access.</p>
+                        <ul class="feature-list">
+                            <li>Space efficiency ratio: 1:7</li>
+                            <li>Simple mechanical operation</li>
+                            <li>Lower power consumption</li>
+                            <li>Minimal ground preparation</li>
+                            <li>Suitable for narrow spaces</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why Choose Us Section -->
+        <div class="why-us-section">
+            <h2 class="section-title">Why Choose Infinite Solutions</h2>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">✓</div>
+                    <h3 class="reason-title">Premium Quality</h3>
+                    <p class="reason-description">Our systems are manufactured using high-grade materials and components, ensuring durability, reliability, and long-term performance even under intensive use.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">⚙️</div>
+                    <h3 class="reason-title">Technical Excellence</h3>
+                    <p class="reason-description">With advanced engineering and precision manufacturing, our systems deliver exceptional operational efficiency, minimizing downtime and maintenance requirements.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">🔍</div>
+                    <h3 class="reason-title">Custom Solutions</h3>
+                    <p class="reason-description">We tailor our parking systems to match your specific requirements, space constraints, and architectural considerations for optimal integration.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">🛠️</div>
+                    <h3 class="reason-title">Comprehensive Service</h3>
+                    <p class="reason-description">From initial consultation to installation, training, and ongoing maintenance, we provide end-to-end support throughout the lifecycle of your parking system.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">📊</div>
+                    <h3 class="reason-title">Space Optimization</h3>
+                    <p class="reason-description">Our solutions increase parking capacity by 200-1200% compared to conventional parking, maximizing your property's value and utility.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">🌱</div>
+                    <h3 class="reason-title">Eco-Friendly</h3>
+                    <p class="reason-description">Reduced vehicle movement and idling time minimize carbon emissions, while efficient space utilization reduces the environmental footprint of parking infrastructure.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Specifications -->
+        <div class="specs-section">
+            <h2 class="section-title">Technical Excellence</h2>
+            <div class="specs-grid">
+                <div class="spec-category">
+                    <h3>Tower System Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Capacity Range:</td>
+                            <td>8-50 vehicles</td>
+                        </tr>
+                        <tr>
+                            <td>Retrieval Time:</td>
+                            <td>70-90 seconds average</td>
+                        </tr>
+                        <tr>
+                            <td>Operation Type:</td>
+                            <td>Fully automated</td>
+                        </tr>
+                        <tr>
+                            <td>Space Efficiency:</td>
+                            <td>Up to 1200% vs conventional</td>
+                        </tr>
+                        <tr>
+                            <td>Structure Type:</td>
+                            <td>Self-supporting steel frame</td>
+                        </tr>
+                        <tr>
+                            <td>Safety Features:</td>
+                            <td>Multiple redundant systems</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="spec-category">
+                    <h3>Puzzle System Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Configurations:</td>
+                            <td>2-6 levels with pit options</td>
+                        </tr>
+                        <tr>
+                            <td>Movement System:</td>
+                            <td>Hydraulic with PLC control</td>
+                        </tr>
+                        <tr>
+                            <td>Platform Capacity:</td>
+                            <td>2500-3000 kg standard</td>
+                        </tr>
+                        <tr>
+                            <td>Operation Mode:</td>
+                            <td>Semi-automated</td>
+                        </tr>
+                        <tr>
+                            <td>Power Requirement:</td>
+                            <td>3-phase supply, 10-15 kW</td>
+                        </tr>
+                        <tr>
+                            <td>Space Efficiency:</td>
+                            <td>Up to 800% vs conventional</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="spec-category">
+                    <h3>Stack System Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Lifting Capacity:</td>
+                            <td>2000-3000 kg standard</td>
+                        </tr>
+                        <tr>
+                            <td>Platform Size:</td>
+                            <td>Customizable to vehicle size</td>
+                        </tr>
+                        <tr>
+                            <td>Lift Mechanism:</td>
+                            <td>Hydraulic cylinders</td>
+                        </tr>
+                        <tr>
+                            <td>Operation Type:</td>
+                            <td>Push-button control</td>
+                        </tr>
+                        <tr>
+                            <td>Installation Time:</td>
+                            <td>2-3 days per unit</td>
+                        </tr>
+                        <tr>
+                            <td>Space Efficiency:</td>
+                            <td>200% vs conventional</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="spec-category">
+                    <h3>Safety & Compliance</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <td>Safety Standards:</td>
+                            <td>ISO 9001:2015 certified</td>
+                        </tr>
+                        <tr>
+                            <td>Material Quality:</td>
+                            <td>High-tensile galvanized steel</td>
+                        </tr>
+                        <tr>
+                            <td>Control Systems:</td>
+                            <td>PLC with multiple failsafes</td>
+                        </tr>
+                        <tr>
+                            <td>Emergency Features:</td>
+                            <td>Backup power, manual override</td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance Protocol:</td>
+                            <td>Quarterly professional service</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty:</td>
+                            <td>3-5 year structural guarantee</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project Showcase -->
+        <div class="projects-section">
+            <h2 class="section-title">Recent Installations</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Commercial Complex - Mumbai</h3>
+                    <table class="project-table">
+                        <tr>
+                            <td>Product:</td>
+                            <td>Tower Parking System</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity:</td>
+                            <td>42 Parking Slots</td>
+                        </tr>
+                        <tr>
+                            <td>Features:</td>
+                            <td>RFID Access, Turntable Integration</td>
+                        </tr>
+                        <tr>
+                            <td>Project Type:</td>
+                            <td>Corporate Office Building</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><strong style="color: #4caf50;">Completed</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Elite Residences - Delhi NCR</h3>
+                    <table class="project-table">
+                        <tr>
+                            <td>Product:</td>
+                            <td>Puzzle Parking System</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration:</td>
+                            <td>3-Level with 1 Pit Level</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity:</td>
+                            <td>82 Vehicles</td>
+                        </tr>
+                        <tr>
+                            <td>Additional:</td>
+                            <td>G-1+1 Stacker: 2 Nos</td>
+                        </tr>
+                        <tr>
+                            <td>Project Type:</td>
+                            <td>Residential High-Rise</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><strong style="color: #4caf50;">Completed</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Luxury Apartments - Pune</h3>
+                    <table class="project-table">
+                        <tr>
+                            <td>Product:</td>
+                            <td>Pit Puzzle Parking System</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration:</td>
+                            <td>G-1+1 Multi-Level</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity:</td>
+                            <td>101 Parking Units</td>
+                        </tr>
+                        <tr>
+                            <td>Additional:</td>
+                            <td>G+1 Hyd Stack: 16 Nos</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><strong style="color: #2e78aa;">Ongoing</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Upscale Development - Pune</h3>
+                    <table class="project-table">
+                        <tr>
+                            <td>Product:</td>
+                            <td>G+1 Hydraulic Stack</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity:</td>
+                            <td>55 Parking Platforms</td>
+                        </tr>
+                        <tr>
+                            <td>Features:</td>
+                            <td>Premium Grade System</td>
+                        </tr>
+                        <tr>
+                            <td>Project Type:</td>
+                            <td>Luxury Residential</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><strong style="color: #2e78aa;">Ongoing</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Modern Residential Complex - Multiple Locations</h3>
+                    <table class="project-table">
+                        <tr>
+                            <td>Product:</td>
+                            <td>G+1 Hydraulic Stack</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity:</td>
+                            <td>40 Units + 27 Two-Wheeler</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration:</td>
+                            <td>Mixed Car & Bike Parking</td>
+                        </tr>
+                        <tr>
+                            <td>Features:</td>
+                            <td>Integrated Solution</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td><strong style="color: #2e78aa;">Ongoing</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonial-card">
+                <p>Infinite Solutions transformed our parking challenges into opportunities. Their tower parking system allowed us to offer 40% more parking spaces without increasing our land footprint. The ROI has been exceptional, and our residents couldn't be happier with the convenience and security.</p>
+                <div class="testimonial-author">— Real Estate Developer, Mumbai</div>
+            </div>
+            <div class="testimonial-card">
+                <p>Professional team, innovative solutions, and excellent after-sales support. The hydraulic puzzle system they installed operates flawlessly even after two years of heavy usage. Their maintenance team is responsive and ensures zero downtime.</p>
+                <div class="testimonial-author">— Property Manager, Pune</div>
+            </div>
+            <div class="testimonial-card">
+                <p>We were skeptical about automated parking initially, but Infinite Solutions' expertise and proven track record convinced us. The installation was smooth, the training comprehensive, and the system has been running without issues. Highly recommended for commercial properties.</p>
+                <div class="testimonial-author">— IT Park Administrator, Noida</div>
+            </div>
+        </div>
+        
+        <!-- Clients Section -->
+        <div class="clients-section">
+            <h2 class="section-title" style="color: white; border-bottom-color: white;">Our Valued Clients</h2>
+            <p style="text-align: center; opacity: 0.9; font-size: 15px; margin-bottom: 40px;">Trusted by leading developers, builders, and property managers across India</p>
+            
+            <div class="clients-grid">
+                <div class="client-logo">[Client Logo 1]</div>
+                <div class="client-logo">[Client Logo 2]</div>
+                <div class="client-logo">[Client Logo 3]</div>
+                <div class="client-logo">[Client Logo 4]</div>
+                <div class="client-logo">[Client Logo 5]</div>
+                
+                <div class="client-logo">[Client Logo 6]</div>
+                <div class="client-logo">[Client Logo 7]</div>
+                <div class="client-logo">[Client Logo 8]</div>
+                <div class="client-logo">[Client Logo 9]</div>
+                <div class="client-logo">[Client Logo 10]</div>
+                
+                <div class="client-logo">[Client Logo 11]</div>
+                <div class="client-logo">[Client Logo 12]</div>
+                <div class="client-logo">[Client Logo 13]</div>
+                <div class="client-logo">[Client Logo 14]</div>
+                <div class="client-logo">[Client Logo 15]</div>
+            </div>
+        </div>
+        
+        <!-- On-Site Images Section -->
+        <div class="images-section">
+            <h2 class="section-title">Project Gallery - On-Site Installations</h2>
+            <p style="text-align: center; color: #555; font-size: 15px; margin-bottom: 20px;">
+                Real installations showcasing our commitment to quality and precision
+            </p>
+            
+            <div class="images-grid">
+                <div class="image-placeholder large-image-placeholder">[Featured Project Image 1]</div>
+                <div class="image-placeholder large-image-placeholder">[Featured Project Image 2]</div>
+                
+                <div class="image-placeholder">[Tower System 1]</div>
+                <div class="image-placeholder">[Tower System 2]</div>
+                <div class="image-placeholder">[Tower System 3]</div>
+                <div class="image-placeholder">[Tower System 4]</div>
+                
+                <div class="image-placeholder">[Puzzle System 1]</div>
+                <div class="image-placeholder">[Puzzle System 2]</div>
+                <div class="image-placeholder">[Stack System 1]</div>
+                <div class="image-placeholder">[Stack System 2]</div>
+                
+                <div class="image-placeholder">[Installation 1]</div>
+                <div class="image-placeholder">[Installation 2]</div>
+                <div class="image-placeholder">[Installation 3]</div>
+                <div class="image-placeholder">[Installation 4]</div>
+                
+                <div class="image-placeholder">[Control Panel]</div>
+                <div class="image-placeholder">[Safety Features]</div>
+                <div class="image-placeholder">[Hydraulic System]</div>
+                <div class="image-placeholder">[Mechanical Components]</div>
+                
+                <div class="image-placeholder large-image-placeholder">[No Post System Showcase]</div>
+                <div class="image-placeholder large-image-placeholder">[Two-Wheeler Parking]</div>
+                
+                <div class="image-placeholder">[Night View 1]</div>
+                <div class="image-placeholder">[Night View 2]</div>
+                <div class="image-placeholder">[Day Operation 1]</div>
+                <div class="image-placeholder">[Day Operation 2]</div>
+                
+                <div class="image-placeholder">[Client Site 1]</div>
+                <div class="image-placeholder">[Client Site 2]</div>
+                <div class="image-placeholder">[Client Site 3]</div>
+                <div class="image-placeholder">[Client Site 4]</div>
+                
+                <div class="image-placeholder">[Completed Project 1]</div>
+                <div class="image-placeholder">[Completed Project 2]</div>
+                <div class="image-placeholder">[Completed Project 3]</div>
+                <div class="image-placeholder">[Completed Project 4]</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h2>Connect With Infinite Solutions</h2>
+            <div class="footer-info">
+                <strong>Head Office & Manufacturing Facility:</strong>
+                Room No. 92, A Side 12, Shiv Mandir Road<br>
+                Kalyan 421301, Maharashtra, India
+                
+                <strong>Contact Us:</strong>
+                Phone: +91 9373015503<br>
+                Email: info@infinitesolutions.com | sales@infinitesolutions.com<br>
+                Website: www.infinitesolutions.com
+                
+                <div class="footer-social">
+                    <strong>Business Hours:</strong> Monday - Saturday: 9:00 AM - 7:00 PM<br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

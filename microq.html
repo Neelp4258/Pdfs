@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions - Quotation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #f8f9fa;
+            padding: 0;
+        }
+        
+        .invoice-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        /* Header - Exact from domesticformatted.html */
+        .header-table {
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .logo-cell {
+            padding: 15px;
+            vertical-align: middle;
+            width: 80px;
+        }
+        
+        .logo-cell img {
+            border-radius: 12px;
+        }
+        
+        .company-info-cell {
+            padding: 15px 10px;
+            vertical-align: middle;
+            width: auto;
+        }
+        
+        .contact-cell {
+            padding: 15px;
+            vertical-align: middle;
+            text-align: right;
+            width: 200px;
+        }
+        
+        .company-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.5px;
+        }
+        
+        .tagline {
+            font-size: 10px;
+            color: #6b7280;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            font-size: 11px;
+            color: #4b5563;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .contact-info a {
+            color: #4b5563;
+            text-decoration: none;
+        }
+        
+        /* Invoice Content */
+        .invoice-content {
+            padding: 15px 20px;
+        }
+        
+        .invoice-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .invoice-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .invoice-meta {
+            text-align: right;
+            font-size: 11px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .invoice-meta strong {
+            color: #1f2937;
+        }
+        
+        /* Bill To */
+        .bill-to {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .bill-to-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #6b7280;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+        
+        .bill-to-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        
+        .bill-to-details {
+            font-size: 11px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        
+        /* Items Table */
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .items-table thead {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+        
+        .items-table th {
+            padding: 10px 6px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 600;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        
+        .items-table th:first-child {
+            width: 30px;
+            text-align: center;
+        }
+        
+        .items-table th:last-child,
+        .items-table td:last-child {
+            text-align: right;
+        }
+        
+        .items-table tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .items-table td {
+            padding: 10px 6px;
+            color: #374151;
+        }
+        
+        .items-table td:first-child {
+            text-align: center;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        .item-desc {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        /* Totals */
+        .totals-section {
+            margin-bottom: 15px;
+        }
+        
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+        
+        .totals-row.subtotal {
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .totals-row.discount {
+            color: #059669;
+        }
+        
+        .totals-row.gst {
+            color: #6b7280;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1f2937;
+        }
+        
+        .totals-row.total {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            padding-top: 8px;
+        }
+        
+        /* Payment Schedule */
+        .payment-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .payment-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            font-size: 12px;
+        }
+        
+        .payment-row.advance {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 13px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed #3b82f6;
+            margin-bottom: 6px;
+        }
+        
+        .payment-row.remaining {
+            color: #4b5563;
+        }
+        
+        /* Notes */
+        .notes-box {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .notes-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .note-text {
+            font-size: 10px;
+            color: #78350f;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        
+        .note-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        .note-text strong {
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .invoice-footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 9px;
+            color: #9ca3af;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .logo-cell {
+                padding: 15px 10px 15px 15px;
+                width: 70px;
+            }
+            
+            .logo-cell img {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            .company-info-cell {
+                padding: 15px 5px;
+            }
+            
+            .contact-cell {
+                padding: 15px 15px 15px 5px;
+                width: auto;
+            }
+            
+            .company-name {
+                font-size: 18px;
+            }
+            
+            .tagline {
+                font-size: 9px;
+            }
+            
+            .contact-info {
+                font-size: 10px;
+            }
+            
+            .invoice-content {
+                padding: 20px 15px;
+            }
+            
+            .invoice-title {
+                font-size: 28px;
+            }
+            
+            .invoice-meta {
+                font-size: 11px;
+            }
+            
+            .items-table {
+                font-size: 11px;
+            }
+            
+            .items-table th,
+            .items-table td {
+                padding: 10px 6px;
+            }
+            
+            .items-table th {
+                font-size: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .invoice-title-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .invoice-meta {
+                text-align: left;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+            
+            .invoice-wrapper {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-wrapper">
+        <!-- Header - Exact from domesticformatted.html -->
+        <table class="header-table" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td class="logo-cell" width="80" style="width: 80px;">
+                    <img src="https://ambivare.com/ambivare.png" alt="Ambivare Solutions" width="60" height="60" style="border-radius: 12px;">
+                </td>
+                <td class="company-info-cell" style="width: auto;">
+                    <div class="company-name">Ambivare Solutions</div>
+                    <div class="tagline">BUILT FOR AUTOMATION</div>
+                </td>
+                <td class="contact-cell" style="width: 200px;">
+                    <div class="contact-info">
+                        <a href="mailto:operations@ambivare.com">operations@ambivare.com</a><br>
+                        +91 9373015503<br>
+                        www.ambivare.com
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- Invoice Content -->
+        <div class="invoice-content">
+            <!-- Title and Meta -->
+            <div class="invoice-title-row">
+                <div class="invoice-title">QUOTATION</div>
+                <div class="invoice-meta">
+                    <div><strong>QUOTATION #:</strong> INV-0021</div>
+                    <div><strong>Date:</strong> 10/11/2025</div>
+                    <div><strong>Due Date:</strong> 17/11/2025</div>
+                    <div><strong>PO #:</strong> 1010</div>
+                </div>
+            </div>
+            
+            <!-- Bill To -->
+            <div class="bill-to">
+                <div class="bill-to-label">Bill To:</div>
+                <div class="bill-to-name">Micro Elevators</div>
+                <div class="bill-to-details">
+                    Chote House, Plot No 166, near Amar Palace, MIra Co-operative Housing Society,<br>
+                    AG Nagar, Miragaon, Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107<br>
+                    <strong>Contact:</strong> Prashant Panhale<br>
+                    <strong>Email:</strong> prashant@microelevators.com
+                </div>
+            </div>
+            
+            <!-- Items Table -->
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="item-desc">Elevator Operations Management ERP</td>
+                        <td>1</td>
+                        <td>Software</td>
+                        <td>73,200.00</td>
+                        <td>73,200.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Totals -->
+            <div class="totals-section">
+                <div class="totals-row subtotal">
+                    <div>Subtotal:</div>
+                    <div>Rs. 73,200.00</div>
+                </div>
+                <div class="totals-row discount">
+                    <div>Discount (12%):</div>
+                    <div>-Rs. 8,784.00</div>
+                </div>
+                <div class="totals-row gst">
+                    <div>GST (18%):</div>
+                    <div>Rs. 11,594.88</div>
+                </div>
+                <div class="totals-row total">
+                    <div>TOTAL:</div>
+                    <div>Rs. 76,010.88</div>
+                </div>
+            </div>
+            
+            <!-- Payment Schedule -->
+            <div class="payment-box">
+                <div class="payment-title">Payment Schedule:</div>
+                <div class="payment-row advance">
+                    <div>Advance Payment (40%):</div>
+                    <div>Rs. 30,404.35</div>
+                </div>
+                <div class="payment-row remaining">
+                    <div>Remaining Balance (60%):</div>
+                    <div>Rs. 45,606.53</div>
+                </div>
+            </div>
+            
+            <!-- Notes -->
+            <div class="notes-box">
+                <div class="notes-title">Notes:</div>
+                <div class="note-text">
+                    <strong>Payment Mode & Timeline:</strong> All payments shall be made via bank transfer, cheque, or UPI within 7 working days of quotation acceptance. Advance payment of 40% is required.
+                </div>
+                <div class="note-text">
+                    <strong>Ownership & Warranty:</strong> Ownership of the ERP system and associated digital services will be transferred only after full and final payment. Warranty and support services shall commence post-completion of all due payments.
+                </div>
+                <div class="note-text">
+                    Quotation and pricing are valid for 5 days from the date of issue.
+                </div>
+            </div>
+            
+            <!-- Bank Details -->
+            <div style="background: #e0f2fe; border-left: 3px solid #0284c7; padding: 10px; border-radius: 6px; margin-bottom: 12px;">
+                <div style="font-size: 10px; font-weight: 700; color: #075985; margin-bottom: 6px; text-transform: uppercase;">Bank Details:</div>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: #0c4a6e; line-height: 1.5;">
+                    <div>
+                        <strong>Account Name:</strong> DAZZLO ENTERPRISES PRIVATE LIMITED<br>
+                        <strong>Account Number:</strong> 2502234676621230
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>IFSC Code:</strong> AUBL0002346<br>
+                        <strong>Bank:</strong> AU Small Finance Bank, Kalyan
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="invoice-footer">
+            This is a computer-generated document. Page 1 of 1 | Generated on 10/11/2025
+        </div>
+    </div>
+</body>
+</html>

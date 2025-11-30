@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हेल्पर - नौकरी विवरण - ट्रिवंता एज</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9px;
+            line-height: 1.2;
+            color: #333;
+            background: white;
+            padding: 12px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 8px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 9px;
+            color: #2c5282;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .job-card {
+            border: 1.5px solid #2c5282;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(44, 82, 130, 0.1);
+            margin-bottom: 12px;
+        }
+        
+        .job-header {
+            background: #2c5282;
+            color: white;
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .job-salary {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 6px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+        
+        .job-content {
+            padding: 10px;
+            background: #f8fafc;
+        }
+        
+        .job-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        
+        .detail-value {
+            color: #2c5282;
+            font-size: 9px;
+        }
+        
+        .section {
+            background: white;
+            padding: 8px;
+            border-radius: 3px;
+            border-left: 2px solid #2c5282;
+            margin-top: 8px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+        
+        .section-text {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        
+        .section-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .section-list li {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+        
+        .section-list li:before {
+            content: "•";
+            color: #2c5282;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .important-notes {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        
+        .notes-title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3px;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+        
+        .note-bullet {
+            color: #92400e;
+            font-weight: bold;
+            margin-right: 4px;
+            font-size: 10px;
+        }
+        
+        .apply-section {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .apply-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .apply-text {
+            font-size: 8px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 8px;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 7px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        <div class="logo-section">
+            <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>From Land to Legacy - with Edge</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <strong>sales@trivantaedge.com</strong><br>
+            info@trivantaedge.com<br>
+            +91 9373015503<br>
+            Kalyan, Maharashtra
+        </div>
+    </div>
+    
+    <div class="document-title">नौकरी विवरण</div>
+    <div class="subtitle">हेल्पर - कार पार्किंग सिस्टम सॉल्यूशंस</div>
+    
+    <div class="job-card">
+        <div class="job-header">
+            <div class="job-title">हेल्पर</div>
+            <div class="job-salary">₹10,000 - ₹15,000 प्रति माह</div>
+        </div>
+        <div class="job-content">
+            <div class="job-details">
+                <div class="detail-item">
+                    <div class="detail-label">अनुभव आवश्यक</div>
+                    <div class="detail-value">0 - 2 वर्ष</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">उद्योग</div>
+                    <div class="detail-value">निर्माण</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">प्रक्रिया</div>
+                    <div class="detail-value">कार पार्किंग स्थापना</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">स्थान</div>
+                    <div class="detail-value">महाराष्ट्र</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">पद का अवलोकन</div>
+                <div class="section-text">
+                    हम अपनी स्थापना टीम का समर्थन करने के लिए मेहनती और विश्वसनीय हेल्पर्स की तलाश कर रहे हैं। हेल्पर महाराष्ट्र के विभिन्न स्थलों पर कार पार्किंग सिस्टम की स्थापना के दौरान आवश्यक सहायता प्रदान करेगा। यह निर्माण और स्थापना उद्योग में सीखने और बढ़ने के इच्छुक व्यक्तियों के लिए एक उत्कृष्ट प्रारंभिक-स्तर का अवसर है।
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">प्रमुख जिम्मेदारियां</div>
+                <ul class="section-list">
+                    <li>फिटर्स और तकनीशियनों सहित स्थापना टीम को सहायता और समर्थन प्रदान करना</li>
+                    <li>सामग्री हैंडलिंग, उपकरण और औजारों की लोडिंग और अनलोडिंग में सहायता करना</li>
+                    <li>स्थापना गतिविधियों के लिए आवश्यक उपकरणों और सामग्री को तैयार और व्यवस्थित करना</li>
+                    <li>कार्यस्थल की सफाई और संगठन बनाए रखना</li>
+                    <li>पार्किंग सिस्टम के असेंबली और स्थापना के दौरान फिटर्स का समर्थन करना</li>
+                    <li>साइट पर आवश्यक स्थानों पर सामग्री और उपकरण ले जाना</li>
+                    <li>पर्यवेक्षकों द्वारा निर्देशित बुनियादी माप और मार्किंग में सहायता करना</li>
+                    <li>सुरक्षा दिशानिर्देशों का पालन करना और सुरक्षित कार्य वातावरण बनाए रखना</li>
+                    <li>उपकरणों और औजारों की सामान्य रखरखाव और सफाई करना</li>
+                    <li>किसी भी सुरक्षा खतरे या समस्याओं की रिपोर्ट साइट पर्यवेक्षक को करना</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">आवश्यक कौशल और योग्यताएं</div>
+                <ul class="section-list">
+                    <li>कोई भी शैक्षिक योग्यता स्वीकार्य है</li>
+                    <li>हेल्पर, लेबर या इसी तरह के भूमिकाओं में 0-2 वर्ष का अनुभव (फ्रेशर उम्मीदवारों का स्वागत है)</li>
+                    <li>शारीरिक रूप से फिट और मैनुअल श्रम करने में सक्षम</li>
+                    <li>भारी सामग्री उठाने और ले जाने की क्षमता</li>
+                    <li>सीखने और निर्देशों का पालन करने की इच्छा</li>
+                    <li>सकारात्मक दृष्टिकोण के साथ अच्छा टीम प्लेयर</li>
+                    <li>महाराष्ट्र के विभिन्न शहरों में यात्रा करने और रहने की इच्छा</li>
+                    <li>हिंदी या मराठी में बुनियादी संचार कौशल</li>
+                    <li>समय पर और विश्वसनीय कार्य नैतिकता</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">हम क्या प्रदान करते हैं</div>
+                <ul class="section-list">
+                    <li>प्रति माह ₹10,000 - ₹15,000 का प्रतिस्पर्धी वेतन पैकेज</li>
+                    <li>कंपनी द्वारा सभी यात्रा खर्च कवर किए गए</li>
+                    <li>आवास और भोजन खर्च पूरी तरह से कवर किया गया</li>
+                    <li>ऑन-द-जॉब प्रशिक्षण और कौशल विकास के अवसर</li>
+                    <li>फिटर या तकनीशियन भूमिकाओं तक आगे बढ़ने के लिए करियर विकास की संभावना</li>
+                    <li>सहायक टीम वातावरण</li>
+                    <li>नवीनतम पार्किंग सिस्टम प्रौद्योगिकियों का अनुभव</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="important-notes">
+        <div class="notes-title">महत्वपूर्ण आवश्यकताएं</div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>इस भूमिका के लिए शारीरिक इनपुट और मैनुअल कार्य क्षमताओं की आवश्यकता है</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>उम्मीदवार महाराष्ट्र के किसी भी शहर में यात्रा करने और रहने के लिए सहज होना चाहिए</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>यात्रा, आवास और भोजन के सभी खर्च कंपनी द्वारा कवर किए जाएंगे</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>आवासीय और वाणिज्यिक स्थलों सहित विविध वातावरणों में काम करने की इच्छा</span>
+        </div>
+    </div>
+    
+    <div class="important-notes" style="background: #e0f2fe; border: 1px solid #0277bd;">
+        <div class="notes-title" style="color: #01579b;">आवश्यक दस्तावेज</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>आधार कार्ड (अनिवार्य)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>बैंक खाता विवरण</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>पैन कार्ड</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>पिछला अनुभव पत्र (यदि लागू हो)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>वेतन पर्ची (यदि लागू हो)</span>
+        </div>
+    </div>
+    
+    <div class="apply-section">
+        <div class="apply-title">हमारी टीम में शामिल होने के लिए तैयार हैं?</div>
+        <div class="apply-text">
+            हम ऐसे समर्पित व्यक्तियों की तलाश कर रहे हैं जो नवीनतम पार्किंग समाधानों के प्रति उत्साहित हैं और हमारे साथ विकास के लिए तैयार हैं।
+        </div>
+        <div class="contact-details">
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div>sales@trivantaedge.com</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Phone</div>
+                <div>+91 9373015503</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Address</div>
+                <div>Kalyan, Maharashtra</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>

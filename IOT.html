@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Parking System Guide - Trivanta Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 0;
+        }
+        
+        .page {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 3px solid #2c5282;
+            background: white;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2c5282, #1a365d);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        h2 {
+            color: #1a365d;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2c5282;
+        }
+        
+        h3 {
+            color: #2c5282;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            background: #e9ecef;
+            padding: 8px 12px;
+            border-left: 4px solid #2c5282;
+        }
+        
+        h4 {
+            color: #1a365d;
+            font-size: 16px;
+            margin: 15px 0 8px 0;
+        }
+        
+        p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        
+        .intro {
+            background: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .flowchart {
+            background: white;
+            border: 2px solid #2c5282;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .flow-step {
+            background: linear-gradient(135deg, #2c5282, #1a365d);
+            color: white;
+            padding: 12px 20px;
+            margin: 10px auto;
+            border-radius: 8px;
+            max-width: 90%;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .flow-step:not(:last-child)::after {
+            content: '↓';
+            display: block;
+            font-size: 24px;
+            color: #2c5282;
+            margin: 5px 0;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #2c5282, #1a365d);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .component-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .component-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .diagram {
+            background: white;
+            border: 2px solid #2c5282;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .architecture-layer {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border: 2px solid #2c5282;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .layer-title {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .layer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .layer-item {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #2c5282;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .note {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #721c24;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #155724;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        ul, ol {
+            margin: 10px 0 10px 25px;
+        }
+        
+        li {
+            margin: 6px 0;
+        }
+        
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 11px;
+            color: #666;
+            background: #f8f9fa;
+            border-top: 2px solid #2c5282;
+        }
+        
+        @media (max-width: 768px) {
+            .letterhead {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                text-align: center;
+                margin-top: 10px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            h3 {
+                font-size: 16px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Letterhead -->
+        <div class="letterhead">
+            <div class="logo-section">
+                <div class="logo-placeholder">TE</div>
+                <div class="company-info" style="margin-left: 15px;">
+                    <h1>Trivanta Edge</h1>
+                    <p>Parking, Perfected</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <strong>sales@trivantaedge.com</strong><br>
+                info@trivantaedge.com<br>
+                +91 9373015503<br>
+                Kalyan, Maharashtra
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <h2>📱 Automated Parking System Implementation Guide</h2>
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">
+                Manual Button Control से Mobile App Control तक का Complete Journey
+            </p>
+            
+            <div class="intro">
+                <strong>📌 Document Overview:</strong> यह guide आपके existing manual parking systems (Puzzle Parking, Tower Parking, Stacker, Hydraulic Systems) को mobile application से control करने के लिए complete step-by-step implementation plan provide करता है।
+            </div>
+
+            <!-- Table of Contents -->
+            <h3>📑 Table of Contents</h3>
+            <ol>
+                <li>System Overview & Architecture</li>
+                <li>Components Required (Hardware & Software)</li>
+                <li>System Design & Flow Diagrams</li>
+                <li>Phase-wise Implementation</li>
+                <li>Technical Specifications</li>
+                <li>Cost Breakdown</li>
+                <li>Safety & Compliance</li>
+                <li>Testing & Deployment</li>
+            </ol>
+
+            <!-- Section 1: System Overview -->
+            <h2>1️⃣ System Overview & Architecture</h2>
+            
+            <h3>1.1 Current System (Manual)</h3>
+            <div class="component-box">
+                <h4>🔧 Existing Components</h4>
+                <ul>
+                    <li><strong>Control Panel:</strong> Manual push buttons (Up, Down, Left, Right, Stop)</li>
+                    <li><strong>Motors:</strong> Hydraulic motors/Electric motors</li>
+                    <li><strong>Contactors/Relays:</strong> Motor on/off switching</li>
+                    <li><strong>Sensors:</strong> Limit switches, proximity sensors, position encoders</li>
+                    <li><strong>Power Supply:</strong> 3-phase AC power for motors</li>
+                    <li><strong>Safety Systems:</strong> Emergency stop, overload protection</li>
+                </ul>
+            </div>
+
+            <h3>1.2 Target System (Automated)</h3>
+            <div class="diagram">
+                <div class="layer-title">🏗️ System Architecture (4 Layers)</div>
+                
+                <div class="architecture-layer">
+                    <div class="layer-title">Layer 4: User Interface</div>
+                    <div class="layer-content">
+                        <div class="layer-item">📱 Mobile App<br>(Android/iOS)</div>
+                        <div class="layer-item">💻 Web Dashboard<br>(Optional)</div>
+                    </div>
+                </div>
+
+                <div class="architecture-layer">
+                    <div class="layer-title">Layer 3: Cloud/Server</div>
+                    <div class="layer-content">
+                        <div class="layer-item">🔐 Authentication</div>
+                        <div class="layer-item">📡 API Server</div>
+                        <div class="layer-item">💾 Database</div>
+                        <div class="layer-item">🔔 MQTT Broker</div>
+                    </div>
+                </div>
+
+                <div class="architecture-layer">
+                    <div class="layer-title">Layer 2: Communication</div>
+                    <div class="layer-content">
+                        <div class="layer-item">📶 WiFi/4G</div>
+                        <div class="layer-item">🌐 Internet</div>
+                        <div class="layer-item">🔒 SSL/TLS</div>
+                    </div>
+                </div>
+
+                <div class="architecture-layer">
+                    <div class="layer-title">Layer 1: Hardware Control</div>
+                    <div class="layer-content">
+                        <div class="layer-item">🎛️ ESP32/Arduino</div>
+                        <div class="layer-item">⚡ Relay Module</div>
+                        <div class="layer-item">🔌 Motors</div>
+                        <div class="layer-item">📍 Sensors</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Communication Flow -->
+            <h3>1.3 Communication Flow</h3>
+            <div class="flowchart">
+                <div class="flow-step">User opens mobile app & logs in</div>
+                <div class="flow-step">Selects parking operation (e.g., "Move Up")</div>
+                <div class="flow-step">App sends command to Cloud Server via Internet</div>
+                <div class="flow-step">Server validates user & forwards to MQTT Broker</div>
+                <div class="flow-step">ESP32 receives command via MQTT</div>
+                <div class="flow-step">ESP32 checks safety conditions</div>
+                <div class="flow-step">Activates relay → Motor starts</div>
+                <div class="flow-step">Sensors monitor position</div>
+                <div class="flow-step">ESP32 sends real-time status to app</div>
+                <div class="flow-step">Motor stops when target reached</div>
+            </div>
+
+            <!-- Section 2: Components -->
+            <h2>2️⃣ Components Required</h2>
+
+            <h3>2.1 Hardware Components</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                            <th>Specification</th>
+                            <th>Quantity</th>
+                            <th>Est. Cost (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ESP32 Dev Board</strong></td>
+                            <td>Main controller with WiFi</td>
+                            <td>ESP32-WROOM-32, Dual-core, WiFi+BT</td>
+                            <td>1</td>
+                            <td>500-800</td>
+                        </tr>
+                        <tr>
+                            <td><strong>16-Channel Relay Module</strong></td>
+                            <td>Control motors/contactors</td>
+                            <td>5V/12V trigger, 10A per channel</td>
+                            <td>1-2</td>
+                            <td>800-1500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Power Supply</strong></td>
+                            <td>Power ESP32 & relays</td>
+                            <td>12V 5A SMPS</td>
+                            <td>1</td>
+                            <td>300-500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Optocouplers</strong></td>
+                            <td>Electrical isolation</td>
+                            <td>PC817, 4-channel module</td>
+                            <td>2</td>
+                            <td>150-300</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level Shifter</strong></td>
+                            <td>3.3V ↔ 5V conversion</td>
+                            <td>Bi-directional, 4-channel</td>
+                            <td>1</td>
+                            <td>100-200</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enclosure Box</strong></td>
+                            <td>House electronics</td>
+                            <td>IP65 rated, 200x150x75mm</td>
+                            <td>1</td>
+                            <td>400-800</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indicator LEDs</strong></td>
+                            <td>Status indication</td>
+                            <td>5mm, Red/Green/Yellow</td>
+                            <td>10</td>
+                            <td>50-100</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emergency Stop Button</strong></td>
+                            <td>Hardware safety</td>
+                            <td>NC type, 22mm mushroom</td>
+                            <td>1</td>
+                            <td>200-400</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wiring & Connectors</strong></td>
+                            <td>Connections</td>
+                            <td>2.5mm² wire, terminal blocks</td>
+                            <td>-</td>
+                            <td>500-1000</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"><strong>TOTAL HARDWARE COST</strong></td>
+                            <td><strong>₹3,000-5,600</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <h3>2.2 Software Components</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microcontroller Code</strong></td>
+                            <td>Arduino IDE (C++)</td>
+                            <td>ESP32 programming</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend Server</strong></td>
+                            <td>Node.js + Express</td>
+                            <td>API & business logic</td>
+                            <td>Free (open-source)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database</strong></td>
+                            <td>MongoDB Atlas / MySQL</td>
+                            <td>Store user data, logs</td>
+                            <td>Free tier available</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MQTT Broker</strong></td>
+                            <td>Mosquitto / AWS IoT</td>
+                            <td>Real-time messaging</td>
+                            <td>Free/₹500-2000/month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cloud Hosting</strong></td>
+                            <td>AWS / DigitalOcean</td>
+                            <td>Deploy backend</td>
+                            <td>₹500-2000/month</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile App</strong></td>
+                            <td>Flutter / React Native</td>
+                            <td>User interface</td>
+                            <td>Free (open-source)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SSL Certificate</strong></td>
+                            <td>Let's Encrypt</td>
+                            <td>Secure communication</td>
+                            <td>Free</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 3: Technical Terms Explained -->
+            <h2>3️⃣ Technical Terms - Detailed Explanation</h2>
+
+            <div class="component-box">
+                <h4>🔌 ESP32 Microcontroller</h4>
+                <p><strong>Kya hai?</strong> Ek chhota computer chip (जैसे mobile ka processor) jo WiFi/Bluetooth built-in hai.</p>
+                <p><strong>Kaam:</strong> Internet se commands receive karta hai aur motors ko control karta hai. Example: Jaise TV ka remote signal receive karta hai waise hi ESP32 mobile app se signal receive karta hai.</p>
+                <p><strong>Kyun use karein?</strong> Arduino se better kyunki WiFi built-in hai, zyada powerful hai, aur affordable bhi.</p>
+            </div>
+
+            <div class="component-box">
+                <h4>⚡ Relay Module</h4>
+                <p><strong>Kya hai?</strong> Electrical switch jo automatically on/off hota hai (jaise ghar ka switch but automatic).</p>
+                <p><strong>Kaam:</strong> ESP32 low voltage (3.3V) pe kaam karta hai but motor high voltage (230V AC) pe chalta hai. Relay beech mein bridge ka kaam karta hai - ESP32 signal deta hai → Relay on/off hota hai → Motor chalta/rukta hai.</p>
+                <p><strong>Analogy:</strong> Jaise light switch ko manually press karte ho, waise hi ESP32 relay ko electronically press karta hai.</p>
+            </div>
+
+            <div class="component-box">
+                <h4>🌐 MQTT Protocol</h4>
+                <p><strong>Kya hai?</strong> Internet messaging system (जैसे WhatsApp but machines के लिए).</p>
+                <p><strong>Kaam:</strong> Mobile app aur ESP32 ke beech real-time messages bhejne ke liye. Very lightweight aur fast.</p>
+                <p><strong>Example:</strong> App message bhejta hai "motor_up" → MQTT broker ESP32 ko forward karta hai → ESP32 motor up kar deta hai. Reverse bhi same - ESP32 status bhejta hai → App mein display hota hai.</p>
+            </div>
+
+            <div class="component-box">
+                <h4>☁️ Cloud Server</h4>
+                <p><strong>Kya hai?</strong> Internet pe ek computer jo 24/7 chalta rehta hai (जैसे Facebook ka server).</p>
+                <p><strong>Kaam:</strong> User authentication (login check), data storage, aur app-ESP32 ke beech middleman.</p>
+                <p><strong>Benefit:</strong> Kahin se bhi control kar sakte - ghar se, office se, dusre city se. Bina cloud ke sirf WiFi range mein kaam karega.</p>
+            </div>
+
+            <div class="component-box">
+                <h4>🔐 API (Application Programming Interface)</h4>
+                <p><strong>Kya hai?</strong> Software ka menu card - jo operations available hain unki list.</p>
+                <p><strong>Example APIs:</strong></p>
+                <ul>
+                    <li><code>POST /login</code> → User login kare</li>
+                    <li><code>POST /moveUp</code> → Platform upar move kare</li>
+                    <li><code>GET /status</code> → Current position check kare</li>
+                </ul>
+                <p><strong>Analogy:</strong> Jaise restaurant menu mein "Paneer Tikka" likha hai waise API mein "moveUp" function likha hai.</p>
+            </div>
+
+            <div class="component-box">
+                <h4>📍 Optocoupler</h4>
+                <p><strong>Kya hai?</strong> Electrical safety device - do circuits ko physically separate rakhta hai lekin signal pass karta hai.</p>
+                <p><strong>Kyun zaroori?</strong> Agar motor circuit mein koi problem ho (short circuit, high voltage) to ESP32 safe rahega. Light signal se communicate karta hai (electrical connection nahi).</p>
+                <p><strong>Analogy:</strong> Jaise glass wall se aap dusre side dekh sakte ho but touch nahi kar sakte, waise hi optocoupler signal pass karta hai but electricity nahi.</p>
+            </div>
+
+            <!-- Section 4: Phase-wise Implementation -->
+            <h2>4️⃣ Phase-wise Implementation Plan</h2>
+
+            <h3>Phase 1: Planning & Design (Week 1-2)</h3>
+            <div class="note">
+                <strong>🎯 Goal:</strong> System ki complete understanding aur design finalize karna.
+            </div>
+
+            <h4>Step 1.1: Current System Documentation</h4>
+            <ol>
+                <li><strong>Circuit Diagram banao:</strong> Existing control panel ka wiring diagram draw karo
+                    <ul>
+                        <li>Konsa button kis motor se connected hai</li>
+                        <li>Kahan relay/contactor hai</li>
+                        <li>Power supply connections</li>
+                        <li>Sensor wiring</li>
+                    </ul>
+                </li>
+                <li><strong>Motor List:</strong> Sabhi motors ki list
+                    <ul>
+                        <li>Motor 1: Vertical movement (Up/Down)</li>
+                        <li>Motor 2: Horizontal movement (Left/Right)</li>
+                        <li>Motor 3: Platform rotation (agar applicable)</li>
+                    </ul>
+                </li>
+                <li><strong>Sensor Mapping:</strong>
+                    <ul>
+                        <li>Upper limit switch → Pin X</li>
+                        <li>Lower limit switch → Pin Y</li>
+                        <li>Position encoder → Pin Z</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>Step 1.2: Requirements Analysis</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Requirement</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User Authentication</td>
+                            <td>Sirf authorized users hi access karein</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time Status</td>
+                            <td>Live position tracking</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Emergency Stop</td>
+                            <td>Turant motor stop (hardware + software)</td>
+                            <td>Critical</td>
+                        </tr>
+                        <tr>
+                            <td>Manual Override</td>
+                            <td>Purane buttons bhi kaam karein</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-user Support</td>
+                            <td>Multiple operators</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Activity Logs</td>
+                            <td>Kisne kab kya kiya - history</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Offline Mode</td>
+                            <td>Internet na ho to local WiFi pe kaam kare</td>
+                            <td>Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Step 1.3: App Features Design</h4>
+            <p><strong>Screens required:</strong></p>
+            <ol>
+                <li><strong>Login Screen:</strong> Username/Password entry</li>
+                <li><strong>Dashboard:</strong> Quick status overview
+                    <ul>
+                        <li>Current platform position</li>
+                        <li>System status (Running/Idle/Error)</li>
+                        <li>Quick action buttons</li>
+                    </ul>
+                </li>
+                <li><strong>Control Screen:</strong> Main control panel
+                    <ul>
+                        <li>Directional buttons (↑↓←→)</li>
+                        <li>Emergency stop (red button)</li>
+                        <li>Slot selection (for puzzle parking)</li>
+                        <li>Manual/Auto mode toggle</li>
+                    </ul>
+                </li>
+                <li><strong>History Screen:</strong> Activity logs</li>
+                <li><strong>Settings Screen:</strong> Configuration options</li>
+            </ol>
+
+            <!-- Phase 2 -->
+            <h3>Phase 2: Hardware Setup (Week 3-4)</h3>
+            <div class="warning">
+                <strong>⚠️ Safety First:</strong> Iss phase mein electrical work hai. Agar experience nahi hai to electrician ko involve karo.
+            </div>
+
+            <h4>Step 2.1: Component Purchase & Testing</h4>
+            <ol>
+                <li>Online order karo (Amazon/Robu.in):
+                    <ul>
+                        <li>ESP32 DevKit V1</li>
+                        <li>16-channel relay module</li>
+                        <li>Power supply (12V 5A)</li>
+                        <li>Connecting wires, breadboard</li>
+                    </ul>
+                </li>
+                <li>Individual testing:
+                    <ul>
+                        <li>ESP32 ko computer se connect kar Arduino IDE test karo</li>
+                        <li>Relay module test karo - manually on/off check karo</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>Step 2.2: Prototype Circuit Assembly</h4>
+            <div class="code-block">
+Connections (Simplified):
+
+ESP32 → Relay Module
+━━━━━━━━━━━━━━━━━━━━━━━
+GPIO 25 → Relay 1 (Motor Up)
+GPIO 26 → Relay 2 (Motor Down)
+GPIO 27 → Relay 3 (Motor Left)
+GPIO 14 → Relay 4 (Motor Right)
+GND → GND
+5V → VCC
+
+Relay Module → Motor Contactor
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Relay COM → Contactor coil (+)
+Relay NO → Power supply
+Contactor coil (-) → GND
+
+Sensors → ESP32
+━━━━━━━━━━━━━━━━━━
+Upper Limit Switch → GPIO 32
+Lower Limit Switch → GPIO 33
+Left Limit → GPIO 34
+Right Limit → GPIO 35
+Sensor GND → ESP32 GND
+            </div>
+
+            <div class="note">
+                <strong>💡 Pro Tip:</strong> Pehle breadboard pe sab kuch test karo. Motors ki jagah LED lagao testing ke liye. LED on/off ho rahi hai matlab relay kaam kar raha hai.
+            </div>
+
+            <h4>Step 2.3: Basic ESP32 Programming</h4>
+            <div class="code-block">
+// Basic Relay Control Test Code
+// Arduino IDE mein paste karo
+
+#define RELAY_UP 25
+#define RELAY_DOWN 26
+
+void setup() {
+  pinMode(RELAY_UP, OUTPUT);
+  pinMode(RELAY_DOWN, OUTPUT);
+  
+  digitalWrite(RELAY_UP, LOW);    // Relay OFF
+  digitalWrite(RELAY_DOWN, LOW);
+  
+  Serial.begin(115200);
+  Serial.println("System Ready!");
+}
+
+void loop() {
+  // Test: Up relay ON for 2 seconds
+  Serial.println("Moving UP");
+  digitalWrite(RELAY_UP, HIGH);
+  delay(2000);
+  digitalWrite(RELAY_UP, LOW);
+  
+  delay(3000);  // Wait
+  
+  // Test: Down relay ON for 2 seconds
+  Serial.println("Moving DOWN");
+  digitalWrite(RELAY_DOWN, HIGH);
+  delay(2000);
+  digitalWrite(RELAY_DOWN, LOW);
+  
+  delay(3000);  // Wait
+}
+            </div>
+
+            <h4>Step 2.4: WiFi Connection Setup</h4>
+            <div class="code-block">
+// WiFi Connection Test
+
+#include &lt;WiFi.h&gt;
+
+const char* ssid = "YourWiFiName";
+const char* password = "YourPassword";
+
+void setup() {
+  Serial.begin(115200);
+  
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  
+  Serial.println("\nConnected!");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  // WiFi connected hai ya nahi check
+  if(WiFi.status() == WL_CONNECTED) {
+    Serial.println("WiFi OK");
+  } else {
+    Serial.println("WiFi Lost! Reconnecting...");
+    WiFi.begin(ssid, password);
+  }
+  delay(5000);
+}
+            </div>
+
+            <!-- Phase 3 -->
+            <h3>Phase 3: Backend Development (Week 5-6)</h3>
+            
+            <h4>Step 3.1: Server Setup</h4>
+            <div class="component-box">
+                <h4>🖥️ Option 1: Cloud Server (Recommended)</h4>
+                <p><strong>Services:</strong> AWS EC2 / DigitalOcean Droplet / Heroku</p>
+                <p><strong>Cost:</strong> ₹500-1500/month</p>
+                <p><strong>Benefits:</strong> 24/7 uptime, anywhere access, scalable</p>
+            </div>
+
+            <div class="component-box">
+                <h4>💻 Option 2: Local Server</h4>
+                <p><strong>Setup:</strong> Old laptop/Raspberry Pi as server</p>
+                <p><strong>Cost:</strong> One-time (₹3000-5000 for RPi)</p>
+                <p><strong>Limitation:</strong> Internet connectivity zaroori, power backup needed</p>
+            </div>
+
+            <h4>Step 3.2: Database Schema Design</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table Name</th>
+                            <th>Fields</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>users</strong></td>
+                            <td>id, username, password_hash, role, created_at</td>
+                            <td>User authentication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>devices</strong></td>
+                            <td>id, device_name, mac_address, status, last_seen</td>
+                            <td>ESP32 device tracking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>parking_slots</strong></td>
+                            <td>id, slot_number, status, vehicle_info, timestamp</td>
+                            <td>Slot occupancy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>activity_logs</strong></td>
+                            <td>id, user_id, action, timestamp, status</td>
+                            <td>History tracking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>system_status</strong></td>
+                            <td>id, position_x, position_y, motor_status, error_code</td>
+                            <td>Real-time system state</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Step 3.3: API Endpoints Design</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>Method</th>
+                            <th>Purpose</th>
+                            <th>Request</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/api/auth/login</td>
+                            <td>POST</td>
+                            <td>User login</td>
+                            <td>{username, password}</td>
+                            <td>{token, user_info}</td>
+                        </tr>
+                        <tr>
+                            <td>/api/control/move</td>
+                            <td>POST</td>
+                            <td>Send movement command</td>
+                            <td>{direction: "up"}</td>
+                            <td>{status: "success"}</td>
+                        </tr>
+                        <tr>
+                            <td>/api/status/current</td>
+                            <td>GET</td>
+                            <td>Get system status</td>
+                            <td>-</td>
+                            <td>{position, motor_status}</td>
+                        </tr>
+                        <tr>
+                            <td>/api/history/logs</td>
+                            <td>GET</td>
+                            <td>Fetch activity logs</td>
+                            <td>?from=date&to=date</td>
+                            <td>[{action, timestamp}]</td>
+                        </tr>
+                        <tr>
+                            <td>/api/emergency/stop</td>
+                            <td>POST</td>
+                            <td>Emergency stop all</td>
+                            <td>-</td>
+                            <td>{status: "stopped"}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Step 3.4: MQTT Setup</h4>
+            <div class="flowchart">
+                <div class="layer-title">📡 MQTT Communication Topics</div>
+                <div style="text-align: left; padding: 15px;">
+                    <p><strong>Subscribe Topics (ESP32 listens):</strong></p>
+                    <ul>
+                        <li><code>parking/device123/command/move</code> → Movement commands</li>
+                        <li><code>parking/device123/command/stop</code> → Stop command</li>
+                        <li><code>parking/device123/config/update</code> → Configuration updates</li>
+                    </ul>
+                    <br>
+                    <p><strong>Publish Topics (ESP32 sends):</strong></p>
+                    <ul>
+                        <li><code>parking/device123/status/position</code> → Current position</li>
+                        <li><code>parking/device123/status/motor</code> → Motor states</li>
+                        <li><code>parking/device123/alert/error</code> → Error notifications</li>
+                        <li><code>parking/device123/sensor/limit</code> → Sensor readings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <h3>Phase 4: Mobile App Development (Week 7-9)</h3>
+            
+            <h4>Step 4.1: Technology Selection</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Pros</th>
+                            <th>Cons</th>
+                            <th>Learning Curve</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Flutter</strong></td>
+                            <td>Single codebase, fast, beautiful UI</td>
+                            <td>Dart language seekhni padegi</td>
+                            <td>Medium (2-3 weeks)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>React Native</strong></td>
+                            <td>JavaScript use, large community</td>
+                            <td>Performance issues (sometimes)</td>
+                            <td>Easy (if JS jaante ho)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Native Android</strong></td>
+                            <td>Best performance, full control</td>
+                            <td>iOS alag se banana padega</td>
+                            <td>Hard (3-4 weeks)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success">
+                <strong>✅ Recommendation:</strong> Flutter use karo - ek code se Android + iOS dono mil jayenge aur UI bahut accha banta hai.
+            </div>
+
+            <h4>Step 4.2: App Screen Wireframes</h4>
+            <div class="diagram">
+                <div class="layer-title">📱 Screen 1: Login</div>
+                <div style="background: #f8f9fa; padding: 20px; border: 2px solid #ddd; border-radius: 8px; margin: 10px 0;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 24px; margin: 20px 0;">🏢</p>
+                        <p><strong>Trivanta Edge Parking</strong></p>
+                        <div style="background: white; padding: 10px; margin: 15px 20px; border: 1px solid #ccc;">
+                            📧 Username
+                        </div>
+                        <div style="background: white; padding: 10px; margin: 15px 20px; border: 1px solid #ccc;">
+                            🔒 Password
+                        </div>
+                        <div style="background: #2c5282; color: white; padding: 12px; margin: 15px 20px; border-radius: 8px;">
+                            <strong>LOGIN</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layer-title">📱 Screen 2: Dashboard</div>
+                <div style="background: #f8f9fa; padding: 20px; border: 2px solid #ddd; border-radius: 8px; margin: 10px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div style="background: #d4edda; padding: 15px; border-radius: 6px; text-align: center;">
+                            <strong>System Status</strong><br>✅ Online
+                        </div>
+                        <div style="background: #cce5ff; padding: 15px; border-radius: 6px; text-align: center;">
+                            <strong>Current Position</strong><br>Level 2, Slot 5
+                        </div>
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 6px; text-align: center;">
+                            <strong>Motor</strong><br>Idle
+                        </div>
+                        <div style="background: #f8d7da; padding: 15px; border-radius: 6px; text-align: center;">
+                            <strong>Last Action</strong><br>5 mins ago
+                        </div>
+                    </div>
+                    <div style="background: #2c5282; color: white; padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center;">
+                        <strong>GO TO CONTROLS →</strong>
+                    </div>
+                </div>
+
+                <div class="layer-title">📱 Screen 3: Control Panel</div>
+                <div style="background: #f8f9fa; padding: 20px; border: 2px solid #ddd; border-radius: 8px; margin: 10px 0;">
+                    <div style="text-align: center;">
+                        <div style="background: white; padding: 15px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px;">
+                            <strong>Current Position: Level 3</strong>
+                        </div>
+                        
+                        <!-- Directional Controls -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; max-width: 300px; margin: 20px auto;">
+                            <div></div>
+                            <div style="background: #2c5282; color: white; padding: 20px; border-radius: 8px;">
+                                <strong>↑<br>UP</strong>
+                            </div>
+                            <div></div>
+                            
+                            <div style="background: #2c5282; color: white; padding: 20px; border-radius: 8px;">
+                                <strong>←<br>LEFT</strong>
+                            </div>
+                            <div style="background: #dc3545; color: white; padding: 20px; border-radius: 8px;">
+                                <strong>⊗<br>STOP</strong>
+                            </div>
+                            <div style="background: #2c5282; color: white; padding: 20px; border-radius: 8px;">
+                                <strong>→<br>RIGHT</strong>
+                            </div>
+                            
+                            <div></div>
+                            <div style="background: #2c5282; color: white; padding: 20px; border-radius: 8px;">
+                                <strong>↓<br>DOWN</strong>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Step 4.3: Key Features Implementation</h4>
+            <ul>
+                <li><strong>JWT Authentication:</strong> Secure token-based login</li>
+                <li><strong>WebSocket/MQTT Integration:</strong> Real-time status updates</li>
+                <li><strong>Haptic Feedback:</strong> Button press pe phone vibrate</li>
+                <li><strong>Push Notifications:</strong> Errors/alerts ke liye</li>
+                <li><strong>Offline Detection:</strong> Internet na ho to warning</li>
+                <li><strong>Activity History:</strong> Last 50 actions display</li>
+            </ul>
+
+            <!-- Phase 5 -->
+            <h3>Phase 5: Integration & Testing (Week 10-11)</h3>
+
+            <h4>Step 5.1: Complete ESP32 Code</h4>
+            <div class="code-block">
+// Complete ESP32 Code with MQTT
+
+#include &lt;WiFi.h&gt;
+#include &lt;PubSubClient.h&gt;
+
+// WiFi credentials
+const char* ssid = "YourWiFi";
+const char* password = "YourPassword";
+
+// MQTT Broker
+const char* mqtt_server = "your-broker.com";
+const int mqtt_port = 1883;
+const char* mqtt_user = "device123";
+const char* mqtt_pass = "devicePass";
+
+// Pin definitions
+#define RELAY_UP 25
+#define RELAY_DOWN 26
+#define RELAY_LEFT 27
+#define RELAY_RIGHT 14
+#define LIMIT_UP 32
+#define LIMIT_DOWN 33
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Pin setup
+  pinMode(RELAY_UP, OUTPUT);
+  pinMode(RELAY_DOWN, OUTPUT);
+  pinMode(RELAY_LEFT, OUTPUT);
+  pinMode(RELAY_RIGHT, OUTPUT);
+  pinMode(LIMIT_UP, INPUT_PULLUP);
+  pinMode(LIMIT_DOWN, INPUT_PULLUP);
+  
+  // All relays OFF initially
+  stopAllMotors();
+  
+  // Connect WiFi
+  connectWiFi();
+  
+  // Connect MQTT
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(mqttCallback);
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnectMQTT();
+  }
+  client.loop();
+  
+  // Check limit switches
+  checkSafety();
+  
+  // Send status every 2 seconds
+  static unsigned long lastUpdate = 0;
+  if (millis() - lastUpdate > 2000) {
+    publishStatus();
+    lastUpdate = millis();
+  }
+}
+
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  String message = "";
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }
+  
+  Serial.println("Command: " + message);
+  
+  if (message == "UP") moveUp();
+  else if (message == "DOWN") moveDown();
+  else if (message == "LEFT") moveLeft();
+  else if (message == "RIGHT") moveRight();
+  else if (message == "STOP") stopAllMotors();
+}
+
+void moveUp() {
+  if (digitalRead(LIMIT_UP) == HIGH) {  // Not at limit
+    stopAllMotors();
+    digitalWrite(RELAY_UP, HIGH);
+    Serial.println("Moving UP");
+  } else {
+    Serial.println("Upper limit reached!");
+  }
+}
+
+void stopAllMotors() {
+  digitalWrite(RELAY_UP, LOW);
+  digitalWrite(RELAY_DOWN, LOW);
+  digitalWrite(RELAY_LEFT, LOW);
+  digitalWrite(RELAY_RIGHT, LOW);
+}
+
+void checkSafety() {
+  // If limit reached, stop motor
+  if (digitalRead(LIMIT_UP) == LOW) {
+    digitalWrite(RELAY_UP, LOW);
+    client.publish("parking/device123/alert/error", "Upper limit");
+  }
+}
+
+void publishStatus() {
+  String status = "{\"motor\":\"idle\",\"position\":\"level2\"}";
+  client.publish("parking/device123/status/position", status.c_str());
+}
+            </div>
+
+            <h4>Step 5.2: Testing Checklist</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Test Case</th>
+                            <th>Procedure</th>
+                            <th>Expected Result</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>WiFi Connection</td>
+                            <td>ESP32 power on karo</td>
+                            <td>3 seconds mein WiFi connect</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>App Login</td>
+                            <td>Correct credentials enter</td>
+                            <td>Dashboard open ho</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>UP Command</td>
+                            <td>App se UP button press</td>
+                            <td>Motor up chale</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Limit Switch</td>
+                            <td>Upper limit tak jao</td>
+                            <td>Motor automatically stop</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Emergency Stop</td>
+                            <td>Motion mein STOP press</td>
+                            <td>Immediately stop</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Manual Override</td>
+                            <td>Physical button press</td>
+                            <td>Motor chale (app se bhi)</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Internet Failure</td>
+                            <td>WiFi router off karo</td>
+                            <td>App mein "Offline" dikhe</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Multiple Users</td>
+                            <td>2 phones se simultaneously</td>
+                            <td>Dono control kar sakein</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>Status Update</td>
+                            <td>Position change karo</td>
+                            <td>App mein real-time update</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                        <tr>
+                            <td>History Logs</td>
+                            <td>10 actions karo</td>
+                            <td>History screen mein dikhe</td>
+                            <td>✅ / ❌</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 5: Safety -->
+            <h2>5️⃣ Safety & Compliance</h2>
+
+            <div class="warning">
+                <strong>⚠️ CRITICAL: Safety Measures (Zaroori)</strong>
+            </div>
+
+            <h3>5.1 Hardware Safety</h3>
+            <ol>
+                <li><strong>Emergency Stop Circuit:</strong>
+                    <ul>
+                        <li>Hardware-level emergency stop (NC type)</li>
+                        <li>Directly power supply cut kare</li>
+                        <li>Software stop pe depend nahi</li>
+                    </ul>
+                </li>
+                <li><strong>Limit Switches:</strong>
+                    <ul>
+                        <li>Over-travel prevent karne ke liye</li>
+                        <li>Mechanical + software dono checks</li>
+                    </ul>
+                </li>
+                <li><strong>Overload Protection:</strong>
+                    <ul>
+                        <li>MCB/MCCB use karo</li>
+                        <li>Proper fuse ratings</li>
+                    </ul>
+                </li>
+                <li><strong>Electrical Isolation:</strong>
+                    <ul>
+                        <li>Optocouplers between control & power</li>
+                        <li>Proper earthing</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>5.2 Software Safety</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Safety Feature</th>
+                            <th>Implementation</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Command Validation</td>
+                            <td>Server pe har command check</td>
+                            <td>Invalid commands block</td>
+                        </tr>
+                        <tr>
+                            <td>Timeout Protection</td>
+                            <td>5 sec no response = stop</td>
+                            <td>Hanging prevent</td>
+                        </tr>
+                        <tr>
+                            <td>Interlock Logic</td>
+                            <td>UP+DOWN same time nahi</td>
+                            <td>Conflicting commands prevent</td>
+                        </tr>
+                        <tr>
+                            <td>Watchdog Timer</td>
+                            <td>ESP32 hang ho to auto-reset</td>
+                            <td>System reliability</td>
+                        </tr>
+                        <tr>
+                            <td>Authentication</td>
+                            <td>JWT tokens, session management</td>
+                            <td>Unauthorized access prevent</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5.3 Compliance Requirements</h3>
+            <div class="note">
+                <p><strong>📋 Indian Standards:</strong></p>
+                <ul>
+                    <li><strong>IS 14665:</strong> Mechanical parking systems safety requirements</li>
+                    <li><strong>IS 15743:</strong> Automated parking system guidelines</li>
+                    <li><strong>IE Rules 1956:</strong> Electrical installation standards</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Zaroori Documents:</strong></p>
+                <ul>
+                    <li>Safety certificate from authorized agency</li>
+                    <li>Electrical clearance</li>
+                    <li>Fire safety NOC (if applicable)</li>
+                    <li>Local municipal approvals</li>
+                </ul>
+            </div>
+
+            <!-- Section 6: Cost Breakdown -->
+            <h2>6️⃣ Complete Cost Breakdown</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Item</th>
+                            <th>Cost (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5"><strong>Hardware</strong></td>
+                            <td>ESP32 + Relay + Power Supply</td>
+                            <td>3,000 - 5,000</td>
+                        </tr>
+                        <tr>
+                            <td>Optocouplers, connectors, wiring</td>
+                            <td>1,500 - 2,500</td>
+                        </tr>
+                        <tr>
+                            <td>Enclosure box (IP65)</td>
+                            <td>500 - 1,000</td>
+                        </tr>
+                        <tr>
+                            <td>Testing equipment (multimeter, etc)</td>
+                            <td>1,000 - 2,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hardware Subtotal</strong></td>
+                            <td><strong>6,000 - 10,500</strong></td>
+                        </tr>
+                        
+                        <tr>
+                            <td rowspan="4"><strong>Cloud/Server</strong></td>
+                            <td>Cloud hosting (1 year)</td>
+                            <td>6,000 - 18,000</td>
+                        </tr>
+                        <tr>
+                            <td>Domain name (.com)</td>
+                            <td>800 - 1,500</td>
+                        </tr>
+                        <tr>
+                            <td>SSL certificate (Let's Encrypt)</td>
+                            <td>0 (Free)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Server Subtotal (Yearly)</strong></td>
+                            <td><strong>6,800 - 19,500</strong></td>
+                        </tr>
+                        
+                        <tr>
+                            <td rowspan="3"><strong>Development</strong></td>
+                            <td>If self-developed (learning time)</td>
+                            <td>0 (your time)</td>
+                        </tr>
+                        <tr>
+                            <td>If outsourced (developer hiring)</td>
+                            <td>50,000 - 2,00,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Development Subtotal</strong></td>
+                            <td><strong>0 - 2,00,000</strong></td>
+                        </tr>
+                        
+                        <tr>
+                            <td rowspan="3"><strong>Miscellaneous</strong></td>
+                            <td>Testing & debugging</td>
+                            <td>2,000 - 5,000</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td>500 - 1,000</td>
+                        </tr>
+                        <tr>
+                            <td>Safety certifications (optional)</td>
+                            <td>10,000 - 30,000</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #2c5282; color: white; font-weight: bold;">
+                            <td colspan="2">TOTAL (DIY - Self Development)</td>
+                            <td>₹25,000 - 50,000</td>
+                        </tr>
+                        <tr style="background: #1a365d; color: white; font-weight: bold;">
+                            <td colspan="2">TOTAL (Outsourced Development)</td>
+                            <td>₹75,000 - 2,50,000</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Section 7: Timeline -->
+            <h2>7️⃣ Project Timeline</h2>
+
+            <div class="flowchart">
+                <h4 style="color: #1a365d; margin-bottom: 15px;">📅 12-Week Implementation Plan</h4>
+                
+                <div style="text-align: left; padding: 10px;">
+                    <div style="background: #e3f2fd; padding: 12px; margin: 8px 0; border-left: 4px solid #2196F3; border-radius: 4px;">
+                        <strong>Week 1-2: Planning & Design</strong><br>
+                        • System documentation<br>
+                        • Requirements analysis<br>
+                        • Component procurement
+                    </div>
+                    
+                    <div style="background: #fff3cd; padding: 12px; margin: 8px 0; border-left: 4px solid #ffc107; border-radius: 4px;">
+                        <strong>Week 3-4: Hardware Setup</strong><br>
+                        • ESP32 programming basics<br>
+                        • Relay testing<br>
+                        • WiFi connectivity setup
+                    </div>
+                    
+                    <div style="background: #d4edda; padding: 12px; margin: 8px 0; border-left: 4px solid #28a745; border-radius: 4px;">
+                        <strong>Week 5-6: Backend Development</strong><br>
+                        • Server setup<br>
+                        • API development<br>
+                        • Database design<br>
+                        • MQTT broker configuration
+                    </div>
+                    
+                    <div style="background: #e2e3e5; padding: 12px; margin: 8px 0; border-left: 4px solid #6c757d; border-radius: 4px;">
+                        <strong>Week 7-9: Mobile App Development</strong><br>
+                        • UI design & implementation<br>
+                        • API integration<br>
+                        • Real-time features<br>
+                        • Testing on device
+                    </div>
+                    
+                    <div style="background: #cce5ff; padding: 12px; margin: 8px 0; border-left: 4px solid #004085; border-radius: 4px;">
+                        <strong>Week 10-11: Integration & Testing</strong><br>
+                        • Hardware-software integration<br>
+                        • Complete system testing<br>
+                        • Bug fixes<br>
+                        • Safety validation
+                    </div>
+                    
+                    <div style="background: #d1ecf1; padding: 12px; margin: 8px 0; border-left: 4px solid #0c5460; border-radius: 4px;">
+                        <strong>Week 12: Deployment & Training</strong><br>
+                        • Final installation<br>
+                        • User training<br>
+                        • Documentation handover<br>
+                        • Go-live support
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Learning Resources -->
+            <h2>8️⃣ Learning Resources & Tutorials</h2>
+
+            <h3>8.1 Hardware & ESP32</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Resource</th>
+                            <th>Duration</th>
+                            <th>Link/Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ESP32 Basics</td>
+                            <td>Random Nerd Tutorials</td>
+                            <td>3-5 days</td>
+                            <td>YouTube/Website</td>
+                        </tr>
+                        <tr>
+                            <td>Relay Control</td>
+                            <td>Arduino Project Hub</td>
+                            <td>1-2 days</td>
+                            <td>arduino.cc</td>
+                        </tr>
+                        <tr>
+                            <td>WiFi & MQTT</td>
+                            <td>ESP32 MQTT Tutorial</td>
+                            <td>2-3 days</td>
+                            <td>YouTube channels</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor Integration</td>
+                            <td>Circuit Digest</td>
+                            <td>2-3 days</td>
+                            <td>circuitdigest.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.2 Backend Development</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Resource</th>
+                            <th>Duration</th>
+                            <th>Link/Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Node.js Basics</td>
+                            <td>FreeCodeCamp Tutorial</td>
+                            <td>1 week</td>
+                            <td>YouTube</td>
+                        </tr>
+                        <tr>
+                            <td>Express.js API</td>
+                            <td>Traversy Media</td>
+                            <td>3-4 days</td>
+                            <td>YouTube</td>
+                        </tr>
+                        <tr>
+                            <td>MongoDB</td>
+                            <td>Net Ninja</td>
+                            <td>3-4 days</td>
+                            <td>YouTube</td>
+                        </tr>
+                        <tr>
+                            <td>JWT Authentication</td>
+                            <td>Web Dev Simplified</td>
+                            <td>1-2 days</td>
+                            <td>YouTube</td>
+                        </tr>
+                        <tr>
+                            <td>MQTT Broker Setup</td>
+                            <td>Steve's IoT Guide</td>
+                            <td>2-3 days</td>
+                            <td>mqtt-steve.net</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>8.3 Mobile App Development</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Resource</th>
+                            <th>Duration</th>
+                            <th>Link/Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Flutter Basics</td>
+                            <td>Flutter Official Course</td>
+                            <td>1-2 weeks</td>
+                            <td>flutter.dev</td>
+                        </tr>
+                        <tr>
+                            <td>Dart Language</td>
+                            <td>Dart Official Tutorial</td>
+                            <td>3-5 days</td>
+                            <td>dart.dev</td>
+                        </tr>
+                        <tr>
+                            <td>REST API Integration</td>
+                            <td>Flutter HTTP Package</td>
+                            <td>2-3 days</td>
+                            <td>pub.dev</td>
+                        </tr>
+                        <tr>
+                            <td>MQTT in Flutter</td>
+                            <td>mqtt_client package</td>
+                            <td>2-3 days</td>
+                            <td>pub.dev</td>
+                        </tr>
+                        <tr>
+                            <td>State Management</td>
+                            <td>Provider/Riverpod</td>
+                            <td>3-5 days</td>
+                            <td>YouTube tutorials</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 9: Troubleshooting -->
+            <h2>9️⃣ Common Problems & Solutions</h2>
+
+            <h3>9.1 Hardware Issues</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Possible Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ESP32 not connecting to WiFi</td>
+                            <td>Wrong credentials / Signal weak</td>
+                            <td>• Check SSID/password<br>• Move router closer<br>• Use WiFi extender</td>
+                        </tr>
+                        <tr>
+                            <td>Relay not clicking</td>
+                            <td>Insufficient power / Wrong wiring</td>
+                            <td>• Check 5V supply<br>• Verify relay trigger voltage<br>• Test with LED first</td>
+                        </tr>
+                        <tr>
+                            <td>Motor running in wrong direction</td>
+                            <td>Relay wiring swapped</td>
+                            <td>• Swap COM/NO connections<br>• Or swap in code logic</td>
+                        </tr>
+                        <tr>
+                            <td>ESP32 keeps resetting</td>
+                            <td>Power supply insufficient</td>
+                            <td>• Use 2A+ power supply<br>• Add capacitor (100µF)<br>• Check for short circuits</td>
+                        </tr>
+                        <tr>
+                            <td>Sensors not reading</td>
+                            <td>Wrong pin / No pull-up resistor</td>
+                            <td>• Enable INPUT_PULLUP<br>• Check sensor voltage (3.3V)<br>• Test with multimeter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>9.2 Software Issues</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Possible Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>App not connecting to server</td>
+                            <td>Wrong API endpoint / Firewall</td>
+                            <td>• Check server IP/URL<br>• Verify port is open (443/8883)<br>• Check SSL certificate</td>
+                        </tr>
+                        <tr>
+                            <td>MQTT messages not received</td>
+                            <td>Topic mismatch / Broker down</td>
+                            <td>• Check topic spelling (case-sensitive)<br>• Test broker with MQTT client<br>• Verify credentials</td>
+                        </tr>
+                        <tr>
+                            <td>Commands delayed</td>
+                            <td>Network latency / Server overload</td>
+                            <td>• Optimize code<br>• Increase server resources<br>• Use QoS 1 for MQTT</td>
+                        </tr>
+                        <tr>
+                            <td>App crashes on startup</td>
+                            <td>Dependencies missing / Version conflict</td>
+                            <td>• Check pubspec.yaml<br>• Run flutter clean<br>• Update packages</td>
+                        </tr>
+                        <tr>
+                            <td>Database connection failed</td>
+                            <td>Wrong credentials / IP whitelist</td>
+                            <td>• Verify DB connection string<br>• Add server IP to whitelist<br>• Check firewall rules</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 10: Advanced Features -->
+            <h2>🔟 Advanced Features (Future Enhancements)</h2>
+
+            <div class="component-box">
+                <h4>🤖 1. AI-Powered Parking Optimization</h4>
+                <p><strong>Feature:</strong> Automatically suggest optimal parking positions based on vehicle size, frequency of use</p>
+                <p><strong>Implementation:</strong> Machine learning model training on historical data</p>
+                <p><strong>Benefit:</strong> Faster retrieval times, better space utilization</p>
+            </div>
+
+            <div class="component-box">
+                <h4>📸 2. Camera Integration</h4>
+                <p><strong>Feature:</strong> Number plate recognition, vehicle damage detection</p>
+                <p><strong>Hardware:</strong> ESP32-CAM module (₹500-800)</p>
+                <p><strong>Benefit:</strong> Automated vehicle tracking, security enhancement</p>
+            </div>
+
+            <div class="component-box">
+                <h4>🔊 3. Voice Control</h4>
+                <p><strong>Feature:</strong> "Alexa, move car to position 5"</p>
+                <p><strong>Integration:</strong> Alexa Skills Kit / Google Actions</p>
+                <p><strong>Benefit:</strong> Hands-free operation</p>
+            </div>
+
+            <div class="component-box">
+                <h4>💳 4. Payment Integration</h4>
+                <p><strong>Feature:</strong> Automated billing for commercial parking</p>
+                <p><strong>APIs:</strong> Razorpay / PayTM integration</p>
+                <p><strong>Benefit:</strong> Cashless operations</p>
+            </div>
+
+            <div class="component-box">
+                <h4>📊 5. Analytics Dashboard</h4>
+                <p><strong>Feature:</strong> Usage statistics, peak hours, maintenance predictions</p>
+                <p><strong>Tools:</strong> Grafana / PowerBI dashboards</p>
+                <p><strong>Benefit:</strong> Data-driven decision making</p>
+            </div>
+
+            <div class="component-box">
+                <h4>🔔 6. Predictive Maintenance</h4>
+                <p><strong>Feature:</strong> Alert before component failure (based on vibration sensors, usage cycles)</p>
+                <p><strong>Sensors:</strong> Accelerometer, current sensors</p>
+                <p><strong>Benefit:</strong> Reduced downtime, cost savings</p>
+            </div>
+
+            <!-- Section 11: Business Considerations -->
+            <h2>1️⃣1️⃣ Business Model & Monetization</h2>
+
+            <h3>11.1 Revenue Opportunities</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Target Customer</th>
+                            <th>Pricing</th>
+                            <th>Revenue Potential</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hardware Sale</strong></td>
+                            <td>Existing parking system owners</td>
+                            <td>₹25,000 - 50,000 per unit</td>
+                            <td>High margin</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Complete System</strong></td>
+                            <td>New installations</td>
+                            <td>₹3-10 lakhs (with mechanical)</td>
+                            <td>Very high</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SaaS Subscription</strong></td>
+                            <td>All automated systems</td>
+                            <td>₹500-2000/month per system</td>
+                            <td>Recurring revenue</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AMC (Maintenance)</strong></td>
+                            <td>Installed base</td>
+                            <td>₹12,000-36,000/year</td>
+                            <td>Stable income</td>
+                        </tr>
+                        <tr>
+                            <td><strong>White Label</strong></td>
+                            <td>Other parking companies</td>
+                            <td>Licensing fee</td>
+                            <td>Scalable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>11.2 Market Analysis</h3>
+            <div class="note">
+                <p><strong>🎯 Target Market:</strong></p>
+                <ul>
+                    <li><strong>Residential:</strong> High-rise apartments, gated communities</li>
+                    <li><strong>Commercial:</strong> Malls, office buildings, hotels</li>
+                    <li><strong>Institutional:</strong> Hospitals, universities, airports</li>
+                    <li><strong>Industrial:</strong> Manufacturing units, warehouses</li>
+                </ul>
+                <br>
+                <p><strong>📈 Market Size (India):</strong></p>
+                <ul>
+                    <li>Automated parking market: ₹500-800 crores (growing 15% annually)</li>
+                    <li>Major cities: Mumbai, Delhi, Bangalore, Pune, Chennai</li>
+                    <li>Growing due to: Space constraints, luxury housing demand</li>
+                </ul>
+            </div>
+
+            <h3>11.3 Competitive Advantages</h3>
+            <div class="success">
+                <strong>✅ Your USPs (Unique Selling Points):</strong>
+                <ol>
+                    <li><strong>Retrofit Solution:</strong> Upgrade existing systems (competitors sell complete new systems)</li>
+                    <li><strong>Cost-Effective:</strong> ₹25K vs ₹2-5 lakhs for competitors' automation</li>
+                    <li><strong>Local Support:</strong> Based in Maharashtra, quick response</li>
+                    <li><strong>Customization:</strong> Can adapt to any existing parking type</li>
+                    <li><strong>Cloud + Local:</strong> Works even without internet (hybrid mode)</li>
+                </ol>
+            </div>
+
+            <!-- Section 12: Legal & Compliance -->
+            <h2>1️⃣2️⃣ Legal & Documentation</h2>
+
+            <h3>12.1 Required Licenses & Registrations</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Document</th>
+                            <th>Issuing Authority</th>
+                            <th>Cost</th>
+                            <th>Validity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GST Registration</td>
+                            <td>GST Department</td>
+                            <td>Free</td>
+                            <td>Annual filing</td>
+                        </tr>
+                        <tr>
+                            <td>MSME/Udyam</td>
+                            <td>MSME Ministry</td>
+                            <td>Free</td>
+                            <td>Lifetime</td>
+                        </tr>
+                        <tr>
+                            <td>Product Liability Insurance</td>
+                            <td>Insurance company</td>
+                            <td>₹10-30K/year</td>
+                            <td>1 year</td>
+                        </tr>
+                        <tr>
+                            <td>CE Certification (if exporting)</td>
+                            <td>Testing lab</td>
+                            <td>₹50K-1L</td>
+                            <td>As per standards</td>
+                        </tr>
+                        <tr>
+                            <td>ISO Certification (optional)</td>
+                            <td>Certifying body</td>
+                            <td>₹30K-80K</td>
+                            <td>3 years</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>12.2 Terms of Service & Warranty</h3>
+            <div class="component-box">
+                <h4>📄 Sample Warranty Terms</h4>
+                <ul>
+                    <li><strong>Hardware:</strong> 1 year replacement warranty on electronics</li>
+                    <li><strong>Software:</strong> Lifetime free updates for bugs, paid for features</li>
+                    <li><strong>Cloud Services:</strong> 99.5% uptime guarantee</li>
+                    <li><strong>Support:</strong> 24x7 email, phone during business hours</li>
+                    <li><strong>Exclusions:</strong> Physical damage, misuse, unauthorized modifications</li>
+                </ul>
+            </div>
+
+            <!-- Section 13: Go-to-Market Strategy -->
+            <h2>1️⃣3️⃣ Marketing & Sales Strategy</h2>
+
+            <h3>13.1 Launch Plan</h3>
+            <div class="flowchart">
+                <div style="text-align: left; padding: 15px;">
+                    <div style="background: #e3f2fd; padding: 10px; margin: 8px 0; border-radius: 6px;">
+                        <strong>Phase 1: Pilot Project (Month 1-2)</strong><br>
+                        • Install in 2-3 friendly customers (discount/free)<br>
+                        • Gather feedback, refine product<br>
+                        • Create case studies & video testimonials
+                    </div>
+                    
+                    <div style="background: #fff3cd; padding: 10px; margin: 8px 0; border-radius: 6px;">
+                        <strong>Phase 2: Local Marketing (Month 3-4)</strong><br>
+                        • Website launch with demos<br>
+                        • Google My Business listing<br>
+                        • Social media (LinkedIn, Instagram)<br>
+                        • Local newspaper ads
+                    </div>
+                    
+                    <div style="background: #d4edda; padding: 10px; margin: 8px 0; border-radius: 6px;">
+                        <strong>Phase 3: Partnership (Month 5-6)</strong><br>
+                        • Tie-ups with builders/architects<br>
+                        • Dealer network in major cities<br>
+                        • Collaborations with parking system manufacturers
+                    </div>
+                    
+                    <div style="background: #f8d7da; padding: 10px; margin: 8px 0; border-radius: 6px;">
+                        <strong>Phase 4: Scale-up (Month 7+)</strong><br>
+                        • Expand to other states<br>
+                        • Hire sales team<br>
+                        • Attend industry exhibitions
+                    </div>
+                </div>
+            </div>
+
+            <h3>13.2 Marketing Channels</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>Cost</th>
+                            <th>Expected ROI</th>
+                            <th>Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google Ads (Search)</td>
+                            <td>₹10-20K/month</td>
+                            <td>2-3 leads/day</td>
+                            <td>Immediate</td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn Ads (B2B)</td>
+                            <td>₹15-25K/month</td>
+                            <td>5-10 quality leads/month</td>
+                            <td>1-2 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Trade Shows/Exhibitions</td>
+                            <td>₹50K-1L per event</td>
+                            <td>20-50 leads per event</td>
+                            <td>Event-based</td>
+                        </tr>
+                        <tr>
+                            <td>Email Marketing</td>
+                            <td>₹2-5K/month</td>
+                            <td>2-5% conversion</td>
+                            <td>Ongoing</td>
+                        </tr>
+                        <tr>
+                            <td>Referral Program</td>
+                            <td>₹5-10K per referral</td>
+                            <td>High (trusted source)</td>
+                            <td>After first 10 customers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Final Section: Quick Start Guide -->
+            <h2>1️⃣4️⃣ Quick Start Checklist</h2>
+
+            <div class="success">
+                <h4>✅ Week 1 Action Items</h4>
+                <ol>
+                    <li>☐ Order ESP32 DevKit + Relay Module from Amazon/Robu.in</li>
+                    <li>☐ Install Arduino IDE on laptop</li>
+                    <li>☐ Test blink program on ESP32</li>
+                    <li>☐ Document your current parking system wiring</li>
+                    <li>☐ Take photos of control panel from all angles</li>
+                    <li>☐ List all motors and their functions</li>
+                    <li>☐ Create a simple circuit diagram</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <h4>📚 Week 2 Action Items</h4>
+                <ol>
+                    <li>☐ Complete "ESP32 WiFi" tutorial</li>
+                    <li>☐ Test relay control with LED</li>
+                    <li>☐ Set up free MongoDB Atlas account</li>
+                    <li>☐ Learn basic Node.js (1 hour daily)</li>
+                    <li>☐ Design app wireframes on paper</li>
+                    <li>☐ Choose: Flutter vs React Native</li>
+                    <li>☐ Install development tools</li>
+                </ol>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Safety Pre-Checks (MUST DO)</h4>
+                <ol>
+                    <li>☐ Disconnect main power before any wiring work</li>
+                    <li>☐ Use multimeter to verify voltage levels</li>
+                    <li>☐ Install emergency stop button (hardware)</li>
+                    <li>☐ Test each component individually first</li>
+                    <li>☐ Keep fire extinguisher nearby during testing</li>
+                    <li>☐ Have electrician review connections</li>
+                    <li>☐ Insure equipment against damage</li>
+                </ol>
+            </div>
+
+            <!-- Support Contact -->
+            <h2>📞 Need Help? Contact Trivanta Edge</h2>
+
+            <div class="component-box">
+                <h4>🤝 Support Options</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #2c5282;">
+                        <strong>📧 Email Support</strong><br>
+                        <a href="mailto:info@trivantaedge.com" style="color: #2c5282;">info@trivantaedge.com</a><br>
+                        <small>Response within 24 hours</small>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #2c5282;">
+                        <strong>📱 Phone Support</strong><br>
+                        <a href="tel:+919373015503" style="color: #2c5282;">+91 9373015503</a><br>
+                        <small>Mon-Sat, 10 AM - 6 PM</small>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #2c5282;">
+                        <strong>💼 Consultation</strong><br>
+                        Schedule a call<br>
+                        <small>Free 30-min consultation</small>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #2c5282;">
+                        <strong>🛠️ Installation Service</strong><br>
+                        On-site setup available<br>
+                        <small>Kalyan & surrounding areas</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="success" style="margin-top: 30px; padding: 20px;">
+                <h3 style="color: #155724; margin-top: 0;">🎉 Ready to Start Your Automation Journey!</h3>
+                <p><strong>Remember:</strong></p>
+                <ul>
+                    <li>Start small - test with one motor first</li>
+                    <li>Safety is paramount - never skip safety features</li>
+                    <li>Document everything - it helps in troubleshooting</li>
+                    <li>Join online communities - ESP32 forums, IoT groups</li>
+                    <li>Don't hesitate to ask for help - we're here to support!</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic;">
+                    "The best time to start was yesterday. The next best time is NOW!" 💪
+                </p>
+            </div>
+
+            <!-- Document Info -->
+            <div style="background: #e9ecef; padding: 15px; margin-top: 30px; border-radius: 8px; font-size: 12px;">
+                <strong>Document Information</strong><br>
+                Version: 1.0 | Last Updated: October 2025<br>
+                Prepared by: Trivanta Edge Technical Team<br>
+                For: Automated Parking System Implementation<br>
+                Classification: Internal Use / Client Reference
+            </div>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request - Material Theft Compensation</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: white;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            margin: -20mm -20mm 25px -20mm;
+            color: white;
+            border-bottom: 4px solid #d4af37;
+        }
+        
+        .company-name {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .company-tagline {
+            font-size: 12px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .letter-title {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2a5298;
+        }
+        
+        .reference {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 11px;
+            color: #555;
+        }
+        
+        .to-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+        }
+        
+        .to-label {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+        
+        .recipient {
+            line-height: 1.8;
+        }
+        
+        .subject {
+            margin: 25px 0;
+            padding: 15px;
+            background: #e8f0fe;
+            border-left: 4px solid #1e3c72;
+        }
+        
+        .subject-label {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+        
+        .salutation {
+            margin: 20px 0 15px 0;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        .content {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        
+        .content-heading {
+            color: #1e3c72;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            font-size: 13px;
+        }
+        
+        .incident-details {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+        }
+        
+        .detail-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1e3c72;
+            min-width: 180px;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        .evidence-box {
+            background: #fff9e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .amount-box {
+            background: #f0f8ff;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #2a5298;
+            border-radius: 4px;
+        }
+        
+        .amount-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .amount-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .material-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 11px;
+        }
+        
+        .material-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .material-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .material-table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .material-table .total-row {
+            background: #e8f0fe;
+            font-weight: bold;
+        }
+        
+        .requests {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .requests li {
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .closing {
+            margin-top: 30px;
+        }
+        
+        .signature-section {
+            margin-top: 50px;
+        }
+        
+        .signature-line {
+            margin-top: 60px;
+            padding-top: 2px;
+            border-top: 2px solid #1e3c72;
+            width: 250px;
+        }
+        
+        .signatory-name {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-top: 5px;
+        }
+        
+        .signatory-title {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid #2a5298;
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="company-name">MAXIM PARKING SOLUTION</div>
+            <div class="company-tagline">Automated Parking Systems & Infrastructure Solutions</div>
+        </div>
+        
+        <div class="reference">
+            <div><strong>Ref No:</strong> MPS/AVK/2025/001</div>
+            <div><strong>Date:</strong> September 30, 2025</div>
+        </div>
+        
+        <div class="to-section">
+            <div class="to-label">To,</div>
+            <div class="recipient">
+                <strong>The Builder/Project Head</strong><br>
+                Avishkar Commercial Infrastructure Project<br>
+                Kharadi, Pune<br>
+                Maharashtra
+            </div>
+        </div>
+        
+        <div class="subject">
+            <div class="subject-label">Subject:</div>
+            <div><strong>Request for Compensation of Stolen Materials and Recovery of Losses - Theft by Contractor's Labour</strong></div>
+        </div>
+        
+        <div class="salutation">Respected Sir/Madam,</div>
+        
+        <div class="content">
+            We, <strong>Maxim Parking Solution</strong>, would like to respectfully bring to your kind attention a serious matter regarding theft and misappropriation of our inventory materials at the Avishkar Commercial Infrastructure Project site in Kharadi, Pune, where we have been entrusted with the Automated Parking System Installation.
+        </div>
+        
+        <div class="content-heading">BACKGROUND:</div>
+        <div class="content">
+            Our company has been working diligently on the aforementioned project with full dedication. However, over the past few months, we have been experiencing theft of materials from our inventory stored at the project site. Despite our previous informal communications regarding this matter, we unfortunately continue to face these challenges, resulting in significant financial impact on our operations.
+        </div>
+        
+        <div class="content-heading">DETAILS OF THE INCIDENT:</div>
+        <div class="incident-details">
+            <div class="detail-row">
+                <div class="detail-label">Contractor Name:</div>
+                <div class="detail-value">Dharma Nirmal (Civil Services Contractor)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Involved Person:</div>
+                <div class="detail-value">Raushan Singh (Labour of Dharma Nirmal)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Incident:</div>
+                <div class="detail-value">September 22, 2025 (Between 8:30 PM to 9:00 PM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Discovery:</div>
+                <div class="detail-value">September 29, 2025 (11:00 AM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Discussion:</div>
+                <div class="detail-value">September 29, 2025 (8:00 PM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Our Site Supervisor:</div>
+                <div class="detail-value">Akhilesh Singh</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Storage Location:</div>
+                <div class="detail-value">Labour camp at the project site premises</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Material Recipient:</div>
+                <div class="detail-value">Khalid Ahmed (Scrap Dealer) - Located approximately 200 meters from the site</div>
+            </div>
+        </div>
+        
+        <div class="content-heading">SEQUENCE OF EVENTS:</div>
+        <div class="content">
+            <ol style="padding-left: 20px; margin: 15px 0;">
+                <li style="margin: 10px 0;">On <strong>September 29, 2025 at 11:00 AM</strong>, our site supervisor Mr. Akhilesh Singh noticed a significant decrease in our material inventory.</li>
+                <li style="margin: 10px 0;">Upon investigation and review of available footage, we discovered that <strong>Raushan Singh</strong>, a worker employed by contractor Dharma Nirmal, was involved in taking our materials on <strong>September 22, 2025, between 8:30 PM to 9:00 PM</strong>.</li>
+                <li style="margin: 10px 0;">Our supervisor was attending to responsibilities at another site from 11:00 AM to 8:00 PM on September 29, 2025.</li>
+                <li style="margin: 10px 0;">At <strong>8:00 PM on September 29, 2025</strong>, our supervisor had a discussion with Raushan Singh, who <strong>acknowledged</strong> taking the materials.</li>
+                <li style="margin: 10px 0;">It was revealed that the materials had been stored in the labour camp located within the project premises.</li>
+                <li style="margin: 10px 0;">The materials were subsequently transferred to <strong>Khalid Ahmed</strong>, a scrap dealer, whose establishment is located approximately 200 meters from the project site.</li>
+                <li style="margin: 10px 0;">We understand that similar incidents have occurred previously, and the site supervisor had earlier addressed another worker regarding material handling, though no formal action was taken at that time.</li>
+            </ol>
+        </div>
+        
+        <div class="content-heading">DETAILED LIST OF STOLEN MATERIALS:</div>
+        <table class="material-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Quantity</th>
+                    <th>Rate (₹)</th>
+                    <th>Amount (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Wire 0.5mm</td>
+                    <td>Bundle</td>
+                    <td>35</td>
+                    <td>890</td>
+                    <td>31,150</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Limit Switch</td>
+                    <td>Nos</td>
+                    <td>2</td>
+                    <td>680</td>
+                    <td>1,360</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Safety Latch</td>
+                    <td>Nos</td>
+                    <td>18</td>
+                    <td>2450</td>
+                    <td>44,100</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Traversing Chain (3Mtr)</td>
+                    <td>Pcs</td>
+                    <td>2</td>
+                    <td>1725</td>
+                    <td>3,450</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Sprocket Traversing Motor</td>
+                    <td>Nos</td>
+                    <td>5</td>
+                    <td>1850</td>
+                    <td>9,250</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Motor Base Plate</td>
+                    <td>Nos</td>
+                    <td>3</td>
+                    <td>550</td>
+                    <td>1,650</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Hydraulic Valve</td>
+                    <td>Nos</td>
+                    <td>25</td>
+                    <td>2800</td>
+                    <td>70,000</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Sim Packing</td>
+                    <td>Kg</td>
+                    <td>25</td>
+                    <td>80</td>
+                    <td>2,000</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Hardwares (Nut, Bolt, Washers)</td>
+                    <td>Kg</td>
+                    <td>15</td>
+                    <td>120</td>
+                    <td>1,800</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Electrical Components</td>
+                    <td>Nos</td>
+                    <td>30</td>
+                    <td>600</td>
+                    <td>18,000</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Steel Plates (Various Sizes)</td>
+                    <td>Kg</td>
+                    <td>150</td>
+                    <td>85</td>
+                    <td>12,750</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Control Panel Components</td>
+                    <td>Set</td>
+                    <td>8</td>
+                    <td>3200</td>
+                    <td>25,600</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Cables & Wiring</td>
+                    <td>Mtr</td>
+                    <td>500</td>
+                    <td>45</td>
+                    <td>22,500</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Sensors</td>
+                    <td>Nos</td>
+                    <td>12</td>
+                    <td>1250</td>
+                    <td>15,000</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Mounting Brackets</td>
+                    <td>Nos</td>
+                    <td>45</td>
+                    <td>320</td>
+                    <td>14,400</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Junction Boxes</td>
+                    <td>Nos</td>
+                    <td>20</td>
+                    <td>180</td>
+                    <td>3,600</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Rubber Seals</td>
+                    <td>Mtr</td>
+                    <td>100</td>
+                    <td>25</td>
+                    <td>2,500</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Motor Coupling</td>
+                    <td>Nos</td>
+                    <td>8</td>
+                    <td>950</td>
+                    <td>7,600</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Bearings</td>
+                    <td>Nos</td>
+                    <td>15</td>
+                    <td>450</td>
+                    <td>6,750</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Miscellaneous Hardware</td>
+                    <td>Lot</td>
+                    <td>1</td>
+                    <td>50,530</td>
+                    <td>50,530</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="5"><strong>TOTAL VALUE OF STOLEN MATERIALS</strong></td>
+                    <td><strong>₹ 3,85,000</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="evidence-box">
+            <div style="font-weight: bold; color: #856404; margin-bottom: 10px;">SUPPORTING DOCUMENTATION:</div>
+            <div style="color: #333;">
+                ✓ CCTV video recording showing the incident on September 22, 2025<br>
+                ✓ Acknowledgment from the person involved dated September 29, 2025<br>
+                ✓ Inventory records showing material discrepancies<br>
+                ✓ Testimony from our site supervisor Mr. Akhilesh Singh<br>
+                ✓ Previous incident records for reference
+            </div>
+        </div>
+        
+        <div class="amount-box">
+            <div class="amount-label">TOTAL VALUE OF AFFECTED MATERIALS</div>
+            <div class="amount-value">₹ 3,85,000</div>
+            <div style="margin-top: 10px; font-size: 11px; color: #666;">(Rupees Three Lakh Eighty-Five Thousand Only)</div>
+        </div>
+        
+        <div class="content-heading">UNDERSTANDING OF RESPONSIBILITY:</div>
+        <div class="content">
+            We understand that as per standard industry practices and project management protocols, the builder/project head typically oversees the security and coordination of all contractors, sub-contractors, and their personnel working on the project premises. The contractor Dharma Nirmal was engaged for civil services, and we believe this matter requires your kind attention and guidance for resolution.
+        </div>
+        
+        <div class="content">
+            We recognize that despite security measures and protocols in place, such incidents can sometimes occur. However, we believe that with proper coordination and preventive measures, such situations can be avoided in the future.
+        </div>
+        
+        <div class="content-heading">OUR RESPECTFUL REQUEST:</div>
+        <div class="requests">
+            <ol>
+                <li><strong>Compensation Consideration:</strong> We kindly request your consideration for compensation of the affected materials amounting to ₹3,85,000 (Rupees Three Lakh Eighty-Five Thousand), based on current market rates and our purchase records.</li>
+                <li><strong>Investigation Support:</strong> We would appreciate your support in conducting an investigation to understand the matter fully and potentially recover the materials from the scrap dealer.</li>
+                <li><strong>Appropriate Action:</strong> We request that appropriate action be taken as deemed fit by your good office regarding this matter.</li>
+                <li><strong>Future Prevention:</strong> We would be grateful for enhanced security measures to prevent such incidents in the future.</li>
+                <li><strong>Contractor Accountability:</strong> We request that the matter be discussed with contractor Dharma Nirmal to ensure better supervision of their personnel.</li>
+            </ol>
+        </div>
+        
+        <div class="content-heading">Request for Response:</div>
+        <div class="content">
+            This letter serves as a formal request for your kind consideration. We would be grateful if you could provide us with your response within <strong>15 (Fifteen) days</strong> from the date of receipt of this letter regarding:
+        </div>
+        <div class="content">
+            <ol style="padding-left: 20px; margin: 10px 0;">
+                <li>Your consideration of compensation for the affected materials (₹3,85,000)</li>
+                <li>Your proposed approach to address this matter</li>
+                <li>Any preventive measures you deem appropriate</li>
+            </ol>
+        </div>
+        
+        <div class="content" style="background: #f0f8ff; padding: 15px; border-left: 4px solid #2a5298; margin: 20px 0;">
+            <strong>NEXT STEPS:</strong> Should we not receive a favorable response within the stipulated timeframe, we may be compelled to explore other avenues for resolution, including formal legal proceedings. We sincerely hope to resolve this matter amicably through your kind cooperation and understanding.
+        </div>
+        
+        <div class="closing">
+            <div class="content">
+                We have great confidence in your leadership and fairness in handling this matter. We are committed to continuing our work on this project with the same dedication and look forward to your kind consideration and prompt response.
+            </div>
+            
+            <div class="content" style="margin-top: 20px;">
+                We remain grateful for your continued support and cooperation.
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div style="margin-bottom: 10px;">Thanking you,</div>
+            <div style="margin-bottom: 10px;">Yours respectfully,</div>
+            
+            <div class="signature-line">
+                <div class="signatory-name">For MAXIM PARKING SOLUTION</div>
+                <div class="signatory-title">Authorized Signatory</div>
+                <div class="signatory-title">Project Manager - Avishkar Project</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>MAXIM PARKING SOLUTION</strong> | Automated Parking Systems & Infrastructure Solutions<br>
+            We appreciate your time and consideration in reviewing this matter.
+        </div>
+    </div>
+</body>
+</html>

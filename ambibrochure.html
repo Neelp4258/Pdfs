@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions - Built for Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* PAGE 1 - STUNNING COVER WITH ANIMATED GRID */
+        .cover {
+            background: #000000;
+            position: relative;
+        }
+
+        .cover-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .cover-radial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, #1e3a8a 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, #3b82f6 0%, transparent 50%);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 3;
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+        }
+
+        .brand-name {
+            font-size: 95px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 0.9;
+            margin-bottom: 35px;
+            letter-spacing: -3px;
+            text-shadow: 0 0 60px rgba(59, 130, 246, 0.7);
+        }
+
+        .tagline-main {
+            font-size: 52px;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 300;
+            margin-bottom: 60px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .cover-desc {
+            font-size: 23px;
+            color: #9ca3af;
+            max-width: 700px;
+            line-height: 1.9;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .fc1 { width: 450px; height: 450px; top: -150px; right: -150px; }
+        .fc2 { width: 300px; height: 300px; bottom: 30px; left: -80px; }
+        .fc3 { width: 180px; height: 180px; top: 35%; right: 12%; background: rgba(59, 130, 246, 0.08); }
+
+        /* PAGE 2 - DIAGONAL SPLIT ABOUT */
+        .about-diagonal {
+            background: #ffffff;
+            position: relative;
+        }
+
+        .diagonal-accent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+        }
+
+        .about-layout {
+            position: relative;
+            z-index: 2;
+            padding: 70px;
+        }
+
+        .mega-title {
+            font-size: 62px;
+            font-weight: 900;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .mega-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 55%;
+            height: 6px;
+            background: linear-gradient(to right, #3b82f6, transparent);
+        }
+
+        .info-card {
+            background: #ffffff;
+            padding: 38px;
+            margin: 28px 0;
+            border-radius: 22px;
+            box-shadow: 0 12px 45px rgba(30, 58, 138, 0.12);
+            border-left: 7px solid #3b82f6;
+            max-width: 82%;
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .info-card h3 {
+            font-size: 29px;
+            color: #1e3a8a;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            color: #4b5563;
+            line-height: 1.9;
+        }
+
+        /* PAGE 3 - HEXAGON SERVICE GRID */
+        .services-section {
+            padding: 70px;
+            background: #ffffff;
+        }
+
+        .service-hex {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            padding: 42px 32px;
+            margin: 22px 12px;
+            border-radius: 18px;
+            position: relative;
+            border: 2px solid #dbeafe;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 210px;
+        }
+
+        .service-hex:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 18px 48px rgba(30, 58, 138, 0.25);
+            border-color: #3b82f6;
+        }
+
+        .service-hex::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 7px;
+            background: linear-gradient(to right, #1e3a8a, #3b82f6, #60a5fa);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .icon-wrapper {
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.35);
+            transform: rotate(-6deg);
+            transition: transform 0.3s ease;
+        }
+
+        .service-hex:hover .icon-wrapper {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .service-hex h4 {
+            font-size: 23px;
+            color: #1e3a8a;
+            margin-bottom: 13px;
+            font-weight: 800;
+        }
+
+        .service-hex p {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* PAGE 4 - CIRCULAR STATS DESIGN */
+        .stats-circular {
+            background: linear-gradient(to bottom, #ffffff 0%, #f0f9ff 100%);
+            padding: 70px;
+            position: relative;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent);
+        }
+
+        .bc1 { width: 650px; height: 650px; top: -220px; right: -220px; }
+        .bc2 { width: 450px; height: 450px; bottom: -120px; left: -120px; }
+
+        .stat-circle {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 18px 55px rgba(30, 58, 138, 0.18);
+            position: relative;
+            overflow: hidden;
+            margin: 22px;
+        }
+
+        .stat-circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #1e3a8a, #3b82f6, #60a5fa);
+        }
+
+        .stat-big {
+            font-size: 78px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
+            line-height: 1;
+        }
+
+        .stat-title {
+            font-size: 24px;
+            color: #1e3a8a;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .stat-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* PROJECT MODERN CARDS */
+        .project-display {
+            padding: 70px;
+            background: #ffffff;
+        }
+
+        .project-card-modern {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 45px;
+            margin: 35px 0;
+            box-shadow: 0 12px 45px rgba(30, 58, 138, 0.15);
+            position: relative;
+            border: 2px solid #f0f9ff;
+            transition: all 0.4s ease;
+        }
+
+        .project-card-modern:hover {
+            transform: scale(1.03);
+            box-shadow: 0 18px 60px rgba(30, 58, 138, 0.25);
+        }
+
+        .logo-box-modern {
+            width: 260px;
+            height: 125px;
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border: 3px solid #3b82f6;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            color: #1e3a8a;
+            font-weight: 800;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+        }
+
+        .project-card-modern h3 {
+            font-size: 30px;
+            color: #1e3a8a;
+            margin-bottom: 17px;
+            font-weight: 800;
+        }
+
+        .project-card-modern p {
+            font-size: 17px;
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+            color: #1e3a8a;
+            padding: 10px 20px;
+            border-radius: 22px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid #3b82f6;
+            margin: 5px;
+        }
+
+        /* TIMELINE DESIGN */
+        .timeline-page {
+            padding: 70px;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .timeline-rail {
+            position: absolute;
+            left: 85px;
+            top: 180px;
+            bottom: 120px;
+            width: 5px;
+            background: linear-gradient(to bottom, #3b82f6, #1e3a8a);
+        }
+
+        .timeline-block {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 45px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline-dot {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 900;
+            margin-right: 35px;
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.45);
+            flex-shrink: 0;
+        }
+
+        .timeline-box {
+            background: #ffffff;
+            padding: 28px 35px;
+            border-radius: 18px;
+            flex: 1;
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.12);
+            border-left: 5px solid #3b82f6;
+        }
+
+        .timeline-box h4 {
+            font-size: 22px;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .timeline-box p {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* PROCESS STEPS */
+        .process-section {
+            padding: 70px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .process-block {
+            display: flex;
+            gap: 35px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .step-square {
+            min-width: 95px;
+            height: 95px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: 900;
+            box-shadow: 0 12px 35px rgba(30, 58, 138, 0.35);
+            position: relative;
+        }
+
+        .step-square::after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 18px solid #3b82f6;
+        }
+
+        .step-info {
+            flex: 1;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 22px;
+            box-shadow: 0 10px 35px rgba(30, 58, 138, 0.12);
+            border: 2px solid #dbeafe;
+        }
+
+        .step-info h4 {
+            font-size: 26px;
+            color: #1e3a8a;
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .step-info p {
+            font-size: 17px;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        /* CONTACT MODERN */
+        .contact-ultra {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 70px;
+            position: relative;
+        }
+
+        .contact-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="45" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></svg>');
+            opacity: 0.4;
+        }
+
+        .contact-zone {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-mega-title {
+            font-size: 58px;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 900;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-sub {
+            font-size: 22px;
+            color: #dbeafe;
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .contact-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-bottom: 70px;
+        }
+
+        .contact-card-ultra {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 45px 35px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card-ultra:hover {
+            transform: translateY(-12px);
+        }
+
+        .contact-icon-ultra {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            margin: 0 auto 28px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.45);
+        }
+
+        .contact-card-ultra h4 {
+            font-size: 24px;
+            color: #1e3a8a;
+            margin-bottom: 18px;
+            font-weight: 800;
+        }
+
+        .contact-card-ultra p {
+            font-size: 19px;
+            color: #1a1a1a;
+            font-weight: 700;
+            line-height: 1.7;
+        }
+
+        .contact-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 2px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .tagline-footer {
+            font-size: 46px;
+            color: #ffffff;
+            font-weight: 300;
+            margin-bottom: 22px;
+            letter-spacing: 3px;
+        }
+
+        .company-footer {
+            font-size: 22px;
+            color: #dbeafe;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: ULTRA MODERN COVER -->
+    <div class="page cover">
+        <div class="cover-grid"></div>
+        <div class="cover-radial"></div>
+        <div class="floating-circle fc1"></div>
+        <div class="floating-circle fc2"></div>
+        <div class="floating-circle fc3"></div>
+        <div class="cover-content">
+            <div class="brand-name">AMBIVARE<br>SOLUTIONS</div>
+            <div class="tagline-main">Built for Automation</div>
+            <div class="cover-desc">
+                Transforming industries through cutting-edge automation, custom software development, and intelligent enterprise solutions that drive efficiency, eliminate waste, and accelerate digital transformation.
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: DIAGONAL ABOUT -->
+    <div class="page about-diagonal">
+        <div class="diagonal-accent"></div>
+        <div class="about-layout">
+            <h2 class="mega-title">Who We Are</h2>
+            
+            <div class="info-card" style="margin-top: 55px;">
+                <h3>🎯 Our Mission</h3>
+                <p>Empowering businesses with intelligent automation and custom software solutions that eliminate inefficiencies, reduce costs, and accelerate growth. Every solution we build is designed to make operations smoother, faster, and smarter.</p>
+            </div>
+
+            <div class="info-card" style="margin-left: auto; margin-right: 0;">
+                <h3>🚀 Our Vision</h3>
+                <p>To lead the business automation revolution, creating innovative systems that seamlessly integrate with workflows and adapt to evolving needs. We don't just build software – we build competitive advantages.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>💡 What We Do</h3>
+                <p>From comprehensive ERPs to intelligent CRMs, automation tools to complete digital ecosystems – we craft robust, scalable, future-ready solutions. Specializing in elevator systems, parking automation, and industrial management.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: HEXAGON SERVICES -->
+    <div class="page services-section">
+        <h2 class="mega-title">Our Services</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 55px;">
+            <div class="service-hex">
+                <div class="icon-wrapper">💻</div>
+                <h4>Custom Software Development</h4>
+                <p>Tailored applications built from scratch to match your exact business requirements and workflows</p>
+            </div>
+
+            <div class="service-hex">
+                <div class="icon-wrapper">📊</div>
+                <h4>ERP Systems</h4>
+                <p>Complete enterprise resource planning solutions integrating all aspects of business operations</p>
+            </div>
+
+            <div class="service-hex">
+                <div class="icon-wrapper">👥</div>
+                <h4>CRM Solutions</h4>
+                <p>Customer relationship management platforms enhancing engagement and boosting sales performance</p>
+            </div>
+
+            <div class="service-hex">
+                <div class="icon-wrapper">⚡</div>
+                <h4>Business Automation</h4>
+                <p>Intelligent automation tools eliminating manual tasks and maximizing operational efficiency</p>
+            </div>
+
+            <div class="service-hex">
+                <div class="icon-wrapper">📱</div>
+                <h4>Mobile Applications</h4>
+                <p>Cross-platform mobile solutions bringing your business to customers' fingertips</p>
+            </div>
+
+            <div class="service-hex">
+                <div class="icon-wrapper">☁️</div>
+                <h4>Cloud Integration</h4>
+                <p>Seamless cloud-based systems for real-time data access and collaboration</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CIRCULAR STATS -->
+    <div class="page stats-circular">
+        <div class="bg-circle bc1"></div>
+        <div class="bg-circle bc2"></div>
+        
+        <h2 class="mega-title" style="position: relative; z-index: 2;">Our Track Record</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 55px; position: relative; z-index: 2;">
+            <div class="stat-circle">
+                <div class="stat-big">50+</div>
+                <div class="stat-title">Projects Delivered</div>
+                <div class="stat-subtitle">Successfully completed across multiple industries</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">100%</div>
+                <div class="stat-title">Client Satisfaction</div>
+                <div class="stat-subtitle">Dedicated support and ongoing maintenance</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">5+</div>
+                <div class="stat-title">Years Experience</div>
+                <div class="stat-subtitle">Building enterprise-grade automation solutions</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">24/7</div>
+                <div class="stat-title">Support Available</div>
+                <div class="stat-subtitle">Round-the-clock technical assistance</div>
+            </div>
+        </div>
+
+        <div style="background: #ffffff; padding: 45px; border-radius: 28px; margin-top: 55px; box-shadow: 0 12px 48px rgba(30, 58, 138, 0.15); position: relative; z-index: 2;">
+            <h3 style="font-size: 30px; color: #1e3a8a; margin-bottom: 22px; font-weight: 800;">Industry Expertise</h3>
+            <p style="font-size: 18px; color: #4b5563; line-height: 1.9;">Specializing in automation solutions for elevator manufacturers, parking system providers, and industrial automation companies. Our deep understanding of industry-specific challenges enables us to deliver solutions that truly transform operations.</p>
+        </div>
+    </div>
+
+    <!-- PAGE 5: PROJECTS PART 1 -->
+    <div class="page project-display">
+        <h2 class="mega-title">Featured Projects</h2>
+        
+        <div class="project-card-modern" style="margin-top: 45px;">
+            <div class="logo-box-modern">AVANT ELEVATORS LOGO</div>
+            <h3>Avant Elevators - Complete ERP System</h3>
+            <p>Comprehensive ERP streamlining elevator installation, maintenance, and service operations with integrated project management, real-time tracking, and automated workflows.</p>
+            <div style="margin-top: 22px;">
+                <span class="tech-tag">Project Management</span>
+                <span class="tech-tag">Service Scheduling</span>
+                <span class="tech-tag">Customer Portal</span>
+                <span class="tech-tag">Real-time Updates</span>
+            </div>
+        </div>
+
+        <div class="project-card-modern">
+            <div class="logo-box-modern">MICRO ELEVATORS LOGO</div>
+            <h3>Micro Elevators - Manufacturing ERP</h3>
+            <p>Advanced manufacturing and supply chain management system providing end-to-end visibility across production, quality control, inventory, and service delivery operations.</p>
+            <div style="margin-top: 22px;">
+                <span class="tech-tag">Manufacturing Control</span>
+                <span class="tech-tag">Supply Chain</span>
+                <span class="tech-tag">Quality Assurance</span>
+                <span class="tech-tag">AMC Management</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: PROJECTS PART 2 -->
+    <div class="page project-display">
+        <div class="project-card-modern" style="margin-top: 70px;">
+            <div class="logo-box-modern">AMPLO ELEVATORS LOGO</div>
+            <h3>Amplo Elevators - Business Management Suite</h3>
+            <p>Complete business management platform with CRM, service operations, and mobile workforce management enabling seamless coordination between sales and field teams.</p>
+            <div style="margin-top: 22px;">
+                <span class="tech-tag">Lead Management</span>
+                <span class="tech-tag">Contract Tracking</span>
+                <span class="tech-tag">Field Service App</span>
+                <span class="tech-tag">Customer Feedback</span>
+            </div>
+        </div>
+
+        <div class="project-card-modern">
+            <div class="logo-box-modern">INFINITE SOLUTIONS LOGO</div>
+            <h3>Infinite Solutions - Parking Systems ERP</h3>
+            <p>Specialized ERP for automated parking systems managing complex installations, remote monitoring, maintenance operations, and client portals across multiple locations.</p>
+            <div style="margin-top: 22px;">
+                <span class="tech-tag">Remote Monitoring</span>
+                <span class="tech-tag">IoT Integration</span>
+                <span class="tech-tag">Installation Tracking</span>
+                <span class="tech-tag">Analytics Dashboard</span>
+            </div>
+        </div>
+
+        <div class="project-card-modern">
+            <div class="logo-box-modern">TRIVANTA EDGE LOGO</div>
+            <h3>Trivanta Edge - Enterprise ERP Solution</h3>
+            <p>Comprehensive platform covering manufacturing, sales, installation, and after-sales service with financial management and role-based access control.</p>
+            <div style="margin-top: 22px;">
+                <span class="tech-tag">Full Operations</span>
+                <span class="tech-tag">Sales Pipeline</span>
+                <span class="tech-tag">Financial System</span>
+                <span class="tech-tag">User Roles</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: PROJECT IMPACT -->
+    <div class="page stats-circular">
+        <h2 class="mega-title" style="position: relative; z-index: 2;">Measurable Impact</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 55px; position: relative; z-index: 2;">
+            <div class="stat-circle">
+                <div class="stat-big">40%</div>
+                <div class="stat-title">Cost Reduction</div>
+                <div class="stat-subtitle">Average operational overhead reduction</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">50%</div>
+                <div class="stat-title">Faster Response</div>
+                <div class="stat-subtitle">Improved service delivery time</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">90%</div>
+                <div class="stat-title">Paperless</div>
+                <div class="stat-subtitle">Reduction in manual documentation</div>
+            </div>
+
+            <div class="stat-circle">
+                <div class="stat-big">99.5%</div>
+                <div class="stat-title">Uptime</div>
+                <div class="stat-subtitle">System reliability and availability</div>
+            </div>
+        </div>
+
+        <div style="background: #ffffff; padding: 45px; border-radius: 28px; margin-top: 48px; box-shadow: 0 12px 48px rgba(30, 58, 138, 0.15); position: relative; z-index: 2;">
+            <h3 style="font-size: 28px; color: #1e3a8a; margin-bottom: 22px; font-weight: 800;">Technology Stack</h3>
+            <p style="font-size: 17px; color: #4b5563; line-height: 1.8; margin-bottom: 22px;">Built with modern, robust technologies ensuring scalability, security, and performance:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+                <span class="tech-tag" style="font-size: 15px;">HTML5 / CSS3</span>
+                <span class="tech-tag" style="font-size: 15px;">JavaScript ES6+</span>
+                <span class="tech-tag" style="font-size: 15px;">Firebase Platform</span>
+                <span class="tech-tag" style="font-size: 15px;">Progressive Web Apps</span>
+                <span class="tech-tag" style="font-size: 15px;">Cloud Functions</span>
+                <span class="tech-tag" style="font-size: 15px;">Real-time Database</span>
+                <span class="tech-tag" style="font-size: 15px;">Responsive Design</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: TIMELINE WHY CHOOSE US -->
+    <div class="page timeline-page">
+        <h2 class="mega-title">Why Choose Ambivare</h2>
+        <div class="timeline-rail"></div>
+        
+        <div style="margin-top: 70px;">
+            <div class="timeline-block">
+                <div class="timeline-dot">01</div>
+                <div class="timeline-box">
+                    <h4>Custom-Built Solutions</h4>
+                    <p>Every business is unique. We create tailored systems that perfectly match your specific workflows and requirements.</p>
+                </div>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-dot">02</div>
+                <div class="timeline-box">
+                    <h4>Proven Track Record</h4>
+                    <p>Successfully delivered complex ERP and automation systems across elevator and parking industries with measurable results.</p>
+                </div>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-dot">03</div>
+                <div class="timeline-box">
+                    <h4>Automation-First Approach</h4>
+                    <p>We focus on eliminating repetitive tasks, allowing your team to concentrate on growth and strategic initiatives.</p>
+                </div>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-dot">04</div>
+                <div class="timeline-box">
+                    <h4>Real-Time Cloud Systems</h4>
+                    <p>Cloud-based architecture with instant data synchronization and access from anywhere, anytime.</p>
+                </div>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-dot">05</div>
+                <div class="timeline-box">
+                    <h4>Scalable & Future-Ready</h4>
+                    <p>Systems that grow with your business, from startup operations to enterprise-level demands.</p>
+                </div>
+            </div>
+
+            <div class="timeline-block">
+                <div class="timeline-dot">06</div>
+                <div class="timeline-box">
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated maintenance and round-the-clock technical support ensuring smooth operations always.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 9: PROCESS STEPS -->
+    <div class="page process-section">
+        <h2 class="mega-title">Our Process</h2>
+        
+        <div style="margin-top: 55px;">
+            <div class="process-block">
+                <div class="step-square">1</div>
+                <div class="step-info">
+                    <h4>Discovery & Analysis</h4>
+                    <p>Deep dive into your business requirements, existing workflows, pain points, and goals to create a comprehensive project blueprint.</p>
+                </div>
+            </div>
+
+            <div class="process-block">
+                <div class="step-square">2</div>
+                <div class="step-info">
+                    <h4>Design & Architecture</h4>
+                    <p>Creating intuitive UI/UX designs and robust system architecture ensuring scalability, security, and optimal performance.</p>
+                </div>
+            </div>
+
+            <div class="process-block">
+                <div class="step-square">3</div>
+                <div class="step-info">
+                    <h4>Agile Development</h4>
+                    <p>Iterative development with continuous testing, regular feedback, and quality assurance at every milestone.</p>
+                </div>
+            </div>
+
+            <div class="process-block">
+                <div class="step-square">4</div>
+                <div class="step-info">
+                    <h4>Deployment & Training</h4>
+                    <p>Smooth rollout with comprehensive user training, documentation, and hands-on support for seamless adoption.</p>
+                </div>
+            </div>
+
+            <div class="process-block">
+                <div class="step-square">5</div>
+                <div class="step-info">
+                    <h4>Support & Evolution</h4>
+                    <p>Ongoing maintenance, updates, enhancements, and 24/7 support to keep your systems at peak performance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 10: CONTACT ULTRA MODERN -->
+    <div class="page contact-ultra">
+        <div class="contact-pattern"></div>
+        <div class="contact-zone">
+            <div class="contact-mega-title">Let's Build Something Amazing</div>
+            <div class="contact-sub">Ready to transform your business? Get in touch with us today</div>
+            
+            <div class="contact-card-grid">
+                <div class="contact-card-ultra">
+                    <div class="contact-icon-ultra">📞</div>
+                    <h4>Call Us</h4>
+                    <p>9373015503</p>
+                </div>
+
+                <div class="contact-card-ultra">
+                    <div class="contact-icon-ultra">✉️</div>
+                    <h4>Email Us</h4>
+                    <p>operations@<br>ambivare.com</p>
+                </div>
+
+                <div class="contact-card-ultra">
+                    <div class="contact-icon-ultra">📍</div>
+                    <h4>Visit Us</h4>
+                    <p>Kalyan<br>Maharashtra, India</p>
+                </div>
+            </div>
+
+            <div class="contact-bottom">
+                <div class="tagline-footer">BUILT FOR AUTOMATION</div>
+                <div class="company-footer">AMBIVARE SOLUTIONS</div>
+                <p style="color: #93c5fd; font-size: 17px; margin-top: 18px;">Your Partner in Digital Transformation</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

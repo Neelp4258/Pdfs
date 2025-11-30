@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivanta Edge - Business Card Back</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            width: 3.5in;
+            height: 2in;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .content {
+            padding: 0;
+            height: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        /* Left Cyan Bar */
+        .left-bar {
+            width: 8px;
+            background: linear-gradient(180deg, #00bcd4 0%, #0097a7 100%);
+            position: relative;
+        }
+
+        .left-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            padding: 10px 18px 20px 18px;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            margin-bottom: 6px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            line-height: 1.1;
+        }
+
+        .role {
+            font-size: 9px;
+            font-weight: 700;
+            color: #00bcd4;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .icon-wrapper {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #00bcd4, #00acc1);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .icon-wrapper svg {
+            width: 10px;
+            height: 10px;
+            fill: white;
+        }
+
+        .contact-text {
+            font-size: 8px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 0px;
+            line-height: 1.2;
+            padding-top: 2px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+        }
+
+        /* QR Section */
+        .qr-section {
+            width: 75px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-left: 8px;
+        }
+
+        .qr-box {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #00bcd4;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.15);
+        }
+
+        .qr-box::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            border-radius: 4px;
+        }
+
+        .qr-placeholder {
+            font-size: 8px;
+            color: #00bcd4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .qr-label {
+            font-size: 7px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Services Footer */
+        .services-footer {
+            position: absolute;
+            bottom: 0;
+            left: 8px;
+            right: 0;
+            background: linear-gradient(90deg, #00bcd4, #0097a7);
+            padding: 8px 25px;
+        }
+
+        .services-text {
+            font-size: 7.5px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Decorative Corner */
+        .corner-decoration {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, transparent 50%, rgba(0, 188, 212, 0.05) 50%);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="corner-decoration"></div>
+        
+        <div class="content">
+            <!-- Left Cyan Bar -->
+            <div class="left-bar"></div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Left Section -->
+                <div class="left-section">
+                    <!-- Profile -->
+                    <div class="profile-section">
+                        <div class="name">Siddhant<br>Suryavanashi</div>
+                        <div class="role">Business Development Head</div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-section">
+                        <div class="contact-item">
+                            <div class="icon-wrapper">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-text">Kalyan, Maharashtra</div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="icon-wrapper">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-text">+91 9373015503</div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="icon-wrapper">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-text">siddhant@trivantaedge.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Section -->
+                <div class="qr-section">
+                    <div class="qr-box">
+                        <div class="qr-placeholder">QR<br>CODE</div>
+                    </div>
+                    <div class="qr-label">Scan Me</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Footer -->
+        <div class="services-footer">
+            <div class="services-text">
+                Automated Par

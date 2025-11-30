@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Forever - Ulhasnagar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Custom Icons */
+        .icon-design::before { content: "✦"; font-size: 50px; font-weight: bold; }
+        .icon-truck::before { content: "⚡"; font-size: 50px; font-weight: bold; }
+        .icon-star::before { content: "★"; font-size: 50px; font-weight: bold; }
+        .icon-phone::before { content: "☎"; font-size: 50px; font-weight: bold; }
+        .icon-email::before { content: "✉"; font-size: 50px; font-weight: bold; }
+        .icon-location::before { content: "⚑"; font-size: 50px; font-weight: bold; }
+        .icon-web::before { content: "⊕"; font-size: 50px; font-weight: bold; }
+        .icon-clock::before { content: "⏰"; font-size: 20px; font-weight: bold; }
+        .icon-delivery::before { content: "▶"; font-size: 20px; font-weight: bold; }
+        .icon-custom::before { content: "◆"; font-size: 20px; font-weight: bold; }
+        .icon-cake::before { content: "◉"; font-size: 70px; font-weight: bold; }
+        .icon-sparkle::before { content: "✦"; font-size: 30px; font-weight: bold; }
+
+        .page {
+            width: 210mm;
+            min-height: 296.8mm;
+            height: 296.8mm;
+            page-break-after: always;
+            overflow: hidden;
+            position: relative;
+            background: #fff;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* COVER PAGE */
+        .cover-page {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Particles */
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.12) 0%, transparent 50%);
+            animation: particleMove 15s ease-in-out infinite;
+        }
+
+        @keyframes particleMove {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translate(30px, -30px) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .cover-header {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .cover-header-left {
+            display: flex;
+            gap: 30px;
+        }
+
+        .cover-header-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cover-main {
+            flex: 1;
+            display: flex;
+            z-index: 2;
+        }
+
+        .cover-left-panel {
+            width: 40%;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            padding: 50px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .cover-logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .cover-logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .cover-logo {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 6px solid rgba(255,255,255,0.8);
+            animation: logoFloat 3s ease-in-out infinite;
+            margin: 0 auto;
+        }
+
+        .cover-logo img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkleAnim 2s ease-in-out infinite;
+        }
+
+        .sparkle1 { top: -5px; right: 15px; animation-delay: 0s; }
+        .sparkle2 { bottom: 5px; left: 10px; animation-delay: 0.5s; }
+        .sparkle3 { top: 25px; right: -10px; animation-delay: 1s; }
+
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        .brand-name {
+            font-size: 42px;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+            margin-bottom: 10px;
+        }
+
+        .brand-tagline {
+            font-size: 18px;
+            color: white;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        .contact-info-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .contact-info-title {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .contact-info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-info-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .contact-info-item a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info-item a:hover {
+            color: #f5576c;
+        }
+
+        .cover-right-panel {
+            width: 60%;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover-welcome {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cover-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+        }
+
+        .cover-subtitle {
+            font-size: 22px;
+            color: white;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(240,147,251,0.1) 0%, rgba(245,87,108,0.1) 100%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(245,87,108,0.4);
+        }
+
+        .feature-card:hover::before {
+            top: -10%;
+            left: -10%;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-footer-strip {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            padding: 12px 40px;
+            text-align: center;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        /* BACK PAGE */
+        .back-page {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Waves */
+        .back-page::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.2) 0%, transparent 50%);
+            animation: waveMove 12s ease-in-out infinite;
+        }
+
+        @keyframes waveMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, -50px) rotate(10deg); }
+        }
+
+        /* Floating Hearts */
+        .back-page::after {
+            content: '💖 ❤️ 💕 💖 ❤️';
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.08;
+            width: 100%;
+            text-align: center;
+            bottom: 20%;
+            letter-spacing: 100px;
+            animation: floatHearts 8s ease-in-out infinite;
+        }
+
+        @keyframes floatHearts {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .back-top-section {
+            background: linear-gradient(135deg, rgba(240,147,251,0.4) 0%, rgba(245,87,108,0.4) 100%);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 3;
+            position: relative;
+        }
+
+        .back-logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-logo {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 6px solid rgba(255,255,255,0.7);
+            animation: logoRotate 4s ease-in-out infinite;
+        }
+
+        .back-logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        @keyframes logoRotate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        .back-title {
+            font-size: 60px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        .back-subtitle {
+            font-size: 24px;
+            color: #666;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .back-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 50px;
+            z-index: 2;
+        }
+
+        .contact-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 28px;
+            border-radius: 25px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #f093fb, #f5576c) border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(240,147,251,0.1) 0%, rgba(245,87,108,0.1) 100%);
+            transition: all 0.5s ease;
+        }
+
+        .contact-box:hover::before {
+            top: 0;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 50px rgba(245,87,108,0.35);
+        }
+
+        .contact-box .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .contact-box h3 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-box p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-box a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-box a:hover {
+            color: #f5576c;
+        }
+
+        .back-footer {
+            text-align: center;
+            margin-top: auto;
+            background: linear-gradient(135deg, rgba(240,147,251,0.3) 0%, rgba(245,87,108,0.3) 100%);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 30px 30px 0 0;
+            z-index: 3;
+        }
+
+        .features-row {
+            display: flex;
+            gap: 25px;
+            font-size: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245,87,108,0.3);
+        }
+
+        .back-footer-text {
+            font-size: 15px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        /* CATALOG PAGES */
+        .catalog-page {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8e53 100%);
+            color: white;
+            padding: 28px 40px;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 50%, #f093fb 100%);
+        }
+
+        .page-header h2 {
+            font-size: 40px;
+            letter-spacing: 3px;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .page-number {
+            font-size: 22px;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 18px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 35px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .cake-item {
+            display: flex;
+            gap: 32px;
+            background: white;
+            border-radius: 20px;
+            padding: 26px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            min-height: 155px;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #f093fb, #f5576c) border-box;
+        }
+
+        .cake-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .cake-image-container {
+            flex-shrink: 0;
+            width: 190px;
+            height: 145px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .cake-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(240,147,251,0.3) 0%, rgba(245,87,108,0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cake-item:hover .cake-image-container::after {
+            opacity: 1;
+        }
+
+        .cake-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cake-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cake-name {
+            font-size: 27px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .cake-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .cake-meta {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .cake-weight {
+            font-size: 15px;
+            color: #fff;
+            padding: 7px 14px;
+            background: linear-gradient(135deg, #ff8e53 0%, #fe6b8b 100%);
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .cake-price {
+            font-size: 32px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+
+        .page-footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 16px;
+            margin-top: auto;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .page-footer::before {
+            content: "☎ ";
+            margin-right: 5px;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="page cover-page">
+        <div class="cover-header">
+            <div class="cover-header-left">
+                <div class="cover-header-item">
+                    <span>☎</span>
+                    <span>+91 9373015503</span>
+                </div>
+                <div class="cover-header-item">
+                    <span>✉</span>
+                    <span><a href="mailto:info@cakeforever.com" style="color: white; text-decoration: none;">info@cakeforever.com</a></span>
+                </div>
+            </div>
+            <div class="cover-header-item">
+                <span>⚑ Ulhasnagar, Maharashtra</span>
+            </div>
+        </div>
+        
+        <div class="cover-main">
+            <!-- LEFT PANEL -->
+            <div class="cover-left-panel">
+                <div class="cover-logo-section">
+                    <div class="cover-logo-container">
+                        <div class="sparkle sparkle1"></div>
+                        <div class="sparkle sparkle2"></div>
+                        <div class="sparkle sparkle3"></div>
+                        <div class="cover-logo">
+                            <img src="https://www.ambivare.com/cakeforever.png" alt="Cake Forever Logo" onerror="this.style.display='none';this.parentElement.classList.add('icon-cake')">
+                        </div>
+                    </div>
+                    <h1 class="brand-name">Cake Forever</h1>
+                    <p class="brand-tagline">Where Every Slice Tells a Story</p>
+                </div>
+                
+                <div class="contact-info-panel">
+                    <h3 class="contact-info-title">Quick Contact</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">☎</div>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            <a href="tel:+919373015503">+91 9373015503</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">✉</div>
+                        <div>
+                            <strong>Email:</strong><br>
+                            <a href="mailto:info@cakeforever.com">info@cakeforever.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">⚑</div>
+                        <div>
+                            <strong>Address:</strong><br>
+                            Shop No. 12, Station Road<br>
+                            Ulhasnagar - 421001
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">⊕</div>
+                        <div>
+                            <strong>Website:</strong><br>
+                            <a href="http://www.cakeforever.com" target="_blank">www.cakeforever.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT PANEL -->
+            <div class="cover-right-panel">
+                <div class="cover-welcome">
+                    <h2 class="cover-title">Welcome to<br>Sweet Paradise</h2>
+                    <p class="cover-subtitle">Premium Handcrafted Cakes for Every Occasion</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-design"></div>
+                        <h3 class="feature-title">Custom Designs</h3>
+                        <p class="feature-desc">Personalized cakes crafted to match your unique vision and celebration</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon icon-truck"></div>
+                        <h3 class="feature-title">Fast Delivery</h3>
+                        <p class="feature-desc">Same-day delivery available. Fresh cakes delivered to your doorstep</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon icon-star"></div>
+                        <h3 class="feature-title">Premium Quality</h3>
+                        <p class="feature-desc">Made with finest ingredients and attention to every detail</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon icon-clock"></div>
+                        <h3 class="feature-title">Open Daily</h3>
+                        <p class="feature-desc">9:00 AM - 10:00 PM<br>7 Days a Week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-footer-strip">
+            ★ SPECIAL OFFER: Free Delivery on Orders Above ₹1000 ★
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Our Signature Collection</h2>
+            <span class="page-number">Page 2</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Black Forest Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Classic Black Forest</h3>
+                    <p class="cake-description">
+                        Rich chocolate sponge layered with whipped cream and cherries, 
+                        topped with chocolate shavings and fresh cherries.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹650</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop" alt="Blueberry Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Blueberry Bliss</h3>
+                    <p class="cake-description">
+                        Soft vanilla sponge with blueberry compote and cream cheese frosting, 
+                        garnished with fresh blueberries.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹750</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=crop" alt="Belgian Chocolate" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Belgian Chocolate</h3>
+                    <p class="cake-description">
+                        Premium Belgian chocolate cake with silky chocolate mousse, 
+                        rich ganache, and chocolate curls.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹880</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e5b39f21?w=400&h=300&fit=crop" alt="Vanilla Dream" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Vanilla Dream</h3>
+                    <p class="cake-description">
+                        Classic vanilla sponge with fresh vanilla bean cream, 
+                        elegant white frosting, and delicate decorations.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹620</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e1e6eee7c8ebe9e3edeee7faedfeedfaa6ebe7e5">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Premium Delights</h2>
+            <span class="page-number">Page 3</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" alt="Chocolate Truffle" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Chocolate Truffle</h3>
+                    <p class="cake-description">
+                        Decadent chocolate cake with dark chocolate ganache, 
+                        truffle cream, and chocolate curls for pure indulgence.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹850</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop" alt="Strawberry Delight" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Strawberry Delight</h3>
+                    <p class="cake-description">
+                        Light and fluffy vanilla cake with fresh strawberries, 
+                        whipped cream, and a delicate strawberry glaze.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹720</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=crop" alt="Dark Chocolate" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Dark Chocolate Fudge</h3>
+                    <p class="cake-description">
+                        Intense dark chocolate layers with rich fudge filling, 
+                        perfect for chocolate connoisseurs.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹870</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=crop" alt="Raspberry Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Raspberry Romance</h3>
+                    <p class="cake-description">
+                        Tangy raspberry compote with vanilla cream, 
+                        fresh raspberries, and white chocolate shavings.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹800</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9bf2f5fdf4dbf8faf0fefdf4e9feedfee9b5f8f4f6">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Fruit Fantasies</h2>
+            <span class="page-number">Page 4</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=crop" alt="Pineapple Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Pineapple Paradise</h3>
+                    <p class="cake-description">
+                        Tropical delight with vanilla sponge, pineapple chunks, 
+                        and creamy pineapple frosting topped with cherries.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹680</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=crop" alt="Mixed Fruit Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Mixed Fruit Carnival</h3>
+                    <p class="cake-description">
+                        A colorful medley of fresh seasonal fruits on vanilla sponge, 
+                        with light whipped cream and fruit glaze.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹780</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1557925923-33b27c4296e6?w=400&h=300&fit=crop" alt="Kiwi Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Kiwi Fantasy</h3>
+                    <p class="cake-description">
+                        Exotic kiwi slices with vanilla cream layers, 
+                        topped with glazed kiwi and tropical fruits.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹820</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=300&fit=crop" alt="Orange Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Orange Burst</h3>
+                    <p class="cake-description">
+                        Fresh orange-flavored sponge with orange zest, 
+                        tangy orange cream, and candied orange slices.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹730</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a1c8cfc7cee1c2c0cac4c7ced3c4d7c4d38fc2cecc">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Special Occasions</h2>
+            <span class="page-number">Page 5</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&h=300&fit=crop" alt="Red Velvet" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Red Velvet Romance</h3>
+                    <p class="cake-description">
+                        Luxurious red velvet layers with cream cheese frosting, 
+                        perfect for celebrations and special moments.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹900</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=300&fit=crop" alt="Butterscotch" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Butterscotch Dream</h3>
+                    <p class="cake-description">
+                        Caramelized butterscotch layers with crunchy nuts, 
+                        butterscotch chips, and creamy frosting.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹700</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=crop" alt="Blue Velvet" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Blue Velvet Dream</h3>
+                    <p class="cake-description">
+                        Stunning blue velvet sponge with white chocolate cream, 
+                        elegant and eye-catching for special occasions.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹920</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=300&fit=crop" alt="Hazelnut Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Hazelnut Heaven</h3>
+                    <p class="cake-description">
+                        Roasted hazelnut sponge with chocolate hazelnut spread, 
+                        praline cream, and crushed hazelnuts.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹890</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="234a4d454c6340424846454c51465546510d404c4e">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Chocolate Heaven</h2>
+            <span class="page-number">Page 6</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop" alt="Death by Chocolate" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Death by Chocolate</h3>
+                    <p class="cake-description">
+                        Ultimate chocolate indulgence with multiple chocolate layers, 
+                        chocolate mousse, and rich chocolate ganache.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹950</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="White Chocolate" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">White Chocolate Wonder</h3>
+                    <p class="cake-description">
+                        Elegant white chocolate cake with white chocolate shavings, 
+                        cream layers, and raspberry sauce.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹880</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=crop" alt="Ferrero Rocher" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Ferrero Rocher Luxury</h3>
+                    <p class="cake-description">
+                        Premium chocolate hazelnut cake topped with Ferrero Rocher, 
+                        hazelnut ganache, and gold accents.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹1100</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1627308595171-d1b5d67129c4?w=400&h=300&fit=crop" alt="Milk Chocolate" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Milk Chocolate Silk</h3>
+                    <p class="cake-description">
+                        Smooth milk chocolate sponge with silky chocolate cream, 
+                        chocolate chips, and cocoa dusting.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹810</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f363139301f3c3e343a39302d3a293a2d713c3032">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Coffee & Caramel</h2>
+            <span class="page-number">Page 7</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop" alt="Coffee Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Coffee Mocha Supreme</h3>
+                    <p class="cake-description">
+                        Rich coffee-infused sponge with mocha cream, 
+                        coffee beans, and chocolate drizzle for coffee lovers.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹820</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1591230315163-b26ca2273e4c?w=400&h=300&fit=crop" alt="Caramel Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Salted Caramel Delight</h3>
+                    <p class="cake-description">
+                        Soft vanilla cake with salted caramel sauce, 
+                        caramel buttercream, and caramel drizzle.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹840</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125?w=400&h=300&fit=crop" alt="Espresso Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Espresso Excellence</h3>
+                    <p class="cake-description">
+                        Bold espresso-flavored sponge with coffee buttercream, 
+                        chocolate covered coffee beans, and cocoa powder.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹860</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=300&fit=crop" alt="Toffee Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Sticky Toffee Pudding</h3>
+                    <p class="cake-description">
+                        Classic toffee cake with date puree, 
+                        toffee sauce, and vanilla cream topping.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹790</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741d1a121b3417151f11121b06110211065a171b19">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 8 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Exotic Collection</h2>
+            <span class="page-number">Page 8</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop" alt="Tiramisu" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Classic Tiramisu</h3>
+                    <p class="cake-description">
+                        Italian masterpiece with espresso-soaked ladyfingers, 
+                        mascarpone cream, and cocoa dusting.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹920</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop" alt="Mango Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Mango Magic</h3>
+                    <p class="cake-description">
+                        Tropical mango cake with fresh mango pulp, 
+                        mango mousse, and mango chunks for a fruity treat.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹790</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1519915212116-7cfef71f1d3e?w=400&h=300&fit=crop" alt="Lemon Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Lemon Zest Delight</h3>
+                    <p class="cake-description">
+                        Refreshing lemon sponge with lemon curd filling, 
+                        lemon buttercream, and candied lemon slices.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹750</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=400&h=300&fit=crop" alt="Coconut Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Coconut Cloud</h3>
+                    <p class="cake-description">
+                        Tropical coconut cake with coconut cream layers, 
+                        shredded coconut, and coconut flakes topping.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹770</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b22252d240b282a202e2d24392e3d2e3965282426">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 9 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Kids Special</h2>
+            <span class="page-number">Page 9</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&h=300&fit=crop" alt="Rainbow Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Rainbow Surprise</h3>
+                    <p class="cake-description">
+                        Colorful layered cake with vibrant colors, 
+                        vanilla frosting, and sprinkles for joyful celebrations.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹760</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=300&fit=crop" alt="Oreo Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Oreo Overload</h3>
+                    <p class="cake-description">
+                        Cookies and cream heaven with crushed Oreos, 
+                        vanilla cake, and creamy Oreo frosting.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹740</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=300&fit=crop" alt="Unicorn Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Unicorn Fantasy</h3>
+                    <p class="cake-description">
+                        Magical multi-colored cake with unicorn decorations, 
+                        pastel frosting, and edible glitter for kids.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹850</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1557925923-32fca44b0de0?w=400&h=300&fit=crop" alt="Kitkat Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">KitKat Crunch</h3>
+                    <p class="cake-description">
+                        Chocolate cake wrapped with KitKat bars, 
+                        topped with colorful gems and chocolate ganache.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹980</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb82858d84ab888a808e8d84998e9d8e99c5888486">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- PAGE 10 -->
+    <div class="page catalog-page">
+        <div class="page-header">
+            <h2>Designer Specials</h2>
+            <span class="page-number">Page 10</span>
+        </div>
+        <div class="content-area">
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=400&h=300&fit=crop" alt="Photo Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Personalized Photo Cake</h3>
+                    <p class="cake-description">
+                        Customizable cake with edible photo print, 
+                        your choice of flavor, perfect for special memories.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">1 Kg</span>
+                        <span class="cake-price">₹890</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1562440499-64c9a4305186?w=400&h=300&fit=crop" alt="3D Designer Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">3D Designer Cake</h3>
+                    <p class="cake-description">
+                        Custom 3D themed cakes for birthdays, weddings, 
+                        and special occasions. Made to your imagination!
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">Starting 2 Kg</span>
+                        <span class="cake-price">₹1500+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1560963689-8f4108266650?w=400&h=300&fit=crop" alt="Wedding Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Multi-Tier Wedding Cake</h3>
+                    <p class="cake-description">
+                        Elegant multi-tier wedding cakes with custom designs, 
+                        premium decorations, and your choice of flavors.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">Starting 5 Kg</span>
+                        <span class="cake-price">₹3500+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-item">
+                <div class="cake-image-container">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Number Cake" class="cake-image">
+                </div>
+                <div class="cake-details">
+                    <h3 class="cake-name">Number/Letter Cake</h3>
+                    <p class="cake-description">
+                        Trendy number or letter shaped cakes with fresh fruits, 
+                        cream, and customizable decorations.
+                    </p>
+                    <div class="cake-meta">
+                        <span class="cake-weight">Customizable</span>
+                        <span class="cake-price">₹1200+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            Contact: +91 9373015503 | Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93fafdf5fcd3f0f2f8f6f5fce1f6e5f6e1bdf0fcfe">[email&#160;protected]</a> | Website: www.cakeforever.com
+        </div>
+    </div>
+
+    <!-- BACK PAGE -->
+    <div class="page back-page">
+        <div class="back-top-section">
+            <div class="back-logo-container">
+                <div class="back-logo">
+                    <img src="https://www.ambivare.com/cakeforever.png" alt="Cake Forever Logo" onerror="this.style.display='none';this.parentElement.classList.add('icon-cake')">
+                </div>
+            </div>
+            <h1 class="back-title">Thank You!</h1>
+            <p class="back-subtitle">We look forward to making your celebrations sweeter</p>
+        </div>
+        
+        <div class="back-content">
+            <div class="contact-section">
+                <h2 class="section-title">Get In Touch With Us</h2>
+                <div class="contact-grid">
+                    <div class="contact-box">
+                        <div class="icon icon-phone"></div>
+                        <h3>Call Us</h3>
+                        <p><a href="tel:+919373015503">+91 9373015503</a></p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <div class="icon icon-email"></div>
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:info@cakeforever.com">info@cakeforever.com</a><br><a href="mailto:orders@cakeforever.com">orders@cakeforever.com</a></p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <div class="icon icon-location"></div>
+                        <h3>Visit Us</h3>
+                        <p>Shop No. 12, Station Road<br>Ulhasnagar, Maharashtra - 421001</p>
+                    </div>
+                    
+                    <div class="contact-box">
+                        <div class="icon icon-web"></div>
+                        <h3>Online</h3>
+                        <p><a href="http://www.cakeforever.com" target="_blank">www.cakeforever.com</a><br>Follow us on social media</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-footer">
+            <div class="features-row">
+                <div class="feature-item"><span class="icon-clock"></span> Open Daily: 9 AM - 10 PM</div>
+                <div class="feature-item"><span class="icon-delivery"></span> Free Home Delivery</div>
+                <div class="feature-item"><span class="icon-custom"></span> Custom Orders Welcome</div>
+            </div>
+            <p class="back-footer-text">© 2024 Cake Forever. All Rights Reserved. Made with ♥ in Ulhasnagar</p>
+        </div>
+    </div>
+
+</body>
+</html>

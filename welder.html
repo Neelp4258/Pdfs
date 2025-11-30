@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welder - Job Description - Trivanta Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9px;
+            line-height: 1.2;
+            color: #333;
+            background: white;
+            padding: 12px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 8px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 9px;
+            color: #2c5282;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .job-card {
+            border: 1.5px solid #2c5282;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(44, 82, 130, 0.1);
+            margin-bottom: 12px;
+        }
+        
+        .job-header {
+            background: #2c5282;
+            color: white;
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .job-salary {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 6px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+        
+        .job-content {
+            padding: 10px;
+            background: #f8fafc;
+        }
+        
+        .job-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        
+        .detail-value {
+            color: #2c5282;
+            font-size: 9px;
+        }
+        
+        .section {
+            background: white;
+            padding: 8px;
+            border-radius: 3px;
+            border-left: 2px solid #2c5282;
+            margin-top: 8px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+        
+        .section-text {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        
+        .section-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .section-list li {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+        
+        .section-list li:before {
+            content: "•";
+            color: #2c5282;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .important-notes {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        
+        .notes-title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3px;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+        
+        .note-bullet {
+            color: #92400e;
+            font-weight: bold;
+            margin-right: 4px;
+            font-size: 10px;
+        }
+        
+        .apply-section {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .apply-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .apply-text {
+            font-size: 8px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 8px;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 7px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        <div class="logo-section">
+            <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>Parking, Perfected</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <strong>sales@trivantaedge.com</strong><br>
+            info@trivantaedge.com<br>
+            +91 9373015503<br>
+            Kalyan, Maharashtra
+        </div>
+    </div>
+    
+    <div class="document-title">Job Description</div>
+    <div class="subtitle">Welder - Car Parking System Solutions</div>
+    
+    <div class="job-card">
+        <div class="job-header">
+            <div class="job-title">Welder</div>
+            <div class="job-salary">₹14,000 - ₹18,000 per month</div>
+        </div>
+        <div class="job-content">
+            <div class="job-details">
+                <div class="detail-item">
+                    <div class="detail-label">Experience Required</div>
+                    <div class="detail-value">6 Months - 3 Years</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Industry</div>
+                    <div class="detail-value">Manufacturing</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Process</div>
+                    <div class="detail-value">Car Parking Manufacturing & Installation</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Location</div>
+                    <div class="detail-value">Maharashtra</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Position Overview</div>
+                <div class="section-text">
+                    We are seeking skilled and experienced Welders to join our manufacturing and installation team. The role involves fabrication and welding of car parking system structures and components at our manufacturing facility and various installation sites across Maharashtra. The ideal candidate should have expertise in metal welding techniques, strong attention to quality, and the ability to work on both manufacturing and on-site projects.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Key Responsibilities</div>
+                <ul class="section-list">
+                    <li>Perform arc welding, MIG/TIG welding, and gas welding on steel structures for car parking systems</li>
+                    <li>Fabricate and weld metal frames, support structures, and parking equipment components</li>
+                    <li>Read and interpret technical drawings, blueprints, and welding specifications</li>
+                    <li>Conduct on-site welding work during installation of car parking systems at various locations</li>
+                    <li>Ensure all welding work meets quality standards and structural integrity requirements</li>
+                    <li>Inspect welded joints and structures for defects, cracks, or weak points</li>
+                    <li>Cut, shape, and join metal parts using appropriate welding techniques</li>
+                    <li>Maintain welding equipment, tools, and machinery in proper working condition</li>
+                    <li>Follow safety protocols including use of protective gear and safe welding practices</li>
+                    <li>Coordinate with fabrication team and site supervisors for project completion</li>
+                    <li>Perform grinding, cleaning, and finishing of welded surfaces</li>
+                    <li>Work on modifications and repairs of parking system structures as needed</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Required Skills & Qualifications</div>
+                <ul class="section-list">
+                    <li>Any educational qualification accepted (ITI in Welding preferred)</li>
+                    <li>6 months to 3 years of proven experience in welding work, preferably in manufacturing or installation</li>
+                    <li>Proficiency in arc welding, MIG/TIG welding, and gas welding techniques</li>
+                    <li>Ability to read and understand technical drawings and welding symbols</li>
+                    <li>Strong knowledge of metal properties and welding standards</li>
+                    <li>Experience working with steel and metal fabrication</li>
+                    <li>Good hand-eye coordination and steady hands for precision welding</li>
+                    <li>Physical fitness and ability to work in various positions (standing, bending, overhead)</li>
+                    <li>Understanding of safety protocols and commitment to workplace safety</li>
+                    <li>Willingness to travel and work at different sites across Maharashtra</li>
+                    <li>Basic communication skills in Hindi or Marathi</li>
+                    <li>Ability to work independently and as part of a team</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">What We Offer</div>
+                <ul class="section-list">
+                    <li>Competitive salary package of ₹14,000 - ₹18,000 per month</li>
+                    <li>All traveling expenses covered by the company</li>
+                    <li>Accommodation and food expenses fully covered during site work</li>
+                    <li>Opportunity to work on innovative parking solution projects</li>
+                    <li>Skill enhancement through diverse welding projects</li>
+                    <li>Growth opportunities within the organization</li>
+                    <li>Safe and supportive work environment</li>
+                    <li>All necessary safety equipment and tools provided</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="important-notes">
+        <div class="notes-title">IMPORTANT REQUIREMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Candidate must have hands-on welding experience with proven track record</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Must be comfortable working in both factory and on-site environments</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Should be willing to travel and stay in any city across Maharashtra for installation projects</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>All expenses for travelling, accommodation, and food will be covered by the company</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Physical fitness required as role involves manual labor and working in various positions</span>
+        </div>
+    </div>
+    
+    <div class="important-notes" style="background: #e0f2fe; border: 1px solid #0277bd;">
+        <div class="notes-title" style="color: #01579b;">REQUIRED DOCUMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Aadhar Card (mandatory)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Bank Account details</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Pan Card</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>ITI Certificate (if applicable)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Previous Experience letter (if applicable)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Salary slips (if applicable)</span>
+        </div>
+    </div>
+    
+    <div class="apply-section">
+        <div class="apply-title">Ready to Join Our Team?</div>
+        <div class="apply-text">
+            We are looking for skilled welders who take pride in their craft and want to be part of innovative parking solutions.
+        </div>
+        <div class="contact-details">
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div>sales@trivantaedge.com</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Phone</div>
+                <div>+91 9373015503</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Address</div>
+                <div>Kalyan, Maharashtra</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>

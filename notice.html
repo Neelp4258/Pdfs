@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request - Material Theft Compensation</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: white;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px;
+            margin: -20mm -20mm 25px -20mm;
+            color: white;
+            border-bottom: 4px solid #d4af37;
+        }
+        
+        .company-name {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .company-tagline {
+            font-size: 12px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .letter-title {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2a5298;
+        }
+        
+        .reference {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 11px;
+            color: #555;
+        }
+        
+        .to-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+        }
+        
+        .to-label {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+        
+        .recipient {
+            line-height: 1.8;
+        }
+        
+        .subject {
+            margin: 25px 0;
+            padding: 15px;
+            background: #e8f0fe;
+            border-left: 4px solid #1e3c72;
+        }
+        
+        .subject-label {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+        
+        .salutation {
+            margin: 20px 0 15px 0;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        .content {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        
+        .content-heading {
+            color: #1e3c72;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            font-size: 13px;
+        }
+        
+        .incident-details {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+        }
+        
+        .detail-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1e3c72;
+            min-width: 180px;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        .evidence-box {
+            background: #fff9e6;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .amount-box {
+            background: #fee;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #c00;
+            border-radius: 4px;
+        }
+        
+        .amount-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .amount-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c00;
+        }
+        
+        .demands {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .demands li {
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .closing {
+            margin-top: 30px;
+        }
+        
+        .signature-section {
+            margin-top: 50px;
+        }
+        
+        .signature-line {
+            margin-top: 60px;
+            padding-top: 2px;
+            border-top: 2px solid #1e3c72;
+            width: 250px;
+        }
+        
+        .signatory-name {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-top: 5px;
+        }
+        
+        .signatory-title {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid #2a5298;
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="company-name">INFINITE SOLUTIONS</div>
+            <div class="company-tagline">Automated Parking Systems & Infrastructure Solutions</div>
+        </div>
+        
+        <div class="reference">
+            <div><strong>Ref No:</strong> IS/AVK/2025/001</div>
+            <div><strong>Date:</strong> September 30, 2025</div>
+        </div>
+        
+        <div class="to-section">
+            <div class="to-label">To,</div>
+            <div class="recipient">
+                <strong>The Builder/Project Head</strong><br>
+                Avishkar Commercial Infrastructure Project<br>
+                Kharadi, Pune<br>
+                Maharashtra
+            </div>
+        </div>
+        
+        <div class="subject">
+            <div class="subject-label">Subject:</div>
+            <div><strong>Request afor Compensation of Stolen Materials and Recovery of Losses - Theft by Contractor's Labour</strong></div>
+        </div>
+        
+        <div class="salutation">Respected Sir/Madam,</div>
+        
+        <div class="content">
+            We, <strong>Infinite Solutions</strong>, are writing to formally bring to your notice a serious matter of repeated theft and misappropriation of our inventory materials at the Avishkar Commercial Infrastructure Project site in Kharadi, Pune, where we are contracted to execute the Automated Parking System Installation.
+        </div>
+        
+        <div class="content-heading">BACKGROUND:</div>
+        <div class="content">
+            Our company has been diligently working on the aforementioned project. However, over the past few months, we have been facing continuous and systematic theft of materials from our inventory stored at the project site. Despite verbal complaints and warnings, the matter has escalated to a point where substantial financial losses have been incurred by our organization.
+        </div>
+        
+        <div class="content-heading">DETAILS OF THE INCIDENT:</div>
+        <div class="incident-details">
+            <div class="detail-row">
+                <div class="detail-label">Contractor Name:</div>
+                <div class="detail-value">Dharma Nirmal (Civil Services Contractor)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Accused Labour:</div>
+                <div class="detail-value">Raushan Singh (Labour of Dharma Nirmal)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Theft:</div>
+                <div class="detail-value">September 22, 2025 (Between 8:30 PM to 9:00 PM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Discovery:</div>
+                <div class="detail-value">September 29, 2025 (11:00 AM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Date of Confrontation:</div>
+                <div class="detail-value">September 29, 2025 (8:00 PM)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Site Supervisor (Dharma Nirmal):</div>
+                <div class="detail-value">Gadadhar (who had previously warned a labour for theft)</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Hiding Location:</div>
+                <div class="detail-value">Labour camp at the project site premises</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Receiver of Stolen Goods:</div>
+                <div class="detail-value">Khalid Ahmed (Scrap Dealer/Bhangar Wala) - Located approximately 200 meters from the site</div>
+            </div>
+        </div>
+        
+        <div class="content-heading">SEQUENCE OF EVENTS:</div>
+        <div class="content">
+            <ol style="padding-left: 20px; margin: 15px 0;">
+                <li style="margin: 10px 0;">On <strong>September 29, 2025 at 11:00 AM</strong>, our site supervisor noticed a sudden and significant decrease in our material inventory.</li>
+                <li style="margin: 10px 0;">Upon investigation and review of CCTV footage, we discovered that <strong>Raushan Singh</strong>, a labour employed by contractor Dharma Nirmal, was captured on camera stealing our materials on <strong>September 22, 2025, between 8:30 PM to 9:00 PM</strong>.</li>
+                <li style="margin: 10px 0;">Our supervisor was occupied at another site from 11:00 AM to 8:00 PM on September 29, 2025.</li>
+                <li style="margin: 10px 0;">At <strong>8:00 PM on September 29, 2025</strong>, our supervisor confronted Raushan Singh, who <strong>admitted and confessed</strong> to stealing the materials.</li>
+                <li style="margin: 10px 0;">It was revealed that Raushan Singh had been hiding the stolen materials in his labour camp located within the project premises.</li>
+                <li style="margin: 10px 0;">The stolen materials were subsequently sold to <strong>Khalid Ahmed</strong>, a scrap dealer (Bhangar Wala), whose establishment is located approximately 200 meters from the project site.</li>
+                <li style="margin: 10px 0;">This is not an isolated incident. The site supervisor of Dharma Nirmal, <strong>Gadadhar</strong>, had previously caught another labour stealing our inventory and had issued a warning, but no concrete action was taken at that time.</li>
+            </ol>
+        </div>
+        
+        <div class="evidence-box">
+            <div style="font-weight: bold; color: #856404; margin-bottom: 10px;">EVIDENCE IN POSSESSION:</div>
+            <div style="color: #333;">
+                ✓ Complete CCTV video recording showing Raushan Singh stealing materials on September 22, 2025<br>
+                ✓ Written/verbal confession from Raushan Singh dated September 29, 2025<br>
+                ✓ Inventory records showing material discrepancies<br>
+                ✓ Witness testimony from our site supervisor<br>
+                ✓ Previous incident records involving contractor Dharma Nirmal's labour
+            </div>
+        </div>
+        
+        <div class="amount-box">
+            <div class="amount-label">ESTIMATED VALUE OF STOLEN MATERIALS</div>
+            <div class="amount-value">₹ 4,00,000 - 5,00,000</div>
+            <div style="margin-top: 10px; font-size: 11px; color: #666;">(Rupees Four to Five Lakh Only)</div>
+        </div>
+        
+        <div class="content-heading">LIABILITY AND RESPONSIBILITY:</div>
+        <div class="content">
+            As per the terms of engagement and standard industry practices, the builder/project head bears the responsibility for security and safety of all contractors, sub-contractors, and their employees working on the project premises. The contractor Dharma Nirmal was engaged by you for civil services, and their employee's criminal activities have resulted in substantial financial losses to our organization.
+        </div>
+        
+        <div class="content">
+            Despite the presence of security measures and previous warnings, the theft continued unabated, indicating a systemic failure in site management and supervision. The fact that stolen materials were being stored in the labour camp within the project premises itself demonstrates gross negligence in security protocols.
+        </div>
+        
+        <div class="content-heading">OUR DEMANDS:</div>
+        <div class="demands">
+            <ol>
+                <li><strong>Immediate Compensation:</strong> We demand immediate compensation for the stolen materials amounting to ₹4,00,000 to ₹5,00,000 (Rupees Four to Five Lakh), as estimated based on current market rates and our purchase invoices.</li>
+                <li><strong>Detailed Investigation:</strong> A thorough investigation must be conducted to recover the stolen materials from Khalid Ahmed, the receiver of stolen goods.</li>
+                <li><strong>Legal Action:</strong> Appropriate legal and police action must be initiated against Raushan Singh and Khalid Ahmed for theft and receiving stolen property.</li>
+                <li><strong>Preventive Measures:</strong> Implementation of stringent security measures to prevent future incidents of theft.</li>
+                <li><strong>Accountability:</strong> The contractor Dharma Nirmal should be held accountable for the actions of their employees.</li>
+            </ol>
+        </div>
+        
+        <div class="content-heading">Compensation Request:</div>
+        <div class="content">
+            This letter serves as a formal legal notice under the provisions of applicable laws. We hereby provide you <strong>15 (Fifteen) days</strong> from the date of receipt of this notice to:
+        </div>
+        <div class="content">
+            <ol style="padding-left: 20px; margin: 10px 0;">
+                <li>Compensate us for the full value of stolen materials (₹4,00,000 to ₹5,00,000)</li>
+                <li>Provide a written response acknowledging the incident and proposed remedial actions</li>
+                <li>Initiate appropriate legal proceedings against the accused parties</li>
+            </ol>
+        </div>
+        
+        <div class="content" style="background: #fff3cd; padding: 15px; border-left: 4px solid #856404; margin: 20px 0;">
+            <strong>FAILURE TO COMPLY:</strong> Please note that failure to respond satisfactorily or compensate for the losses within the stipulated time frame will compel us to initiate appropriate civil and criminal legal proceedings against all responsible parties, including filing an FIR for theft, criminal breach of trust, and negligence. We will also be constrained to halt our work on the project and claim damages for project delays and reputational harm.
+        </div>
+        
+        <div class="closing">
+            <div class="content">
+                We trust that you will treat this matter with the urgency and seriousness it deserves and take immediate corrective action. We are open to an amicable resolution and expect your prompt response.
+            </div>
+            
+            <div class="content" style="margin-top: 20px;">
+                All our rights, remedies, claims, and contentions are expressly reserved.
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div style="margin-bottom: 10px;">Thanking you,</div>
+            <div style="margin-bottom: 10px;">Yours faithfully,</div>
+            
+            <div class="signature-line">
+                <div class="signatory-name">For INFINITE SOLUTIONS</div>
+                <div class="signatory-title">Authorized Signatory</div>
+                <div class="signatory-title">Project Manager - Avishkar Project</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>INFINITE SOLUTIONS</strong> | Automated Parking Systems & Infrastructure Solutions<br>
+            This is a legally binding document. Please treat it with appropriate seriousness and respond within the stipulated timeframe.
+        </div>
+    </div>
+</body>
+</html>

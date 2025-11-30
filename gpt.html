@@ -1,0 +1,421 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accounts ERP — Dashboard</title>  <!-- Bootstrap 5 -->  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>  <style>
+    :root{
+      --sidebar-bg: #0f1724; /* deep navy */
+      --panel-bg: #0b1220;  /* slightly darker */
+      --accent: #06b6d4;    /* teal */
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    html,body{
+      height:100%;
+      background: linear-gradient(180deg,#061123 0%, #071827 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Force a desktop/landscape layout feel */
+    @media (max-width: 1100px){
+      body::before{content: "Optimised for desktop. For best experience use a wider screen (≥1100px).";display:block;background:#011627;color:#cfe8f3;padding:8px;text-align:center;font-size:.9rem}
+    }
+
+    .app-shell{min-height:100vh;}
+
+    /* Sidebar */
+    .sidebar{
+      background: linear-gradient(180deg,var(--sidebar-bg), #071426);
+      width:260px;min-width:260px;height:100vh;position:fixed;left:0;top:0;padding:1rem;border-right:1px solid rgba(255,255,255,0.03);
+    }
+    .sidebar .brand{font-weight:800;color:var(--accent);letter-spacing:.6px}
+    .sidebar .nav-link{color:#b7c6d6}
+    .sidebar .nav-link.active{background:linear-gradient(90deg,rgba(6,182,212,0.08),transparent);border-radius:.6rem;color:#fff}
+
+    /* Content */
+    .main{margin-left:260px;padding:28px 32px;}
+
+    .card-ghost{background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+
+    .kpi{min-height:88px}
+    .kpi .value{font-size:1.45rem;font-weight:700}
+    .kpi .label{color:var(--muted);font-size:.85rem}
+
+    .table thead th{color:#9fb4c9}
+    .table tbody td{color:#dbeefb}
+
+    .card-small{padding:12px}
+    .chip{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:600}
+
+    .quick-action{min-width:120px}
+
+    .activity-item{border-left:3px solid rgba(255,255,255,0.04);padding-left:12px}
+
+    /* Small helpers */
+    .muted{color:var(--muted)}
+
+    /* scrollbar */
+    .sidebar, .main {overflow:auto}
+    ::-webkit-scrollbar{height:8px;width:8px}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.05);border-radius:999px}
+
+    /* landscape hint for printing or exported preview */
+    @media print{@page{size: landscape}}
+  </style></head>
+<body>
+  <div class="app-shell d-flex">
+    <!-- SIDEBAR -->
+    <aside class="sidebar d-flex flex-column">
+      <div class="d-flex align-items-center mb-4">
+        <div class="me-2">
+          <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:800;color:#04202a">AE</div>
+        </div>
+        <div>
+          <div class="brand">Accounts ERP</div>
+          <div class="muted small">Financial Management Suite</div>
+        </div>
+      </div><nav class="nav flex-column mb-3">
+    <a class="nav-link active d-flex align-items-center mb-1" href="#"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+    <a class="nav-link d-flex align-items-center mb-1" href="#"><i class="bi bi-wallet2 me-2"></i>Accounts</a>
+    <a class="nav-link d-flex align-items-center mb-1" href="#"><i class="bi bi-file-earmark-text me-2"></i>Invoices</a>
+    <a class="nav-link d-flex align-items-center mb-1" href="#"><i class="bi bi-people me-2"></i>Customers</a>
+    <a class="nav-link d-flex align-items-center mb-1" href="#"><i class="bi bi-graph-up me-2"></i>Reports</a>
+    <a class="nav-link d-flex align-items-center mb-1" href="#"><i class="bi bi-gear me-2"></i>Settings</a>
+  </nav>
+
+  <div class="mt-auto">
+    <div class="small muted mb-2">Quick Links</div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-sm btn-outline-light chip"><i class="bi bi-plus-circle me-1"></i> New</button>
+      <button class="btn btn-sm btn-outline-light chip"><i class="bi bi-cloud-arrow-down me-1"></i> Import</button>
+    </div>
+    <hr class="my-3"/>
+    <div class="small muted">Version 1.0 · © AccountsERP</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main w-100">
+  <!-- TOP NAV -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <h3 class="mb-0">Overview</h3>
+      <div class="muted small">All systems nominal • Last sync 12 hrs ago</div>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="input-group input-group-sm" style="width:320px">
+        <span class="input-group-text bg-transparent border-0"><i class="bi bi-search"></i></span>
+        <input class="form-control form-control-sm bg-transparent border-0" placeholder="Search transactions, invoices, customers...">
+        <button class="btn btn-sm btn-outline-light">Go</button>
+      </div>
+
+      <div class="dropdown">
+        <a class="d-flex align-items-center text-decoration-none" href="#" data-bs-toggle="dropdown">
+          <div class="text-end me-2">
+            <div style="font-weight:700">Siddhant S.</div>
+            <div class="small muted">Admin</div>
+          </div>
+          <img src="https://via.placeholder.com/42/0b1220/ffffff?text=SS" alt="avatar" class="rounded-3"/>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Preferences</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="row g-3 mb-3">
+    <div class="col-3">
+      <div class="card card-ghost p-3 kpi">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label small muted">Total Revenue</div>
+            <div class="value">₹ 12,45,980</div>
+            <div class="muted small">+8.2% vs last month</div>
+          </div>
+          <div class="chip">Monthly</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card card-ghost p-3 kpi">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label small muted">Outstanding</div>
+            <div class="value">₹ 1,95,230</div>
+            <div class="muted small">22 invoices</div>
+          </div>
+          <div class="chip">Aged</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card card-ghost p-3 kpi">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label small muted">Expenses</div>
+            <div class="value">₹ 4,22,300</div>
+            <div class="muted small">-3.4% vs last month</div>
+          </div>
+          <div class="chip">YTD</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card card-ghost p-3 kpi">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label small muted">Net Cash</div>
+            <div class="value">₹ 7,28,450</div>
+            <div class="muted small">Available</div>
+          </div>
+          <div class="chip">Real-time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT ROW: Charts, Transactions -->
+  <div class="row g-3">
+    <div class="col-8">
+      <div class="card card-ghost p-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <h5 class="mb-0">Revenue & Expenses</h5>
+            <div class="small muted">Last 12 months</div>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <div class="small muted">View</div>
+            <div class="btn-group btn-group-sm" role="group">
+              <button class="btn btn-sm btn-outline-light active">Monthly</button>
+              <button class="btn btn-sm btn-outline-light">Quarter</button>
+              <button class="btn btn-sm btn-outline-light">Year</button>
+            </div>
+          </div>
+        </div>
+        <canvas id="revChart" height="120"></canvas>
+      </div>
+
+      <div class="card card-ghost p-3 mt-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <h5 class="mb-0">Recent Transactions</h5>
+            <div class="small muted">Most recent 10 entries</div>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#addTxnModal"><i class="bi bi-plus"></i> Add</button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-borderless align-middle">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Type</th>
+                <th class="text-end">Amount</th>
+                <th class="text-end">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#TXN-1001</td>
+                <td>2025-09-25</td>
+                <td>Sales - Retail</td>
+                <td>Credit</td>
+                <td class="text-end">₹ 45,000</td>
+                <td class="text-end text-success">Completed</td>
+              </tr>
+              <tr>
+                <td>#TXN-1000</td>
+                <td>2025-09-24</td>
+                <td>Bank - ICICI</td>
+                <td>Debit</td>
+                <td class="text-end">₹ 12,300</td>
+                <td class="text-end text-warning">Pending</td>
+              </tr>
+              <tr>
+                <td>#TXN-0999</td>
+                <td>2025-09-20</td>
+                <td>Vendor - Acme</td>
+                <td>Debit</td>
+                <td class="text-end">₹ 78,250</td>
+                <td class="text-end text-success">Completed</td>
+              </tr>
+              <!-- more rows... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="card card-ghost p-3 mb-3">
+        <h6 class="mb-2">Cashflow Snapshot</h6>
+        <canvas id="cashDonut" height="180"></canvas>
+        <div class="d-flex justify-content-between mt-2 muted small">
+          <div>In: ₹ 9,12,000</div>
+          <div>Out: ₹ 1,83,550</div>
+        </div>
+      </div>
+
+      <div class="card card-ghost p-3 mb-3">
+        <h6 class="mb-2">Quick Actions</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-sm btn-outline-light quick-action"><i class="bi bi-file-earmark-text me-1"></i> Create Invoice</button>
+          <button class="btn btn-sm btn-outline-light quick-action"><i class="bi bi-wallet2 me-1"></i> New Payment</button>
+          <button class="btn btn-sm btn-outline-light quick-action"><i class="bi bi-people me-1"></i> Add Customer</button>
+          <button class="btn btn-sm btn-outline-light quick-action"><i class="bi bi-gear me-1"></i> Settings</button>
+        </div>
+      </div>
+
+      <div class="card card-ghost p-3 mb-3">
+        <h6 class="mb-2">Notifications</h6>
+        <div class="small muted mb-2">You have 3 invoices overdue</div>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2 activity-item">
+            <div class="small">Invoice <strong>#INV-2201</strong> overdue by 5 days</div>
+            <div class="muted small">Customer: Greenleaf Pvt Ltd</div>
+          </li>
+          <li class="mb-2 activity-item">
+            <div class="small">Bank sync completed — 2 new transactions</div>
+            <div class="muted small">Sep 27, 2025</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card card-ghost p-3">
+        <h6 class="mb-2">Activity Feed</h6>
+        <div class="small muted mb-2">Latest system events</div>
+        <div class="d-flex flex-column gap-2">
+          <div class="p-2 rounded activity-item">
+            <div><strong>Backup</strong> created successfully</div>
+            <div class="muted small">09/27/2025 · 03:12 AM</div>
+          </div>
+          <div class="p-2 rounded activity-item">
+            <div><strong>User:</strong> Priya K. updated invoice settings</div>
+            <div class="muted small">09/26/2025 · 11:02 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-4 text-muted small">© 2025 Accounts ERP — Built for clarity and speed.</footer>
+</main>
+
+  </div>  <!-- Add Transaction Modal -->  <div class="modal fade" id="addTxnModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">New Transaction</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="txnForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small">Date</label>
+                <input type="date" class="form-control form-control-sm" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small">Amount</label>
+                <input type="number" class="form-control form-control-sm" placeholder="₹ 0.00" required>
+              </div><div class="col-md-6">
+            <label class="form-label small">Account</label>
+            <select class="form-select form-select-sm">
+              <option>Sales - Retail</option>
+              <option>Bank - ICICI</option>
+              <option>Vendor - Acme</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small">Type</label>
+            <select class="form-select form-select-sm">
+              <option>Credit</option>
+              <option>Debit</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small">Notes (optional)</label>
+            <textarea class="form-control form-control-sm" rows="3"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer border-0">
+      <button class="btn btn-sm btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+      <button class="btn btn-sm btn-primary" id="saveTxn">Save</button>
+    </div>
+  </div>
+</div>
+
+  </div>  <!-- Bootstrap JS -->  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>  <script>
+    // Sample chart data and config
+    const revCtx = document.getElementById('revChart');
+    if(revCtx){
+      new Chart(revCtx, {
+        type: 'line',
+        data: {
+          labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
+          datasets: [
+            {label:'Revenue', data:[65000,72000,82000,78000,92000,102000,98000,105000,112000,118000,125000,124598], tension:0.4, fill:true, backgroundColor:'rgba(6,182,212,0.08)', borderColor:'#06b6d4', pointRadius:2},
+            {label:'Expenses', data:[42000,38000,42000,48000,47000,52000,46000,50000,53000,55000,60000,422300], tension:0.4, fill:false, borderColor:'#7dd3fc', borderDash:[4,6], pointRadius:2}
+          ]
+        },
+        options: {
+          plugins:{legend:{labels:{color:'#cfe8f3'}}},
+          scales:{x:{grid:{display:false}, ticks:{color:'#9fb4c9'}}, y:{ticks:{color:'#9fb4c9'}}}
+        }
+      });
+    }
+
+    const cashCtx = document.getElementById('cashDonut');
+    if(cashCtx){
+      new Chart(cashCtx, {
+        type:'doughnut',
+        data:{labels:['Inflow','Outflow','Reserves'], datasets:[{data:[912000,183550,728450], backgroundColor:['rgba(6,182,212,0.85)','rgba(99,102,241,0.85)','rgba(99,102,241,0.25)']}]},
+        options:{plugins:{legend:{position:'bottom',labels:{color:'#cfe8f3'}}}}
+      });
+    }
+
+    // Small demo action: Save transaction -> close modal & show toast
+    document.getElementById('saveTxn')?.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const modalEl = document.getElementById('addTxnModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal?.hide();
+      // show a subtle alert
+      const alert = document.createElement('div');
+      alert.className = 'toast align-items-center text-bg-dark border-0 show';
+      alert.style.position='fixed'; alert.style.right='20px'; alert.style.bottom='20px'; alert.style.zIndex='1080';
+      alert.innerHTML = '<div class="d-flex"><div class="toast-body">Transaction saved.</div><button class="btn-close btn-close-white me-2 m-auto" onclick="this.closest(\'.toast\').remove()"></button></div>';
+      document.body.appendChild(alert);
+      setTimeout(()=>{alert.remove()},3000);
+    });
+  </script></body>
+</html>

@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-class HTMLToPDFConverter {
+class EnhancedHTMLToPDFConverter {
     constructor(options = {}) {
         this.browser = null;
         this.defaultOptions = {
@@ -20,6 +20,11 @@ class HTMLToPDFConverter {
             scale: 1.0,
             landscape: false,
             letterheadMode: 'all', // 'all' or 'first'
+            // Add font options
+            fontSupport: {
+                hindi: true,
+                embed: true
+            },
             ...options
         };
     }
@@ -57,7 +62,8 @@ class HTMLToPDFConverter {
                 '--safebrowsing-disable-auto-update',
                 '--enable-automation',
                 '--password-store=basic',
-                '--use-mock-keychain'
+                '--use-mock-keychain',
+                '--font-render-hinting=none', // Improve non-Latin text rendering
             ]
         };
 
@@ -124,373 +130,48 @@ class HTMLToPDFConverter {
                 }
             }
         `;
-    }
-
-    async loadLogosAsDataURI() {
-        const logoData = {};
-        const logoFiles = [
-            { name: 'trivanta.png', folder: 'assets' },
-            { name: 'logo.png', folder: 'assets' }
-        ];
         
-        for (const logoFile of logoFiles) {
-            const logoPath = path.join(__dirname, logoFile.folder, logoFile.name);
-            try {
-                if (await fs.pathExists(logoPath)) {
-                    const logoBuffer = await fs.readFile(logoPath);
-                    const base64 = logoBuffer.toString('base64');
-                    logoData[logoFile.name] = `data:image/png;base64,${base64}`;
-                    console.log(`📋 Loaded logo: ${logoFile.name}`);
-                } else {
-                    console.warn(`⚠️ Logo file not found: ${logoPath}`);
-                    // Create a simple placeholder data URI
-                    logoData[logoFile.name] = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2NjIi8+Cjwvc3ZnPgo=';
-                }
-            } catch (error) {
-                console.warn(`⚠️ Error loading logo ${logoFile.name}: ${error.message}`);
-                // Fallback placeholder
-                logoData[logoFile.name] = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2NjIi8+Cjwvc3ZnPgo=';
-            }
-        }
-        
-        return logoData;
-    }
-
-    generateLetterheadCSS(letterheadType = 'trivanta', letterheadMode = 'all', landscape = false, format = 'A4') {
-        const isFirstOnly = letterheadMode === 'first';
-        
-        // Adjust margins based on orientation and format
-        const topMargin = landscape ? '10mm' : '12mm';
-        const sideMargin = landscape ? '12mm' : '10mm';
-        const bottomMargin = landscape ? '12mm' : '14mm';
-        
-        let letterheadCSS = `
-            @page {
-                size: ${format} ${landscape ? 'landscape' : 'portrait'};
-                margin: ${topMargin} ${sideMargin} ${bottomMargin} ${sideMargin};
+        // Add Hindi font support CSS
+        this.hindiFontCSS = `
+            @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+            
+            /* Ensure Hindi characters display properly */
+            [lang="hi"], .hindi, *:lang(hi) {
+                font-family: 'Noto Sans Devanagari', 'Hind', 'Arial Unicode MS', sans-serif !important;
+                font-feature-settings: "kern" 1;
+                text-rendering: optimizeLegibility;
             }
         `;
+    }
 
-        if (isFirstOnly) {
-            letterheadCSS += `
-                @page:first {
-                    margin-top: ${landscape ? '32mm' : '35mm'};
-                }
-            `;
-        } else {
-            letterheadCSS += `
-                @page {
-                    margin-top: ${landscape ? '32mm' : '35mm'};
-                }
-            `;
+    async loadLocalFonts() {
+        // This function would load fonts locally if needed
+        // Could be enhanced to load fonts from a local directory
+        return {};
+    }
+
+    async processHindiText(htmlContent) {
+        // Add lang attribute to elements with Hindi text if not already present
+        // This is a simple approach; a more sophisticated one would detect Hindi characters
+        let processedHTML = htmlContent;
+
+        // Add HTML language attribute if not present
+        if (!processedHTML.includes('<html lang="hi"') && !processedHTML.includes('<html lang="en"')) {
+            processedHTML = processedHTML.replace('<html', '<html lang="hi"');
         }
 
-        letterheadCSS += `
-            html, body {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            
-            body {
-                margin: 0 !important;
-                padding-top: 0 !important;
-                padding-bottom: 16mm !important;
-                background: #ffffff !important;
-            }
-            
-            * {
-                box-sizing: border-box;
-            }
-        `;
-
-        return letterheadCSS;
-    }
-
-    async generateLetterheadTemplates(letterheadType, letterheadMode, logoData, landscape = false) {
-        const isFirstOnly = letterheadMode === 'first';
-        
-        // Create header template
-        let headerTemplate = `
-            <div style="font-size: 12px; width: 100%; padding: 10px 20px; margin: 0; 
-                        font-family: 'Times New Roman', serif;">
-        `;
-
-        if (letterheadType === 'dazzlo') {
-            headerTemplate += `
-                <table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-                    <tr>
-                        <td style="width: 60px; vertical-align: middle; padding: 0;">
-                            ${logoData['logo.png'] ? `<img src="${logoData['logo.png']}" style="width: 50px; height: 50px;" alt="Dazzlo Logo">` : ''}
-                        </td>
-                        <td style="padding-left: 20px; vertical-align: middle;">
-                            <div style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 5px;">
-                                Dazzlo Enterprises Pvt Ltd
-                            </div>
-                            <div style="font-size: 11px; font-style: italic; color: #666;">
-                                Redefining lifestyle with Innovations and Dreams
-                            </div>
-                        </td>
-                        <td style="text-align: right; vertical-align: middle; font-size: 10px; font-weight: bold; color: #333;">
-                            Tel: +91 9373015503<br>
-                            Email: info@dazzlo.co.in<br>
-                            Address: Kalyan, Maharashtra 421301
-                        </td>
-                    </tr>
-                </table>
-            `;
-        } else {
-            // Trivanta letterhead
-            headerTemplate += `
-                <table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-                    <tr>
-                        <td style="width: 60px; vertical-align: middle; padding: 0;">
-                            ${logoData['trivanta.png'] ? `<img src="${logoData['trivanta.png']}" style="width: 50px; height: 50px;" alt="Trivanta Logo">` : ''}
-                        </td>
-                        <td style="padding-left: 20px; vertical-align: middle;">
-                            <div style="font-size: 18px; font-weight: bold; color: #1a365d; margin-bottom: 5px;">
-                                Trivanta Edge
-                            </div>
-                            <div style="font-size: 9px; font-style: italic; color: #2c5282;">
-                                From Land to Legacy – with Edge
-                            </div>
-                        </td>
-                        <td style="text-align: right; vertical-align: middle; font-size: 8px; font-weight: bold; color: #1a365d;">
-                            sales@trivantaedge.com<br>
-                            info@trivantaedge.com<br>
-                            +91 9373015503<br>
-                            Kalyan, Maharashtra
-                        </td>
-                    </tr>
-                </table>
-            `;
+        // Ensure charset is UTF-8
+        if (!processedHTML.includes('<meta charset="UTF-8">') && !processedHTML.includes('charset=utf-8')) {
+            processedHTML = processedHTML.replace('<head>', '<head>\n<meta charset="UTF-8">');
         }
 
-        headerTemplate += '</div>';
-
-        // Footer template
-        const footerTemplate = letterheadType === 'dazzlo' 
-            ? '<div style="font-size: 10px; text-align: center; padding: 5px;">info@dazzlo.co.in | www.dazzlo.co.in</div>'
-            : '<div style="font-size: 10px; text-align: center; padding: 5px;">© 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong></div>';
-
-        return { headerTemplate, footerTemplate };
-    }
-
-    adjustMarginsForLetterhead(originalMargin, landscape = false) {
-        const margin = typeof originalMargin === 'object' ? originalMargin : {
-            top: '12mm', right: '10mm', bottom: '14mm', left: '10mm'
-        };
-
-        // Add extra top margin for letterhead header
-        const headerHeight = landscape ? '25mm' : '30mm';
-        const topMargin = this.addMargin(margin.top || '12mm', headerHeight);
-        
-        return {
-            ...margin,
-            top: topMargin,
-            bottom: this.addMargin(margin.bottom || '14mm', '10mm')
-        };
-    }
-
-    addMargin(original, additional) {
-        const originalNum = parseFloat(original);
-        const additionalNum = parseFloat(additional);
-        const unit = original.replace(/[\d.]/g, '') || 'mm';
-        
-        return `${originalNum + additionalNum}${unit}`;
-    }
-
-    validateLetterheadAccess(password) {
-        const requiredPassword = process.env.LETTERHEAD_PASSWORD || 
-            (process.env.NODE_ENV !== 'production' ? '102005' : null);
-        
-        if (!requiredPassword) {
-            throw new Error('Letterhead access is disabled. Configure LETTERHEAD_PASSWORD environment variable.');
-        }
-        return password === requiredPassword;
-    }
-
-    injectFirstPageLetterhead(htmlContent, letterheadType, logoData, landscape = false, format = 'A4') {
-        const letterheadHTML = this.generateFirstPageLetterheadHTML(letterheadType, logoData, landscape);
-        const letterheadCSS = this.generateFirstPageLetterheadCSS(letterheadType, landscape, format);
-        
-        // Check if HTML has head and body tags
-        if (!htmlContent.includes('<head>')) {
-            return `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="utf-8">
-                    <style>${letterheadCSS}</style>
-                </head>
-                <body>
-                    ${letterheadHTML}
-                    <div class="main-content">
-                        ${htmlContent}
-                    </div>
-                </body>
-                </html>
-            `;
-        } else {
-            // Insert CSS into existing head and letterhead after body open
-            let processedHTML = htmlContent.replace('</head>', `<style>${letterheadCSS}</style></head>`);
-            processedHTML = processedHTML.replace(/<body[^>]*>/, (match) => `${match}${letterheadHTML}<div class="main-content">`);
-            processedHTML = processedHTML.replace('</body>', '</div></body>');
-            return processedHTML;
-        }
-    }
-
-    generateFirstPageLetterheadHTML(letterheadType, logoData, landscape = false) {
-        if (letterheadType === 'dazzlo') {
-            return `
-                <div class="first-page-letterhead">
-                    <table>
-                        <tr>
-                            <td class="logo-cell">
-                                ${logoData['logo.png'] ? `<img src="${logoData['logo.png']}" alt="Dazzlo Logo">` : ''}
-                            </td>
-                            <td class="company-info">
-                                <div class="company-name">Dazzlo Enterprises Pvt Ltd</div>
-                                <div class="tagline">Redefining lifestyle with Innovations and Dreams</div>
-                            </td>
-                            <td class="contact-info">
-                                Tel: +91 9373015503<br>
-                                Email: info@dazzlo.co.in<br>
-                                Address: Kalyan, Maharashtra 421301
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="letterhead-border"></div>
-                </div>
-            `;
-        } else {
-            return `
-                <div class="first-page-letterhead">
-                    <table>
-                        <tr>
-                            <td class="logo-cell">
-                                ${logoData['trivanta.png'] ? `<img src="${logoData['trivanta.png']}" alt="Trivanta Logo">` : ''}
-                            </td>
-                            <td class="company-info">
-                                <div class="company-name">Trivanta Edge</div>
-                                <div class="tagline">From Land to Legacy – with Edge</div>
-                            </td>
-                            <td class="contact-info">
-                                sales@trivantaedge.com<br>
-                                info@trivantaedge.com<br>
-                                +91 9373015503<br>
-                                Kalyan, Maharashtra
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="letterhead-border"></div>
-                </div>
-            `;
-        }
-    }
-
-    generateFirstPageLetterheadCSS(letterheadType, landscape = false, format = 'A4') {
-        const logoSize = landscape ? '50px' : '60px';
-        const companyNameSize = letterheadType === 'dazzlo' ? (landscape ? '20px' : '24px') : (landscape ? '18px' : '22px');
-        const taglineSize = letterheadType === 'dazzlo' ? (landscape ? '11px' : '13px') : (landscape ? '9px' : '11px');
-        const contactSize = letterheadType === 'dazzlo' ? (landscape ? '10px' : '12px') : (landscape ? '8px' : '10px');
-        const borderColor = letterheadType === 'dazzlo' ? '#d4af37' : '#2c5282';
-        const companyColor = letterheadType === 'dazzlo' ? '#333' : '#1a365d';
-        const taglineColor = letterheadType === 'dazzlo' ? '#666' : '#2c5282';
-        
-        return `
-            @page {
-                size: ${format} ${landscape ? 'landscape' : 'portrait'};
-            }
-            
-            .first-page-letterhead {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: white;
-                padding: ${landscape ? '10px 20px' : '15px 25px'};
-                margin-bottom: 20px;
-                font-family: 'Times New Roman', serif;
-                z-index: 1000;
-            }
-            
-            .first-page-letterhead table {
-                width: 100%;
-                border-collapse: collapse;
-                border: none;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .first-page-letterhead td {
-                border: none;
-                vertical-align: middle;
-                padding: 0;
-            }
-            
-            .first-page-letterhead .logo-cell {
-                width: 70px;
-            }
-            
-            .first-page-letterhead img {
-                width: ${logoSize};
-                height: ${logoSize};
-                border: none;
-            }
-            
-            .first-page-letterhead .company-info {
-                padding-left: 20px;
-            }
-            
-            .first-page-letterhead .company-name {
-                font-size: ${companyNameSize};
-                font-weight: bold;
-                color: ${companyColor};
-                margin-bottom: 5px;
-                line-height: 1.2;
-            }
-            
-            .first-page-letterhead .tagline {
-                font-size: ${taglineSize};
-                font-style: italic;
-                color: ${taglineColor};
-                line-height: 1.2;
-            }
-            
-            .first-page-letterhead .contact-info {
-                text-align: right;
-                font-size: ${contactSize};
-                font-weight: bold;
-                color: ${companyColor};
-                line-height: 1.4;
-            }
-            
-            .letterhead-border {
-                border-bottom: 3px solid ${borderColor};
-                margin-top: 10px;
-            }
-            
-            .main-content {
-                margin-top: ${landscape ? '80px' : '100px'};
-            }
-            
-            body {
-                margin: 0;
-                padding: 0;
-            }
-        `;
+        return processedHTML;
     }
 
     async convertHTMLToPDF(htmlContent, outputPath, customOptions = {}) {
         if (!this.browser) {
             throw new Error('Converter not initialized. Call initialize() first.');
-        }
-
-        // Check for letterhead password if letterhead is requested
-        if (customOptions.letterhead && !this.validateLetterheadAccess(customOptions.password)) {
-            throw new Error('Invalid or missing password for letterhead access');
         }
 
         const options = { ...this.defaultOptions, ...customOptions };
@@ -502,49 +183,29 @@ class HTMLToPDFConverter {
             await fs.ensureDir(path.dirname(outputPath));
 
             let processedHTML = htmlContent;
+            
+            // Process Hindi text if fontSupport.hindi is enabled
+            if (options.fontSupport && options.fontSupport.hindi) {
+                processedHTML = await this.processHindiText(processedHTML);
+            }
+            
             let pdfOptions = {
                 format: options.format,
                 landscape: options.landscape,
                 margin: options.margin,
                 printBackground: options.printBackground,
                 preferCSSPageSize: options.preferCSSPageSize,
-                scale: options.scale
+                scale: options.scale,
+                // Add font-specific options
+                printBackground: true,
+                omitBackground: false,
             };
 
-            // Handle letterhead
-            if (options.letterhead) {
-                const logoData = await this.loadLogosAsDataURI();
-                
-                if (options.letterheadMode === 'first') {
-                    // For first page only, inject letterhead into HTML body
-                    processedHTML = this.injectFirstPageLetterhead(htmlContent, options.letterheadType, logoData, options.landscape, options.format);
-                    // Only adjust top margin for first page
-                    pdfOptions.margin = {
-                        ...options.margin,
-                        top: this.addMargin(options.margin.top || '12mm', options.landscape ? '25mm' : '30mm')
-                    };
-                } else {
-                    // For all pages, use header/footer templates
-                    const { headerTemplate, footerTemplate } = await this.generateLetterheadTemplates(
-                        options.letterheadType, 
-                        options.letterheadMode, 
-                        logoData, 
-                        options.landscape
-                    );
-
-                    // Adjust margins for letterhead
-                    pdfOptions.margin = this.adjustMarginsForLetterhead(options.margin, options.landscape);
-                    pdfOptions.displayHeaderFooter = true;
-                    pdfOptions.headerTemplate = headerTemplate;
-                    pdfOptions.footerTemplate = footerTemplate;
-                }
-            }
-
-            // Add enhanced CSS
+            // Enhanced CSS with font support
             const enhancedCSS = `
                 <style>
                     ${this.printCSS}
-                    ${options.letterhead ? this.generateLetterheadCSS(options.letterheadType, options.letterheadMode, options.landscape, options.format) : ''}
+                    ${options.fontSupport && options.fontSupport.hindi ? this.hindiFontCSS : ''}
                 </style>
             `;
 
@@ -552,9 +213,9 @@ class HTMLToPDFConverter {
             if (!processedHTML.includes('<head>')) {
                 processedHTML = `
                     <!DOCTYPE html>
-                    <html>
+                    <html lang="hi">
                     <head>
-                        <meta charset="utf-8">
+                        <meta charset="UTF-8">
                         ${enhancedCSS}
                     </head>
                     <body>
@@ -572,10 +233,37 @@ class HTMLToPDFConverter {
 
             // Create new page and navigate to HTML
             const page = await this.browser.newPage();
+            
+            // Set appropriate font settings
+            await page.evaluateOnNewDocument(() => {
+                // This ensures fonts render correctly
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(() => {
+                        console.log('Fonts loaded successfully');
+                    });
+                }
+            });
+            
             await page.setViewport({ width: 1200, height: 800 });
-            await page.goto(`file://${tempHtmlPath}`, { waitUntil: 'networkidle0' });
+            
+            // Set extra HTTP headers for font loading
+            await page.setExtraHTTPHeaders({
+                'Accept-Language': 'hi,en-US;q=0.9,en;q=0.8'
+            });
+            
+            await page.goto(`file://${tempHtmlPath}`, { 
+                waitUntil: 'networkidle0',
+                timeout: 30000 
+            });
+            
+            // Wait for all fonts to load
+            await page.waitForFunction(() => document.fonts ? document.fonts.ready : true, { timeout: 5000 })
+                .catch(err => console.warn('Font loading timeout:', err.message));
 
-            // Generate PDF
+            // Wait a bit for any Web Fonts to render
+            await page.waitForTimeout(1000);
+
+            // Generate PDF with font handling
             const pdfBuffer = await page.pdf(pdfOptions);
             await fs.writeFile(outputPath, pdfBuffer);
 
@@ -611,22 +299,19 @@ class HTMLToPDFConverter {
     }
 
     async convertFile(inputPath, outputPath, options = {}) {
-        // Check for letterhead password if letterhead is requested
-        if (options.letterhead && !this.validateLetterheadAccess(options.password)) {
-            throw new Error('Invalid or missing password for letterhead access');
-        }
-        
+        // Read the HTML file with UTF-8 encoding
         const htmlContent = await fs.readFile(inputPath, 'utf8');
         return this.convertHTMLToPDF(htmlContent, outputPath, options);
     }
 
     async convertURL(url, outputPath, options = {}) {
-        // Check for letterhead password if letterhead is requested
-        if (options.letterhead && !this.validateLetterheadAccess(options.password)) {
-            throw new Error('Invalid or missing password for letterhead access');
-        }
-        
         const page = await this.browser.newPage();
+        
+        // Set Hindi language preference
+        await page.setExtraHTTPHeaders({
+            'Accept-Language': 'hi,en-US;q=0.9,en;q=0.8'
+        });
+        
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
         const htmlContent = await page.content();
         await page.close();
@@ -643,4 +328,4 @@ class HTMLToPDFConverter {
     }
 }
 
-module.exports = HTMLToPDFConverter;
+module.exports = EnhancedHTMLToPDFConverter;

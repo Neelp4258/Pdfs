@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts ERP - Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+        
+        .main-container {
+            min-width: 1200px;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+        
+        /* Top Navigation */
+        .top-nav {
+            background: #ffffff;
+            padding: 0.75rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .logo i {
+            color: #3b82f6;
+            margin-right: 0.5rem;
+        }
+        
+        .search-box {
+            position: relative;
+            max-width: 400px;
+        }
+        
+        .search-box input {
+            padding-left: 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            background: #f8fafc;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+        
+        .user-menu {
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #1e293b;
+            min-height: calc(100vh - 70px);
+            padding: 1.5rem 0;
+            position: fixed;
+            left: 0;
+            top: 70px;
+            overflow-y: auto;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            margin: 0.25rem 0;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: #334155;
+            color: #ffffff;
+            border-right: 3px solid #3b82f6;
+        }
+        
+        .sidebar-menu i {
+            width: 20px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+        
+        .menu-category {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem 1.5rem 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            min-height: calc(100vh - 70px);
+        }
+        
+        /* Dashboard Cards */
+        .stat-card {
+            background: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .stat-change {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .positive { color: #16a34a; }
+        .negative { color: #dc2626; }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        /* Charts and Tables */
+        .chart-container {
+            background: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            height: 400px;
+        }
+        
+        .table-container {
+            background: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .table {
+            margin: 0;
+        }
+        
+        .table th {
+            background: #f8fafc;
+            border-top: none;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem;
+            padding: 1rem;
+        }
+        
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+            font-size: 0.875rem;
+        }
+        
+        .badge-status {
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-paid { background: #dcfce7; color: #166534; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-overdue { background: #fee2e2; color: #991b1b; }
+        
+        /* Quick Actions */
+        .quick-actions {
+            background: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .action-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            width: 100%;
+            margin-bottom: 0.75rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-1px);
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-container {
+                min-width: 100%;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        /* Chart Placeholder */
+        .chart-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-radius: 0.5rem;
+            color: #64748b;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    Accounts ERP
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="Search transactions, invoices...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <i class="fas fa-bell text-muted" style="font-size: 1.125rem; cursor: pointer;"></i>
+                    <i class="fas fa-cog text-muted" style="font-size: 1.125rem; cursor: pointer;"></i>
+                    <div class="user-menu">
+                        <div class="user-avatar">JD</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                
+                <div class="menu-category">Financial Management</div>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Invoicing</a></li>
+                <li><a href="#"><i class="fas fa-receipt"></i> Expenses</a></li>
+                <li><a href="#"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="#"><i class="fas fa-chart-pie"></i> Budget Planning</a></li>
+                
+                <div class="menu-category">Accounting</div>
+                <li><a href="#"><i class="fas fa-book"></i> General Ledger</a></li>
+                <li><a href="#"><i class="fas fa-balance-scale"></i> Trial Balance</a></li>
+                <li><a href="#"><i class="fas fa-calculator"></i> Tax Management</a></li>
+                <li><a href="#"><i class="fas fa-file-contract"></i> Fixed Assets</a></li>
+                
+                <div class="menu-category">Reports & Analytics</div>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Financial Reports</a></li>
+                <li><a href="#"><i class="fas fa-analytics"></i> Analytics</a></li>
+                <li><a href="#"><i class="fas fa-file-pdf"></i> Statement Generation</a></li>
+                
+                <div class="menu-category">System</div>
+                <li><a href="#"><i class="fas fa-users"></i> User Management</a></li>
+                <li><a href="#"><i class="fas fa-database"></i> Data Backup</a></li>
+                <li><a href="#"><i class="fas fa-shield-alt"></i> Security Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h3 mb-1 text-dark fw-bold">Dashboard Overview</h1>
+                    <p class="text-muted mb-0">Welcome back! Here's what's happening with your accounts today.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>New Transaction
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-xl-3 col-lg-6">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stat-value text-primary">$248,430</div>
+                                <div class="stat-label">Total Revenue</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> +12.5% from last month
+                                </div>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-lg-6">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stat-value text-success">$186,250</div>
+                                <div class="stat-label">Total Expenses</div>
+                                <div class="stat-change negative">
+                                    <i class="fas fa-arrow-down"></i> -3.2% from last month
+                                </div>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-lg-6">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stat-value text-warning">$62,180</div>
+                                <div class="stat-label">Net Profit</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> +8.7% from last month
+                                </div>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-lg-6">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <div class="stat-value text-info">1,247</div>
+                                <div class="stat-label">Active Invoices</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> +15 new today
+                                </div>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Analytics Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-xl-8">
+                    <div class="chart-container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0 fw-bold">Revenue vs Expenses</h5>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary active">7D</button>
+                                <button class="btn btn-outline-primary">30D</button>
+                                <button class="btn btn-outline-primary">90D</button>
+                                <button class="btn btn-outline-primary">1Y</button>
+                            </div>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div class="text-center">
+                                <i class="fas fa-chart-area fa-3x mb-3"></i>
+                                <div>Interactive Revenue vs Expenses Chart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4">
+                    <div class="quick-actions">
+                        <h5 class="mb-4 fw-bold">Quick Actions</h5>
+                        <button class="action-btn">
+                            <i class="fas fa-plus me-2"></i>Create Invoice
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-receipt me-2"></i>Record Expense
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-exchange-alt me-2"></i>Bank Transfer
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-file-export me-2"></i>Generate Report
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-calendar-check me-2"></i>Schedule Payment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions Table -->
+            <div class="row g-4">
+                <div class="col-xl-8">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="table-title mb-0">Recent Transactions</h5>
+                                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>#TXN-001</strong></td>
+                                        <td>Sep 28, 2025</td>
+                                        <td>Office Supplies Purchase</td>
+                                        <td class="text-danger">-$1,250.00</td>
+                                        <td><span class="badge-status status-paid">Paid</span></td>
+                                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#TXN-002</strong></td>
+                                        <td>Sep 27, 2025</td>
+                                        <td>Client Payment - Project Alpha</td>
+                                        <td><strong>#TXN-002</strong></td>
+                                        <td>Sep 27, 2025</td>
+                                        <td>Client Payment - Project Alpha</td>
+                                        <td class="text-success">+$15,000.00</td>
+                                        <td><span class="badge-status status-paid">Paid</span></td>
+                                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#TXN-003</strong></td>
+                                        <td>Sep 26, 2025</td>
+                                        <td>Software License Renewal</td>
+                                        <td class="text-danger">-$2,400.00</td>
+                                        <td><span class="badge-status status-pending">Pending</span></td>
+                                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#TXN-004</strong></td>
+                                        <td>Sep 25, 2025</td>
+                                        <td>Utility Bills Payment</td>
+                                        <td class="text-danger">-$850.00</td>
+                                        <td><span class="badge-status status-overdue">Overdue</span></td>
+                                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#TXN-005</strong></td>
+                                        <td>Sep 24, 2025</td>
+                                        <td>Consulting Revenue</td>
+                                        <td class="text-success">+$8,500.00</td>
+                                        <td><span class="badge-status status-paid">Paid</span></td>
+                                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="chart-container">
+                        <h5 class="mb-4 fw-bold">Expense Categories</h5>
+                        <div class="chart-placeholder">
+                            <div class="text-center">
+                                <i class="fas fa-chart-pie fa-3x mb-3"></i>
+                                <div>Expense Distribution Chart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar menu interactions
+            const menuItems = document.querySelectorAll('.sidebar-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Chart period buttons
+            const chartButtons = document.querySelectorAll('.btn-group .btn');
+            chartButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    chartButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Animated counter for stats
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const value = stat.textContent;
+                stat.style.opacity = '0';
+                setTimeout(() => {
+                    stat.style.opacity = '1';
+                    stat.style.transition = 'opacity 0.5s ease';
+                }, Math.random() * 500);
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-box input');
+            searchInput.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.05)';
+                this.parentElement.style.transition = 'transform 0.2s ease';
+            });
+
+            searchInput.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

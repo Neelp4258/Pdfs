@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions - Professional Quotation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #333333;
+            background-color: #ffffff;
+        }
+        
+        .document-container {
+            max-width: 21cm; /* A4 width */
+            min-height: 29.7cm; /* A4 height */
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 2cm;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2cm;
+            border-bottom: 1px solid #cccccc;
+            padding-bottom: 0.5cm;
+        }
+        
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-name {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 0.2cm;
+            color: #000000;
+        }
+        
+        .company-tagline {
+            font-size: 9pt;
+            color: #666666;
+            margin-bottom: 0.5cm;
+        }
+        
+        .contact-info {
+            font-size: 9pt;
+            color: #666666;
+            line-height: 1.4;
+        }
+        
+        .document-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1cm;
+            color: #000000;
+            text-transform: uppercase;
+        }
+        
+        .document-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1cm;
+        }
+        
+        .client-info {
+            flex: 1;
+        }
+        
+        .quote-info {
+            text-align: right;
+        }
+        
+        .section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            margin: 1cm 0 0.5cm 0;
+            padding-bottom: 0.2cm;
+            border-bottom: 1px solid #cccccc;
+            color: #000000;
+        }
+        
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1cm;
+        }
+        
+        .feature-item {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 0.2cm 0;
+            font-size: 10pt;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1cm 0;
+        }
+        
+        .pricing-table th {
+            background-color: #f5f5f5;
+            padding: 0.3cm;
+            text-align: left;
+            font-size: 10pt;
+            border-bottom: 1px solid #cccccc;
+        }
+        
+        .pricing-table td {
+            padding: 0.3cm;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 10pt;
+        }
+        
+        .pricing-table .amount-column {
+            text-align: right;
+        }
+        
+        .pricing-table .total-row {
+            font-weight: bold;
+        }
+        
+        .terms-section {
+            margin: 1cm 0;
+            font-size: 10pt;
+        }
+        
+        .terms-list {
+            margin: 0.5cm 0;
+            padding-left: 1cm;
+        }
+        
+        .terms-list li {
+            margin-bottom: 0.3cm;
+        }
+        
+        .signature-section {
+            margin-top: 2cm;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .signature-block {
+            flex: 1;
+            margin: 0 0.5cm;
+        }
+        
+        .signature-line {
+            margin-top: 1cm;
+            border-top: 1px solid #000000;
+            padding-top: 0.2cm;
+            font-size: 9pt;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 2cm;
+            font-size: 8pt;
+            color: #666666;
+        }
+        
+        .benefit-item {
+            margin-bottom: 0.3cm;
+            font-size: 10pt;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .document-container {
+                margin: 0;
+                padding: 2cm;
+                max-width: none;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="company-info">
+                <div class="company-name">Ambivare Solutions</div>
+                <div class="company-tagline">Technology Solutions Provider</div>
+                <div class="contact-info">
+                    Email: sales@ambivare.com<br>
+                    Phone: +91 9373015503<br>
+                    Web: www.ambivare.com
+                </div>
+            </div>
+        </div>
+        
+        <!-- Document Title -->
+        <div class="document-title">Quotation</div>
+        
+        <!-- Document Info -->
+        <div class="document-info">
+            <div class="client-info">
+                <strong>To:</strong><br>
+                Elevator Services Ltd.<br>
+                Client Address<br>
+                City, Pin Code<br>
+                India
+            </div>
+            <div class="quote-info">
+                <strong>Quotation No:</strong> QT-2025-1110<br>
+                <strong>Date:</strong> November 10, 2025<br>
+                <strong>Valid Until:</strong> December 10, 2025<br>
+                <strong>Prepared By:</strong> Sales Team
+            </div>
+        </div>
+        
+        <!-- Introduction -->
+        <p>
+            We are pleased to submit this quotation for the Elevator Services Management Software as per your requirements. The solution is designed to help you streamline operations, enhance customer service, and optimize elevator maintenance workflows.
+        </p>
+        
+        <!-- Features -->
+        <div class="section-title">SOFTWARE FEATURES</div>
+        <div class="features-list">
+            <div class="feature-item">• Maintenance Scheduling</div>
+            <div class="feature-item">• Service Request Management</div>
+            <div class="feature-item">• Inventory Control</div>
+            <div class="feature-item">• Technician Dispatching</div>
+            <div class="feature-item">• Customer Portal</div>
+            <div class="feature-item">• Reporting & Analytics</div>
+            <div class="feature-item">• Mobile App Access</div>
+            <div class="feature-item">• Billing Integration</div>
+        </div>
+        
+        <!-- Pricing -->
+        <div class="section-title">PRICING DETAILS</div>
+        <table class="pricing-table">
+            <tr>
+                <th style="width: 70%;">Description</th>
+                <th style="width: 30%;" class="amount-column">Amount (₹)</th>
+            </tr>
+            <tr>
+                <td>Elevator Management Software - Enterprise License</td>
+                <td class="amount-column">28,250.00</td>
+            </tr>
+            <tr>
+                <td>Discount (10%)</td>
+                <td class="amount-column">-2,825.00</td>
+            </tr>
+            <tr>
+                <td>Subtotal</td>
+                <td class="amount-column">25,425.00</td>
+            </tr>
+            <tr>
+                <td>GST (18%)</td>
+                <td class="amount-column">4,576.50</td>
+            </tr>
+            <tr class="total-row">
+                <td>Total Amount</td>
+                <td class="amount-column">30,001.50</td>
+            </tr>
+        </table>
+        
+        <!-- Scope of Work -->
+        <div class="section-title">SCOPE OF WORK</div>
+        <p>
+            The quoted price includes software licensing, implementation, training, and 12 months of technical support. This comprehensive solution provides real-time tracking, automated notifications, and reporting tools to help your business improve operational efficiency.
+        </p>
+        
+        <!-- Benefits -->
+        <div class="section-title">KEY BENEFITS</div>
+        <div class="benefit-item">• Reduce administrative work by up to 45%</div>
+        <div class="benefit-item">• Improve technician productivity by 30%</div>
+        <div class="benefit-item">• Enhance service quality and response times</div>
+        <div class="benefit-item">• Typical payback period of less than 6 months</div>
+        
+        <!-- Terms & Conditions -->
+        <div class="section-title">TERMS & CONDITIONS</div>
+        <div class="terms-section">
+            <ol class="terms-list">
+                <li>This quotation is valid for a period of 30 days from the date of issue.</li>
+                <li>50% payment is due upon acceptance of the quotation, with the remaining 50% due upon deployment.</li>
+                <li>Implementation timeline: 4-6 weeks from the date of order confirmation.</li>
+                <li>The software license is perpetual with 12 months of included technical support.</li>
+                <li>Additional support and maintenance after the initial 12-month period will be charged at 18% of the license cost annually.</li>
+                <li>Training will be provided for up to 10 users as part of the implementation process.</li>
+                <li>Any custom development beyond the standard features will be billed separately at our standard hourly rate.</li>
+            </ol>
+        </div>
+        
+        <!-- Signature -->
+        <div class="signature-section">
+            <div class="signature-block">
+                <strong>For Ambivare Solutions:</strong>
+                <div class="signature-line">Authorized Signatory</div>
+            </div>
+            <div class="signature-block">
+                <strong>Client Acceptance:</strong>
+                <div class="signature-line">Name, Designation & Stamp</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 Ambivare Solutions | Registered Office: Company Address, City, State - Pin Code | GST: 27AAECA3232A1Z5
+        </div>
+    </div>
+</body>
+</html>

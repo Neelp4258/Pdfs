@@ -8,13 +8,15 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
     "fs-extra": "^11.3.2",
     "puppeteer": "^21.11.0",
     "readline-sync": "^1.4.10",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "xlsx": "^0.18.5"
   },
   "bin": {
-    "html-to-pdf": "./cli.js"
+    "html-to-pdf": "cli.js"
   },
   "keywords": [
     "html",

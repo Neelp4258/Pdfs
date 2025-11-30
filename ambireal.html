@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions - Automated Systems Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            margin: 0;
+            padding: 0;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Page 1 - Cover Page */
+        .cover-page {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a52 30%, #2d5f7e 60%, #00a8cc 100%);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 153, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-logo {
+            font-size: 72px;
+            font-weight: 900;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffffff, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            line-height: 1.2;
+        }
+
+        .cover-tagline {
+            font-size: 28px;
+            font-weight: 300;
+            color: #00d4ff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .cover-quote {
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #ffffff;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-style: italic;
+        }
+
+        .cover-divider {
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            margin: 50px auto;
+        }
+
+        .cover-stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #b0d4e8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .cover-contact {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+
+        /* Header */
+        .header {
+            display: none;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Footer */
+        .footer {
+            display: none;
+        }
+
+        .page-number {
+            text-align: center;
+            padding: 15px;
+            font-size: 11px;
+            color: #999;
+            margin-top: auto;
+        }
+
+        /* Page 2 - About Us */
+        .about-section {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            color: #0a1628;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #00d4ff;
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .about-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f5ff 0%, #d0ebff 100%);
+            border-left: 5px solid #0099ff;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-title {
+            font-size: 20px;
+            color: #0a1628;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        /* Page 3 - Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .service-title {
+            font-size: 18px;
+            color: #0a1628;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Page 4-7 - Projects */
+        .project-section {
+            margin-bottom: 30px;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a52 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-client {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-type {
+            font-size: 14px;
+            color: #00d4ff;
+        }
+
+        .project-details {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #0a1628;
+            width: 150px;
+        }
+
+        .detail-value {
+            color: #555;
+            flex: 1;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .features-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        /* Page 8 - Clients */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .client-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .client-logo-placeholder {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #e3f5ff 0%, #d0ebff 100%);
+            border: 3px solid #00d4ff;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0a1628;
+        }
+
+        .client-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a1628;
+            margin-bottom: 8px;
+        }
+
+        .client-industry {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Page 9 - Why Choose Us */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-left: 5px solid #00d4ff;
+            border-radius: 8px;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            color: #0a1628;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .benefit-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Page 10 - Contact */
+        .contact-content {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .contact-title {
+            font-size: 42px;
+            color: #0a1628;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .contact-info-box {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a52 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .contact-item {
+            margin: 25px 0;
+            font-size: 18px;
+        }
+
+        .contact-label {
+            font-size: 14px;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .contact-cta {
+            background: #00d4ff;
+            color: #0a1628;
+            padding: 20px 50px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Cover Page -->
+    <div class="page cover-page">
+        <div class="cover-content">
+            <div class="cover-logo">AMBIVARE</div>
+            <div class="cover-tagline">Automated Systems Specialist</div>
+            
+            <div class="cover-divider"></div>
+            
+            <div class="cover-quote">
+                "Where Innovation Meets Automation"
+            </div>
+            
+            <div class="cover-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cover-contact">
+            Kalyan • <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb4abbea9baafb2b4b5a89bbab6b9b2adbaa9bef5b8b4b6">[email&#160;protected]</a> • +91 9373015503
+        </div>
+    </div>
+
+    <!-- Page 2: About Us -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">About Ambivare Solutions</h1>
+            
+            <div class="about-section">
+                <p class="about-text">
+                    Ambivare Solutions is a cutting-edge IT software company specializing in automated systems 
+                    tailored for diverse sectors. We are pioneers in providing comprehensive automation solutions 
+                    that streamline operations, enhance efficiency, and drive digital transformation for businesses 
+                    across industries.
+                </p>
+                <p class="about-text">
+                    With a complete focus on automation, we understand that every industry has unique requirements. 
+                    Our team of expert developers and automation specialists work closely with clients to design, 
+                    develop, and implement customized systems that address specific operational challenges and 
+                    unlock new opportunities for growth.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3 class="highlight-title">Our Mission</h3>
+                <p class="highlight-text">
+                    To empower businesses with state-of-the-art automated solutions that optimize processes, 
+                    reduce operational costs, and enable organizations to focus on their core competencies 
+                    while technology handles the complexity.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3 class="highlight-title">Our Proven Track Record</h3>
+                <p class="highlight-text">
+                    In just 6 months, we have successfully delivered customized ERP and automation solutions to 
+                    over 20 prestigious clients, achieving 100% satisfaction across all projects. Our rapid growth 
+                    and client retention rate speaks to the quality and reliability of our solutions.
+                </p>
+            </div>
+        </div>
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- Page 3: Our Services -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Our Services</h1>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3 class="service-title">Enterprise Resource Planning (ERP)</h3>
+                    <p class="service-description">
+                        Custom ERP solutions that integrate all aspects of your business operations including 
+                        inventory, HR, finance, and customer management into a unified system.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3 class="service-title">Parking Management Systems</h3>
+                    <p class="service-description">
+                        Advanced automated parking solutions with real-time monitoring, booking systems, 
+                        and smart access control for optimal space utilization.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3 class="service-title">Elevator Management Systems</h3>
+                    <p class="service-description">
+                        Comprehensive elevator maintenance, AMC tracking, technician management, and 
+                        emergency response systems for elevator service providers.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Business Process Automation</h3>
+                    <p class="service-description">
+                        Streamline workflows, automate repetitive tasks, and optimize business processes 
+                        with intelligent automation solutions tailored to your industry.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3 class="service-title">Inventory Management</h3>
+                    <p class="service-description">
+                        Real-time inventory tracking, multi-location management, barcode scanning, 
+                        and automated reordering systems for complete stock control.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3 class="service-title">HR & Attendance Systems</h3>
+                    <p class="service-description">
+                        Automated attendance tracking, leave management, payroll processing, and 
+                        performance monitoring for efficient human resource management.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 4: Projects - Infinite Car Parking Solutions -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Our Projects</h1>
+            
+            <div class="project-section">
+                <div class="project-header">
+                    <div class="project-client">Infinite Car Parking Solutions</div>
+                    <div class="project-type">Automated Parking Systems Management ERP</div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Industry:</span>
+                        <span class="detail-value">Automated Parking Systems</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Solution Type:</span>
+                        <span class="detail-value">Complete ERP System</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Implementation:</span>
+                        <span class="detail-value">Cloud-Based Web Application</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 25px; margin-bottom: 15px; color: #0a1628; font-size: 16px;">Key Features Delivered:</h4>
+                    <ul class="features-list">
+                        <li>Comprehensive lead and prospect management system</li>
+                        <li>Project tracking with milestone management</li>
+                        <li>Automated quotation and invoice generation</li>
+                        <li>Real-time inventory tracking for parking equipment</li>
+                        <li>Vendor and supplier management portal</li>
+                        <li>Installation scheduling and technician assignment</li>
+                        <li>Customer relationship management (CRM) module</li>
+                        <li>Financial reporting and analytics dashboard</li>
+                        <li>Mobile-responsive interface for field operations</li>
+                        <li>Document management and storage system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h3 class="highlight-title">Project Impact</h3>
+                <p class="highlight-text">
+                    The ERP system enabled Infinite Car Parking Solutions to streamline their entire operation, 
+                    resulting in 40% improvement in project delivery time and 60% reduction in administrative overhead.
+                </p>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 5: Projects - Avant Elevators & Micro Elevators -->
+    <div class="page">
+        <div class="content">
+            <div class="project-section">
+                <div class="project-header">
+                    <div class="project-client">Avant Elevators</div>
+                    <div class="project-type">Elevator Service & Maintenance Management System</div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Industry:</span>
+                        <span class="detail-value">Elevator Services</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Solution Type:</span>
+                        <span class="detail-value">Service Management ERP</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 12px; color: #0a1628; font-size: 16px;">Key Features:</h4>
+                    <ul class="features-list">
+                        <li>AMC contract management and renewal tracking</li>
+                        <li>Technician scheduling and GPS tracking</li>
+                        <li>Service call management and emergency response</li>
+                        <li>Spare parts inventory and requisition system</li>
+                        <li>Automated service reminders and notifications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-section" style="margin-top: 25px;">
+                <div class="project-header">
+                    <div class="project-client">Micro Elevators</div>
+                    <div class="project-type">Complete Business Management ERP</div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Industry:</span>
+                        <span class="detail-value">Elevator Manufacturing & Services</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Solution Type:</span>
+                        <span class="detail-value">End-to-End ERP System</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 12px; color: #0a1628; font-size: 16px;">Key Features:</h4>
+                    <ul class="features-list">
+                        <li>Sales and quotation management system</li>
+                        <li>Installation project tracking and scheduling</li>
+                        <li>Customer database and service history</li>
+                        <li>Financial reporting and invoicing automation</li>
+                        <li>Maintenance schedule management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 6: Projects - Amplo Elevators & Trivanta Edge -->
+    <div class="page">
+        <div class="content">
+            <div class="project-section">
+                <div class="project-header">
+                    <div class="project-client">Amplo Elevators</div>
+                    <div class="project-type">Elevator Operations Management Platform</div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Industry:</span>
+                        <span class="detail-value">Elevator Services</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Solution Type:</span>
+                        <span class="detail-value">Operations Management System</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 12px; color: #0a1628; font-size: 16px;">Key Features:</h4>
+                    <ul class="features-list">
+                        <li>Work order management and tracking system</li>
+                        <li>Technician performance monitoring and reporting</li>
+                        <li>Equipment maintenance scheduling</li>
+                        <li>Customer communication portal</li>
+                        <li>Real-time service status updates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-section" style="margin-top: 25px;">
+                <div class="project-header">
+                    <div class="project-client">Trivanta Edge</div>
+                    <div class="project-type">Automated Parking Systems Business Suite</div>
+                </div>
+                
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Industry:</span>
+                        <span class="detail-value">Automated Parking Systems</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Solution Type:</span>
+                        <span class="detail-value">Complete Business Management ERP</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 12px; color: #0a1628; font-size: 16px;">Key Features:</h4>
+                    <ul class="features-list">
+                        <li>Lead tracking and conversion management</li>
+                        <li>Project pipeline and sales forecasting</li>
+                        <li>Installation coordination and monitoring</li>
+                        <li>Automated proposal generation</li>
+                        <li>Client portal for project updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 7: Additional Projects Overview -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Project Success Metrics</h1>
+            
+            <div class="highlight-box">
+                <h3 class="highlight-title">Common Features Across All Projects</h3>
+                <p class="highlight-text">
+                    Every ERP solution we deliver is built on a foundation of proven features that ensure 
+                    reliability, scalability, and ease of use:
+                </p>
+            </div>
+
+            <div class="services-grid" style="margin-top: 25px;">
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3 class="service-title">Cloud-Based Architecture</h3>
+                    <p class="service-description">
+                        Access your system from anywhere with secure cloud hosting and automatic backups.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Mobile Responsive</h3>
+                    <p class="service-description">
+                        Fully optimized for mobile devices enabling field operations and remote management.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3 class="service-title">Secure & Reliable</h3>
+                    <p class="service-description">
+                        Enterprise-grade security with role-based access control and data encryption.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Real-Time Analytics</h3>
+                    <p class="service-description">
+                        Comprehensive dashboards with real-time reporting and business intelligence.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3 class="service-title">Customizable</h3>
+                    <p class="service-description">
+                        Fully adaptable to your specific business processes and requirements.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">High Performance</h3>
+                    <p class="service-description">
+                        Optimized for speed and efficiency, handling large data volumes seamlessly.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 8: Our Clients -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Our Prestigious Clients</h1>
+            
+            <p class="about-text" style="margin-bottom: 30px;">
+                We are proud to partner with industry leaders who trust us to deliver innovative automation 
+                solutions that drive their business success. Our client portfolio spans multiple sectors, 
+                demonstrating our versatility and expertise in automation technology.
+            </p>
+
+            <div class="clients-grid">
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        INFINITE
+                    </div>
+                    <div class="client-name">Infinite Car Parking Solutions</div>
+                    <div class="client-industry">Automated Parking Systems</div>
+                </div>
+
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        AVANT
+                    </div>
+                    <div class="client-name">Avant Elevators</div>
+                    <div class="client-industry">Elevator Services</div>
+                </div>
+
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        MICRO
+                    </div>
+                    <div class="client-name">Micro Elevators</div>
+                    <div class="client-industry">Elevator Manufacturing & Services</div>
+                </div>
+
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        AMPLO
+                    </div>
+                    <div class="client-name">Amplo Elevators</div>
+                    <div class="client-industry">Elevator Operations</div>
+                </div>
+
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        TRIVANTA
+                    </div>
+                    <div class="client-name">Trivanta Edge</div>
+                    <div class="client-industry">Automated Parking Systems</div>
+                </div>
+
+                <div class="client-card">
+                    <div class="client-logo-placeholder">
+                        20+
+                    </div>
+                    <div class="client-name">And Many More...</div>
+                    <div class="client-industry">Various Industries</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 9: Why Choose Us -->
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Why Choose Ambivare Solutions</h1>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-title">🎯 Industry Specialization</div>
+                    <div class="benefit-text">
+                        Deep expertise in automated systems across multiple sectors including parking management, 
+                        elevator services, and enterprise resource planning. We understand your industry's unique 
+                        challenges and deliver solutions that work.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">⚡ Rapid Implementation</div>
+                    <div class="benefit-text">
+                        Our agile development methodology ensures quick turnaround times without compromising 
+                        quality. We've successfully delivered 20+ projects in just 6 months, demonstrating our 
+                        efficiency and commitment to timelines.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">🎨 Customized Solutions</div>
+                    <div class="benefit-text">
+                        Every business is unique, and so are our solutions. We don't believe in one-size-fits-all 
+                        software. Each system is tailored to match your specific workflows, processes, and requirements.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">💯 100% Client Satisfaction</div>
+                    <div class="benefit-text">
+                        Our track record speaks for itself - 100% client satisfaction across all projects. We work 
+                        closely with you throughout the development process and beyond, ensuring the solution exceeds 
+                        your expectations.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">🔧 Comprehensive Support</div>
+                    <div class="benefit-text">
+                        From initial consultation to post-deployment support, we're with you every step of the way. 
+                        Our dedicated support team ensures smooth operations and quick resolution of any issues.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">💰 Cost-Effective Solutions</div>
+                    <div class="benefit-text">
+                        We deliver enterprise-grade solutions at competitive prices. Our efficient development 
+                        process and focus on long-term value ensure maximum return on your technology investment.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">🚀 Scalable Technology</div>
+                    <div class="benefit-text">
+                        Built with growth in mind, our solutions scale seamlessly with your business. Whether you're 
+                        adding users, locations, or features, our systems adapt without requiring major overhauls.
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-title">📈 Proven ROI</div>
+                    <div class="benefit-text">
+                        Our clients consistently report significant improvements in efficiency, reduced operational 
+                        costs, and better decision-making capabilities. We focus on delivering measurable business value.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Page 10: Contact Us -->
+    <div class="page">
+        <div class="content">
+            <div class="contact-content">
+                <h1 class="contact-title">Let's Automate Your Business</h1>
+                
+                <p style="font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 30px;">
+                    Ready to transform your business with cutting-edge automation solutions? 
+                    Get in touch with us today and discover how we can help you achieve operational excellence.
+                </p>
+
+                <div class="contact-info-box">
+                    <div class="contact-item">
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value">+91 9373015503</div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6d9c6d3c4d7c2dfd9d8c5f6d7dbd4dfc0d7c4d398d5d9db">[email&#160;protected]</a></div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Kalyan, Maharashtra, India</div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    Schedule a Consultation
+                </div>
+
+                <div style="margin-top: 50px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+                    <h3 style="color: #0a1628; margin-bottom: 15px; font-size: 20px;">What Happens Next?</h3>
+                    <p style="font-size: 14px; line-height: 1.7; color: #555; text-align: left;">
+                        <strong>1. Initial Consultation:</strong> We discuss your business needs and challenges<br><br>
+                        <strong>2. Solution Design:</strong> Our team creates a customized automation roadmap<br><br>
+                        <strong>3. Development:</strong> Rapid implementation with regular progress updates<br><br>
+                        <strong>4. Deployment & Training:</strong> Smooth rollout with comprehensiv

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambivare Solutions Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-container {
+            width: 140px;
+            height: 60px;
+            background-color: #1e40af;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .logo-text {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .company-name {
+            color: #1e40af;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .company-email {
+            color: #666;
+        }
+        .document-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: right;
+        }
+        .invoice-details {
+            text-align: right;
+            margin-bottom: 40px;
+        }
+        .invoice-details p {
+            margin: 5px 0;
+        }
+        .bill-to {
+            margin-bottom: 30px;
+        }
+        .bill-to h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .bill-to p {
+            margin: 5px 0;
+            color: #666;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        thead {
+            background-color: #f5f7fa;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            font-weight: bold;
+        }
+        .amount-column {
+            text-align: right;
+        }
+        .summary {
+            width: 50%;
+            margin-left: auto;
+            margin-bottom: 30px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .total-row {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+        }
+        .payment-schedule {
+            width: 50%;
+            margin-left: auto;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .payment-schedule h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .payment-row:last-child {
+            border-bottom: none;
+        }
+        .payment-row.highlighted {
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .notes {
+            margin-bottom: 30px;
+        }
+        .notes h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .notes p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-section">
+            <div class="company-name">Ambivare Solutions</div>
+            <div class="logo-container">
+                <div class="logo-text">AMBIVARE</div>
+            </div>
+            <div class="company-email">| avantelevator@gmail.com</div>
+        </div>
+        <div class="document-title">INVOICE</div>
+    </div>
+    
+    <div class="invoice-details">
+        <p><strong>INVOICE #: INV-0021</strong></p>
+        <p><strong>Date:</strong> 10/11/2025</p>
+        <p><strong>Due Date:</strong> 17/11/2025</p>
+        <p><strong>PO #:</strong> 1010</p>
+    </div>
+    
+    <div class="bill-to">
+        <h2>BILL TO:</h2>
+        <p><strong>Ambivare Solutions</strong></p>
+        <p>1/9 SIDDHIVINAYAK CHS LTD, NEAR POOJA TOWER, THANKARPADA, KALYAN (W) 421301</p>
+        <p>Phone: 8928471501</p>
+        <p>Email: avantelevator@gmail.com</p>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Rate</th>
+                <th class="amount-column">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Elevator Operations Management ERP</td>
+                <td>1</td>
+                <td>Software</td>
+                <td>34,000.00</td>
+                <td class="amount-column">34,000.00</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="summary">
+        <div class="summary-row">
+            <div>Subtotal:</div>
+            <div>Rs. 34,000.00</div>
+        </div>
+        <div class="summary-row">
+            <div>Discount (20%):</div>
+            <div>-Rs. 6,800.00</div>
+        </div>
+        <div class="summary-row">
+            <div>GST (18%):</div>
+            <div>Rs. 4,896.00</div>
+        </div>
+        <div class="summary-row total-row">
+            <div>TOTAL:</div>
+            <div>Rs. 32,096.00</div>
+        </div>
+    </div>
+    
+    <div class="payment-schedule">
+        <h3>Payment Schedule:</h3>
+        <div class="payment-row highlighted">
+            <div>Advance Payment (40%) - Due Today:</div>
+            <div>Rs. 12,838.40</div>
+        </div>
+        <div class="payment-row">
+            <div>Remaining Balance (60%):</div>
+            <div>Rs. 19,257.60</div>
+        </div>
+    </div>
+    
+    <div class="notes">
+        <h3>Notes:</h3>
+        <p>Payment Mode & Timeline: All payments shall be made via bank transfer, cheque, or UPI within 7 working days of invoice submission. Advance payment of 40% is due today.</p>
+        <p>Ownership & Warranty: Ownership of the ERP system and associated digital services will be transferred only after full and final payment. Warranty and support services shall commence post-completion of all due payments.</p>
+        <p>Invoice and pricing are valid for 5 days from the date of issue.</p>
+    </div>
+    
+    <div class="footer">
+        <div>This is a computer-generated document.</div>
+        <div>Page 1 of 1</div>
+        <div>Generated on 10/11/2025</div>
+    </div>
+</body>
+</html>

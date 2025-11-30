@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Letter - Pankaj Kor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            padding: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 20px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.4;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 8px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 30px;
+            page-break-after: avoid;
+        }
+        
+        /* Letter content styling */
+        .letter-content {
+            padding: 15px 10px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+        
+        .ref-date {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 11px;
+        }
+        
+        .recipient {
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .subject {
+            font-weight: bold;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 13px;
+            text-decoration: underline;
+        }
+        
+        .salutation {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .paragraph {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: #1a365d;
+            margin: 25px 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11px;
+        }
+        
+        .details-table td {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+        }
+        
+        .details-table td:first-child {
+            font-weight: bold;
+            width: 35%;
+            background-color: #f7fafc;
+            color: #2c5282;
+        }
+        
+        .salary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11px;
+        }
+        
+        .salary-table td {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+        }
+        
+        .salary-table td:first-child {
+            font-weight: bold;
+            width: 50%;
+            background-color: #f7fafc;
+            color: #2c5282;
+        }
+        
+        .salary-table .total-row td {
+            background-color: #e2e8f0;
+            font-weight: bold;
+            border-top: 2px solid #2c5282;
+        }
+        
+        .list-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            text-align: justify;
+        }
+        
+        .list-item::before {
+            content: "• ";
+            font-weight: bold;
+            margin-left: -15px;
+            color: #2c5282;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+        }
+        
+        .signature-line {
+            margin-top: 60px;
+            border-top: 1px solid #333;
+            width: 200px;
+        }
+        
+        .acceptance-box {
+            margin-top: 50px;
+            border: 2px solid #2c5282;
+            padding: 20px;
+            background-color: #f7fafc;
+        }
+        
+        .acceptance-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: #1a365d;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .note-box {
+            background-color: #fef5e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 11px;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Letterhead -->
+    <div class="letterhead">
+        <div class="logo-section">
+            <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>Parking,Perfected</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <strong>sales@trivantaedge.com</strong><br>
+            info@trivantaedge.com<br>
+            +91 9373015503<br>
+            Kalyan, Maharashtra
+        </div>
+    </div>
+    
+    <!-- Letter content -->
+    <div class="letter-content">
+        <div class="ref-date">
+            <div>
+                <p><strong>Ref No:</strong> TE/HR/OL/2025/159</p>
+            </div>
+            <div>
+                <p><strong>Date:</strong> October 28, 2025</p>
+            </div>
+        </div>
+        
+        <div class="recipient">
+            <p><strong>Mr. Pankaj Kor</strong></p>
+            <p>Contact: +91 92700 51747</p>
+        </div>
+        
+        <div class="subject">
+            OFFER OF EMPLOYMENT - ASSISTANT FITTER
+        </div>
+        
+        <div class="salutation">
+            Dear Mr. Kor,
+        </div>
+        
+        <div class="paragraph">
+            We are pleased to extend this offer of employment to you for the position of <strong>Assistant Fitter</strong> with Trivanta Edge. We were impressed with your qualifications, experience, and the professionalism you demonstrated during the selection process.
+        </div>
+        
+        <div class="paragraph">
+            This offer is made based on your performance during the interview process and is subject to the terms and conditions outlined in this letter. We believe your skills and experience will be valuable assets to our organization, and we look forward to welcoming you to our team.
+        </div>
+        
+        <div class="section-title">1. APPOINTMENT DETAILS</div>
+        
+        <table class="details-table">
+            <tr>
+                <td>Position</td>
+                <td><strong>Assistant Fitter</strong></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>Operations - Field Services</td>
+            </tr>
+            <tr>
+                <td>Employment Type</td>
+                <td>Permanent</td>
+            </tr>
+            <tr>
+                <td>Date of Joining</td>
+                <td>October 13, 2025 (or as mutually agreed)</td>
+            </tr>
+            <tr>
+                <td>Work Location</td>
+                <td>Kalyan, Maharashtra (Subject to business requirements, you may be required to work at other locations)</td>
+            </tr>
+            <tr>
+                <td>Reporting Manager</td>
+                <td>Operations Manager - Technical Services</td>
+            </tr>
+            <tr>
+                <td>Working Hours</td>
+                <td>9:00 AM to 6:00 PM (Monday to Sunday - Full Week Working) with one hour lunch break</td>
+            </tr>
+            <tr>
+                <td>Probation Period</td>
+                <td>3 (Three) months from the date of joining</td>
+            </tr>
+        </table>
+        
+        <div class="section-title">2. COMPENSATION & BENEFITS</div>
+        
+        <table class="details-table">
+            <tr>
+                <td>Monthly Gross Salary</td>
+                <td><strong>₹16,000/- (Rupees Sixteen Thousand Only)</strong></td>
+            </tr>
+            <tr>
+                <td>Payment Frequency</td>
+                <td>Monthly, on or before the 15th of every month</td>
+            </tr>
+            <tr>
+                <td>Mode of Payment</td>
+                <td>Bank Transfer to your designated account</td>
+            </tr>
+            <tr>
+                <td>Annual Increment</td>
+                <td>Performance-based, subject to annual appraisal</td>
+            </tr>
+            <tr>
+                <td>Overtime</td>
+                <td>Optional, as per hourly wages and company policy</td>
+            </tr>
+            <tr>
+                <td>Monthly Leave</td>
+                <td>2 (Two) paid leaves per month, can be availed anytime during the month</td>
+            </tr>
+        </table>
+        
+        <div class="paragraph">
+            <strong>Salary Breakdown (Monthly):</strong>
+        </div>
+        
+        <table class="salary-table">
+            <tr>
+                <td>Gross Salary</td>
+                <td style="text-align: right;">₹16,000.00</td>
+            </tr>
+            <tr>
+                <td style="background-color: #fff5e6; color: #c05621;"><strong>Deductions:</strong></td>
+                <td style="background-color: #fff5e6;"></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 40px;">Provident Fund (PF) @ 12%</td>
+                <td style="text-align: right;">₹1,920.00</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 40px;">Employee State Insurance (ESIC) @ 0.75%</td>
+                <td style="text-align: right;">₹120.00</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>Total Deductions</strong></td>
+                <td style="text-align: right;"><strong>₹2,040.00</strong></td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>Net Salary (In Hand)</strong></td>
+                <td style="text-align: right;"><strong>₹13,960.00</strong></td>
+            </tr>
+        </table>
+        
+        <div class="note-box">
+            <strong>Note on Deductions:</strong> PF and ESIC are statutory deductions as per the Employees' Provident Funds and Miscellaneous Provisions Act, 1952 and the Employees' State Insurance Act, 1948 respectively. These are mandatory deductions and will be remitted to the respective government authorities on your behalf.
+        </div>
+        
+        <div class="paragraph">
+            <strong>Additional Benefits:</strong>
+        </div>
+        
+        <div class="list-item">Paid Leave: 2 (Two) paid leaves per month, flexible and can be availed on any day of the week as per business requirements and prior approval from management</div>
+        <div class="list-item">Overtime Compensation: Optional overtime available at hourly rates as per wage structure</div>
+        <div class="list-item">Health & Safety: Comprehensive safety equipment, training, and workplace safety measures</div>
+        <div class="list-item">Skill Development: Opportunities for technical training and skill enhancement programs</div>
+        <div class="list-item">Festival Bonus: As per company policy and performance</div>
+        <div class="list-item">Employee Welfare: Access to employee welfare programs and support initiatives</div>
+        <div class="list-item">Provident Fund: Employer contribution of 12% in addition to your employee contribution</div>
+        <div class="list-item">ESIC Coverage: Health and disability insurance coverage under ESIC scheme</div>
+        
+        <div class="section-title">3. ROLES & RESPONSIBILITIES</div>
+        
+        <div class="paragraph">
+            As an Assistant Fitter at Trivanta Edge, your primary responsibilities will include, but are not limited to:
+        </div>
+        
+        <div class="list-item">Assisting senior fitters and technicians in the installation of automated parking system components and equipment</div>
+        <div class="list-item">Supporting the assembly, installation, and maintenance of mechanical and electrical components at project sites</div>
+        <div class="list-item">Performing basic welding, fitting, and mechanical work as per technical specifications and guidance from senior technicians</div>
+        <div class="list-item">Ensuring all assigned work complies with safety regulations, quality standards, and company procedures</div>
+        <div class="list-item">Carrying out site preparation, material handling, and equipment setup under supervision</div>
+        <div class="list-item">Maintaining and organizing tools, equipment, and materials at work sites</div>
+        <div class="list-item">Assisting in quality checks and inspections of completed work to maintain high standards of workmanship</div>
+        <div class="list-item">Following all safety protocols and using designated safety equipment at all times</div>
+        <div class="list-item">Coordinating with team members and senior staff to ensure efficient project execution</div>
+        <div class="list-item">Reporting any technical issues or defects to the senior technician or supervisor</div>
+        <div class="list-item">Performing manual work including material movement, site cleaning, and equipment preparation</div>
+        <div class="list-item">Learning and developing technical skills through on-the-job training and mentorship from experienced fitters</div>
+        <div class="list-item">Maintaining detailed work logs and documentation as required by the company</div>
+        <div class="list-item">Performing any other duties as assigned by management from time to time</div>
+        
+        <div class="section-title">4. TERMS & CONDITIONS OF EMPLOYMENT</div>
+        
+        <div class="paragraph">
+            <strong>4.1 Probation Period:</strong> Your employment will commence with a probationary period of 3 (three) months from your date of joining. During this period, your performance, conduct, and suitability for the position will be evaluated. Upon successful completion of the probation period, your employment will be confirmed in writing. During probation, either party may terminate the employment by providing 7 (seven) days written notice or salary in lieu thereof.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.2 Notice Period:</strong> After confirmation of employment, either party desiring to terminate the employment shall give 30 (thirty) days prior written notice or payment of salary in lieu of notice period. The company reserves the right to accept or reject the resignation and may require you to serve the full notice period.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.3 Confidentiality:</strong> You shall maintain strict confidentiality regarding all business information, trade secrets, client data, technical specifications, processes, and proprietary information of the company. This obligation shall continue even after termination of your employment.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.4 Code of Conduct:</strong> You are expected to maintain high standards of professional conduct, discipline, and integrity. You must comply with all company policies, rules, regulations, and procedures as notified from time to time. Any violation may result in disciplinary action, including termination of employment.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.5 Outside Employment:</strong> During your employment with Trivanta Edge, you shall not engage in any other employment, business, or professional activities without prior written consent from the company.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.6 Transfer & Mobility:</strong> The company reserves the right to transfer you to any other location, department, or project based on business requirements. You shall comply with such transfer requests.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.7 Workplace Safety:</strong> You must adhere to all safety protocols, use designated safety equipment, and follow workplace safety guidelines at all times. You are responsible for maintaining a safe work environment for yourself and your colleagues.
+        </div>
+        
+        <div class="paragraph">
+            <strong>4.8 Minimum Employment Period for Salary:</strong> Please note that salary will only be provided if you complete a minimum of 15 (fifteen) days of employment after your joining date. If you leave the company with less than 15 days of employment, no salary will be paid for the period worked. This condition is applicable to ensure commitment and to cover the administrative and training costs incurred by the company during the initial employment period.
+        </div>
+        
+        <div class="section-title">5. DOCUMENTS REQUIRED</div>
+        
+        <div class="paragraph">
+            Please submit the following documents on or before your date of joining:
+        </div>
+        
+        <div class="list-item">Educational certificates and mark sheets (10th, 12th, Diploma or relevant qualifications)</div>
+        <div class="list-item">Previous employment certificates and experience letters (if applicable)</div>
+        <div class="list-item">Aadhar Card and PAN Card copies</div>
+        <div class="list-item">Recent passport-size photographs (4 copies)</div>
+        <div class="list-item">Bank account details with cancelled cheque</div>
+        <div class="list-item">Address proof (Electricity bill/Rental agreement/Ration card)</div>
+        <div class="list-item">Police verification certificate or undertaking (if required)</div>
+        <div class="list-item">Medical fitness certificate (if required by company policy)</div>
+        
+        <div class="note-box">
+            <strong>Important Note:</strong> This offer is contingent upon satisfactory verification of all documents and credentials submitted by you. Any false information or misrepresentation may lead to immediate termination of employment without notice.
+        </div>
+        
+        <div class="section-title">6. ACCEPTANCE OF OFFER</div>
+        
+        <div class="paragraph">
+            Please confirm your acceptance of this offer by signing and returning a copy of this letter along with the required documents by <strong>October 31, 2025</strong>. If we do not receive your acceptance by this date, this offer will stand withdrawn.
+        </div>
+        
+        <div class="paragraph">
+            We are excited to welcome you to the Trivanta Edge family and look forward to a mutually beneficial and rewarding association. Should you have any questions or require any clarification regarding this offer, please feel free to contact our HR Department.
+        </div>
+        
+        <div class="paragraph">
+            We wish you a successful and fulfilling career with Trivanta Edge.
+        </div>
+        
+        <div class="signature-section">
+            <p><strong>Yours sincerely,</strong></p>
+            <p><strong>For Trivanta Edge</strong></p>
+            <div class="signature-line"></div>
+            <p style="margin-top: 5px;"><strong>Authorized Signatory</strong></p>
+            <p>Human Resources Department</p>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <div class="acceptance-box">
+            <div class="acceptance-title">ACCEPTANCE OF OFFER</div>
+            
+            <div class="paragraph">
+                I, <strong>Pankaj Kor</strong>, have read and understood the terms and conditions mentioned in this offer letter. I hereby accept the offer of employment as <strong>Assistant Fitter</strong> with Trivanta Edge and agree to abide by all the terms, conditions, policies, and regulations of the company.
+            </div>
+            
+            <div class="paragraph">
+                I confirm that all information provided by me during the recruitment process is true and accurate to the best of my knowledge. I understand that any false information may lead to termination of my employment.
+            </div>
+            
+            <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+                <div>
+                    <p><strong>Employee Signature:</strong></p>
+                    <p style="margin-top: 40px; border-top: 1px solid #333; width: 200px;"></p>
+                </div>
+                <div>
+                    <p><strong>Date:</strong></p>
+                    <p style="margin-top: 40px; border-top: 1px solid #333; width: 200px;"></p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <p><strong>Full Name:</strong> _________________________________</p>
+                <p style="margin-top: 15px;"><strong>Contact Number:</strong> +91 92700 51747</p>
+                <p style="margin-top: 15px;"><strong>Email Address:</strong> kor24224@gmail.com</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>

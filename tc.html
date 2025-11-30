@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivanta Edge - Business Card Front</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0f;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            width: 3.5in;
+            height: 2in;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 80px rgba(0, 188, 212, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+        }
+
+        /* Animated mesh gradient background */
+        .mesh-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 188, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 150, 180, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 188, 212, 0.05) 0%, transparent 60%);
+            animation: meshPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes meshPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Futuristic grid lines */
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 188, 212, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 188, 212, 0.03) 1px, transparent 1px);
+            background-size: 25px 25px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        }
+
+        /* Animated light beam */
+        .light-beam {
+            position: absolute;
+            top: -100%;
+            left: -50%;
+            width: 200%;
+            height: 300%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                transparent 45%,
+                rgba(0, 188, 212, 0.03) 48%,
+                rgba(0, 188, 212, 0.08) 50%,
+                rgba(0, 188, 212, 0.03) 52%,
+                transparent 55%,
+                transparent 100%
+            );
+            transform: rotate(25deg);
+            animation: beamSweep 6s ease-in-out infinite;
+        }
+
+        @keyframes beamSweep {
+            0% { transform: rotate(25deg) translateX(-100%); }
+            100% { transform: rotate(25deg) translateX(100%); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 188, 212, 0.6);
+            border-radius: 50%;
+            animation: float 10s infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; top: 60%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 70%; top: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 85%; top: 70%; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 50%; top: 80%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-10px) scale(1.5); opacity: 1; }
+        }
+
+        /* Corner accents */
+        .corner-tl, .corner-br {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+        }
+
+        .corner-tl {
+            top: 12px;
+            left: 12px;
+            border-top-color: rgba(0, 188, 212, 0.4);
+            border-left-color: rgba(0, 188, 212, 0.4);
+            border-radius: 8px 0 0 0;
+        }
+
+        .corner-br {
+            bottom: 12px;
+            right: 12px;
+            border-bottom-color: rgba(0, 188, 212, 0.4);
+            border-right-color: rgba(0, 188, 212, 0.4);
+            border-radius: 0 0 8px 0;
+        }
+
+        /* Main content */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px 28px;
+        }
+
+        /* Logo section */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-wrapper {
+            position: relative;
+        }
+
+        .logo {
+            height: 42px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 188, 212, 0.3));
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.2) 0%, transparent 70%);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #00bcd4 0%, #00e5ff 50%, #00bcd4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
+        }
+
+        .tagline {
+            font-size: 7px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Bottom section */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .brand-message {
+            max-width: 55%;
+        }
+
+        .message-text {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .highlight {
+            color: #00bcd4;
+            font-weight: 700;
+        }
+
+        .sub-text {
+            font-size: 7px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Parking image section */
+        .image-section {
+            position: relative;
+            width: 90px;
+            height: 65px;
+        }
+
+        .parking-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 188, 212, 0.3));
+        }
+
+        .image-frame {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            bottom: -5px;
+            left: -5px;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.05) 0%, transparent 50%);
+        }
+
+        /* Accent line */
+        .accent-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                #00bcd4 20%, 
+                #00e5ff 50%, 
+                #00bcd4 80%, 
+                transparent 100%
+            );
+            opacity: 0.8;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+            }
+            .light-beam, .particles {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="mesh-bg"></div>
+        <div class="grid-lines"></div>
+        <div class="light-beam"></div>
+        
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="corner-tl"></div>
+        <div class="corner-br"></div>
+
+        <div class="content">
+            <div class="logo-section">
+                <div class="logo-wrapper">
+                    <div class="logo-glow"></div>
+                    <img src="https://www.trivantaedge.com/trivanta.png" alt="Trivanta Edge" class="logo" onerror="this.style.display='none';">
+                </div>
+                <div class="brand-info">
+                    <div class="company-name">TRIVANTA EDGE</div>
+                    <div class="tagline">Parking Perfected</div>
+                </div>
+            </div>
+
+            <div class="bottom-section">
+                <div class="brand-message">
+                    <div class="message-text">
+                        Next-Gen <span class="highlight">Automated Parking</span><br>
+                        Solutions for Tomorrow
+                    </div>
+                    <div class="sub-text">Engineering The Future</div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="accent-line"></div>
+    </div>
+</body>
+</html>

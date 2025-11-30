@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Opportunities - Trivanta Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9px;
+            line-height: 1.2;
+            color: #333;
+            background: white;
+            padding: 12px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 8px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 9px;
+            color: #2c5282;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .jobs-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .job-card {
+            border: 1.5px solid #2c5282;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(44, 82, 130, 0.1);
+        }
+        
+        .job-header {
+            background: #2c5282;
+            color: white;
+            padding: 6px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-title {
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .job-salary {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 8px;
+            font-weight: bold;
+        }
+        
+        .job-content {
+            padding: 8px;
+            background: #f8fafc;
+        }
+        
+        .job-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 7px;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+        }
+        
+        .detail-value {
+            color: #2c5282;
+            font-size: 8px;
+        }
+        
+        .job-description {
+            background: white;
+            padding: 6px;
+            border-radius: 3px;
+            border-left: 2px solid #2c5282;
+            margin-top: 4px;
+        }
+        
+        .description-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 3px;
+            font-size: 8px;
+        }
+        
+        .description-text {
+            color: #333;
+            font-size: 7px;
+            line-height: 1.3;
+        }
+        
+        .important-notes {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        
+        .notes-title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3px;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+        
+        .note-bullet {
+            color: #92400e;
+            font-weight: bold;
+            margin-right: 4px;
+            font-size: 10px;
+        }
+        
+        .apply-section {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .apply-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .apply-text {
+            font-size: 8px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 8px;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 7px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 6px;
+                font-size: 8px;
+            }
+            
+            .letterhead {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .jobs-container {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            
+            .job-details {
+                grid-template-columns: 1fr;
+                gap: 3px;
+            }
+            
+            .contact-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+        
+        @page {
+            size: A4;
+            margin: 0.5in;
+        }
+        
+        @media print {
+            body {
+                font-size: 8px;
+                padding: 0;
+            }
+            
+            .job-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Letterhead -->
+    <div class="letterhead">
+        <div class="logo-section">
+            <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>From Land to Legacy - with Edge</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <strong>sales@trivantaedge.com</strong><br>
+            info@trivantaedge.com<br>
+            +91 9373015503<br>
+            Kalyan, Maharashtra
+        </div>
+    </div>
+    
+    <!-- Document Title -->
+    <div class="document-title">
+        Career Opportunities
+    </div>
+    <div class="subtitle">
+        Join Our Growing Team in Car Parking System Solutions
+    </div>
+    
+    <!-- Jobs Container -->
+    <div class="jobs-container">
+        <!-- Job Card 1: Fitter -->
+        <div class="job-card">
+            <div class="job-header">
+                <div class="job-title">Fitter</div>
+                <div class="job-salary">₹10K - ₹15K</div>
+            </div>
+            <div class="job-content">
+                <div class="job-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Experience</div>
+                        <div class="detail-value">0 - 2 Years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Industry</div>
+                        <div class="detail-value">Manufacturing</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Process</div>
+                        <div class="detail-value">Car Parking Installation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value">Maharashtra</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <div class="description-title">Role & Responsibilities</div>
+                    <div class="description-text">
+                        Install and fit car parking systems at buildings. Work with precision for proper installation, alignment, and functionality. Follow safety protocols and technical specifications.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Job Card 2: Helper -->
+        <div class="job-card">
+            <div class="job-header">
+                <div class="job-title">Helper</div>
+                <div class="job-salary">₹10K - ₹15K</div>
+            </div>
+            <div class="job-content">
+                <div class="job-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Experience</div>
+                        <div class="detail-value">0 - 2 Years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Industry</div>
+                        <div class="detail-value">Manufacturing</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Process</div>
+                        <div class="detail-value">Car Parking Installation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value">Maharashtra</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <div class="description-title">Role & Responsibilities</div>
+                    <div class="description-text">
+                        Provide assistance and support to installation team. Help in material handling, tool preparation, and worksite organization. Support fitters and technicians in installation activities.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Job Card 3: Site Supervisor -->
+        <div class="job-card">
+            <div class="job-header">
+                <div class="job-title">Site Supervisor</div>
+                <div class="job-salary">₹15K - ₹20K</div>
+            </div>
+            <div class="job-content">
+                <div class="job-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Experience</div>
+                        <div class="detail-value">1 - 3 Years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Industry</div>
+                        <div class="detail-value">Manufacturing</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Process</div>
+                        <div class="detail-value">Car Parking Installation</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value">Maharashtra</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <div class="description-title">Role & Responsibilities</div>
+                    <div class="description-text">
+                        Manage and supervise installation teams. Ensure work completion according to specifications and timelines. Coordinate with clients for project updates and follow-ups. Maintain quality standards.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Job Card 4: Parking Operator -->
+        <div class="job-card">
+            <div class="job-header">
+                <div class="job-title">Parking Operator</div>
+                <div class="job-salary">₹15K - ₹20K</div>
+            </div>
+            <div class="job-content">
+                <div class="job-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Experience</div>
+                        <div class="detail-value">0 - 2 Years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Category</div>
+                        <div class="detail-value">Parking Operations</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Environment</div>
+                        <div class="detail-value">Buildings</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Schedule</div>
+                        <div class="detail-value">Shift-based</div>
+                    </div>
+                </div>
+                <div class="job-description">
+                    <div class="description-title">Role & Responsibilities</div>
+                    <div class="description-text">
+                        Operate parking systems according to residents' requirements. Ensure smooth functioning of automated parking solutions. Assist customers with parking/retrieval processes and maintain system logs.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Important Notes Section -->
+    <div class="important-notes">
+        <div class="notes-title">IMPORTANT REQUIREMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>All roles require physical inputs and manual work capabilities</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Manufacturing labor should be comfortable to travel and stay in any city across Maharashtra</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>All expenses for travelling, accommodation, and food will be covered by the company</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Candidates should be willing to work in diverse environments including residential and commercial sites</span>
+        </div>
+    </div>
+    
+    <!-- Required Documents Section -->
+    <div class="important-notes" style="background: #e0f2fe; border: 1px solid #0277bd;">
+        <div class="notes-title" style="color: #01579b;">REQUIRED DOCUMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Aadhar Card</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Bank Account details</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Pan Card</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Previous Experience letter (if applicable)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Salary slips (if applicable)</span>
+        </div>
+    </div>
+    
+    <!-- Required Qualifications Section -->
+    <div class="important-notes" style="background: #f3e5f5; border: 1px solid #7b1fa2;">
+        <div class="notes-title" style="color: #4a148c;">REQUIRED QUALIFICATIONS</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #4a148c;">•</span>
+            <span><strong>Helper and Fitter:</strong> Any educational qualification</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #4a148c;">•</span>
+            <span><strong>Site Supervisor:</strong> HSC minimum with strong understanding of mechanical equipment</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #4a148c;">•</span>
+            <span><strong>Parking Operator:</strong> Any educational qualification - Driving license mandatory</span>
+        </div>
+    </div>
+    
+    <!-- Apply Section -->
+    <div class="apply-section">
+        <div class="apply-title">Ready to Join Our Team?</div>
+        <div class="apply-text">
+            We are looking for dedicated individuals who are passionate about innovative parking solutions and ready to grow with us.
+        </div>
+        <div class="contact-details">
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div>sales@trivantaedge.com</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Phone</div>
+                <div>+91 9373015503</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Address</div>
+                <div>Kalyan, Maharashtra</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>

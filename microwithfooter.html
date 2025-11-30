@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Elevators - Automated Parking Systems Brochure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            position: relative;
+            page-break-after: always;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Page 1 - Cover Page */
+        .cover-page {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .cover-header {
+            background: #c41e3a;
+            padding: 40px 60px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .logo-placeholder {
+            width: 250px;
+            height: 80px;
+            background: white;
+            border: 3px dashed rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c41e3a;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .cover-title {
+            text-align: center;
+            padding: 80px 60px;
+        }
+
+        .cover-title h1 {
+            font-size: 64px;
+            color: #c41e3a;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cover-title h2 {
+            font-size: 38px;
+            color: white;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cover-title p {
+            font-size: 22px;
+            color: #bbb;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cover-footer {
+            background: #c41e3a;
+            padding: 30px 60px;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+            text-align: center;
+        }
+
+        .cover-footer p {
+            color: white;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        /* Page 2 - Company Introduction */
+        .intro-page {
+            background: white;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%);
+            padding: 35px 60px;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+        }
+
+        .page-header h2 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            padding: 40px 60px 60px 60px;
+            flex: 1;
+        }
+
+        .content-section h3 {
+            font-size: 32px;
+            color: #c41e3a;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #666;
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: #f5f5f5;
+            border-left: 5px solid #c41e3a;
+            padding: 25px 30px;
+            margin: 30px 0;
+        }
+
+        .highlight-box h4 {
+            color: #c41e3a;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 30px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #c41e3a;
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.2);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #c41e3a, #a01830);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .feature-card h4 {
+            color: #c41e3a;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Technical Specs */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .specs-table th {
+            background: #c41e3a;
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 16px;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .specs-table tr:hover {
+            background: #f0f0f0;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 600;
+            color: #666;
+            width: 40%;
+        }
+
+        /* Product Types */
+        .product-section {
+            padding: 40px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-header h2 {
+            font-size: 42px;
+            color: #c41e3a;
+            margin-bottom: 15px;
+        }
+
+        .product-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .product-type {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .product-type h3 {
+            color: #c41e3a;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #666;
+            padding-bottom: 10px;
+        }
+
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .product-features li {
+            list-style: none;
+            padding-left: 35px;
+            position: relative;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #c41e3a;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        /* Client Section */
+        .client-section {
+            padding: 40px 60px 40px 60px;
+            background: #f5f5f5;
+            flex: 1;
+        }
+
+        .client-section h2 {
+            text-align: center;
+            font-size: 42px;
+            color: #c41e3a;
+            margin-bottom: 50px;
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .client-logo {
+            background: white;
+            border: 3px dashed #ccc;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .client-logo:hover {
+            border-color: #c41e3a;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Project Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 30px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .gallery-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border: 3px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .gallery-caption {
+            padding: 18px;
+        }
+
+        .gallery-caption h4 {
+            color: #c41e3a;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .gallery-caption p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* Benefits Section */
+        .benefits-list {
+            padding: 30px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-left: 5px solid #c41e3a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .benefit-number {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #c41e3a, #a01830);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .benefit-content h4 {
+            color: #c41e3a;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .benefit-content p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 30px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 25px 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .process-step:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -27px;
+            width: 25px;
+            height: 3px;
+            background: #c41e3a;
+            z-index: 1;
+        }
+
+        .process-step:last-child:before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #c41e3a, #a01830);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .process-step h4 {
+            color: #c41e3a;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Contact Page */
+        .contact-page {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .contact-content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+        }
+
+        .contact-content h2 {
+            color: #c41e3a;
+            font-size: 42px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            padding: 25px;
+            background: #f8f8f8;
+            border-left: 5px solid #c41e3a;
+        }
+
+        .contact-item h4 {
+            color: #c41e3a;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .contact-item p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .page-footer {
+            width: 100%;
+            background: #2d2d2d;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .page-footer p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .page-number {
+            color: #c41e3a;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Letterhead */
+        .letterhead {
+            background: white;
+            border-bottom: 4px solid #c41e3a;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .letterhead-logo {
+            width: 200px;
+            height: 60px;
+            background: white;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .letterhead-info {
+            text-align: right;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 30px 60px 40px 60px;
+            flex: 1;
+        }
+
+        .column h4 {
+            color: #c41e3a;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #666;
+            padding-bottom: 8px;
+        }
+
+        .column p, .column ul {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .column ul {
+            padding-left: 20px;
+        }
+
+        .column li {
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER PAGE -->
+    <div class="page cover-page">
+        <div class="cover-header">
+            <div class="logo-placeholder">COMPANY LOGO HERE</div>
+        </div>
+        
+        <div class="cover-title">
+            <h1>MICRO ELEVATORS</h1>
+            <h2>Automated Parking Systems</h2>
+            <p>Revolutionizing Urban Parking with Smart, Space-Efficient, and Sustainable Solutions</p>
+        </div>
+        
+        <div class="cover-footer">
+            <p>ADVANCED TECHNOLOGY | MAXIMUM EFFICIENCY | PREMIUM QUALITY</p>
+            <p style="font-size: 14px; margin-top: 10px; opacity: 0.9;">www.microelevators.com | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="89e0e7efe6c9e4e0eafbe6ece5ecffe8fde6fbfaa7eae6e4">[email&#160;protected]</a></p>
+        </div>
+    </div>
+
+    <!-- PAGE 2: COMPANY INTRODUCTION -->
+    <div class="page intro-page">
+        <div class="page-header">
+            <h2>About Micro Elevators</h2>
+            <p>Leading Innovation in Automated Parking Solutions</p>
+        </div>
+        
+        <div class="content-section">
+            <h3>Welcome to the Future of Parking</h3>
+            <p>Micro Elevators is at the forefront of revolutionizing urban parking infrastructure with cutting-edge automated parking systems. With years of expertise in mechanical engineering and automation technology, we deliver world-class solutions that maximize space utilization while minimizing environmental impact.</p>
+            
+            <p>Our automated parking systems represent the perfect fusion of innovation, efficiency, and sustainability. Designed to meet the growing demands of modern urban environments, our systems provide seamless parking experiences while optimizing valuable real estate.</p>
+            
+            <div class="highlight-box">
+                <h4>Our Mission</h4>
+                <p>To transform urban landscapes by providing intelligent, space-efficient, and eco-friendly automated parking solutions that enhance property value and improve quality of life.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Why Choose Micro Elevators?</h4>
+                <p>✓ Industry-leading technology and engineering excellence</p>
+                <p>✓ Customized solutions tailored to your specific requirements</p>
+                <p>✓ Proven track record with major developers and commercial projects</p>
+                <p>✓ Comprehensive after-sales support and maintenance services</p>
+                <p>✓ Sustainable and environmentally responsible systems</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: KEY FEATURES -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Key Features & Benefits</h2>
+            <p>Advanced Technology for Modern Parking Needs</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h4>Space Optimization</h4>
+                <p>Maximize parking capacity by 60-80% compared to conventional parking. Perfect for high-density urban areas where space is at a premium.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h4>Enhanced Security</h4>
+                <p>Fully automated system with no human access to parking areas. Advanced security features protect vehicles from theft, vandalism, and damage.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h4>Rapid Operation</h4>
+                <p>Quick retrieval times averaging 60-90 seconds. High-speed motors and optimized algorithms ensure minimal waiting time for users.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h4>Eco-Friendly</h4>
+                <p>Zero emissions in parking area, reduced carbon footprint with no vehicle circulation. Energy-efficient motors with regenerative systems.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h4>Smart Technology</h4>
+                <p>IoT-enabled systems with mobile app integration. Real-time monitoring, predictive maintenance, and remote diagnostics capabilities.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h4>Cost Effective</h4>
+                <p>Lower operational costs with minimal maintenance requirements. No need for ventilation, lighting, or ramps reduces building expenses significantly.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏗️</div>
+                <h4>Flexible Design</h4>
+                <p>Customizable configurations to suit any building layout. Can be installed in new constructions or retrofitted into existing structures.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h4>Reliable Performance</h4>
+                <p>German engineering standards with robust construction. 99.9% uptime guarantee with redundant safety systems and backup power options.</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 3</p>
+        </div>
+    </div>
+
+    <!-- PAGE 4: TECHNICAL SPECIFICATIONS -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Technical Specifications</h2>
+            <p>Precision Engineering for Optimal Performance</p>
+        </div>
+        
+        <div class="content-section">
+            <h3>System Specifications</h3>
+            
+            <table class="specs-table">
+                <tr>
+                    <th>Specification</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>System Type</td>
+                    <td>Fully Automated Puzzle/Tower/Shuttle Based</td>
+                </tr>
+                <tr>
+                    <td>Vehicle Weight Capacity</td>
+                    <td>2000 - 2500 kg per platform</td>
+                </tr>
+                <tr>
+                    <td>Platform Dimensions</td>
+                    <td>5500mm (L) x 2000mm (W) x 1800mm (H)</td>
+                </tr>
+                <tr>
+                    <td>Retrieval Time</td>
+                    <td>60-90 seconds (average)</td>
+                </tr>
+                <tr>
+                    <td>Operating Speed</td>
+                    <td>Vertical: 15-25 m/min | Horizontal: 30-40 m/min</td>
+                </tr>
+                <tr>
+                    <td>Power Supply</td>
+                    <td>415V, 3 Phase, 50 Hz</td>
+                </tr>
+                <tr>
+                    <td>Drive System</td>
+                    <td>AC/DC Variable Frequency Drive with regenerative capability</td>
+                </tr>
+                <tr>
+                    <td>Safety Systems</td>
+                    <td>Multiple sensors, emergency brakes, UPS backup</td>
+                </tr>
+                <tr>
+                    <td>Control System</td>
+                    <td>PLC-based with HMI touchscreen interface</td>
+                </tr>
+                <tr>
+                    <td>Material</td>
+                    <td>Hot-dip galvanized steel structure</td>
+                </tr>
+                <tr>
+                    <td>Noise Level</td>
+                    <td>< 70 dB during operation</td>
+                </tr>
+                <tr>
+                    <td>Operating Temperature</td>
+                    <td>-10°C to +45°C</td>
+                </tr>
+                <tr>
+                    <td>Standards Compliance</td>
+                    <td>IS, CE, ISO 9001:2015 certified</td>
+                </tr>
+                <tr>
+                    <td>Warranty</td>
+                    <td>1 year comprehensive, extendable AMC available</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 4</p>
+        </div>
+    </div>
+
+    <!-- PAGE 5: PUZZLE PARKING SYSTEM -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Puzzle Parking System</h2>
+            <p>Vertical & Horizontal Movement for Maximum Density</p>
+        </div>
+        
+        <div class="product-section">
+            <div class="product-type">
+                <h3>Multi-Level Puzzle Parking</h3>
+                <p style="font-size: 17px; color: #555; margin-bottom: 25px;">
+                    The Puzzle Parking System is an innovative solution that combines vertical and horizontal movements to achieve maximum parking density. Ideal for medium to large-scale parking requirements in residential complexes, commercial buildings, and mixed-use developments.
+                </p>
+                
+                <div class="product-features">
+                    <li>2 to 8 levels parking capacity</li>
+                    <li>Semi-automatic to fully automatic operation</li>
+                    <li>Modular design for easy expansion</li>
+                    <li>Simultaneous multi-car retrieval</li>
+                    <li>Space efficiency up to 2.5x conventional</li>
+                    <li>Independent platform movement</li>
+                    <li>Minimal pit and overhead requirements</li>
+                    <li>Quick installation and commissioning</li>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 25px; background: white; border-left: 5px solid #c41e3a;">
+                    <h4 style="color: #c41e3a; margin-bottom: 15px;">Ideal Applications:</h4>
+                    <p style="font-size: 16px; color: #333;">✓ Residential apartments and condominiums</p>
+                    <p style="font-size: 16px; color: #333;">✓ Commercial office buildings</p>
+                    <p style="font-size: 16px; color: #333;">✓ Shopping malls and retail centers</p>
+                    <p style="font-size: 16px; color: #333;">✓ Hotels and hospitality projects</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Technical Highlights</h4>
+                <p><strong>Capacity:</strong> 20-100 cars per system</p>
+                <p><strong>Parking Height:</strong> 1800mm per level</p>
+                <p><strong>Operation:</strong> Card/RFID/Mobile App based</p>
+                <p><strong>Structure:</strong> Hot-dip galvanized steel frame</p>
+                <p><strong>Installation Time:</strong> 4-8 weeks depending on capacity</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 5</p>
+        </div>
+    </div>
+
+    <!-- PAGE 6: TOWER PARKING SYSTEM -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Tower Parking System</h2>
+            <p>Vertical High-Rise Parking Solution</p>
+        </div>
+        
+        <div class="product-section">
+            <div class="product-type">
+                <h3>Vertical Tower Parking</h3>
+                <p style="font-size: 17px; color: #555; margin-bottom: 25px;">
+                    The Tower Parking System is a fully automated, high-capacity vertical parking solution designed for premium properties with limited ground space. This system can accommodate 20-80 vehicles in a compact footprint, making it the ultimate space-saving solution.
+                </p>
+                
+                <div class="product-features">
+                    <li>Up to 20 levels of vertical parking</li>
+                    <li>Fully automated robotic operation</li>
+                    <li>Smallest footprint requirement</li>
+                    <li>High-speed vertical lifts</li>
+                    <li>360-degree vehicle rotation capability</li>
+                    <li>Weather-proof enclosure options</li>
+                    <li>Energy-efficient LED lighting</li>
+                    <li>Seismic-resistant structure design</li>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 25px; background: white; border-left: 5px solid #c41e3a;">
+                    <h4 style="color: #c41e3a; margin-bottom: 15px;">Ideal Applications:</h4>
+                    <p style="font-size: 16px; color: #333;">✓ Premium residential towers</p>
+                    <p style="font-size: 16px; color: #333;">✓ Corporate headquarters</p>
+                    <p style="font-size: 16px; color: #333;">✓ High-end commercial complexes</p>
+                    <p style="font-size: 16px; color: #333;">✓ Smart city projects</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Technical Highlights</h4>
+                <p><strong>Capacity:</strong> 20-80 cars per tower</p>
+                <p><strong>Tower Height:</strong> Up to 30 meters</p>
+                <p><strong>Ground Space:</strong> As low as 40 sq.m</p>
+                <p><strong>Operation:</strong> Fully automated with touchscreen</p>
+                <p><strong>Special Features:</strong> Car wash integration available</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 6</p>
+        </div>
+    </div>
+
+    <!-- PAGE 7: SHUTTLE PARKING SYSTEM -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Shuttle Parking System</h2>
+            <p>High-Capacity Automated Parking Solution</p>
+        </div>
+        
+        <div class="product-section">
+            <div class="product-type">
+                <h3>Advanced Shuttle Parking</h3>
+                <p style="font-size: 17px; color: #555; margin-bottom: 25px;">
+                    The Shuttle Parking System represents the pinnacle of automated parking technology, combining vertical lifts with horizontal shuttles for maximum efficiency. Perfect for large-scale projects requiring parking for 100+ vehicles with optimized retrieval times.
+                </p>
+                
+                <div class="product-features">
+                    <li>Multi-shuttle multi-lift configuration</li>
+                    <li>Parallel parking and retrieval operations</li>
+                    <li>Up to 12 levels of parking</li>
+                    <li>Fastest retrieval times (45-60 seconds)</li>
+                    <li>Modular and scalable design</li>
+                    <li>Intelligent traffic management system</li>
+                    <li>Remote monitoring and diagnostics</li>
+                    <li>Integration with building management systems</li>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 25px; background: white; border-left: 5px solid #c41e3a;">
+                    <h4 style="color: #c41e3a; margin-bottom: 15px;">Ideal Applications:</h4>
+                    <p style="font-size: 16px; color: #333;">✓ Large residential complexes (200+ units)</p>
+                    <p style="font-size: 16px; color: #333;">✓ Major commercial developments</p>
+                    <p style="font-size: 16px; color: #333;">✓ Airport and metro station parking</p>
+                    <p style="font-size: 16px; color: #333;">✓ Hospitals and healthcare facilities</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Technical Highlights</h4>
+                <p><strong>Capacity:</strong> 100-500+ cars per system</p>
+                <p><strong>Configuration:</strong> Multiple shuttles per level</p>
+                <p><strong>Throughput:</strong> 40-60 cars per hour</p>
+                <p><strong>Control:</strong> Advanced PLC with AI optimization</p>
+                <p><strong>Customization:</strong> Fully adaptable to site conditions</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 7</p>
+        </div>
+    </div>
+
+    <!-- PAGE 8: BENEFITS -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Benefits & Advantages</h2>
+            <p>Why Automated Parking Makes Business Sense</p>
+        </div>
+        
+        <div class="benefits-list">
+            <div class="benefit-item">
+                <div class="benefit-number">1</div>
+                <div class="benefit-content">
+                    <h4>Maximum Space Utilization</h4>
+                    <p>Increase parking capacity by 60-80% compared to conventional parking. No need for driving lanes, ramps, or circulation space means more cars in less area.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-number">2</div>
+                <div class="benefit-content">
+                    <h4>Enhanced Property Value</h4>
+                    <p>Premium parking solutions significantly increase property appeal and market value. Attract high-end buyers and tenants with modern amenities.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-number">3</div>
+                <div class="benefit-content">
+                    <h4>Reduced Construction Costs</h4>
+                    <p>Eliminate need for expensive ventilation systems, extensive lighting, and fire safety measures. Lower excavation and structural requirements reduce building costs.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-number">4</div>
+                <div class="benefit-content">
+                    <h4>Zero Vehicle Emissions Inside</h4>
+                    <p>Cars are turned off before entering the system, eliminating exhaust fumes and carbon monoxide in parking areas. Healthier and cleaner environment.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-number">5</div>
+                <div class="benefit-content">
+                    <h4>Complete Vehicle Security</h4>
+                    <p>No human access to parking area eliminates risk of theft, vandalism, or damage. Vehicles are protected in secure, climate-controlled environments.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-number">6</div>
+                <div class="benefit-content">
+                    <h4>Minimal Operational Costs</h4>
+                    <p>Automated systems require minimal staff and maintenance. Energy-efficient motors and regenerative systems reduce electricity consumption significantly.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 8</p>
+        </div>
+    </div>
+
+    <!-- PAGE 9: INSTALLATION PROCESS -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Installation Process</h2>
+            <p>Seamless Implementation from Concept to Completion</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4>Site Assessment</h4>
+                <p>Detailed evaluation of site conditions, space availability, and technical requirements</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4>Custom Design</h4>
+                <p>Tailored system design based on capacity needs, building architecture, and budget</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4>Engineering</h4>
+                <p>Detailed engineering drawings, structural calculations, and technical documentation</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4>Manufacturing</h4>
+                <p>Precision manufacturing of components with stringent quality control measures</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h4>Installation</h4>
+                <p>On-site installation by certified technicians with minimal disruption</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h4>Testing</h4>
+                <p>Comprehensive testing of all systems, safety features, and performance parameters</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">7</div>
+                <h4>Training</h4>
+                <p>User training and operations manual for facility management teams</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">8</div>
+                <h4>Commissioning</h4>
+                <p>Final commissioning and handover with warranty documentation</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">9</div>
+                <h4>Support</h4>
+                <p>24/7 technical support and preventive maintenance services</p>
+            </div>
+        </div>
+        
+        <div style="padding: 20px 60px 40px 60px;">
+            <div class="highlight-box" style="margin: 0; padding: 20px 25px;">
+                <h4 style="font-size: 20px; margin-bottom: 12px;">Project Timeline</h4>
+                <p style="font-size: 15px; margin-bottom: 5px;"><strong>Design & Engineering:</strong> 2-4 weeks</p>
+                <p style="font-size: 15px; margin-bottom: 5px;"><strong>Manufacturing:</strong> 6-10 weeks</p>
+                <p style="font-size: 15px; margin-bottom: 5px;"><strong>Installation:</strong> 4-12 weeks (depending on system size)</p>
+                <p style="font-size: 15px; margin-bottom: 0;"><strong>Testing & Commissioning:</strong> 1-2 weeks</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 9</p>
+        </div>
+    </div>
+
+    <!-- PAGE 10: SAFETY FEATURES -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Safety & Security Features</h2>
+            <p>Multiple Layers of Protection</p>
+        </div>
+        
+        <div class="two-column">
+            <div class="column">
+                <h4>Safety Systems</h4>
+                <ul>
+                    <li><strong>Emergency Stop Buttons:</strong> Strategically placed at all entry/exit points</li>
+                    <li><strong>Overload Sensors:</strong> Prevent operation if weight limits are exceeded</li>
+                    <li><strong>Position Sensors:</strong> Ensure accurate platform alignment</li>
+                    <li><strong>Safety Interlocks:</strong> Prevent movement when doors are open</li>
+                    <li><strong>Anti-Fall Devices:</strong> Multiple redundant catching mechanisms</li>
+                    <li><strong>Fire Detection:</strong> Integrated smoke and heat sensors</li>
+                    <li><strong>Emergency Lowering:</strong> Manual emergency descent system</li>
+                    <li><strong>UPS Backup:</strong> Uninterrupted power for emergency operations</li>
+                </ul>
+            </div>
+            
+            <div class="column">
+                <h4>Security Features</h4>
+                <ul>
+                    <li><strong>Access Control:</strong> RFID card/mobile app authentication</li>
+                    <li><strong>CCTV Monitoring:</strong> 24/7 video surveillance</li>
+                    <li><strong>User Identification:</strong> Personal code/biometric options</li>
+                    <li><strong>Audit Trail:</strong> Complete log of all transactions</li>
+                    <li><strong>Intrusion Alarms:</strong> Unauthorized access detection</li>
+                    <li><strong>Remote Monitoring:</strong> Cloud-based system status tracking</li>
+                    <li><strong>Vehicle Tracking:</strong> Real-time location of each vehicle</li>
+                    <li><strong>Secure Enclosure:</strong> Climate-controlled, locked environment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="padding: 0 60px 30px 60px;">
+            <div class="highlight-box" style="margin: 0; padding: 20px 25px;">
+                <h4 style="font-size: 20px; margin-bottom: 12px;">Compliance & Certifications</h4>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ IS Standards for mechanical parking systems</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ CE Marking for European safety standards</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ ISO 9001:2015 Quality Management Certification</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ IGBC Green Building compliance ready</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ Fire safety NOC from local authorities</p>
+                <p style="font-size: 15px; margin-bottom: 0;">✓ Structural stability certification</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 10</p>
+        </div>
+    </div>
+
+    <!-- PAGE 11: PROJECT GALLERY 1 -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Project Gallery</h2>
+            <p>Our Successful Installations</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 1</div>
+                <div class="gallery-caption">
+                    <h4>Luxury Residential Complex</h4>
+                    <p>50-car puzzle parking system installed in premium apartment complex, Mumbai</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 2</div>
+                <div class="gallery-caption">
+                    <h4>Commercial Office Tower</h4>
+                    <p>80-car tower parking system for corporate headquarters, Bangalore</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 3</div>
+                <div class="gallery-caption">
+                    <h4>Shopping Mall Installation</h4>
+                    <p>200-car shuttle parking system at major retail destination, Delhi NCR</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 4</div>
+                <div class="gallery-caption">
+                    <h4>Hospital Parking Facility</h4>
+                    <p>120-car automated parking for healthcare complex, Pune</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 11</p>
+        </div>
+    </div>
+
+    <!-- PAGE 12: PROJECT GALLERY 2 -->
+    <div class="page">
+        <div class="page-header">
+            <h2>Project Gallery</h2>
+            <p>More Success Stories</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 5</div>
+                <div class="gallery-caption">
+                    <h4>Hotel Parking Solution</h4>
+                    <p>60-car automated parking for 5-star hotel, Hyderabad</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 6</div>
+                <div class="gallery-caption">
+                    <h4>Mixed-Use Development</h4>
+                    <p>150-car multi-level puzzle system for urban redevelopment project</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 7</div>
+                <div class="gallery-caption">
+                    <h4>Smart City Project</h4>
+                    <p>300-car shuttle parking as part of smart infrastructure initiative</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="gallery-image">PROJECT IMAGE 8</div>
+                <div class="gallery-caption">
+                    <h4>Residential Township</h4>
+                    <p>Multiple 40-car puzzle systems across gated community</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 12</p>
+        </div>
+    </div>
+
+    <!-- PAGE 13: CLIENT TESTIMONIALS & LOGOS -->
+    <div class="page">
+        <div class="letterhead">
+            <div class="letterhead-logo">LOGO</div>
+            <div class="letterhead-info">
+                <strong>MICRO ELEVATORS</strong><br>
+                Automated Parking Systems<br>
+                www.microelevators.com
+            </div>
+        </div>
+
+        <div class="client-section" style="padding: 30px 60px 40px 60px;">
+            <h2 style="margin-bottom: 30px;">Our Valued Clients</h2>
+            <p style="text-align: center; font-size: 16px; color: #666; max-width: 800px; margin: 0 auto 30px;">
+                Trusted by leading developers, builders, and facility managers across India
+            </p>
+            
+            <div class="client-grid" style="gap: 20px; margin-top: 25px;">
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 1</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 2</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 3</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 4</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 5</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 6</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 7</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 8</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 9</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 10</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 11</div>
+                <div class="client-logo" style="height: 100px;">CLIENT LOGO 12</div>
+            </div>
+            
+            <div style="margin-top: 30px; background: white; padding: 30px; border-radius: 10px;">
+                <h3 style="color: #c41e3a; text-align: center; font-size: 28px; margin-bottom: 25px;">What Our Clients Say</h3>
+                
+                <div style="border-left: 5px solid #c41e3a; padding: 20px 25px; background: #f8f8f8; margin-bottom: 20px;">
+                    <p style="font-size: 15px; color: #333; font-style: italic; margin-bottom: 8px;">
+                        "The automated parking system from Micro Elevators has transformed our property value. The space efficiency and modern technology appeal greatly to our premium buyers."
+                    </p>
+                    <p style="font-size: 13px; color: #c41e3a; font-weight: bold;">- Leading Real Estate Developer, Mumbai</p>
+                </div>
+                
+                <div style="border-left: 5px solid #c41e3a; padding: 20px 25px; background: #f8f8f8; margin-bottom: 20px;">
+                    <p style="font-size: 15px; color: #333; font-style: italic; margin-bottom: 8px;">
+                        "Excellent engineering quality and professional installation. The system has been running flawlessly for over 2 years with minimal maintenance."
+                    </p>
+                    <p style="font-size: 13px; color: #c41e3a; font-weight: bold;">- Facility Manager, Commercial Complex, Bangalore</p>
+                </div>
+                
+                <div style="border-left: 5px solid #c41e3a; padding: 20px 25px; background: #f8f8f8;">
+                    <p style="font-size: 15px; color: #333; font-style: italic; margin-bottom: 8px;">
+                        "The best decision we made for our project. Saved significant construction costs and increased parking capacity by 70%. Highly recommended!"
+                    </p>
+                    <p style="font-size: 13px; color: #c41e3a; font-weight: bold;">- Project Head, Luxury Residences, Delhi NCR</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 13</p>
+        </div>
+    </div>
+
+    <!-- PAGE 14: MAINTENANCE & SUPPORT -->
+    <div class="page">
+        <div class="letterhead">
+            <div class="letterhead-logo">LOGO</div>
+            <div class="letterhead-info">
+                <strong>MICRO ELEVATORS</strong><br>
+                Automated Parking Systems<br>
+                www.microelevators.com
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h2>Maintenance & Support</h2>
+            <p>Comprehensive After-Sales Service</p>
+        </div>
+        
+        <div class="content-section" style="padding: 30px 60px 40px 60px;">
+            <h3 style="font-size: 28px; margin-bottom: 20px;">Our Commitment to Service Excellence</h3>
+            <p style="font-size: 16px; margin-bottom: 20px;">At Micro Elevators, our relationship with clients extends far beyond installation. We provide comprehensive maintenance and support services to ensure optimal system performance and longevity.</p>
+            
+            <div class="two-column" style="padding: 20px 0; gap: 30px;">
+                <div class="column">
+                    <h4 style="font-size: 20px; margin-bottom: 15px;">Preventive Maintenance</h4>
+                    <ul style="font-size: 14px; line-height: 1.6;">
+                        <li>Scheduled monthly inspections</li>
+                        <li>Lubrication and cleaning services</li>
+                        <li>Component wear monitoring</li>
+                        <li>Software updates and optimization</li>
+                        <li>Safety system verification</li>
+                        <li>Performance testing and calibration</li>
+                        <li>Detailed service reports</li>
+                    </ul>
+                </div>
+                
+                <div class="column">
+                    <h4 style="font-size: 20px; margin-bottom: 15px;">Support Services</h4>
+                    <ul style="font-size: 14px; line-height: 1.6;">
+                        <li>24/7 technical helpline</li>
+                        <li>Remote diagnostic capabilities</li>
+                        <li>On-site emergency response</li>
+                        <li>Spare parts availability</li>
+                        <li>Annual maintenance contracts (AMC)</li>
+                        <li>System upgrades and modernization</li>
+                        <li>Operator training programs</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin: 20px 0; padding: 20px 25px;">
+                <h4 style="font-size: 20px; margin-bottom: 12px;">AMC Packages</h4>
+                <p style="font-size: 15px; margin-bottom: 8px;"><strong>Silver Package:</strong> Bi-annual maintenance with emergency support</p>
+                <p style="font-size: 15px; margin-bottom: 8px;"><strong>Gold Package:</strong> Quarterly maintenance with priority support</p>
+                <p style="font-size: 15px; margin-bottom: 0;"><strong>Platinum Package:</strong> Monthly maintenance with 24/7 dedicated support</p>
+            </div>
+            
+            <div class="highlight-box" style="margin: 20px 0 0 0; padding: 20px 25px;">
+                <h4 style="font-size: 20px; margin-bottom: 12px;">Warranty Coverage</h4>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ 1 year comprehensive warranty on all equipment</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ 3 years warranty on structural components</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ Extended warranty options available</p>
+                <p style="font-size: 15px; margin-bottom: 5px;">✓ Free replacement of defective parts during warranty period</p>
+                <p style="font-size: 15px; margin-bottom: 0;">✓ No-questions-asked service commitment</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <p>MICRO ELEVATORS - Automated Parking Systems</p>
+            <p class="page-number">Page 14</p>
+        </div>
+    </div>
+
+    <!-- PAGE 15: CONTACT PAGE -->
+    <div class="page contact-page">
+        <div class="contact-content">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div class="logo-placeholder" style="margin: 0 auto 30px;">COMPANY LOGO HERE</div>
+                <h2>Get in Touch</h2>
+                <p style="font-size: 18px; color: #666; margin-top: 15px;">
+                    Let's discuss how our automated parking solutions can transform your project
+                </p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>Head Office</h4>
+                    <p>
+                        <strong>Micro Elevators Pvt. Ltd.</strong><br>
+                        [Address Line 1]<br>
+                        [Address Line 2]<br>
+                        [City, State - PIN Code]
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Contact Numbers</h4>
+                    <p>
+                        Phone: +91-XXXX-XXXXXX<br>
+                        Mobile: +91-XXXXX-XXXXX<br>
+                        Toll Free: 1800-XXX-XXXX<br>
+                        Fax: +91-XXXX-XXXXXX
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Email & Web</h4>
+                    <p>
+                        Sales: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2c1d3ded7c1f2dfdbd1c0ddd7ded7c4d3c6ddc0c19cd1dddf">[email&#160;protected]</a><br>
+                        Support: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dba8aeababb4a9af9bb6b2b8a9b4beb7beadbaafb4a9a8f5b8b4b6">[email&#160;protected]</a><br>
+                        Info: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="40292e262f002d2923322f252c253621342f32336e232f2d">[email&#160;protected]</a><br>
+                        Web: www.microelevators.com
+                    </p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Business Hours</h4>
+                    <p>
+                        Monday - Friday: 9:00 AM - 7:00 PM<br>
+                        Saturday: 10:00 AM - 5:00 PM<br>
+                        Sunday: Closed<br>
+                        24/7 Emergency Support Available
+                    </p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #c41e3a, #a01830); border-radius: 10px; text-align: center;">
+                <h3 style="color: white; font-size: 28px; margin-bottom: 15px;">Request a Free Consultation</h3>
+                <p style="color: white; font-size: 16px; margin-bottom: 20px; opacity: 0.95;">
+                    Our experts are ready to help you design the perfect automated parking solution for your project
+                </p>
+                <p style="color: white; font-size: 20px; font-weight: bold;">
+                    📞 Call Now: +91-XXXXX-XXXXX
+                </p>
+            </div>
+            
+            <div st

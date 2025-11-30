@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trivanta Edge - Automated Car Parking Brochure</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Times New Roman', serif;
+        font-size: 10px;
+        line-height: 1.5;
+        color: #333;
+        background: #fff;
+        padding: 12px;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    /* --- Letterhead (EXACT SAME as original) --- */
+    .letterhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 3px solid #2c5282;
+        margin-bottom: 12px;
+    }
+
+    .logo-section {
+        display: flex;
+        align-items: center;
+    }
+
+    .company-info h1 {
+        font-size: 20px;
+        color: #1a365d;
+        margin-bottom: 2px;
+    }
+
+    .company-info p {
+        font-size: 11px;
+        color: #2c5282;
+        font-style: italic;
+    }
+
+    .contact-info {
+        text-align: right;
+        font-size: 9px;
+        color: #1a365d;
+        line-height: 1.2;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 4px 0;
+        font-size: 8px;
+        color: #666;
+        font-style: italic;
+        border-top: 1px solid #ddd;
+        margin-top: 25px;
+    }
+
+    /* --- Brochure Content --- */
+    .brochure {
+        margin-top: 20px;
+    }
+
+    .intro {
+        text-align: center;
+        background: linear-gradient(to right, #ebf8ff, #ffffff);
+        border-left: 4px solid #2b6cb0;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+    }
+
+    .intro h2 {
+        color: #1a365d;
+        font-size: 18px;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+
+    .intro p {
+        font-size: 11px;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 25px 0;
+        gap: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    }
+
+    .section:nth-child(even) {
+        flex-direction: row-reverse;
+        background: #f7fafc;
+    }
+
+    .section img {
+        width: 48%;
+        border-radius: 10px;
+        border: 2px solid #bee3f8;
+    }
+
+    .section .text {
+        width: 48%;
+    }
+
+    .section h3 {
+        color: #2b6cb0;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .section p {
+        font-size: 10px;
+        color: #333;
+        line-height: 1.5;
+    }
+
+    /* --- Mobile Zig-Zag Fix --- */
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .section {
+            flex-direction: column;
+            text-align: center;
+        }
+        .section img, .section .text {
+            width: 100%;
+        }
+        .section:nth-child(odd) img {
+            order: -1; /* flip order for odd sections to make zigzag visible on mobile */
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Letterhead -->
+<div class="letterhead">
+    <div class="logo-section">
+        <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+        <div class="company-info" style="margin-left: 15px;">
+            <h1>Trivanta Edge</h1>
+            <p>Parking,Perfected</p>
+        </div>
+    </div>
+    <div class="contact-info">
+        <strong>sales@trivantaedge.com</strong><br>
+        info@trivantaedge.com<br>
+        +91 9373015503<br>
+        Kalyan, Maharashtra
+    </div>
+</div>
+
+<!-- Brochure Body -->
+<div class="brochure">
+
+    <div class="intro">
+        <h2>Automated Car Parking Systems by Trivanta Edge</h2>
+        <p>
+            At <strong>Trivanta Edge</strong>, we bring the future of urban mobility through automation and innovation.
+            Our smart car parking systems are designed to optimize space, enhance convenience, and redefine parking efficiency
+            for residential, commercial, and industrial applications.
+        </p>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/parking.jpg" alt="Automated Parking System">
+        <div class="text">
+            <h3>Fully Automated Parking Systems</h3>
+            <p>Revolutionize your parking experience with advanced automation. Our smart systems handle parking, retrieval, and vehicle organization effortlessly — ensuring maximum efficiency with minimal footprint.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/hydraulics.jpg" alt="Hydraulic Parking">
+        <div class="text">
+            <h3>Hydraulic Car Parking Solutions</h3>
+            <p>Built for strength and reliability, our hydraulic parking systems use precision engineering to provide stable lifting, energy efficiency, and low maintenance operations — ideal for all property scales.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/stacker.jpg" alt="Stacker Parking">
+        <div class="text">
+            <h3>Stacker Parking Systems</h3>
+            <p>Maximize your space with our compact stacker systems. They deliver a robust mechanical solution that doubles or triples capacity while maintaining accessibility and safety standards.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/puzzleparking.jpg" alt="Puzzle Parking">
+        <div class="text">
+            <h3>Puzzle Parking Technology</h3>
+            <p>Our puzzle parking system combines innovation with automation — enabling cars to move vertically and horizontally in a seamless grid structure. Perfect for modern urban developments.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/towerparking.jpg" alt="Tower Parking">
+        <div class="text">
+            <h3>Tower Parking Systems</h3>
+            <p>Experience high-rise parking solutions with Trivanta Edge. Our tower systems enable vertical storage of multiple vehicles, utilizing minimal land while offering swift retrieval and maximum safety.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/doublebikestacker.jpg" alt="Double Bike Stacker">
+        <div class="text">
+            <h3>Double Bike Stacker Systems</h3>
+            <p>Our double bike stackers are designed for two-tier storage, enabling parking of twice as many bikes within the same area. Built with a focus on stability, durability, and ease of operation.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://mailingimg.netlify.app/singlebikestacker.jpg" alt="Single Bike Stacker">
+        <div class="text">
+            <h3>Single Bike Stacker Systems</h3>
+            <p>The ideal solution for compact bike parking spaces. Our single stacker units combine simplicity and functionality, offering smooth manual or semi-automatic lifting for urban and corporate facilities.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+</div>
+
+</body>
+</html>

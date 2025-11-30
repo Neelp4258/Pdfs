@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivanta Edge - Business Card Front</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            width: 3.5in;
+            height: 2in;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .content {
+            padding: 0;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Section with Logo */
+        .top-section {
+            background: #ffffff;
+            padding: 20px 30px;
+            height: 45%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid #00bcd4;
+        }
+
+        .top-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 188, 212, 0.05);
+            border-radius: 50%;
+        }
+
+        .top-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 188, 212, 0.03);
+            border-radius: 50%;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .company-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: #00bcd4;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        .tagline {
+            font-size: 8px;
+            color: #666;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Bottom Section with Parking Image */
+        .bottom-section {
+            height: 55%;
+            background: #ffffff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .bottom-left {
+            flex: 1;
+        }
+
+        .brand-text {
+            font-size: 13px;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .brand-highlight {
+            color: #00bcd4;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 8px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .parking-image-container {
+            width: 130px;
+            height: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parking-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Decorative Elements */
+        .corner-accent {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, transparent 50%, #00bcd4 50%);
+            opacity: 0.1;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="content">
+            <!-- Top Cyan Section -->
+            <div class="top-section">
+                <div class="logo-container">
+                    <img src="https://www.trivantaedge.com/trivanta.png" alt="Trivanta Edge" class="logo" onerror="this.style.display='none';">
+                    <div class="text-content">
+                        <div class="company-name">TRIVANTA EDGE</div>
+                        <div class="tagline">PARKING PERFECTED</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom White Section -->
+            <div class="bottom-section">
+                <div class="bottom-left">
+                    <div class="brand-text">
+                        Innovative<br>
+                        <span class="brand-highlight">Automated Parking</span><br>
+                        Solutions
+                    </div>
+                    <div class="subtitle">Engineering Excellence</div>
+                </div>
+
+                <div class="parking-image-container">
+                    <img src="https://www.trivantaedge.com/parkingicon.png" alt="Automated Parking System" class="parking-image">
+                </div>
+
+                <div class="corner-accent"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

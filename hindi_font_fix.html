@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindi Font Fix - Trivanta Edge</title>
+    <style>
+        /* Import Hindi fonts from Google - multiple options to ensure rendering */
+        @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+        
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            /* Font stack with multiple Hindi-compatible fonts */
+            font-family: 'Noto Sans Devanagari', 'Hind', 'Arial Unicode MS', 'Mangal', sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+            padding: 12px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        /* For debugging - uncomment this to see where fonts might be failing */
+        /*
+        .test-hindi {
+            font-family: 'Noto Sans Devanagari';
+            border: 1px solid red;
+        }
+        
+        .test-hind {
+            font-family: 'Hind';
+            border: 1px solid blue;
+        }
+        */
+        
+        /* Critical: Force Unicode character encoding */
+        [lang="hi"] {
+            font-family: 'Noto Sans Devanagari', 'Hind', 'Arial Unicode MS', 'Mangal', sans-serif !important;
+            font-feature-settings: "kern" 1;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Sample styling similar to your JD */
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+            /* Use non-Hindi font for English text */
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+            /* Use non-Hindi font for English text */
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 15px 0 10px 0;
+        }
+        
+        .section {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 3px solid #2c5282;
+            background: #f0f4f8;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .section-content {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        <div class="logo-section">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>From Land to Legacy - with Edge</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="document-title">हिंदी फॉन्ट परीक्षण - Hindi Font Test</div>
+    
+    <div class="section">
+        <div class="section-title">फॉन्ट परीक्षण - Font Test</div>
+        <div class="section-content">
+            यह एक हिंदी फॉन्ट परीक्षण है। यह पीडीएफ कन्वर्टर के साथ हिंदी टेक्स्ट की जांच के लिए है।<br>
+            This is a Hindi font test. This is for checking Hindi text with the PDF converter.<br><br>
+            
+            <div class="test-hindi">नोटो सांस देवनागरी फॉन्ट परीक्षण - Noto Sans Devanagari Font Test</div><br>
+            <div class="test-hind">हिंद फॉन्ट परीक्षण - Hind Font Test</div><br>
+            
+            संख्याएँ: १२३४५६७८९०<br>
+            विशेष वर्ण: @#$%&*()_+<br>
+            मात्राएँ: अ आ इ ई उ ऊ ए ऐ ओ औ अं अः<br>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">समाधान विकल्प - Solution Options</div>
+        <div class="section-content">
+            <h3>हिंदी टेक्स्ट के लिए समाधान - Solutions for Hindi Text</h3>
+            <ol>
+                <li>गूगल वेब फॉन्ट्स का उपयोग करें (Noto Sans Devanagari, Hind)</li>
+                <li>फॉन्ट को HTML में एम्बेड करें</li>
+                <li>UTF-8 एन्कोडिंग सुनिश्चित करें</li>
+                <li>puppeteer में फॉन्ट पैथ सेट करें</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

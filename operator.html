@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Operator - Job Description - Trivanta Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9px;
+            line-height: 1.2;
+            color: #333;
+            background: white;
+            padding: 12px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 3px solid #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-info h1 {
+            font-size: 20px;
+            color: #1a365d;
+            margin-bottom: 2px;
+        }
+        
+        .company-info p {
+            font-size: 11px;
+            color: #2c5282;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 9px;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a365d;
+            margin: 8px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 9px;
+            color: #2c5282;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .job-card {
+            border: 1.5px solid #2c5282;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(44, 82, 130, 0.1);
+            margin-bottom: 12px;
+        }
+        
+        .job-header {
+            background: #2c5282;
+            color: white;
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .job-salary {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 6px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+        
+        .job-content {
+            padding: 10px;
+            background: #f8fafc;
+        }
+        
+        .job-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1a365d;
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        
+        .detail-value {
+            color: #2c5282;
+            font-size: 9px;
+        }
+        
+        .section {
+            background: white;
+            padding: 8px;
+            border-radius: 3px;
+            border-left: 2px solid #2c5282;
+            margin-top: 8px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 5px;
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+        
+        .section-text {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        
+        .section-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .section-list li {
+            color: #333;
+            font-size: 8px;
+            line-height: 1.4;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+        
+        .section-list li:before {
+            content: "•";
+            color: #2c5282;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .important-notes {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        
+        .notes-title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3px;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+        
+        .note-bullet {
+            color: #92400e;
+            font-weight: bold;
+            margin-right: 4px;
+            font-size: 10px;
+        }
+        
+        .apply-section {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .apply-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .apply-text {
+            font-size: 8px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 8px;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 8px 0;
+            font-size: 7px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="letterhead">
+        <div class="logo-section">
+            <img src="trivanta.png" style="width: 60px; height: 60px;" alt="Trivanta Logo">
+            <div class="company-info" style="margin-left: 15px;">
+                <h1>Trivanta Edge</h1>
+                <p>From Land to Legacy - with Edge</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <strong>sales@trivantaedge.com</strong><br>
+            info@trivantaedge.com<br>
+            +91 9373015503<br>
+            Kalyan, Maharashtra
+        </div>
+    </div>
+    
+    <div class="document-title">Job Description</div>
+    <div class="subtitle">Parking Operator - Car Parking System Solutions</div>
+    
+    <div class="job-card">
+        <div class="job-header">
+            <div class="job-title">Parking Operator</div>
+            <div class="job-salary">₹15,000 - ₹20,000 per month</div>
+        </div>
+        <div class="job-content">
+            <div class="job-details">
+                <div class="detail-item">
+                    <div class="detail-label">Experience Required</div>
+                    <div class="detail-value">0 - 2 Years</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Category</div>
+                    <div class="detail-value">Parking Operations</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Environment</div>
+                    <div class="detail-value">Buildings</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Schedule</div>
+                    <div class="detail-value">Shift-based</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Position Overview</div>
+                <div class="section-text">
+                    We are looking for responsible and customer-oriented Parking Operators to manage and operate automated parking systems at residential and commercial buildings. The Parking Operator will be the primary point of contact for residents and customers, ensuring smooth and efficient parking operations while maintaining high standards of service.
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Key Responsibilities</div>
+                <ul class="section-list">
+                    <li>Operate parking systems according to residents' and customers' requirements</li>
+                    <li>Ensure smooth functioning of automated parking solutions throughout the day</li>
+                    <li>Assist customers with vehicle parking and retrieval processes</li>
+                    <li>Maintain accurate system logs and records of all parking transactions</li>
+                    <li>Monitor parking system performance and report any technical issues immediately</li>
+                    <li>Provide excellent customer service to residents and building visitors</li>
+                    <li>Perform routine checks and basic maintenance of parking equipment</li>
+                    <li>Manage parking space allocation efficiently</li>
+                    <li>Handle customer queries and resolve minor operational issues</li>
+                    <li>Ensure cleanliness and organization of the parking facility</li>
+                    <li>Follow all safety protocols and emergency procedures</li>
+                    <li>Coordinate with maintenance teams for repairs and servicing</li>
+                    <li>Work in shift patterns including evenings, weekends, and holidays as required</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Required Skills & Qualifications</div>
+                <ul class="section-list">
+                    <li>Any educational qualification accepted</li>
+                    <li>Valid Driving License is mandatory</li>
+                    <li>0-2 years of experience in operations, customer service, or related field</li>
+                    <li>Good understanding of vehicle handling and parking procedures</li>
+                    <li>Excellent customer service and communication skills</li>
+                    <li>Ability to work in shift patterns (day/night/weekend shifts)</li>
+                    <li>Basic technical aptitude to operate automated systems</li>
+                    <li>Problem-solving abilities and quick decision-making skills</li>
+                    <li>Professional appearance and courteous behavior</li>
+                    <li>Proficiency in Hindi or Marathi; English is a plus</li>
+                    <li>Physical fitness to stand for extended periods</li>
+                    <li>Punctual and reliable with good attendance record</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">What We Offer</div>
+                <ul class="section-list">
+                    <li>Competitive salary package of ₹15,000 - ₹20,000 per month</li>
+                    <li>Stable employment at fixed building locations</li>
+                    <li>Training on advanced automated parking systems</li>
+                    <li>Professional work environment</li>
+                    <li>Career growth opportunities in operations management</li>
+                    <li>Regular shift patterns with proper scheduling</li>
+                    <li>Employee benefits and support</li>
+                    <li>Work with cutting-edge parking technology</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="important-notes" style="background: #ffe4e6; border: 1px solid #be123c;">
+        <div class="notes-title" style="color: #881337;">MANDATORY REQUIREMENT</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #881337;">•</span>
+            <span><strong>Valid Driving License is absolutely mandatory for this position</strong></span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #881337;">•</span>
+            <span>Candidates without a valid driving license will not be considered</span>
+        </div>
+    </div>
+    
+    <div class="important-notes">
+        <div class="notes-title">IMPORTANT REQUIREMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Must be willing to work in shift patterns including nights, weekends, and holidays</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Position is based at fixed building locations (not traveling assignments)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Strong customer service orientation required</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet">•</span>
+            <span>Must be able to handle multiple vehicles safely and efficiently</span>
+        </div>
+    </div>
+    
+    <div class="important-notes" style="background: #e0f2fe; border: 1px solid #0277bd;">
+        <div class="notes-title" style="color: #01579b;">REQUIRED DOCUMENTS</div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Aadhar Card (mandatory)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Valid Driving License (mandatory)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Bank Account details</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Pan Card</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Previous Experience letter (if applicable)</span>
+        </div>
+        <div class="note-item">
+            <span class="note-bullet" style="color: #01579b;">•</span>
+            <span>Salary slips (if applicable)</span>
+        </div>
+    </div>
+    
+    <div class="apply-section">
+        <div class="apply-title">Ready to Join Our Team?</div>
+        <div class="apply-text">
+            We are looking for dedicated individuals who are passionate about innovative parking solutions and ready to grow with us.
+        </div>
+        <div class="contact-details">
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div>sales@trivantaedge.com</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Phone</div>
+                <div>+91 9373015503</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Address</div>
+                <div>Kalyan, Maharashtra</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 Trivanta Edge. All rights reserved. | <strong>www.trivantaedge.com</strong>
+    </div>
+</body>
+</html>

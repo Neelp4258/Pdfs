@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Cakes - Ultra Luxury Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Bodoni+Moda:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Italiana&family=Arizonia&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            background: white;
+        }
+
+        /* Luxury Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes goldGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(219, 112, 147, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(147, 112, 219, 0.6); }
+        }
+
+        /* PAGE 1: ULTRA LUXURY COVER - ROYAL DESIGN */
+        .cover-page {
+            background: linear-gradient(135deg, #1a0a1f 0%, #2d1b3d 50%, #0f0520 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(219, 112, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(147, 112, 219, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #2d1b3d 0%, #1a0a1f 50%, #2d1b3d 100%);
+        }
+
+        .luxury-border {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, #DB7093, #B8A4E0, #87CEEB, #DB7093) 1;
+            pointer-events: none;
+        }
+
+        .luxury-border::before,
+        .luxury-border::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #DB7093;
+        }
+
+        .luxury-border::before {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .luxury-border::after {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .inner-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid rgba(219, 112, 147, 0.3);
+        }
+
+        .cover-ornament {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid #DB7093;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .cover-ornament:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .cover-ornament:nth-child(2) {
+            top: 15%;
+            right: 8%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .cover-ornament:nth-child(3) {
+            bottom: 20%;
+            left: 10%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .cover-ornament:nth-child(4) {
+            bottom: 15%;
+            right: 5%;
+            animation: float 9s ease-in-out infinite;
+        }
+
+        .cover-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .luxury-emblem {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0, #87CEEB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 10px 40px rgba(219, 112, 147, 0.5);
+            animation: goldGlow 3s ease-in-out infinite;
+        }
+
+        .cover-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 90px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #DB7093 0%, #B8A4E0 25%, #87CEEB 50%, #B8A4E0 75%, #DB7093 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(219, 112, 147, 0.5);
+            animation: shimmer 3s infinite linear;
+            background-size: 2000px 100%;
+        }
+
+        .cover-divider {
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #DB7093, #87CEEB, #DB7093, transparent);
+            margin: 20px auto;
+        }
+
+        .cover-title p {
+            font-family: 'Arizonia', cursive;
+            font-size: 42px;
+            color: #E8D4F0;
+            letter-spacing: 2px;
+        }
+
+        .cover-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            color: #B8A4E0;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        .cover-corner-design {
+            position: absolute;
+            font-size: 80px;
+            color: #DB7093;
+            opacity: 0.15;
+        }
+
+        .cover-corner-design:nth-child(5) { top: 50px; left: 50px; }
+        .cover-corner-design:nth-child(6) { top: 50px; right: 50px; }
+        .cover-corner-design:nth-child(7) { bottom: 50px; left: 50px; }
+        .cover-corner-design:nth-child(8) { bottom: 50px; right: 50px; }
+
+        /* PAGE 2: ABOUT US - LUXURY SPLIT SCREEN */
+        .about-page {
+            background: #FFFBF8;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            position: relative;
+        }
+
+        .about-left {
+            background: linear-gradient(135deg, #4B2E5C 0%, #2d1b3d 100%);
+            padding: 70px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(219,112,147,0.08)" stroke-width="1"/></svg>');
+            background-size: 80px 80px;
+        }
+
+        .about-left-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-left h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 68px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #DB7093, #E8D4F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .about-left .tagline {
+            font-family: 'Arizonia', cursive;
+            font-size: 36px;
+            color: #E8D4F0;
+            margin-bottom: 40px;
+        }
+
+        .about-left p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.9;
+            color: #E8D4F0;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .luxury-line {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #DB7093, transparent);
+            margin: 30px 0;
+        }
+
+        .about-right {
+            padding: 70px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 45px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid #F5EFF8;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(219, 112, 147, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-box:hover::before {
+            left: 100%;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: #DB7093;
+            box-shadow: 0 20px 50px rgba(219, 112, 147, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #DB7093, #9370DB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            color: #4B2E5C;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(219, 112, 147, 0.15);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(219, 112, 147, 0.3);
+        }
+
+        .feature-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: #4B2E5C;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            color: #6B5B73;
+            line-height: 1.6;
+        }
+
+        /* CAKE VARIETY PAGES (3-9) - ULTRA LUXURY */
+        .variety-page {
+            padding: 55px 45px;
+            position: relative;
+        }
+
+        .variety-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: radial-gradient(circle, #DB7093 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .variety-header {
+            text-align: center;
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        .variety-header::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #DB7093, #87CEEB, #DB7093, transparent);
+        }
+
+        .variety-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #DB7093 0%, #9370DB 50%, #87CEEB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: 3px;
+        }
+
+        .variety-subtitle {
+            font-family: 'Arizonia', cursive;
+            font-size: 32px;
+            color: #9370DB;
+        }
+
+        .variety-ornament {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto 0;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        /* Different luxury layouts for each page */
+        .cake-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .cake-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .cake-grid-masonry {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 175px;
+            gap: 22px;
+        }
+
+        .cake-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid #F5EFF8;
+        }
+
+        .cake-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(219, 112, 147, 0.05), rgba(135, 206, 235, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cake-card:hover::before {
+            opacity: 1;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(219, 112, 147, 0.25);
+            border-color: #DB7093;
+        }
+
+        .cake-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            position: relative;
+        }
+
+        .cake-card:hover .cake-image {
+            transform: scale(1.1);
+        }
+
+        .cake-image-wrapper {
+            overflow: hidden;
+            position: relative;
+            border-bottom: 2px solid #DB7093;
+        }
+
+        .cake-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(147, 112, 219, 0.2) 100%);
+            pointer-events: none;
+        }
+
+        .cake-info {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        .cake-name {
+            font-family: 'Cinzel', serif;
+            font-size: 21px;
+            font-weight: 600;
+            color: #4B2E5C;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .cake-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: #6B5B73;
+            line-height: 1.7;
+        }
+
+        .cake-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.4);
+        }
+
+        /* Page 3: Chocolate Delights - Purple Dream */
+        .page-3 {
+            background: radial-gradient(circle at top right, #2d1b3d 0%, #1a0a1f 50%, #0f0520 100%);
+        }
+
+        .page-3::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><path d="M60,10 L90,40 L90,80 L60,110 L30,80 L30,40 Z" fill="none" stroke="rgba(219,112,147,0.08)" stroke-width="2"/><path d="M60,30 L75,45 L75,75 L60,90 L45,75 L45,45 Z" fill="none" stroke="rgba(135,206,235,0.05)" stroke-width="1.5"/></svg>'),
+                radial-gradient(circle, rgba(219, 112, 147, 0.05) 1px, transparent 1px);
+            background-size: 120px 120px, 30px 30px;
+            opacity: 1;
+        }
+
+        .page-3 .variety-header h2,
+        .page-3 .variety-subtitle {
+            color: #DB7093;
+            -webkit-text-fill-color: #DB7093;
+        }
+
+        .page-3 .cake-card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Page 4: Fruit Paradise - Soft Pink */
+        .page-4 {
+            background: 
+                linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(255, 250, 250, 0.9));
+        }
+
+        .page-4::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="20" fill="none" stroke="rgba(219,112,147,0.06)" stroke-width="2"/><circle cx="75" cy="75" r="15" fill="none" stroke="rgba(135,206,235,0.05)" stroke-width="1.5"/><path d="M10,50 Q30,30 50,50 T90,50" stroke="rgba(184,164,224,0.04)" fill="none" stroke-width="2"/></svg>'),
+                repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(219, 112, 147, 0.02) 80px, rgba(219, 112, 147, 0.02) 82px);
+            background-size: 100px 100px, 100% 100%;
+            opacity: 1;
+        }
+
+        /* Page 5: Classic Elegance - Cream & Lavender */
+        .page-5 {
+            background: linear-gradient(135deg, #FAF8FF 0%, #FFFEFA 50%, #F8F6FF 100%);
+        }
+
+        .page-5::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="25" height="25" fill="none" stroke="rgba(147,112,219,0.06)" stroke-width="1.5" transform="rotate(45 22.5 22.5)"/><rect x="50" y="50" width="20" height="20" fill="none" stroke="rgba(135,206,235,0.04)" stroke-width="1" transform="rotate(45 60 60)"/></svg>'),
+                linear-gradient(0deg, rgba(219, 112, 147, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(135, 206, 235, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px, 40px 40px, 40px 40px;
+            opacity: 1;
+        }
+
+        /* Page 6: Designer Cakes - Blue Dreams */
+        .page-6 {
+            background: 
+                radial-gradient(circle at center, #F0F8FF 0%, #E6F2FF 100%);
+        }
+
+        .page-6::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,10 90,35 90,75 50,100 10,75 10,35" fill="none" stroke="rgba(147,112,219,0.06)" stroke-width="2"/><polygon points="50,30 70,42.5 70,67.5 50,80 30,67.5 30,42.5" fill="none" stroke="rgba(135,206,235,0.04)" stroke-width="1.5"/></svg>'),
+                repeating-linear-gradient(60deg, transparent 0, transparent 70px, rgba(147, 112, 219, 0.03) 70px, rgba(147, 112, 219, 0.03) 72px);
+            background-size: 100px 100px, 100% 100%;
+            opacity: 1;
+        }
+
+        /* Page 7: Wedding Dreams - Pure White */
+        .page-7 {
+            background: 
+                linear-gradient(135deg, #FFFFFF 0%, #FFF8FA 50%, #FFF0F5 100%);
+        }
+
+        .page-7::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="90" height="90" xmlns="http://www.w3.org/2000/svg"><circle cx="45" cy="45" r="35" fill="none" stroke="rgba(219,112,147,0.04)" stroke-width="1.5"/><circle cx="45" cy="45" r="25" fill="none" stroke="rgba(184,164,224,0.03)" stroke-width="1.2"/><circle cx="45" cy="45" r="15" fill="none" stroke="rgba(135,206,235,0.02)" stroke-width="1"/><path d="M45,10 L50,20 L60,20 L52,28 L55,38 L45,32 L35,38 L38,28 L30,20 L40,20 Z" fill="none" stroke="rgba(219,112,147,0.03)" stroke-width="0.8"/></svg>');
+            background-size: 90px 90px;
+            opacity: 1;
+        }
+
+        /* Page 8: Kids Special - Playful Pink-Blue */
+        .page-8 {
+            background: 
+                linear-gradient(135deg, #FFE4E8 0%, #E8D4F0 30%, #D4E4FF 60%, #FFF5F8 100%);
+        }
+
+        .page-8::before {
+            background-image: 
+                radial-gradient(circle, #DB7093 3px, transparent 3px),
+                radial-gradient(circle, #87CEEB 2px, transparent 2px),
+                radial-gradient(circle, #B8A4E0 2.5px, transparent 2.5px),
+                url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M30,10 L35,20 L45,20 L38,27 L40,37 L30,32 L20,37 L22,27 L15,20 L25,20 Z" fill="rgba(219,112,147,0.08)"/></svg>');
+            background-size: 70px 70px, 90px 90px, 50px 50px, 60px 60px;
+            background-position: 0 0, 35px 45px, 60px 25px, 0 0;
+            opacity: 0.6;
+        }
+
+        /* Page 9: Premium Selection - Deep Purple Luxury */
+        .page-9 {
+            background: 
+                radial-gradient(circle at bottom left, #2d1b3d 0%, #1a0a1f 50%, #0f0520 100%);
+        }
+
+        .page-9::before {
+            background-image: 
+                url('data:image/svg+xml,<svg width="110" height="110" xmlns="http://www.w3.org/2000/svg"><polygon points="55,15 85,35 85,75 55,95 25,75 25,35" fill="none" stroke="rgba(135,206,235,0.08)" stroke-width="2.5"/><polygon points="55,30 75,42 75,68 55,80 35,68 35,42" fill="none" stroke="rgba(219,112,147,0.06)" stroke-width="1.8"/><circle cx="55" cy="55" r="12" fill="none" stroke="rgba(184,164,224,0.05)" stroke-width="1.2"/></svg>'),
+                radial-gradient(circle, rgba(135, 206, 235, 0.04) 1.5px, transparent 1.5px);
+            background-size: 110px 110px, 35px 35px;
+            opacity: 1;
+        }
+
+        .page-9 .variety-header h2,
+        .page-9 .variety-subtitle {
+            color: #DB7093;
+            -webkit-text-fill-color: #DB7093;
+        }
+
+        .page-9 .cake-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Large cake cards for 2-column layout */
+        .cake-card-large .cake-image {
+            height: 285px;
+        }
+
+        .cake-card-large .cake-info {
+            padding: 30px;
+        }
+
+        .cake-card-large .cake-name {
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+
+        .cake-card-large .cake-desc {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Masonry specific styles */
+        .cake-card-tall {
+            grid-row: span 2;
+        }
+
+        .cake-card-tall .cake-image-wrapper {
+            height: 100%;
+        }
+
+        .cake-card-tall .cake-image {
+            height: 100%;
+            min-height: 380px;
+        }
+
+        /* PAGE 10: CONTACT - ULTRA LUXURY */
+        .contact-page {
+            background: linear-gradient(135deg, #1a0a1f 0%, #2d1b3d 100%);
+            padding: 50px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(219, 112, 147, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(135, 206, 235, 0.08) 0%, transparent 50%);
+        }
+
+        .contact-luxury-border {
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            right: 35px;
+            bottom: 35px;
+            border: 2px solid rgba(219, 112, 147, 0.3);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0, #87CEEB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .contact-subtitle {
+            font-family: 'Arizonia', cursive;
+            font-size: 28px;
+            color: #E8D4F0;
+        }
+
+        .contact-divider {
+            width: 180px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #DB7093, #87CEEB, transparent);
+            margin: 18px auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 35px;
+            position: relative;
+            z-index: 1;
+            max-height: 650px;
+        }
+
+        .contact-info {
+            background: rgba(45, 27, 61, 0.65);
+            backdrop-filter: blur(20px);
+            padding: 35px 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(219, 112, 147, 0.2);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 22px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(219, 112, 147, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(219, 112, 147, 0.08);
+            transform: translateX(8px);
+            border-color: rgba(219, 112, 147, 0.3);
+            box-shadow: 0 8px 25px rgba(219, 112, 147, 0.15);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #DB7093, #B8A4E0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(219, 112, 147, 0.3);
+        }
+
+        .contact-details h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: #DB7093;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .contact-details p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: #E8D4F0;
+            line-height: 1.6;
+        }
+
+        .contact-map {
+            background: rgba(45, 27, 61, 0.65);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(219, 112, 147, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #DB7093, #9370DB, #87CEEB);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 40px rgba(219, 112, 147, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .map-text {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: white;
+            margin-top: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #DB7093, #87CEEB);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(219, 112, 147, 0.3);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.25) rotate(360deg);
+            box-shadow: 0 12px 30px rgba(135, 206, 235, 0.5);
+        }
+
+        .contact-footer {
+            text-align: center;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-footer p {
+            font-family: 'Arizonia', cursive;
+            font-size: 26px;
+            color: #DB7093;
+            text-shadow: 0 0 20px rgba(219, 112, 147, 0.3);
+        }
+
+        .luxury-corner {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 2px solid rgba(219, 112, 147, 0.3);
+        }
+
+        .luxury-corner:nth-child(1) {
+            top: 35px;
+            left: 35px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .luxury-corner:nth-child(2) {
+            top: 35px;
+            right: 35px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .luxury-corner:nth-child(3) {
+            bottom: 35px;
+            left: 35px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .luxury-corner:nth-child(4) {
+            bottom: 35px;
+            right: 35px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: ULTRA LUXURY COVER -->
+    <div class="page cover-page">
+        <div class="luxury-border">
+            <div class="inner-border"></div>
+        </div>
+        
+        <div class="cover-ornament"></div>
+        <div class="cover-ornament"></div>
+        <div class="cover-ornament"></div>
+        <div class="cover-ornament"></div>
+        
+        <div class="cover-corner-design">◆</div>
+        <div class="cover-corner-design">◆</div>
+        <div class="cover-corner-design">◆</div>
+        <div class="cover-corner-design">◆</div>
+        
+        <div class="cover-title">
+            <div class="luxury-emblem">👑</div>
+            <h1>DIVINE CAKES</h1>
+            <div class="cover-divider"></div>
+            <p>Artistry in Every Layer</p>
+            <p class="cover-subtitle">Premium Patisserie Since 2010</p>
+        </div>
+    </div>
+
+    <!-- PAGE 2: ABOUT US - LUXURY SPLIT SCREEN -->
+    <div class="page about-page">
+        <div class="about-left">
+            <div class="about-left-content">
+                <h2>Our Story</h2>
+                <p class="tagline">Excellence in Every Creation</p>
+                <div class="luxury-line"></div>
+                <p>For over a decade, Divine Cakes has been the epitome of artisanal excellence, crafting exquisite confections that transform ordinary moments into extraordinary memories.</p>
+                <p>Our master pâtissiers combine time-honored French techniques with contemporary innovation, using only the world's finest ingredients to create edible masterpieces.</p>
+                <p>Each creation is a testament to our unwavering commitment to perfection, designed to delight the senses and celebrate life's most cherished occasions.</p>
+            </div>
+        </div>
+        
+        <div class="about-right">
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Excellence</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Master Chefs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Unique Recipes</div>
+                </div>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-text">
+                        <h3>Award Winning</h3>
+                        <p>International recognition for culinary excellence</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <div class="feature-text">
+                        <h3>Premium Quality</h3>
+                        <p>Finest imported & organic ingredients only</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-text">
+                        <h3>Bespoke Design</h3>
+                        <p>Custom creations tailored to your vision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: CHOCOLATE DELIGHTS -->
+    <div class="page variety-page page-3">
+        <div class="variety-header">
+            <h2>Chocolate Delights</h2>
+            <p class="variety-subtitle">Indulge in Pure Cocoa Bliss</p>
+            <div class="variety-ornament">🍫</div>
+        </div>
+        
+        <div class="cake-grid-3">
+            <div class="cake-card">
+                <div class="cake-badge">SIGNATURE</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=cropfit=crop" alt="Chocolate Truffle Cake" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Belgian Truffle</h3>
+                    <p class="cake-desc">Rich dark chocolate layers with silky ganache</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">BESTSELLER</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=cropfit=crop" alt="Death by Chocolate" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Death by Chocolate</h3>
+                    <p class="cake-desc">Ultimate chocolate experience with triple layers</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1588195538326-c5b1e5b80d06?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1588195538326-c5b1e5b80d06?w=400&h=300&fit=cropfit=crop" alt="Mocha Delight" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Mocha Delight</h3>
+                    <p class="cake-desc">Coffee-infused chocolate perfection</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=400&h=300&fit=cropfit=crop" alt="Ferrero Rocher" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Ferrero Fantasy</h3>
+                    <p class="cake-desc">Hazelnut chocolate heaven</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">POPULAR</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=cropfit=crop" alt="Oreo Overload" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Oreo Overload</h3>
+                    <p class="cake-desc">Cookies & cream extravaganza</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1607478900766-efe13248b125?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1607478900766-efe13248b125?w=400&h=300&fit=cropfit=crop" alt="Fudge Brownie" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Fudge Brownie</h3>
+                    <p class="cake-desc">Dense, moist, utterly irresistible</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: FRUIT PARADISE -->
+    <div class="page variety-page page-4">
+        <div class="variety-header">
+            <h2>Fruit Paradise</h2>
+            <p class="variety-subtitle">Fresh & Fruity Sensations</p>
+            <div class="variety-ornament">🍓</div>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">FRESH</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=cropfit=crop" alt="Strawberry Cream" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Strawberry Dream</h3>
+                    <p class="cake-desc">Fresh strawberries with whipped vanilla cream and delicate sponge layers</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=cropfit=crop" alt="Mixed Berry" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Mixed Berry Bliss</h3>
+                    <p class="cake-desc">Assorted berries with mascarpone cream creating a symphony of flavors</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">EXOTIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=cropfit=crop" alt="Tropical Mango" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Tropical Mango</h3>
+                    <p class="cake-desc">Alphonso mango pulp with light coconut cream transport you to paradise</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">CLASSIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=cropfit=crop" alt="Black Forest" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Classic Black Forest</h3>
+                    <p class="cake-desc">Cherry-kissed chocolate layers with kirsch-soaked sponge and cream</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: CLASSIC ELEGANCE -->
+    <div class="page variety-page page-5">
+        <div class="variety-header">
+            <h2>Classic Elegance</h2>
+            <p class="variety-subtitle">Timeless Treasures</p>
+            <div class="variety-ornament">💎</div>
+        </div>
+        
+        <div class="cake-grid-masonry">
+            <div class="cake-card cake-card-tall">
+                <div class="cake-badge">PREMIUM</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&h=600&fit=croph=400https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&h=600&fit=cropfit=crop" alt="Red Velvet" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Red Velvet Royale</h3>
+                    <p class="cake-desc">Velvety smooth with cream cheese frosting</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=cropfit=crop" alt="Vanilla Bean" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Vanilla Bean</h3>
+                    <p class="cake-desc">Pure Madagascar vanilla essence</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=cropfit=crop" alt="Butter Scotch" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Butterscotch Bliss</h3>
+                    <p class="cake-desc">Caramel praline perfection</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1591184488262-1f999f7cdc6e?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1591184488262-1f999f7cdc6e?w=400&h=300&fit=cropfit=crop" alt="Pineapple" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Pineapple Paradise</h3>
+                    <p class="cake-desc">Fresh pineapple chunks with cream</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-tall">
+                <div class="cake-badge">IMPORTED</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=600&fit=croph=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=600&fit=cropfit=crop" alt="Tiramisu" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Italian Tiramisu</h3>
+                    <p class="cake-desc">Coffee-soaked layers of heaven</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1595941301372-39a17e7b819f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1595941301372-39a17e7b819f?w=400&h=300&fit=cropfit=crop" alt="Lemon Drizzle" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Lemon Drizzle</h3>
+                    <p class="cake-desc">Zesty citrus delight</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: DESIGNER CAKES -->
+    <div class="page variety-page page-6">
+        <div class="variety-header">
+            <h2>Designer Creations</h2>
+            <p class="variety-subtitle">Artistic Masterpieces</p>
+            <div class="variety-ornament">🎨</div>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">HANDCRAFTED</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=300&fit=cropfit=crop" alt="Floral Fantasy" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Floral Fantasy</h3>
+                    <p class="cake-desc">Handcrafted edible flowers adorning vanilla buttercream tiers</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">MODERN</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1562440499-64c9a111f713?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1562440499-64c9a111f713?w=400&h=300&fit=cropfit=crop" alt="Geometric Dreams" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Geometric Dreams</h3>
+                    <p class="cake-desc">Modern art meets pastry with angular chocolate designs</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">ARTISTIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1576427920946-a03b0477a0bb?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1576427920946-a03b0477a0bb?w=400&h=300&fit=cropfit=crop" alt="Watercolor Wonder" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Watercolor Wonder</h3>
+                    <p class="cake-desc">Hand-painted fondant with artistic brush strokes</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">LUXURY</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=300&fit=cropfit=crop" alt="Metallic Glam" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Metallic Glamour</h3>
+                    <p class="cake-desc">Gold and silver lustre with mirror glaze finish</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: WEDDING DREAMS -->
+    <div class="page variety-page page-7">
+        <div class="variety-header">
+            <h2>Wedding Dreams</h2>
+            <p class="variety-subtitle">Your Perfect Day Deserves Perfection</p>
+            <div class="variety-ornament">💍</div>
+        </div>
+        
+        <div class="cake-grid-3">
+            <div class="cake-card">
+                <div class="cake-badge">SIGNATURE</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=cropfit=crop" alt="Royal White" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Royal White</h3>
+                    <p class="cake-desc">Classic white tiered elegance</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">ROMANTIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&h=300&fit=cropfit=crop" alt="Rose Garden" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Rose Garden</h3>
+                    <p class="cake-desc">Fresh roses cascading romance</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=300&fit=cropfit=crop" alt="Ivory Lace" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Ivory Lace</h3>
+                    <p class="cake-desc">Delicate lace patterns in buttercream</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">RUSTIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&h=300&fit=cropfit=crop" alt="Rustic Charm" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Rustic Charm</h3>
+                    <p class="cake-desc">Semi-naked with fresh florals</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">PREMIUM</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1616690710400-a16d146927c5?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1616690710400-a16d146927c5?w=400&h=300&fit=cropfit=crop" alt="Gold Opulence" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Gold Opulence</h3>
+                    <p class="cake-desc">Luxurious gold leaf accents</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1596974928034-3c06c8f9e212?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1596974928034-3c06c8f9e212?w=400&h=300&fit=cropfit=crop" alt="Blush Romance" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Blush Romance</h3>
+                    <p class="cake-desc">Soft pink ombre perfection</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: KIDS SPECIAL -->
+    <div class="page variety-page page-8">
+        <div class="variety-header">
+            <h2>Kids Special</h2>
+            <p class="variety-subtitle">Magic & Wonder for Little Hearts</p>
+            <div class="variety-ornament">🎈</div>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">MAGICAL</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&h=300&fit=cropfit=crop" alt="Unicorn Dreams" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Unicorn Dreams</h3>
+                    <p class="cake-desc">Rainbow layers with magical horn and edible glitter clouds</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">HEROIC</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=cropfit=crop" alt="Superhero" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Superhero Squad</h3>
+                    <p class="cake-desc">Action-packed design with favorite comic heroes</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">ROYAL</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1598963657402-cbffee4e0cf7?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1598963657402-cbffee4e0cf7?w=400&h=300&fit=cropfit=crop" alt="Princess Castle" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Princess Castle</h3>
+                    <p class="cake-desc">Fairytale towers with fondant princess and sparkles</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <div class="cake-badge">FUN</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=300&fit=cropfit=crop" alt="Cartoon Fun" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Cartoon Carnival</h3>
+                    <p class="cake-desc">Vibrant characters from beloved animated shows</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 9: PREMIUM SELECTION -->
+    <div class="page variety-page page-9">
+        <div class="variety-header">
+            <h2>Premium Selection</h2>
+            <p class="variety-subtitle">Exclusive Gourmet Experience</p>
+            <div class="variety-ornament">⭐</div>
+        </div>
+        
+        <div class="cake-grid-3">
+            <div class="cake-card">
+                <div class="cake-badge">FRENCH</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=cropfit=crop" alt="Opera Cake" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Opera Classique</h3>
+                    <p class="cake-desc">French almond layers with coffee & chocolate</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">JAPANESE</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1600884153765-59d911ee2d05?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1600884153765-59d911ee2d05?w=400&h=300&fit=cropfit=crop" alt="Matcha Green Tea" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Matcha Zen</h3>
+                    <p class="cake-desc">Japanese green tea with white chocolate</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">ARTISAN</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=cropfit=crop" alt="Salted Caramel" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Salted Caramel Luxury</h3>
+                    <p class="cake-desc">Himalayan salt with caramel drizzle</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">EXCLUSIVE</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1590164003909-9f6a5ef27fed?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1590164003909-9f6a5ef27fed?w=400&h=300&fit=cropfit=crop" alt="Pistachio" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Pistachio Elegance</h3>
+                    <p class="cake-desc">Ground Turkish pistachios with rosewater</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">CELEBRATORY</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1565661535273-8b77beca5c92?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1565661535273-8b77beca5c92?w=400&h=300&fit=cropfit=crop" alt="Champagne" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Champagne Celebration</h3>
+                    <p class="cake-desc">Infused with premium bubbly</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <div class="cake-badge">FLORAL</div>
+                <div class="cake-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=400&h=300&fit=cropfit=crop" alt="Raspberry Rose" class="cake-image">
+                </div>
+                <div class="cake-info">
+                    <h3 class="cake-name">Raspberry Rose</h3>
+                    <p class="cake-desc">Persian rose with fresh raspberries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page variety-page page-4">
+        <div class="variety-header">
+            <h2>Fruit Paradise</h2>
+            <p class="variety-subtitle">Fresh & Fruity Sensations</p>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=cropfit=crop" alt="Strawberry Cream" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Strawberry Dream</h3>
+                    <p class="cake-desc">Fresh strawberries with whipped vanilla cream and delicate sponge layers</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=cropfit=crop" alt="Mixed Berry" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Mixed Berry Bliss</h3>
+                    <p class="cake-desc">Assorted berries with mascarpone cream creating a symphony of flavors</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=300&fit=cropfit=crop" alt="Tropical Mango" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Tropical Mango</h3>
+                    <p class="cake-desc">Alphonso mango pulp with light coconut cream transport you to paradise</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=cropfit=crop" alt="Black Forest" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Classic Black Forest</h3>
+                    <p class="cake-desc">Cherry-kissed chocolate layers with kirsch-soaked sponge and cream</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: CLASSIC ELEGANCE -->
+    <div class="page variety-page page-5">
+        <div class="variety-header">
+            <h2>Classic Elegance</h2>
+            <p class="variety-subtitle">Timeless Treasures</p>
+        </div>
+        
+        <div class="cake-grid-masonry">
+            <div class="cake-card cake-card-tall">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&h=600&fit=croph=400https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&h=600&fit=cropfit=crop" alt="Red Velvet" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Red Velvet Royale</h3>
+                    <p class="cake-desc">Velvety smooth with cream cheese frosting</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1557308536-ee471ef2c390?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1557308536-ee471ef2c390?w=400&h=300&fit=cropfit=crop" alt="Vanilla Bean" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Vanilla Bean</h3>
+                    <p class="cake-desc">Pure Madagascar vanilla essence</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=cropfit=crop" alt="Butter Scotch" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Butterscotch Bliss</h3>
+                    <p class="cake-desc">Caramel praline perfection</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1591184488262-1f999f7cdc6e?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1591184488262-1f999f7cdc6e?w=400&h=300&fit=cropfit=crop" alt="Pineapple" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Pineapple Paradise</h3>
+                    <p class="cake-desc">Fresh pineapple chunks with cream</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-tall">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=600&fit=croph=400https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=600&fit=cropfit=crop" alt="Tiramisu" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Italian Tiramisu</h3>
+                    <p class="cake-desc">Coffee-soaked layers of heaven</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1595941301372-39a17e7b819f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1595941301372-39a17e7b819f?w=400&h=300&fit=cropfit=crop" alt="Lemon Drizzle" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Lemon Drizzle</h3>
+                    <p class="cake-desc">Zesty citrus delight</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: DESIGNER CAKES -->
+    <div class="page variety-page page-6">
+        <div class="variety-header">
+            <h2>Designer Creations</h2>
+            <p class="variety-subtitle">Artistic Masterpieces</p>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=300&fit=cropfit=crop" alt="Floral Fantasy" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Floral Fantasy</h3>
+                    <p class="cake-desc">Handcrafted edible flowers adorning vanilla buttercream tiers</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1562440499-64c9a111f713?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1562440499-64c9a111f713?w=400&h=300&fit=cropfit=crop" alt="Geometric Dreams" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Geometric Dreams</h3>
+                    <p class="cake-desc">Modern art meets pastry with angular chocolate designs</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1576427920946-a03b0477a0bb?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1576427920946-a03b0477a0bb?w=400&h=300&fit=cropfit=crop" alt="Watercolor Wonder" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Watercolor Wonder</h3>
+                    <p class="cake-desc">Hand-painted fondant with artistic brush strokes</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=300&fit=cropfit=crop" alt="Metallic Glam" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Metallic Glamour</h3>
+                    <p class="cake-desc">Gold and silver lustre with mirror glaze finish</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: WEDDING DREAMS -->
+    <div class="page variety-page page-7">
+        <div class="variety-header">
+            <h2>Wedding Dreams</h2>
+            <p class="variety-subtitle">Your Perfect Day Deserves Perfection</p>
+        </div>
+        
+        <div class="cake-grid-3">
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=cropfit=crop" alt="Royal White" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Royal White</h3>
+                    <p class="cake-desc">Classic white tiered elegance</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&h=300&fit=cropfit=crop" alt="Rose Garden" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Rose Garden</h3>
+                    <p class="cake-desc">Fresh roses cascading romance</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=400&h=300&fit=cropfit=crop" alt="Ivory Lace" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Ivory Lace</h3>
+                    <p class="cake-desc">Delicate lace patterns in buttercream</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&h=300&fit=cropfit=crop" alt="Rustic Charm" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Rustic Charm</h3>
+                    <p class="cake-desc">Semi-naked with fresh florals</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1616690710400-a16d146927c5?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1616690710400-a16d146927c5?w=400&h=300&fit=cropfit=crop" alt="Gold Opulence" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Gold Opulence</h3>
+                    <p class="cake-desc">Luxurious gold leaf accents</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1596974928034-3c06c8f9e212?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1596974928034-3c06c8f9e212?w=400&h=300&fit=cropfit=crop" alt="Blush Romance" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Blush Romance</h3>
+                    <p class="cake-desc">Soft pink ombre perfection</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: KIDS SPECIAL -->
+    <div class="page variety-page page-8">
+        <div class="variety-header">
+            <h2>Kids Special</h2>
+            <p class="variety-subtitle">Magic & Wonder for Little Hearts</p>
+        </div>
+        
+        <div class="cake-grid-2">
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&h=300&fit=cropfit=crop" alt="Unicorn Dreams" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Unicorn Dreams</h3>
+                    <p class="cake-desc">Rainbow layers with magical horn and edible glitter clouds</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=300&fit=cropfit=crop" alt="Superhero" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Superhero Squad</h3>
+                    <p class="cake-desc">Action-packed design with favorite comic heroes</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1598963657402-cbffee4e0cf7?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1598963657402-cbffee4e0cf7?w=400&h=300&fit=cropfit=crop" alt="Princess Castle" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Princess Castle</h3>
+                    <p class="cake-desc">Fairytale towers with fondant princess and sparkles</p>
+                </div>
+            </div>
+            
+            <div class="cake-card cake-card-large">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=300&fit=cropfit=crop" alt="Cartoon Fun" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Cartoon Carnival</h3>
+                    <p class="cake-desc">Vibrant characters from beloved animated shows</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 9: PREMIUM SELECTION -->
+    <div class="page variety-page page-9">
+        <div class="variety-header">
+            <h2>Premium Selection</h2>
+            <p class="variety-subtitle">Exclusive Gourmet Experience</p>
+        </div>
+        
+        <div class="cake-grid-3">
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=cropfit=crop" alt="Opera Cake" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Opera Classique</h3>
+                    <p class="cake-desc">French almond layers with coffee & chocolate</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1600884153765-59d911ee2d05?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1600884153765-59d911ee2d05?w=400&h=300&fit=cropfit=crop" alt="Matcha Green Tea" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Matcha Zen</h3>
+                    <p class="cake-desc">Japanese green tea with white chocolate</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1557912407-aff79febe6bb?w=400&h=300&fit=cropfit=crop" alt="Salted Caramel" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Salted Caramel Luxury</h3>
+                    <p class="cake-desc">Himalayan salt with caramel drizzle</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1590164003909-9f6a5ef27fed?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1590164003909-9f6a5ef27fed?w=400&h=300&fit=cropfit=crop" alt="Pistachio" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Pistachio Elegance</h3>
+                    <p class="cake-desc">Ground Turkish pistachios with rosewater</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1565661535273-8b77beca5c92?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1565661535273-8b77beca5c92?w=400&h=300&fit=cropfit=crop" alt="Champagne" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Champagne Celebration</h3>
+                    <p class="cake-desc">Infused with premium bubbly</p>
+                </div>
+            </div>
+            
+            <div class="cake-card">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=400&h=300&fit=croph=400https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=400&h=300&fit=cropfit=crop" alt="Raspberry Rose" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Raspberry Rose</h3>
+                    <p class="cake-desc">Persian rose with fresh raspberries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 10: CONTACT - ULTRA LUXURY -->
+    <div class="page contact-page">
+        <div class="luxury-corner"></div>
+        <div class="luxury-corner"></div>
+        <div class="luxury-corner"></div>
+        <div class="luxury-corner"></div>
+        <div class="contact-luxury-border"></div>
+        
+        <div class="contact-header">
+            <h2>Get in Touch</h2>
+            <div class="contact-divider"></div>
+            <p class="contact-subtitle">Let's Create Magic Together</p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Visit Us</h3>
+                        <p>123 Cake Street, Bakery Lane<br>Sweet City, SC 12345<br>Next to Central Park</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567<br>+1 (555) 987-6543<br>Mon - Sat: 9 AM - 8 PM</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84ebf6e0e1f6f7c4e0edf2edeae1e7e5efe1f7aae7ebe9">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="670e09010827030e110e090204060c02144904080a">[email&#160;protected]</a><br>We reply within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <h3>Online</h3>
+                        <p>www.divinecakes.com<br>Order online 24/7<br>Free delivery above $50</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-map">
+                <div class="map-placeholder">
+                    🗺️
+                    <div class="map-text">FIND US ON THE MAP</div>
+                </div>
+                
+                <div class="social-links">
+                    <div class="social-icon">📘</div>
+                    <div class="social-icon">📷</div>
+                    <div class="social-icon">🐦</div>
+                    <div class="social-icon">📌</div>
+                  

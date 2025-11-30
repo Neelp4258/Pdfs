@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Statement - DAZZLO ENTERPRISES PRIVATE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+            position: relative;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6B2C91 0%, #8B3BAB 100%);
+            color: white;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .logo {
+            background: white;
+            color: #6B2C91;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 1.2;
+        }
+
+        .logo-small {
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px 40px;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+            margin-bottom: 25px;
+            font-size: 11px;
+        }
+
+        .info-item {
+            display: flex;
+            padding: 4px 0;
+        }
+
+        .info-label {
+            min-width: 140px;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: #000;
+            flex: 1;
+        }
+
+        .statement-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 9px;
+        }
+
+        .statement-table th {
+            background: #f8f8f8;
+            padding: 10px 6px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #ddd;
+            font-size: 9px;
+        }
+
+        .statement-table td {
+            padding: 8px 6px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        .statement-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .amount-debit {
+            text-align: right;
+            color: #d32f2f;
+        }
+
+        .amount-credit {
+            text-align: right;
+            color: #388e3c;
+        }
+
+        .amount-balance {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background: #f0f0f0 !important;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 40px;
+            background: #f8f8f8;
+            border-top: 3px solid #6B2C91;
+            font-size: 8px;
+        }
+
+        .footer-address {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        .footer-links div {
+            text-align: center;
+        }
+
+        .footer-signature {
+            text-align: right;
+            margin-top: 8px;
+            font-style: italic;
+            color: #666;
+            font-size: 8px;
+        }
+
+        .page-number {
+            text-align: right;
+            font-size: 8px;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="header">
+            <h1>ACCOUNT STATEMENT</h1>
+            <div class="logo">
+                <div style="font-size: 24px;">AU</div>
+                <div class="logo-small">SMALL</div>
+                <div class="logo-small">FINANCE</div>
+                <div class="logo-small">BANK</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="info-section">
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">Name</span>
+                        <span class="info-value">: DAZZLO ENTERPRISES PRIVATE</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Customer ID</span>
+                        <span class="info-value">: 40000209</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Customer Type</span>
+                        <span class="info-value">: Pvt Ltd</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Joint Holders</span>
+                        <span class="info-value">: Siddhant</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Address</span>
+                        <span class="info-value">: Bk No 92 A R No 12 Kalyan City,<br>&nbsp;&nbsp;Thane, Kalyan<br>&nbsp;&nbsp;Kalyan - 421301, Maharashtra -<br>&nbsp;&nbsp;India</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Statement Date</span>
+                        <span class="info-value">: 24 Nov 2025</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Statement Period</span>
+                        <span class="info-value">: 01 Aug 2025 to 31 Oct 2025</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-item">
+                        <span class="info-label">Account Number</span>
+                        <span class="info-value">: 2502234676621230</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Account Type</span>
+                        <span class="info-value">: AU Current Account-Basic</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Branch</span>
+                        <span class="info-value">: Kalyan</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">IFSC</span>
+                        <span class="info-value">: AUBL0002346</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nominee</span>
+                        <span class="info-value">: -</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Opening Balance(₹)</span>
+                        <span class="info-value">: 10,764.00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Closing Balance(₹)</span>
+                        <span class="info-value">: 1,99,000.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <table class="statement-table">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Transaction<br>Date</th>
+                        <th style="width: 8%;">Value Date</th>
+                        <th style="width: 36%;">Description/Narration</th>
+                        <th style="width: 15%;">Cheque/<br>Reference No.</th>
+                        <th style="width: 11%;">Debit (₹)</th>
+                        <th style="width: 11%;">Credit (₹)</th>
+                        <th style="width: 11%;">Balance (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>27 Jul 2025</td>
+                        <td>27 Jul 2025</td>
+                        <td>NEFT CR-VELOX SOLUTIONS<br>PVT LTD-PAYMENT<br>RECEIVED FOR SERVICES-<br>INV#VS2025/078</td>
+                        <td>NEFT072725001234</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">1,19,000.00</td>
+                        <td class="amount-balance">1,29,764.00</td>
+                    </tr>
+                    <tr>
+                        <td>29 Jul 2025</td>
+                        <td>29 Jul 2025</td>
+                        <td>NEFT CR-VELOX SOLUTIONS<br>PVT LTD-PAYMENT<br>RECEIVED FOR SERVICES-<br>INV#VS2025/082</td>
+                        <td>NEFT072925005678</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">45,000.00</td>
+                        <td class="amount-balance">1,74,764.00</td>
+                    </tr>
+                    <tr>
+                        <td>16 Aug 2025</td>
+                        <td>16 Aug 2025</td>
+                        <td>CASH DEPOSIT-<br>KALYAN BRANCH-<br>DEPOSIT SLIP NO:<br>KLN/CD/2025/08/1634</td>
+                        <td>CD081625009876</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">4,00,000.00</td>
+                        <td class="amount-balance">5,74,764.00</td>
+                    </tr>
+                    <tr>
+                        <td>16 Aug 2025</td>
+                        <td>16 Aug 2025</td>
+                        <td>RTGS-NIPPON INDIA<br>MUTUAL FUND-<br>INVESTMENT IN MUTUAL<br>FUND-FOLIO NO:<br>123456789/10</td>
+                        <td>RTGS081625004521</td>
+                        <td class="amount-debit">3,65,000.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">2,09,764.00</td>
+                    </tr>
+                    <tr>
+                        <td>25 Aug 2025</td>
+                        <td>25 Aug 2025</td>
+                        <td>UPI/CR/110309195486/SID<br>DHANT DNYANESH<br>SURYAVANSHI/SBIN/0000<br>0043208177087/UPI AU<br>JAGATPURA</td>
+                        <td>HDF413d987ee54b4<br>726b61c7d80f754f38<br>b</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">11,000.00</td>
+                        <td class="amount-balance">2,20,764.00</td>
+                    </tr>
+                    <tr>
+                        <td>26 Aug 2025</td>
+                        <td>26 Aug 2025</td>
+                        <td>NEFT DRAUBLN6202508262524050<br>9 -SIDDHANT DNYANESH<br>SURYAVANASHI -<br>SBIN0016325 -TEST</td>
+                        <td>AUBLN62025082625<br>240509</td>
+                        <td class="amount-debit">10.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">2,20,754.00</td>
+                    </tr>
+                    <tr>
+                        <td>26 Aug 2025</td>
+                        <td>26 Aug 2025</td>
+                        <td>IMPS-523815478891 -<br>SIDDHANT DNYANESH SU<br>-SBIN0016325 -*******7087 -<br>PERSONAL WITHDRAW</td>
+                        <td>523815478891</td>
+                        <td class="amount-debit">10,000.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">2,10,754.00</td>
+                    </tr>
+                    <tr>
+                        <td>27 Aug 2025</td>
+                        <td>27 Aug 2025</td>
+                        <td>IMPS-523916536414 -<br>DARSHANA DNYANESH SU<br>-UBIN0532070 -<br>***********5240 -<br>RESUBMISSION OF TAKEN<br>AMOUNT</td>
+                        <td>523916536414</td>
+                        <td class="amount-debit">11,000.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">1,99,754.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>IMPS-525009906995 -<br>CASHFREE PAYMENTS IN -<br>NSPB0000002 -********0008<br>-BAV</td>
+                        <td>525009906995</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">1.00</td>
+                        <td class="amount-balance">1,99,755.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>IMPS-525030465017 -<br>INNOFINSOLUTIONSPR -<br>UTIB0003567 -***********9141<br>-IMPS</td>
+                        <td>525030465017</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">1.00</td>
+                        <td class="amount-balance">1,99,756.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>IMPS-525010164477 -<br>SIDDHANT DNYANESH SU<br>-SBIN0016325 -*******7087 -<br>WITHDRAWAL DUE TO NO<br>CHECK BOOK</td>
+                        <td>525010164477</td>
+                        <td class="amount-debit">750.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">1,99,006.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <div class="footer-signature page-number">Page 1 of 2</div>
+            <div class="footer-signature">This is an auto generated statement and requires no signature</div>
+            <div class="footer-note">Please review the information provided in the statement. In case of any discrepancy, please inform the Bank immediately</div>
+            <div class="footer-links">
+                <div><strong>Call us at</strong><br>1800 1200 1200</div>
+                <div><strong>Website</strong><br>www.aubank.in</div>
+                <div><strong>Email</strong><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21425452554e4c44534240534461405443404f4a0f484f">[email&#160;protected]</a></div>
+                <div><strong>Write to us at</strong><br>Reg. office address</div>
+                <div><strong>Follow us on</strong><br>Facebook/Twitter</div>
+            </div>
+            <div class="footer-address">19A, DHULESHWAR GARDEN, AJMER ROAD, JAIPUR - 302001, RAJASTHAN (INDIA) Ph.: +91 141 4110060/61, TOLL-FREE: 1800 1200 1200</div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="header">
+            <h1>ACCOUNT STATEMENT</h1>
+            <div class="logo">
+                <div style="font-size: 24px;">AU</div>
+                <div class="logo-small">SMALL</div>
+                <div class="logo-small">FINANCE</div>
+                <div class="logo-small">BANK</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <table class="statement-table">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Transaction<br>Date</th>
+                        <th style="width: 8%;">Value Date</th>
+                        <th style="width: 36%;">Description/Narration</th>
+                        <th style="width: 15%;">Cheque/<br>Reference No.</th>
+                        <th style="width: 11%;">Debit (₹)</th>
+                        <th style="width: 11%;">Credit (₹)</th>
+                        <th style="width: 11%;">Balance (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>RETURN IMPS-<br>525010164477 -SIDDHANT<br>DNYANESH SU -<br>SBIN0016325 -*******7087 -<br>WITHDRAWAL DUE TO NO<br>CHECK BOOK</td>
+                        <td>525010164477</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">750.00</td>
+                        <td class="amount-balance">1,99,756.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>IMPS-525010165572 -<br>SIDDHANT DNYANESH SU<br>-SBIN0016325 -*******7087 -<br>NONE</td>
+                        <td>525010165572</td>
+                        <td class="amount-debit">750.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">1,99,006.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>RETURN IMPS-<br>525010165572 -SIDDHANT<br>DNYANESH SU -<br>SBIN0016325 -*******7087 -<br>NONE</td>
+                        <td>525010165572</td>
+                        <td class="amount-debit">-</td>
+                        <td class="amount-credit">750.00</td>
+                        <td class="amount-balance">1,99,756.00</td>
+                    </tr>
+                    <tr>
+                        <td>07 Sep 2025</td>
+                        <td>07 Sep 2025</td>
+                        <td>IMPS-525010165650 -<br>PURVA DNYANESH SURYA<br>-UBIN0532070 -<br>***********5906 -<br>WITHDRAWAL DUE TO NO<br>CHECK BOOK</td>
+                        <td>525010165650</td>
+                        <td class="amount-debit">750.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">1,99,006.00</td>
+                    </tr>
+                    <tr>
+                        <td>29 Sep 2025</td>
+                        <td>29 Sep 2025</td>
+                        <td>RETURN HANDLING<br>CHARGES 08-07-<br>25_449403</td>
+                        <td></td>
+                        <td class="amount-debit">6.00</td>
+                        <td class="amount-credit">-</td>
+                        <td class="amount-balance">1,99,000.00</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="4" style="text-align: right; padding-right: 10px;">Total</td>
+                        <td class="amount-debit">3,88,266.00</td>
+                        <td class="amount-credit">5,77,502.00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <div class="footer-signature page-number">Page 2 of 2</div>
+            <div class="footer-signature">This is an auto generated statement and requires no signature</div>
+            <div class="footer-note">Please review the information provided in the statement. In case of any discrepancy, please inform the Bank immediately</div>
+            <div class="footer-links">
+                <div><strong>Call us at</strong><br>1800 1200 1200</div>
+                <div><strong>Website</strong><br>www.aubank.in</div>
+                <div><strong>Email</strong><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e5869096918a88809786849780a5849087848b8ecb8c8b">[email&#160;protected]</a></div>
+                <div><strong>Write to us at</strong><br>Reg. office address</div>
+                <div><strong>Follow us on</strong><br>Fa

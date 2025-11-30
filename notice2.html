@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Notice - Material Theft Compensation</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            padding: 25px 30px;
+            margin: -15mm -15mm 20px -15mm;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        .company-name {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .company-tagline {
+            font-size: 11px;
+            opacity: 0.85;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .doc-type {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 16px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        
+        .meta-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: linear-gradient(to right, #ecf0f1, #bdc3c7);
+            border-radius: 4px;
+        }
+        
+        .meta-item {
+            text-align: center;
+            padding: 8px;
+            background: white;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .meta-label {
+            font-size: 9px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .meta-value {
+            font-size: 11px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .recipient-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .address-card {
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+        
+        .address-label {
+            font-size: 10px;
+            color: #3498db;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .address-content {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            background: linear-gradient(to right, #34495e, #2c3e50);
+            color: white;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 20px 0 15px 0;
+            border-radius: 3px;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #3498db;
+        }
+        
+        .content-text {
+            font-size: 11px;
+            text-align: justify;
+            margin-bottom: 12px;
+            line-height: 1.7;
+            color: #34495e;
+        }
+        
+        .timeline-container {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: #3498db;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #3498db;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 15px);
+            background: #bdc3c7;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        
+        .timeline-content {
+            font-size: 10px;
+            color: #34495e;
+            line-height: 1.5;
+        }
+        
+        .parties-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .parties-table thead {
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            color: white;
+        }
+        
+        .parties-table th {
+            padding: 12px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .parties-table td {
+            padding: 12px;
+            font-size: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .parties-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .parties-table tbody tr:hover {
+            background: #e8f4f8;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .role-accused {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .role-receiver {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .role-witness {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .evidence-card {
+            padding: 15px;
+            background: white;
+            border: 2px solid #27ae60;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .evidence-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .evidence-title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+        
+        .evidence-desc {
+            font-size: 9px;
+            color: #7f8c8d;
+        }
+        
+        .financial-impact {
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .financial-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .financial-amount {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .financial-range {
+            font-size: 10px;
+            opacity: 0.85;
+        }
+        
+        .demands-checklist {
+            background: #fff9e6;
+            padding: 20px;
+            border-left: 5px solid #f39c12;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .demand-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 10px;
+        }
+        
+        .demand-number {
+            min-width: 24px;
+            height: 24px;
+            background: #f39c12;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 11px;
+        }
+        
+        .demand-text {
+            flex: 1;
+            padding-top: 3px;
+            line-height: 1.6;
+        }
+        
+        .warning-box {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .warning-title {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .warning-text {
+            font-size: 10px;
+            line-height: 1.7;
+        }
+        
+        .deadline-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to right, #8e44ad, #9b59b6);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .deadline-label {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        
+        .deadline-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .signature-block {
+            text-align: center;
+        }
+        
+        .signature-line {
+            border-top: 2px solid #2c3e50;
+            margin-top: 50px;
+            padding-top: 8px;
+        }
+        
+        .signature-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+        
+        .signature-title {
+            font-size: 9px;
+            color: #7f8c8d;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #34495e;
+            color: white;
+            text-align: center;
+            font-size: 9px;
+            border-radius: 4px;
+            margin-left: -15mm;
+            margin-right: -15mm;
+            margin-bottom: -15mm;
+        }
+        
+        .stat-box {
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="doc-type">LEGAL NOTICE</div>
+            <div class="company-name">INFINITE SOLUTIONS</div>
+            <div class="company-tagline">AUTOMATED PARKING SYSTEMS & INFRASTRUCTURE SOLUTIONS</div>
+        </div>
+        
+        <div class="meta-bar">
+            <div class="meta-item">
+                <div class="meta-label">Reference No.</div>
+                <div class="meta-value">IS/AVK/LN/2025/001</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Date of Issue</div>
+                <div class="meta-value">30 September 2025</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Project Code</div>
+                <div class="meta-value">AVK-APS-2025</div>
+            </div>
+        </div>
+        
+        <div class="recipient-box">
+            <div class="address-card">
+                <div class="address-label">To</div>
+                <div class="address-content">
+                    <strong>The Builder / Project Head</strong><br>
+                    Avishkar Commercial Infrastructure<br>
+                    Kharadi, Pune - 411014<br>
+                    Maharashtra, India
+                </div>
+            </div>
+            <div class="address-card" style="border-left-color: #27ae60;">
+                <div class="address-label" style="color: #27ae60;">From</div>
+                <div class="address-content">
+                    <strong>Infinite Solutions</strong><br>
+                    Automated Parking Division<br>
+                    Project: Avishkar Infrastructure<br>
+                    Kharadi, Pune
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">SUBJECT MATTER</div>
+        <div class="content-text" style="background: #e8f4f8; padding: 15px; border-radius: 4px; font-weight: 500;">
+            Legal Notice for Immediate Compensation and Recovery of Stolen Materials - Systematic Theft by Contractor's Labour Personnel Causing Financial Losses of ₹4-5 Lakh
+        </div>
+        
+        <div class="section-title">EXECUTIVE SUMMARY</div>
+        <div class="content-text">
+            This legal notice formally addresses repeated incidents of theft and material misappropriation at the Avishkar Commercial Infrastructure Project. Our company, engaged for Automated Parking System Installation, has suffered substantial financial losses due to systematic theft perpetrated by labour personnel employed by contractor <strong>Dharma Nirmal</strong>. The matter has been investigated, documented with CCTV evidence, and the accused has confessed to the crime.
+        </div>
+        
+        <div class="section-title">INCIDENT TIMELINE - CHRONOLOGICAL SEQUENCE</div>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">PAST FEW MONTHS (Ongoing)</div>
+                    <div class="timeline-content">Continuous theft of materials from Infinite Solutions inventory observed. Multiple complaints raised verbally with site management.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">PRIOR INCIDENT (Date Unknown)</div>
+                    <div class="timeline-content">Gadadhar (Site Supervisor, Dharma Nirmal) caught another labour stealing inventory. Warning issued but no formal action taken.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">22 SEPTEMBER 2025 | 8:30 PM - 9:00 PM</div>
+                    <div class="timeline-content"><strong>THEFT COMMITTED:</strong> Raushan Singh captured on CCTV stealing materials from Infinite Solutions inventory. Materials hidden in labour camp at project site.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">29 SEPTEMBER 2025 | 11:00 AM</div>
+                    <div class="timeline-content"><strong>DISCOVERY:</strong> Our supervisor noticed significant material shortage. Initiated immediate investigation and CCTV footage review.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">29 SEPTEMBER 2025 | 11:00 AM - 8:00 PM</div>
+                    <div class="timeline-content">Our supervisor was occupied at another site location during investigation period.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div>
+                    <div class="timeline-date">29 SEPTEMBER 2025 | 8:00 PM</div>
+                    <div class="timeline-content"><strong>CONFRONTATION:</strong> Our supervisor confronted Raushan Singh upon return to site. Accused admitted guilt and confessed to theft. Revealed materials were sold to Khalid Ahmed (scrap dealer).</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">PARTIES INVOLVED - DETAILED BREAKDOWN</div>
+        <table class="parties-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Name / Entity</th>
+                    <th style="width: 20%;">Role</th>
+                    <th style="width: 30%;">Affiliation</th>
+                    <th style="width: 25%;">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Raushan Singh</strong></td>
+                    <td><span class="role-badge role-accused">PRIMARY ACCUSED</span></td>
+                    <td>Labour - Dharma Nirmal Contractor</td>
+                    <td>Perpetrator of theft; Confessed on 29 Sept; Resides in labour camp at site</td>
+                </tr>
+                <tr>
+                    <td><strong>Khalid Ahmed</strong></td>
+                    <td><span class="role-badge role-receiver">RECEIVER</span></td>
+                    <td>Scrap Dealer (Bhangar Wala)</td>
+                    <td>Purchased stolen materials; Located ~200m from project site</td>
+                </tr>
+                <tr>
+                    <td><strong>Dharma Nirmal</strong></td>
+                    <td><span class="role-badge" style="background: #95a5a6; color: white;">CONTRACTOR</span></td>
+                    <td>Civil Services Contractor</td>
+                    <td>Employer of accused labour; Responsible for staff conduct</td>
+                </tr>
+                <tr>
+                    <td><strong>Gadadhar</strong></td>
+                    <td><span class="role-badge role-witness">WITNESS</span></td>
+                    <td>Site Supervisor - Dharma Nirmal</td>
+                    <td>Previously caught another labour stealing; Issued warning</td>
+                </tr>
+                <tr>
+                    <td><strong>Infinite Solutions</strong></td>
+                    <td><span class="role-badge" style="background: #27ae60; color: white;">VICTIM</span></td>
+                    <td>Automated Parking Systems</td>
+                    <td>Contracted vendor; Suffered material losses</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="section-title">EVIDENCE DOCUMENTATION</div>
+        <div class="evidence-grid">
+            <div class="evidence-card">
+                <div class="evidence-icon">📹</div>
+                <div class="evidence-title">CCTV FOOTAGE</div>
+                <div class="evidence-desc">Video recording dated 22 Sept 2025, 8:30-9:00 PM showing theft in progress</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-icon">✍️</div>
+                <div class="evidence-title">VERBAL CONFESSION</div>
+                <div class="evidence-desc">Raushan Singh admitted guilt on 29 Sept 2025, 8:00 PM</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-icon">📊</div>
+                <div class="evidence-title">INVENTORY RECORDS</div>
+                <div class="evidence-desc">Material discrepancy logs and purchase invoices</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-icon">👤</div>
+                <div class="evidence-title">WITNESS TESTIMONY</div>
+                <div class="evidence-desc">Statement from our site supervisor and Gadadhar</div>
+            </div>
+        </div>
+        
+        <div class="section-title">FINANCIAL IMPACT ASSESSMENT</div>
+        <div class="financial-impact">
+            <div class="financial-label">ESTIMATED VALUE OF STOLEN MATERIALS</div>
+            <div class="financial-amount">₹ 4,00,000 - 5,00,000</div>
+            <div class="financial-range">(Rupees Four Lakh to Five Lakh Only)</div>
+        </div>
+        
+        <div class="content-text">
+            The above estimation is based on current market rates, original purchase invoices, and inventory valuation records maintained by Infinite Solutions. This represents a significant financial loss impacting project timelines and operational efficiency.
+        </div>
+        
+        <div class="section-title">LIABILITY & LEGAL RESPONSIBILITY</div>
+        <div class="content-text">
+            Under standard industry practices and contractual obligations, the project builder/head bears responsibility for:
+        </div>
+        <div class="content-text" style="margin-left: 20px;">
+            <strong>①</strong> Security and safety of all contractors and sub-contractors<br>
+            <strong>②</strong> Supervision of contractor personnel engaged on project premises<br>
+            <strong>③</strong> Prevention of criminal activities within project boundaries<br>
+            <strong>④</strong> Accountability for damages caused by contractor employees
+        </div>
+        <div class="content-text">
+            The contractor <strong>Dharma Nirmal</strong> was engaged by your organization. Their employee's criminal conduct has resulted in substantial losses. The systematic nature of thefts, storage of stolen goods within project premises, and previous unreported incidents demonstrate gross negligence in security protocols.
+        </div>
+        
+        <div class="section-title">FORMAL DEMANDS</div>
+        <div class="demands-checklist">
+            <div class="demand-item">
+                <div class="demand-number">1</div>
+                <div class="demand-text">
+                    <strong>IMMEDIATE FINANCIAL COMPENSATION:</strong> Payment of ₹4,00,000 to ₹5,00,000 for stolen materials based on market valuation and purchase documentation.
+                </div>
+            </div>
+            <div class="demand-item">
+                <div class="demand-number">2</div>
+                <div class="demand-text">
+                    <strong>MATERIAL RECOVERY INVESTIGATION:</strong> Thorough investigation to recover stolen materials from Khalid Ahmed and his scrap dealing establishment.
+                </div>
+            </div>
+            <div class="demand-item">
+                <div class="demand-number">3</div>
+                <div class="demand-text">
+                    <strong>CRIMINAL PROSECUTION:</strong> Filing of FIR and initiation of legal proceedings against Raushan Singh (theft) and Khalid Ahmed (receiving stolen property).
+                </div>
+            </div>
+            <div class="demand-item">
+                <div class="demand-number">4</div>
+                <div class="demand-text">
+                    <strong>ENHANCED SECURITY MEASURES:</strong> Implementation of stringent security protocols, enhanced surveillance, and regular audits to prevent future incidents.
+                </div>
+            </div>
+            <div class="demand-item">
+                <div class="demand-number">5</div>
+                <div class="demand-text">
+                    <strong>CONTRACTOR ACCOUNTABILITY:</strong> Formal action against contractor Dharma Nirmal for employee misconduct and inadequate supervision.
+                </div>
+            </div>
+            <div class="demand-item">
+                <div class="demand-number">6</div>
+                <div class="demand-text">
+                    <strong>WRITTEN ACKNOWLEDGMENT:</strong> Formal response acknowledging incident and detailing proposed remedial actions and compensation timeline.
+                </div>
+            </div>
+        </div>
+        
+        <div class="deadline-bar">
+            <div>
+                <div class="deadline-label">RESPONSE DEADLINE</div>
+                <div style="font-size: 12px; margin-top: 5px;">From date of receipt of this notice</div>
+            </div>
+            <div class="deadline-value">15 DAYS</div>
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">⚠️ LEGAL CONSEQUENCES OF NON-COMPLIANCE</div>
+            <div class="warning-text">
+                Failure to respond satisfactorily or provide compensation within the stipulated 15-day period will compel Infinite Solutions to initiate the following actions:<br><br>
+                <strong>•</strong> Filing of criminal FIR for theft (Section 379 IPC), criminal breach of trust, and receiving stolen property<br>
+                <strong>•</strong> Civil litigation for recovery of damages, including consequential losses and legal costs<br>
+                <strong>•</strong> Immediate suspension of our work on the project<br>
+                <strong>•</strong> Claims for project delay damages and reputational harm<br>
+                <strong>•</strong> Formal complaints to relevant industry bodies and regulatory authorities<br>
+                <strong>•</strong> Recovery proceedings against all responsible parties including the builder and contractor
+            </div>
+        </div>
+        
+        <div class="section-title">CLOSING STATEMENT</div>
+        <div class="content-text">
+            We trust you will treat this matter with the urgency it demands and take immediate corrective action. While we remain open to an amicable resolution, we will not hesitate to pursue all available legal remedies to protect our interests and recover our losses.
+        </div>
+        <div class="content-text" style="font-weight: 600; margin-top: 15px;">
+            All rights, remedies, claims, and contentions are expressly reserved without prejudice.
+        </div>
+        
+        <div class="signature-grid">
+            <div class="signature-block">
+                <div class="signature-line">
+                    <div class="signature-name">Authorized Signatory</div>
+                    <div class="signature-title">INFINITE SOLUTIONS</div>
+                    <div class="signature-title">Project Manager - Avishkar Project</div>
+                </div>
+            </div>
+            <div class="signature-block">
+                <div style="margin-top: 50px; text-align: left; font-size: 10px; color: #7f8c8d;">
+                    <div style="margin-bottom: 8px;"><strong>Date:</strong> 30 September 2025</div>
+                    <div style="margin-bottom: 8px;"><strong>Place:</strong> Pune, Maharashtra</div>
+                    <div><strong>Encl:</strong> Evidence Documentation</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div style="margin-bottom: 10px; font-size: 11px; font-weight: bold; letter-spacing: 1px;">INFINITE SOLUTIONS</div>
+            <div style="margin-bottom: 8px;">Automated Parking Systems & Infrastructure Solutions</div>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <span class="stat-box">CONFIDENTIAL LEGAL DOCUMENT</span>
+                <span class="stat-box">REQUIRES IMMEDIATE ATTENTION</span>
+                <span class="stat-box">15-DAY RESPONSE DEADLINE</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

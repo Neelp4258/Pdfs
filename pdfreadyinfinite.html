@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Solutions - Smart Parking Systems</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+        
+        .page {
+            background: white;
+            max-width: 210mm;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+        
+        /* Page Break Controls for A4 PDF */
+        .page-section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+        
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            body {
+                background: white !important;
+            }
+            
+            .content-section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            h2.section-title {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+            
+            table {
+                page-break-inside: avoid;
+                break-inside: auto;
+            }
+            
+            tr {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .hero-section,
+            .letterhead {
+                page-break-after: avoid;
+            }
+        }
+        
+        /* Letterhead - Luxury Design */
+        .letterhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            background: linear-gradient(165deg, #87CEEB 0%, #E0F6FF 50%, #B0E0E6 100%);
+            color: #333;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid #F5DEB3;
+        }
+        
+        .letterhead::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            gap: 25px;
+        }
+        
+        .logo-placeholder {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #F5DEB3 0%, #FAEBD7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #4682B4;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(135,206,235,0.4);
+            border: 3px solid rgba(135,206,235,0.3);
+            position: relative;
+        }
+        
+        .logo-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #87CEEB, transparent, #87CEEB) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+        
+        .company-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .company-info p {
+            font-size: 16px;
+            font-style: italic;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            text-align: right;
+            font-size: 13px;
+            line-height: 2;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+        }
+        
+        .contact-info strong {
+            font-weight: 600;
+            color: #8B7355;
+        }
+        
+        /* Hero Section - Premium */
+        .hero-section {
+            background: linear-gradient(165deg, #87CEEB 0%, #E0F6FF 50%, #B0E0E6 100%);
+            color: #333;
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(245,222,179,0.15) 2px, rgba(245,222,179,0.15) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(245,222,179,0.15) 2px, rgba(245,222,179,0.15) 4px);
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #F5DEB3, transparent);
+        }
+        
+        .hero-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        
+        .hero-section p {
+            font-size: 24px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .hero-tagline {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #F5DEB3;
+        }
+        
+        /* Content Sections - Modern Premium */
+        .content-section {
+            padding: 50px 50px;
+            background: white;
+            position: relative;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #4682B4;
+            font-size: 42px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4682B4 0%, #F5DEB3 50%, transparent 100%);
+        }
+        
+        .about-text {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 22px;
+            text-align: justify;
+            font-weight: 400;
+        }
+        
+        .about-text strong {
+            color: #4682B4;
+            font-weight: 600;
+        }
+        
+        /* Highlight Box - Elegant */
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #F5DEB3;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .highlight-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4682B4;
+            font-size: 26px;
+            margin-bottom: 18px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-box p {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Features Grid - Premium Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            border-top: 4px solid #F5DEB3;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.12);
+            border-top-color: #4682B4;
+        }
+        
+        .feature-card h3 {
+            color: #4682B4;
+            font-size: 18px;
+            margin-bottom: 14px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .feature-card p {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        /* Advantages Section - Icon Based */
+        .advantages-section {
+            padding: 60px 60px;
+            background: linear-gradient(165deg, #4682B4 0%, #87CEEB 100%);
+            color: white;
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .advantages-section .section-title {
+            color: white;
+        }
+        
+        .advantages-section .section-title::after {
+            background: linear-gradient(90deg, #F5DEB3 0%, white 50%, transparent 100%);
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .advantage-item {
+            display: flex;
+            align-items: start;
+            gap: 25px;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.2);
+            transition: all 0.3s;
+        }
+        
+        .advantage-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(212,175,55,0.5);
+            transform: translateX(8px);
+        }
+        
+        .advantage-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #F5DEB3 0%, #f8e5a0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4682B4;
+            font-size: 28px;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .advantage-content h3 {
+            color: #F5DEB3;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .advantage-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        /* Product Range - Premium Layout */
+        .product-range {
+            background: linear-gradient(to bottom, #fafbfc 0%, #f5f6f8 100%);
+            padding: 60px 60px;
+            position: relative;
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .product-range::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #F5DEB3, transparent);
+        }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-top: 50px;
+        }
+        
+        .product-category {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid #F5DEB3;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+        
+        .product-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            border-left-color: #4682B4;
+        }
+        
+        .product-category h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4682B4;
+            font-size: 22px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .product-category ul {
+            list-style: none;
+        }
+        
+        .product-category li {
+            padding: 12px 0;
+            font-size: 14px;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+            font-weight: 400;
+            transition: all 0.2s;
+        }
+        
+        .product-category li:hover {
+            color: #4682B4;
+            padding-left: 10px;
+        }
+        
+        .product-category li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Technical Specifications - Modern Cards */
+        .specifications-section {
+            padding: 60px 60px;
+            background: white;
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .spec-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spec-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #F5DEB3, #4682B4, #F5DEB3);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        
+        .spec-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .spec-card:hover {
+            border-color: #F5DEB3;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .spec-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4682B4;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .spec-card p {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        /* Projects Section - Professional Grid */
+        .projects-section {
+            padding: 60px 60px;
+            background: linear-gradient(to bottom, #fafbfc 0%, #ffffff 100%);
+            page-break-before: always;
+            break-before: page;
+        }
+        
+        .projects-page-1,
+        .projects-page-2 {
+            min-height: 297mm;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .projects-page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #F5DEB3, #4682B4);
+            transform: translateX(-6px);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border-color: #F5DEB3;
+        }
+        
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4682B4;
+            font-size: 19px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .project-table {
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .project-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .project-table td:first-child {
+            font-weight: 600;
+            color: #4682B4;
+            width: 35%;
+        }
+        
+        .project-table td:last-child {
+            color: #444;
+        }
+        
+        /* Testimonials - Elegant Design */
+        .testimonials-section {
+            padding: 60px 60px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 5px solid #F5DEB3;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 80px;
+            color: rgba(212,175,55,0.2);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+        
+        .testimonial-card p {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.9;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            color: #4682B4;
+            font-weight: 700;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Clients Section - Dark Premium */
+        .clients-section {
+            background: linear-gradient(165deg, #4682B4 0%, #87CEEB 100%);
+            padding: 60px 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .clients-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+        
+        .clients-placeholder {
+            background: rgba(255,255,255,0.05);
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 22px;
+            margin-top: 40px;
+            border: 3px dashed rgba(212,175,55,0.3);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Images Section - Gallery Style */
+        .images-section {
+            padding: 60px 60px;
+            background: linear-gradient(to bottom, #fafbfc 0%, #ffffff 100%);
+            min-height: 297mm;
+            page-break-before: always;
+            break-before: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .image-placeholder {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 13px;
+            border: 2px dashed #F5DEB3;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(212,175,55,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        
+        .image-placeholder:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .image-placeholder:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #4682B4;
+        }
+        
+        .large-image-placeholder {
+            grid-column: span 2;
+            height: 280px;
+        }
+        
+        /* Footer - Elegant Dark */
+        .footer {
+            background: linear-gradient(165deg, #0a0a0a 0%, #4682B4 100%);
+            color: white;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #F5DEB3, transparent);
+        }
+        
+        .footer h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            margin-bottom: 35px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #F5DEB3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-info {
+            font-size: 14px;
+            line-height: 2.2;
+            font-weight: 300;
+        }
+        
+        .footer-info strong {
+            display: block;
+            margin-top: 20px;
+            font-size: 17px;
+            color: #F5DEB3;
+            font-weight: 600;
+        }
+        
+        .footer-social {
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            body {
+                background: white !important;
+            }
+            
+            .page {
+                box-shadow: none !important;
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            /* Ensure A4 page sizing */
+            @page {
+                size: A4 portrait;
+                margin: 15mm;
+            }
+            
+            /* Remove shadows for cleaner print */
+            * {
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+            
+            /* Keep backgrounds for design */
+            .letterhead,
+            .hero-section,
+            .clients-section,
+            .footer {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Better text contrast */
+            p, li, td, th {
+                color: #000 !important;
+            }
+            
+            /* Page break controls */
+            .content-section {
+                page-break-inside: auto;
+                padding: 30px 40px;
+            }
+            
+            h2.section-title {
+                page-break-after: avoid;
+                margin-top: 0;
+            }
+            
+            table {
+                page-break-inside: auto;
+            }
+            
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+            
+            thead {
+                display: table-header-group;
+            }
+            
+            tfoot {
+                display: table-footer-group;
+            }
+            
+            /* Prevent orphans and widows */
+            p, h2, h3, .feature-card, .advantage-item, .project-card {
+                page-break-inside: avoid;
+                orphans: 3;
+                widows: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Letterhead -->
+        <div class="letterhead">
+            <div class="logo-section">
+                <div class="logo-placeholder">IS</div>
+                <div class="company-info">
+                    <h1>Infinite Solutions</h1>
+                    <p>Parking, Perfected</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <strong>infinitesolutionsmp@gmail.com</strong><br>
+                <strong>+91 96193 99503</strong><br>
+                Survey No 111/1B, Behind Red Chilly Hotel<br>
+                Kamba Village, Kalyan-Murbad Rd, Kalyan, Maharashtra 421103
+            </div>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="hero-section page-break">
+            <h2>"Manufacturing Excellence in Parking Solutions!"</h2>
+            <p>Premium OEM Partner for Automated Parking Systems</p>
+            <p class="hero-tagline">Design! Manufacture! Deliver!</p>
+        </div>
+        
+        <!-- About Section -->
+        <div class="content-section page-section">
+            <h2 class="section-title">About Infinite Solutions</h2>
+            <p class="about-text">
+                <strong>Infinite Solutions</strong> is a leading manufacturer of advanced automated parking systems. We specialize in designing and manufacturing innovative parking solutions including Tower Parking Systems, Hydraulic Puzzle Parking, Stack Parking, and Rotary Parking systems. Our state-of-the-art manufacturing facility produces high-quality parking systems that address the critical challenge of space optimization in modern urban environments. We partner with consultants and distributors across India who market and sell these systems under their own brand names.
+            </p>
+            <p class="about-text">
+                As a dedicated manufacturing partner, we work closely with consultants, developers, and project planners from the conceptual stage. Our engineering team provides technical expertise and support to help determine ideal spatial dimensions and configurations that maximize parking capacity. We manufacture customized systems according to project specifications while our consultant partners handle client relationships, sales, and project implementation under their own brand identity.
+            </p>
+            <p class="about-text">
+                Infinite Solutions manufactures systems tailored to meet diverse project requirements. Our production facility is equipped to handle projects of all scales - from residential complexes to large commercial developments. We conduct thorough technical assessments and manufacture parking solutions for high-rise buildings, hospitals, shopping malls, and industrial facilities. Our systems are scalable and adaptable, allowing our consultant partners to offer comprehensive solutions that grow with their clients' needs.
+            </p>
+            
+            <div class="highlight-box">
+                <h3>Why Choose Infinite Solutions as Your Manufacturing Partner?</h3>
+                <p>
+                    With extensive manufacturing expertise, we combine cutting-edge technology with precision engineering to deliver parking systems that are reliable, efficient, and cost-effective. Our commitment to quality manufacturing and innovation has made us a trusted OEM partner for leading consultants and distributors across India. We provide complete technical support, customization capabilities, and consistent product quality that enables our partners to confidently sell under their own brand names and build successful businesses.
+                </p>
+            </div>
+            
+            <!-- Features -->
+            <h2 class="section-title" style="margin-top: 50px;">Key Features & Benefits</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Maximum Space Utilization</h3>
+                    <p>Our intelligent design maximizes parking capacity by utilizing vertical space, reducing the footprint required by up to 60% compared to traditional parking methods.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cost-Effective Operations</h3>
+                    <p>Low maintenance requirements and minimal operating costs ensure excellent ROI. Our systems pay for themselves through increased parking capacity and reduced land costs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Whisper-Quiet Technology</h3>
+                    <p>Advanced hydraulic and mechanical systems operate at significantly lower noise levels, making them ideal for residential and mixed-use developments.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Energy Efficient Design</h3>
+                    <p>Low power consumption with eco-friendly operation. Our systems use energy only during retrieval and parking operations, reducing overall electricity costs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Flexible Configurations</h3>
+                    <p>Available in numerous configurations to suit any space constraint – from basement pits to multi-story towers, we have a solution for every challenge.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Safety & Security</h3>
+                    <p>Advanced safety features including anti-fall mechanisms, emergency stop systems, and secure vehicle enclosures protect both vehicles and users.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Weather Protection</h3>
+                    <p>Vehicles are stored in enclosed systems, protecting them from weather elements, dust, and environmental damage, extending vehicle lifespan.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Smart Integration</h3>
+                    <p>IoT-enabled systems with mobile app integration, automated payment systems, and real-time availability tracking for enhanced user experience.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rapid Installation</h3>
+                    <p>Modular design allows for quick installation with minimal disruption to ongoing operations, reducing project timelines significantly.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advantages Section -->
+        <div class="advantages-section">
+            <h2 class="section-title">Competitive Advantages</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">1</div>
+                    <div class="advantage-content">
+                        <h3>Consultation & Planning</h3>
+                        <p>Our expert team provides comprehensive consultation services from the initial planning stage, ensuring optimal parking solutions are integrated into your project design from day one. We analyze site topography, traffic patterns, and future expansion possibilities.</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">2</div>
+                    <div class="advantage-content">
+                        <h3>Custom Engineering</h3>
+                        <p>Every project receives custom-engineered solutions tailored to specific requirements. We don't believe in one-size-fits-all approaches – each system is designed considering site constraints, capacity needs, and budget parameters.</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">3</div>
+                    <div class="advantage-content">
+                        <h3>Quality Manufacturing</h3>
+                        <p>All components are manufactured in-house at our state-of-the-art facility with stringent quality controls. We use premium-grade materials and components that ensure longevity and reliable performance even under heavy usage.</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">4</div>
+                    <div class="advantage-content">
+                        <h3>After-Sales Support</h3>
+                        <p>Comprehensive after-sales service including regular maintenance schedules, 24/7 technical support, spare parts availability, and operator training ensures your system operates at peak efficiency throughout its lifecycle.</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">5</div>
+                    <div class="advantage-content">
+                        <h3>Compliance & Certification</h3>
+                        <p>All our systems meet and exceed national and international safety standards. We ensure full compliance with building codes, fire safety regulations, and accessibility requirements.</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">6</div>
+                    <div class="advantage-content">
+                        <h3>Value Enhancement</h3>
+                        <p>Our parking solutions significantly increase property value by providing additional parking capacity without consuming valuable ground space, making developments more attractive to buyers and tenants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Company Registration & Details Section -->
+        <div class="content-section" style="background: linear-gradient(135deg, #E0F6FF 0%, #F5F5F5 100%);">
+            <h2 class="section-title">Company Registration & Legal Details</h2>
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div style="padding: 20px; background: linear-gradient(135deg, #87CEEB15 0%, #F5DEB315 100%); border-radius: 10px; border-left: 4px solid #87CEEB;">
+                        <h3 style="color: #4682B4; margin-bottom: 15px; font-size: 18px;">Company Information</h3>
+                        <p style="margin: 8px 0;"><strong>Established:</strong> 2018</p>
+                        <p style="margin: 8px 0;"><strong>Udyog Aadhar:</strong> MH33D0060593</p>
+                        <p style="margin: 8px 0;"><strong>GSTIN:</strong> 27ANNPP6475A1ZP</p>
+                        <p style="margin: 8px 0;"><strong>PAN:</strong> ANNPP66475A</p>
+                    </div>
+                    <div style="padding: 20px; background: linear-gradient(135deg, #F5DEB315 0%, #87CEEB15 100%); border-radius: 10px; border-left: 4px solid #F5DEB3;">
+                        <h3 style="color: #4682B4; margin-bottom: 15px; font-size: 18px;">Statutory Registrations</h3>
+                        <p style="margin: 8px 0;"><strong>ESIC No:</strong> 34000384690000999</p>
+                        <p style="margin: 8px 0;"><strong>PF No:</strong> THTHA1764118000</p>
+                        <p style="margin: 8px 0;"><strong>Total Projects:</strong> 55+ Completed</p>
+                        <p style="margin: 8px 0;"><strong>Team Size:</strong> 68 Professionals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Structure Section -->
+        <div class="content-section page-section">
+            <h2 class="section-title">Our Professional Team</h2>
+            <p style="text-align: center; color: #333; margin-bottom: 30px;">Experienced professionals dedicated to manufacturing excellence</p>
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%); color: white;">
+                            <th style="padding: 15px; text-align: left; border: 1px solid #ddd;">Sr.No</th>
+                            <th style="padding: 15px; text-align: left; border: 1px solid #ddd;">Skills / Designation</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">Head Count</th>
+                            <th style="padding: 15px; text-align: center; border: 1px solid #ddd;">Experience</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">1</td><td style="padding: 12px; border: 1px solid #ddd;"><strong>Director</strong></td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">01</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">26 Years</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">2</td><td style="padding: 12px; border: 1px solid #ddd;"><strong>Sales Director</strong></td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">01</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">16 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">3</td><td style="padding: 12px; border: 1px solid #ddd;">HR & Accounts</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">01</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">6 Years</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">4</td><td style="padding: 12px; border: 1px solid #ddd;">Project Engineer</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">02</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">7 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">5</td><td style="padding: 12px; border: 1px solid #ddd;">Project Supervisor</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">03</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">2-4 Years</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">6</td><td style="padding: 12px; border: 1px solid #ddd;">Sr. Fabrication Fitter</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">04</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">6-8 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">7</td><td style="padding: 12px; border: 1px solid #ddd;">Jr. Fabrication Fitter</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">03</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">2-4 Years</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">8</td><td style="padding: 12px; border: 1px solid #ddd;">Welder</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">08</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">3-5 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">9</td><td style="padding: 12px; border: 1px solid #ddd;">Sr. Installation Fitter</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">08</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">3-4 Years</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">10</td><td style="padding: 12px; border: 1px solid #ddd;">Jr. Installation Fitter</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">04</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">2-3 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">11</td><td style="padding: 12px; border: 1px solid #ddd;">Trained Helper</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">14</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">1 Year</td></tr>
+                        <tr><td style="padding: 12px; border: 1px solid #ddd;">12</td><td style="padding: 12px; border: 1px solid #ddd;">Riggers</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">06</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">2-3 Years</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 12px; border: 1px solid #ddd;">13</td><td style="padding: 12px; border: 1px solid #ddd;">Helpers</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">14</td><td style="padding: 12px; text-align: center; border: 1px solid #ddd;">3-6 months</td></tr>
+                        <tr style="background: linear-gradient(135deg, #87CEEB30 0%, #F5DEB330 100%); font-weight: bold;">
+                            <td colspan="2" style="padding: 15px; border: 1px solid #ddd; text-align: right;"><strong>Total Staff</strong></td>
+                            <td style="padding: 15px; text-align: center; border: 1px solid #ddd; color: #4682B4; font-size: 18px;"><strong>68</strong></td>
+                            <td style="padding: 15px; border: 1px solid #ddd;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Factory & Equipment Details Section -->
+        <div class="content-section" style="background: linear-gradient(135deg, #F5DEB315 0%, #87CEEB15 100%);">
+            <h2 class="section-title">Manufacturing Infrastructure</h2>
+            <p style="text-align: center; color: #333; margin-bottom: 30px;">State-of-the-art facilities with advanced equipment</p>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                <h3 style="color: #4682B4; margin-bottom: 20px; font-size: 22px; text-align: center;">Factory Facilities</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+                    <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #87CEEB10 0%, #F5DEB310 100%); border-radius: 10px;">
+                        <h4 style="color: #4682B4; font-size: 36px; margin-bottom: 10px;">12,000</h4>
+                        <p style="color: #444; font-size: 14px;">Sq ft Fabrication Plant Unit-1<br>with 5 Ton EOT Crane</p>
+                    </div>
+                    <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #F5DEB310 0%, #87CEEB10 100%); border-radius: 10px;">
+                        <h4 style="color: #4682B4; font-size: 36px; margin-bottom: 10px;">8,000</h4>
+                        <p style="color: #444; font-size: 14px;">Sq ft Powder Coating Plant Unit-2<br>with 2 Ton Goliath Crane</p>
+                    </div>
+                    <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #87CEEB10 0%, #F5DEB310 100%); border-radius: 10px;">
+                        <h4 style="color: #4682B4; font-size: 36px; margin-bottom: 10px;">5,000</h4>
+                        <p style="color: #444; font-size: 14px;">Sq ft Fabrication Plant Unit-3<br>with 2 Ton Goliath Crane</p>
+                    </div>
+                </div>
+
+                <h3 style="color: #4682B4; margin: 30px 0 20px; font-size: 20px;">Key Manufacturing Equipment</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%); color: white;">
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Sr.No</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Equipment Description</th>
+                            <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Capacity/Specification</th>
+                            <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">1</td><td style="padding: 10px; border: 1px solid #ddd;">Plasma Cutting Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Up to 30mm plate</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">01</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">2</td><td style="padding: 10px; border: 1px solid #ddd;">Air Compressor</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">7.5 HP</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">02</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">3</td><td style="padding: 10px; border: 1px solid #ddd;">CO2 Welding Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">400 Amp</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">05</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">4</td><td style="padding: 10px; border: 1px solid #ddd;">Radial Drill Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">5HP</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">02</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">5</td><td style="padding: 10px; border: 1px solid #ddd;">Electrical Winch Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">3.5 Ton (160m rope)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">01</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">6</td><td style="padding: 10px; border: 1px solid #ddd;">Electrical Winch Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">1.5 Ton (120m rope)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">03</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">7</td><td style="padding: 10px; border: 1px solid #ddd;">Welding Machine (Inverter)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">400 Amp</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">05</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">8</td><td style="padding: 10px; border: 1px solid #ddd;">Welding Machine (Inverter)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">200 Amp</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">03</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">9</td><td style="padding: 10px; border: 1px solid #ddd;">Chain Block</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">5 Ton (60-80m)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">03</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">10</td><td style="padding: 10px; border: 1px solid #ddd;">Chain Block</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2-3 Ton</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">03</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">11</td><td style="padding: 10px; border: 1px solid #ddd;">Magnetic Core Drill Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">32mm</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">05</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">12</td><td style="padding: 10px; border: 1px solid #ddd;">Hammer Drill Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">20-26mm</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">09</td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">13</td><td style="padding: 10px; border: 1px solid #ddd;">Grinder Machine</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">AG4 & AG5</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">19</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd;">14</td><td style="padding: 10px; border: 1px solid #ddd;"><strong>Powder Coating Oven</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;"><strong>7.5m Length, 2 Ton Capacity</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;"><strong>01</strong></td></tr>
+                        <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">15</td><td style="padding: 10px; border: 1px solid #ddd;">Cut-Off Machine, Bolting Tools & Others</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Various Specifications</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">20+</td></tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #87CEEB20 0%, #F5DEB320 100%); border-radius: 10px; border-left: 5px solid #4682B4;">
+                    <h4 style="color: #4682B4; margin-bottom: 10px;">Special Features:</h4>
+                    <ul style="color: #444; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>In-house 7-Tank Process Powder Coating Plant</strong> for superior finish quality</li>
+                        <li>Complete fabrication capabilities from cutting to final assembly</li>
+                        <li>Quality control at every manufacturing stage</li>
+                        <li>Capacity to handle multiple large-scale projects simultaneously</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bank Details Section -->
+        <div class="content-section page-section">
+            <h2 class="section-title">Banking Details</h2>
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #87CEEB10 0%, #F5DEB310 100%); padding: 30px; border-radius: 10px; border: 2px solid #87CEEB;">
+                    <p style="margin: 12px 0; font-size: 16px;"><strong style="color: #4682B4;">Company Name:</strong> INFINITE SOLUTIONS</p>
+                    <p style="margin: 12px 0; font-size: 16px;"><strong style="color: #4682B4;">Bank Name:</strong> IDBI BANK</p>
+                    <p style="margin: 12px 0; font-size: 16px;"><strong style="color: #4682B4;">Account Number:</strong> 1334102000012519</p>
+                    <p style="margin: 12px 0; font-size: 16px;"><strong style="color: #4682B4;">IFSC Code:</strong> IBKL0001334</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Range -->
+        <div class="product-range">
+            <h2 class="section-title">Comprehensive Product Range</h2>
+            <p style="text-align: center; color: #333; font-size: 15px; margin-bottom: 20px;">
+                Explore our diverse range of parking solutions designed to meet every spatial and capacity requirement
+            </p>
+            <div class="products-container">
+                <!-- Tower Parking -->
+                <div class="product-category">
+                    <h3>Tower Parking System</h3>
+                    <ul>
+                        <li>• Single Side Tower Parking System</li>
+                        <li>• Both Side Tower Parking (1+1)</li>
+                        <li>• Double Deep Tower System (2+2)</li>
+                        <li>• Triple Deep Tower System (3+3)</li>
+                        <li>• Height capacity up to 65+ meters</li>
+                        <li>• Ideal for high-density areas</li>
+                    </ul>
+                </div>
+                
+                <!-- Hydraulic Puzzle -->
+                <div class="product-category">
+                    <h3>Hydraulic Puzzle Parking</h3>
+                    <ul>
+                        <li>• 2 Level Puzzle System (G+2)</li>
+                        <li>• 2 Level Puzzle System (-1 & G)</li>
+                        <li>• 3 Level Pit Puzzle (-1 & G+2)</li>
+                        <li>• Ground Puzzle System (G+7)</li>
+                        <li>• 1 in Pit & 6 Above (G-1 & +6)</li>
+                        <li>• 2 in Pit & 5 Above (G-2 & +5)</li>
+                        <li>• 3 in Pit & 4 Above (G-3 & +4)</li>
+                        <li>• Smooth hydraulic operation</li>
+                    </ul>
+                </div>
+                
+                <!-- Mechanical Puzzle -->
+                <div class="product-category">
+                    <h3>Mechanical Puzzle Parking</h3>
+                    <ul>
+                        <li>• Multi-level ground systems</li>
+                        <li>• Horizontal sliding configurations</li>
+                        <li>• Vertical lift mechanisms</li>
+                        <li>• Custom puzzle layouts</li>
+                        <li>• Space-optimized designs</li>
+                        <li>• Cost-effective solutions</li>
+                    </ul>
+                </div>
+                
+                <!-- Stack Parking -->
+                <div class="product-category">
+                    <h3>Stack Parking System</h3>
+                    <ul>
+                        <li>• Stack Park (Ground & Above)</li>
+                        <li>• Stack Park (Pit & Ground)</li>
+                        <li>• Stack Park (Ground & 2 Above)</li>
+                        <li>• Stack Park (Pit, Ground & Above)</li>
+                        <li>• Stack Park (Pit & Ground 2 Above)</li>
+                        <li>• Compact footprint design</li>
+                        <li>• Quick access technology</li>
+                    </ul>
+                </div>
+                
+                <!-- No Post System -->
+                <div class="product-category">
+                    <h3>No Post System</h3>
+                    <ul>
+                        <li>• Pillar-free parking spaces</li>
+                        <li>• Maximum space efficiency</li>
+                        <li>• Enhanced accessibility</li>
+                        <li>• Ideal for luxury projects</li>
+                        <li>• Premium aesthetic appeal</li>
+                        <li>• Easy vehicle maneuvering</li>
+                    </ul>
+                </div>
+                
+                <!-- Two-Wheeler -->
+                <div class="product-category">
+                    <h3>Two-Wheeler Parking</h3>
+                    <ul>
+                        <li>• Bike stackers (single & double)</li>
+                        <li>• Two-wheeler double stack systems</li>
+                        <li>• Multi-level bike parking</li>
+                        <li>• Scooter-compatible designs</li>
+                        <li>• Weather-protected storage</li>
+                        <li>• High-density configurations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Specifications -->
+        <div class="specifications-section">
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Load Capacity</h3>
+                    <p>Supports vehicles up to 2,500 kg per platform with safety margins exceeding 150% of rated capacity</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Retrieval Time</h3>
+                    <p>Average vehicle retrieval time of 60-90 seconds depending on system configuration and floor level</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Power Supply</h3>
+                    <p>Standard 415V/3-phase supply with automatic voltage stabilization and backup power options</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Safety Features</h3>
+                    <p>Multiple safety sensors, emergency stop buttons, anti-collision systems, and fire detection integration</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Control System</h3>
+                    <p>PLC-based automation with touch screen interface, mobile app control, and remote monitoring capabilities</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Warranty</h3>
+                    <p>Comprehensive 2-year warranty on all mechanical and electrical components with extended coverage options</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projects Section -->
+        <div class="projects-section">
+            <div class="projects-page-1">
+                <h2 class="section-title">Recent Projects 2024-25</h2>
+                <p style="text-align: center; color: #333; font-size: 15px; margin-bottom: 20px;">
+                    A showcase of our successfully delivered parking solutions across India
+                </p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Premium Residential Complex - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>Puzzle Car Parking System</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>30 Car Platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Additional:</td>
+                                <td>G+1 Hyd 4-Post: 12 Nos</td>
+                            </tr>
+                            <tr>
+                                <td>Two-Wheeler:</td>
+                                <td>212 Bike Stackers</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Luxury High-Rise Tower - Mumbai Dadar</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>Tower Parking System 1x1</td>
+                            </tr>
+                            <tr>
+                                <td>Capacity:</td>
+                                <td>46 Cars</td>
+                            </tr>
+                            <tr>
+                                <td>Height:</td>
+                                <td>61 Meters (20+ Floors)</td>
+                            </tr>
+                            <tr>
+                                <td>Technology:</td>
+                                <td>Automated Vertical Lift</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Elite Residential Development - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G+1 Hydraulic Stack</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>136 Parking Platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Configuration:</td>
+                                <td>Ground + 1 Level Above</td>
+                            </tr>
+                            <tr>
+                                <td>Type:</td>
+                                <td>Hydraulic Stacker System</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>IT Park & Commercial Complex - Noida</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G+1 Stacker System</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>186 Parking Units</td>
+                            </tr>
+                            <tr>
+                                <td>Application:</td>
+                                <td>Commercial Parking</td>
+                            </tr>
+                            <tr>
+                                <td>Features:</td>
+                                <td>Quick Access, High Traffic</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #4caf50;">Completed</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Mixed-Use Township - Nasik</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>Mechanical 3L OG Puzzle</td>
+                            </tr>
+                            <tr>
+                                <td>Configuration:</td>
+                                <td>G+2 (3 Level System)</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>19 Parking Units</td>
+                            </tr>
+                            <tr>
+                                <td>Additional:</td>
+                                <td>G+1 Hyd Stack: 4 Nos</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="projects-page-2 projects-page-break">
+                <h2 class="section-title">Recent Projects 2024-25 (Continued)</h2>
+                <div class="projects-grid" style="margin-top: 30px;">
+                    <div class="project-card">
+                        <h3>Residential Skyline Project - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G-1+1 Stacker System</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>191 Parking Platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Configuration:</td>
+                                <td>Pit Level + Ground + Above</td>
+                            </tr>
+                            <tr>
+                                <td>Type:</td>
+                                <td>Multi-Level Stack System</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Premium Residential Complex - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G+1 Hydraulic Stack</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>22 Car Platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Additional:</td>
+                                <td>G-1+1 Stacker: 2 Nos</td>
+                            </tr>
+                            <tr>
+                                <td>Project Type:</td>
+                                <td>Residential High-Rise</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #4caf50;">Completed</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Luxury Apartments - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>Pit Puzzle Parking System</td>
+                            </tr>
+                            <tr>
+                                <td>Configuration:</td>
+                                <td>G-1+1 Multi-Level</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>101 Parking Units</td>
+                            </tr>
+                            <tr>
+                                <td>Additional:</td>
+                                <td>G+1 Hyd Stack: 16 Nos</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Upscale Development - Pune</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G+1 Hydraulic Stack</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>55 Parking Platforms</td>
+                            </tr>
+                            <tr>
+                                <td>Features:</td>
+                                <td>Premium Grade System</td>
+                            </tr>
+                            <tr>
+                                <td>Project Type:</td>
+                                <td>Luxury Residential</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Modern Residential Complex - Multiple Locations</h3>
+                        <table class="project-table">
+                            <tr>
+                                <td>Product:</td>
+                                <td>G+1 Hydraulic Stack</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity:</td>
+                                <td>40 Units + 27 Two-Wheeler</td>
+                            </tr>
+                            <tr>
+                                <td>Configuration:</td>
+                                <td>Mixed Car & Bike Parking</td>
+                            </tr>
+                            <tr>
+                                <td>Features:</td>
+                                <td>Integrated Solution</td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td><strong style="color: #2a5298;">Ongoing</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Completed Projects Section -->
+        <div class="content-section" style="background: linear-gradient(135deg, #E0F6FF 0%, #FFFAF0 100%);">
+            <h2 class="section-title">Our Project Portfolio - 55+ Completed Projects</h2>
+            <p style="text-align: center; color: #333; margin-bottom: 30px; font-size: 15px;">Delivered across Mumbai, Pune, Thane, Delhi, Noida & Jharkhand</p>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #4682B4; margin-bottom: 20px; text-align: center;">Major Completed Projects (2021-2025)</h3>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                        <thead>
+                            <tr style="background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%); color: white;">
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Sr.No</th>
+                                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Project Name</th>
+                                <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">System Type</th>
+                                <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Capacity</th>
+                                <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Location</th>
+                                <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">1</td><td style="padding: 10px; border: 1px solid #ddd;">Aditya Raj Building No 50</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+2 Stackers</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">36 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Vikhroli</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2021-22</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">2</td><td style="padding: 10px; border: 1px solid #ddd;">GuruKripa Builders</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G-2+2 Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">16 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Ghatkopar</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2021-22</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">3</td><td style="padding: 10px; border: 1px solid #ddd;">Kailash Garden</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+5 Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">35 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kalyan</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">4</td><td style="padding: 10px; border: 1px solid #ddd;">Maatr Waters</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+6 Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">25 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kalyan</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">5</td><td style="padding: 10px; border: 1px solid #ddd;">White Rose</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Tower</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">36 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Thane</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">6</td><td style="padding: 10px; border: 1px solid #ddd;">Mohan Tribeca</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+7 Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">35 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kalyan</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">7</td><td style="padding: 10px; border: 1px solid #ddd;">Maatr Sky</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+7 Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">50 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kalyan</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">8</td><td style="padding: 10px; border: 1px solid #ddd;">Nyati Group</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Stacker</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">100 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2022-23</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">9</td><td style="padding: 10px; border: 1px solid #ddd;">Shakabari Builders</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Stacker</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">130 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Ranchi</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2023-24</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">10</td><td style="padding: 10px; border: 1px solid #ddd;">Gami Builders</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stacker</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">85 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Vashi</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2023-24</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">11</td><td style="padding: 10px; border: 1px solid #ddd;">Signature Building (Model Colony)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G-1+1 Hyd Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">39 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2023-24</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">12</td><td style="padding: 10px; border: 1px solid #ddd;">Mango Infratech Solutions</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stacker</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;"><strong>430 Cars</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2023-24</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">13</td><td style="padding: 10px; border: 1px solid #ddd;">EKA Buildcon</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stacker</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">140 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Chandani Chowk, Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">14</td><td style="padding: 10px; border: 1px solid #ddd;">ACE Capitol</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stack</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">158 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Sector 132, Noida</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">15</td><td style="padding: 10px; border: 1px solid #ddd;">Avishkar Reality (Bike Stack)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Bike Stack</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">324 Bikes</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kharadi, Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">16</td><td style="padding: 10px; border: 1px solid #ddd;">Avishkar Reality (Car Stack)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stack</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">40 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Kharadi, Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">17</td><td style="padding: 10px; border: 1px solid #ddd;">ICAI College</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1 Hyd Stack</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">48 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Rohini, Delhi</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">18</td><td style="padding: 10px; border: 1px solid #ddd;">Prestine Elevators</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">1x1 Tower</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">54 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Vikhroli</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2024-25</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd;">19</td><td style="padding: 10px; border: 1px solid #ddd;">Treza Residency</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">G+1-1 Hyd Puzzle</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">101 Cars</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Nigdi, Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2025-26 (WIP)</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid #ddd;">20</td><td style="padding: 10px; border: 1px solid #ddd;">Advani Reality (Multiple Systems)</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Bike Stack + Puzzle + Hyd</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">508 Total</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">Pune</td><td style="padding: 10px; text-align: center; border: 1px solid #ddd;">2025-26 (WIP)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #87CEEB15 0%, #F5DEB315 100%); border-radius: 10px; border-left: 5px solid #4682B4;">
+                    <h4 style="color: #4682B4; margin-bottom: 15px; font-size: 18px;">Project Highlights</h4>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;">
+                        <div>
+                            <h3 style="color: #4682B4; font-size: 36px; margin-bottom: 5px;">55+</h3>
+                            <p style="color: #444; font-size: 14px;">Completed Projects</p>
+                        </div>
+                        <div>
+                            <h3 style="color: #4682B4; font-size: 36px; margin-bottom: 5px;">2000+</h3>
+                            <p style="color: #444; font-size: 14px;">Parking Spots Installed</p>
+                        </div>
+                        <div>
+                            <h3 style="color: #4682B4; font-size: 36px; margin-bottom: 5px;">10+</h3>
+                            <p style="color: #444; font-size: 14px;">Cities Covered</p>
+                        </div>
+                        <div>
+                            <h3 style="color: #4682B4; font-size: 36px; margin-bottom: 5px;">100%</h3>
+                            <p style="color: #444; font-size: 14px;">Client Satisfaction</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; color: #444; font-style: italic; text-align: center;">* Complete project list with all 55 projects available upon request</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <h2 class="section-title">Partner Testimonials</h2>
+            <div class="testimonial-card">
+                <p>"Infinite Solutions has been our reliable manufacturing partner for over 3 years. Their consistent quality, timely delivery, and technical support have enabled us to build a strong reputation in the market. The systems we source from them perform flawlessly, making our job easier."</p>
+                <div class="testimonial-author">— Parking Solutions Consultant, Mumbai</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"As a consultant, finding a trustworthy OEM partner was crucial for our business. Infinite Solutions delivers exceptional manufacturing quality and provides excellent technical backup. Their systems are reliable, and customization options allow us to meet diverse client requirements."</p>
+                <div class="testimonial-author">— Infrastructure Consultant, Pune</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"We've been sourcing automated parking systems from Infinite Solutions for multiple projects. Their manufacturing precision and quality control are outstanding. They understand the consultant's perspective and provide the right support to help us succeed in the market."</p>
+                <div class="testimonial-author">— Parking System Distributor, Delhi</div>
+            </div>
+        </div>
+        
+        <!-- Clients Section -->
+        <div class="clients-section">
+            <h2 class="section-title" style="color: white; border-bottom-color: white;">Our Valued Partners</h2>
+            <p style="text-align: center; opacity: 0.9; font-size: 15px;">Trusted manufacturing partner for leading consultants and distributors across India</p>
+            <div class="clients-placeholder">
+                [Partner Logos & Brand Images Placeholder]
+            </div>
+        </div>
+        
+        <!-- On-Site Images Section -->
+        <div class="images-section">
+            <h2 class="section-title">Manufacturing Gallery - Our Production Excellence</h2>
+            <p style="text-align: center; color: #333; font-size: 15px; margin-bottom: 20px;">
+                Systems manufactured at our facility - showcasing precision engineering and quality control
+            </p>
+            
+            <div class="images-grid">
+                <div class="image-placeholder large-image-placeholder">[Featured Project Image 1]</div>
+                <div class="image-placeholder large-image-placeholder">[Featured Project Image 2]</div>
+                
+                <div class="image-placeholder">[Tower System 1]</div>
+                <div class="image-placeholder">[Tower System 2]</div>
+                <div class="image-placeholder">[Tower System 3]</div>
+                <div class="image-placeholder">[Tower System 4]</div>
+                
+                <div class="image-placeholder">[Puzzle System 1]</div>
+                <div class="image-placeholder">[Puzzle System 2]</div>
+                <div class="image-placeholder">[Stack System 1]</div>
+                <div class="image-placeholder">[Stack System 2]</div>
+                
+                <div class="image-placeholder">[Installation 1]</div>
+                <div class="image-placeholder">[Installation 2]</div>
+                <div class="image-placeholder">[Installation 3]</div>
+                <div class="image-placeholder">[Installation 4]</div>
+                
+                <div class="image-placeholder">[Control Panel]</div>
+                <div class="image-placeholder">[Safety Features]</div>
+                <div class="image-placeholder">[Hydraulic System]</div>
+                <div class="image-placeholder">[Mechanical Components]</div>
+                
+                <div class="image-placeholder large-image-placeholder">[No Post System Showcase]</div>
+                <div class="image-placeholder large-image-placeholder">[Two-Wheeler Parking]</div>
+                
+                <div class="image-placeholder">[Night View 1]</div>
+                <div class="image-placeholder">[Night View 2]</div>
+                <div class="image-placeholder">[Day Operation 1]</div>
+                <div class="image-placeholder">[Day Operation 2]</div>
+                
+                <div class="image-placeholder">[Client Site 1]</div>
+                <div class="image-placeholder">[Client Site 2]</div>
+                <div class="image-placeholder">[Client Site 3]</div>
+                <div class="image-placeholder">[Client Site 4]</div>
+                
+                <div class="image-placeholder">[Completed Project 1]</div>
+                <div class="image-placeholder">[Completed Project 2]</div>
+                <div class="image-placeholder">[Completed Project 3]</div>
+                <div class="image-placeholder">[Completed Project 4]</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h2>Connect With Infinite Solutions</h2>
+            <div class="footer-info">
+                <strong>Head Office & Manufacturing Facility:</strong>
+                Gala No 1, Survey No 111/1B, Behind Red Chilly Hotel<br>
+                Next to HP Gas Compound, Kamba Village<br>
+                Kalyan-Murbad Road, Kalyan, Thane District<br>
+                Maharashtra, India - 421103
+                
+                <strong>Primary Contacts:</strong>
+                <div style="margin: 15px 0; padding: 15px; background: rgba(135,206,235,0.1); border-radius: 8px;">
+                    <p style="margin: 8px 0;"><strong>Director:</strong> Mahendra Purohit - +91 96193 99503</p>
+                    <p style="margin: 8px 0;"><strong>Project Manager:</strong> Akhilesh Singh - +91 9987988202</p>
+                    <p style="margin: 8px 0;"><strong>Factory Manager:</strong> Santosh Chauhan - +91 7007236656</p>
+                    <p style="margin: 8px 0;"><strong>Design Manager:</strong> Nirav Negi - +91 9029718111</p>
+                    <p style="margin: 8px 0;"><strong>Account Manager:</strong> Gur Kumar - +91 9284955416</p>
+                </div>
+                
+                <strong>Email & Website:</strong>
+                Email: infinitesolutionsmp@gmail.com<br>
+                Website: www.infinitesolutions.com
+                
+                <strong>Banking Details:</strong>
+                Bank: IDBI Bank | Account: 1334102000012519 | IFSC: IBKL0001334
+                
+                <div class="footer-social">
+                    <strong>Business Hours:</strong> Monday - Saturday: 9:00 AM - 7:00 PM<br>
+                    <strong>Factory Visits:</strong> By Appointment Only
+            

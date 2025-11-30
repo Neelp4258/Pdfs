@@ -1,0 +1,159 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Invoice - Neel Parmar</title>
+  <style>
+    @page { size: A4 landscape; margin: 0; }
+    html,body{height:100%;}
+    body{
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      margin: 0; padding: 20mm; box-sizing: border-box; background: #ffffff;
+      color: #0b2545;
+    }
+    .sheet{
+      width: 277mm; /* A4 landscape minus margins */
+      height: 170mm;
+      padding: 18mm;
+      box-sizing: border-box;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(11,37,69,0.05);
+    }
+    .header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .logo{
+      width:72px; height:72px; border-radius:8px; background:linear-gradient(180deg,#0b5bd3,#0b73e0); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:20px;
+    }
+    .company{
+      font-size:14px; line-height:1; font-weight:700;
+    }
+    .company small{display:block; font-weight:500; font-size:12px; color:#194783}
+    .meta{
+      text-align:right; font-size:12px;
+    }
+    .meta .big{font-size:18px; font-weight:700; color:#0b3b78}.section{display:flex; gap:18px; margin-bottom:14px}
+.box{flex:1; background:#f8fbff; padding:12px; border-radius:8px; border:1px solid rgba(11,59,120,0.04)}
+.box b{display:block; margin-bottom:6px; color:#06325f}
+table.items{width:100%; border-collapse:collapse; margin-top:8px}
+table.items th, table.items td{padding:10px 12px; border-bottom:1px solid rgba(11,59,120,0.06); font-size:13px}
+table.items th{background:linear-gradient(90deg,#eaf3ff, #ffffff); text-align:left; color:#06325f; font-weight:700}
+.right{ text-align:right }
+.totals{width:40%; margin-left:auto; margin-top:12px}
+.totals table{width:100%; border-collapse:collapse}
+.totals td{padding:8px 10px; font-size:13px}
+.totals tr.total td{font-weight:800; font-size:15px; border-top:2px solid #e6f0ff}
+
+.note{font-size:12px; color:#254a78; margin-top:14px}
+.footer{display:flex; justify-content:space-between; align-items:center; margin-top:22px}
+.signature{text-align:center}
+.sig-line{height:48px; border-top:1px dashed rgba(11,59,120,0.15); width:220px; margin-top:8px}
+
+@media print{
+  body{padding:0}
+  .sheet{box-shadow:none}
+}
+
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="header">
+      <div class="brand">
+        <div class="logo">NP</div>
+        <div>
+          <div class="company">Neel Parmar <small>Client Acquisition Specialist — Freelance (for Dazzlo Enterprises Pvt. Ltd.)</small></div>
+          <div style="font-size:12px; color:#1a4070; margin-top:6px">Phone: 7709390963</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="big">INVOICE</div>
+        <div style="margin-top:6px">Invoice #: <strong>INV-20251015-001</strong></div>
+        <div>Date: <strong>15 Oct 2025</strong></div>
+        <div style="margin-top:6px">Due: <strong>Payable within 4 hours of issue</strong></div>
+      </div>
+    </div><div class="section">
+  <div class="box">
+    <b>Bill To</b>
+    <div><strong>Mr. Rahul Chauhan</strong></div>
+    <div>Sankalp Group — Pune</div>
+    <div style="margin-top:6px; font-size:12px; color:#174a7a">Purpose: Consultancy for vendor empanelment &amp; hiring (Direct Empanelment)</div>
+  </div>
+
+  <div class="box">
+    <b>Invoice From</b>
+    <div><strong>Neel Parmar</strong></div>
+    <div>Freelance Client Acquisition Specialist</div>
+    <div style="margin-top:6px; font-size:12px; color:#174a7a">Work done for: Dazzlo Enterprises Pvt. Ltd. (client acquisition &amp; vendor empanelment)</div>
+  </div>
+
+  <div class="box">
+    <b>Bank / Payment</b>
+    <div>Account Number: 03030110107645</div>
+    <div>IFSC: UCBA0000303</div>
+    <div style="margin-top:6px; font-size:12px; color:#174a7a">Please pay the full amount within 4 hours of invoice issuance.</div>
+  </div>
+</div>
+
+<table class="items" aria-hidden="true">
+  <thead>
+    <tr>
+      <th style="width:65%">Description</th>
+      <th style="width:10%">Qty</th>
+      <th style="width:12%" class="right">Rate (₹)</th>
+      <th style="width:13%" class="right">Amount (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Consultancy — Client acquisition / Direct Empanelment fee for placing Dazzlo Enterprises Pvt. Ltd. (hiring)</td>
+      <td>1</td>
+      <td class="right">3,500.00</td>
+      <td class="right">3,500.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="totals">
+  <table>
+    <tr>
+      <td>Subtotal</td>
+      <td class="right">₹ 3,500.00</td>
+    </tr>
+    <tr>
+      <td>GST</td>
+      <td class="right">Included in total</td>
+    </tr>
+    <tr class="total">
+      <td>Total (INR)</td>
+      <td class="right">₹ 3,500.00</td>
+    </tr>
+  </table>
+</div>
+
+<div class="note">
+  <strong>Note:</strong> This invoice is for the consultancy service provided by Neel Parmar for introducing and empanelling vendors to Dazzlo Enterprises Pvt. Ltd. The total amount of ₹3,500.00 is inclusive of GST. Kindly ensure payment within 4 hours of invoice issuance.
+</div>
+
+<div class="footer">
+  <div>
+    <div style="font-size:12px; color:#1b466f">For queries, contact: 7709390963</div>
+    <div style="font-size:12px; color:#1b466f; margin-top:8px">Issued on behalf of Dazzlo Enterprises Pvt. Ltd. (work provided by Neel Parmar)</div>
+  </div>
+
+  <div class="signature">
+    <div>Authorized Signatory</div>
+    <div class="sig-line"></div>
+    <div style="font-size:12px; margin-top:6px">Neel Parmar</div>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>
