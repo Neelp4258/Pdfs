@@ -169,6 +169,16 @@ class EnhancedHTMLToPDFConverter {
         return processedHTML;
     }
 
+    getPPTDimensions(format) {
+        // PowerPoint page sizes in inches
+        const pptSizes = {
+            'PPT_4_3': { width: '10in', height: '7.5in' },        // Standard 4:3
+            'PPT_16_9': { width: '13.333in', height: '7.5in' },   // Widescreen 16:9
+            'PPT_16_10': { width: '10in', height: '6.25in' }      // Widescreen 16:10
+        };
+        return pptSizes[format] || null;
+    }
+
     async convertHTMLToPDF(htmlContent, outputPath, customOptions = {}) {
         if (!this.browser) {
             throw new Error('Converter not initialized. Call initialize() first.');
@@ -176,21 +186,23 @@ class EnhancedHTMLToPDFConverter {
 
         const options = { ...this.defaultOptions, ...customOptions };
         const tempHtmlPath = path.join(__dirname, 'temp', `temp_${uuidv4()}.html`);
-        
+
         try {
             // Ensure temp and output directories exist
             await fs.ensureDir(path.dirname(tempHtmlPath));
             await fs.ensureDir(path.dirname(outputPath));
 
             let processedHTML = htmlContent;
-            
+
             // Process Hindi text if fontSupport.hindi is enabled
             if (options.fontSupport && options.fontSupport.hindi) {
                 processedHTML = await this.processHindiText(processedHTML);
             }
-            
+
+            // Handle PPT page sizes with custom dimensions
+            const pptDimensions = this.getPPTDimensions(options.format);
+
             let pdfOptions = {
-                format: options.format,
                 landscape: options.landscape,
                 margin: options.margin,
                 printBackground: options.printBackground,
@@ -200,6 +212,14 @@ class EnhancedHTMLToPDFConverter {
                 printBackground: true,
                 omitBackground: false,
             };
+
+            // Use custom width/height for PPT formats, otherwise use format
+            if (pptDimensions) {
+                pdfOptions.width = pptDimensions.width;
+                pdfOptions.height = pptDimensions.height;
+            } else {
+                pdfOptions.format = options.format;
+            }
 
             // Enhanced CSS with font support
             const enhancedCSS = `

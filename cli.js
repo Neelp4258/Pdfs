@@ -36,7 +36,7 @@ with optional letterhead support for Trivanta Edge and Dazzlo companies.
 
 Features:
 ✨ High-fidelity HTML to PDF conversion
-📏 Multiple page formats: A4, A3, Letter, Legal
+📏 Multiple page formats: A4, A3, Letter, Legal, PowerPoint sizes
 🔄 Portrait and landscape orientation
 🏢 Professional letterheads with company branding
 📄 Letterhead on all pages or first page only
@@ -51,9 +51,12 @@ Supported Input Types:
 
 Page Formats:
 • A4 (210 x 297 mm)
-• A3 (297 x 420 mm) 
+• A3 (297 x 420 mm)
 • Letter (8.5 x 11 inches)
 • Legal (8.5 x 14 inches)
+• PPT Standard 4:3 (10 x 7.5 inches)
+• PPT Widescreen 16:9 (13.33 x 7.5 inches)
+• PPT Widescreen 16:10 (10 x 6.25 inches)
 
 Letterhead Companies:
 • Trivanta Edge - Real estate and property development
@@ -191,15 +194,23 @@ Password required for letterhead access (configure via LETTERHEAD_PASSWORD envir
     promptForPageFormat() {
         console.log('\n📏 PAGE FORMAT');
         console.log('──────────────');
-        
-        const formats = ['A4 (210 x 297 mm)', 'A3 (297 x 420 mm)', 'Letter (8.5 x 11 in)', 'Legal (8.5 x 14 in)'];
-        const formatKeys = ['A4', 'A3', 'Letter', 'Legal'];
-        
-        const choice = readline.keyInSelect(formats, 'Select page format:', { 
+
+        const formats = [
+            'A4 (210 x 297 mm)',
+            'A3 (297 x 420 mm)',
+            'Letter (8.5 x 11 in)',
+            'Legal (8.5 x 14 in)',
+            'PPT Standard 4:3 (10 x 7.5 in)',
+            'PPT Widescreen 16:9 (13.33 x 7.5 in)',
+            'PPT Widescreen 16:10 (10 x 6.25 in)'
+        ];
+        const formatKeys = ['A4', 'A3', 'Letter', 'Legal', 'PPT_4_3', 'PPT_16_9', 'PPT_16_10'];
+
+        const choice = readline.keyInSelect(formats, 'Select page format:', {
             cancel: false,
-            guide: false 
+            guide: false
         });
-        
+
         this.options.format = formatKeys[choice] || 'A4';
         console.log(`✅ Selected format: ${this.options.format}`);
     }
