@@ -221,9 +221,33 @@ class EnhancedHTMLToPDFConverter {
                 pdfOptions.format = options.format;
             }
 
-            // Enhanced CSS with font support
+            // Generate page size CSS for PPT formats
+            let pageSizeCSS = '';
+            if (pptDimensions) {
+                const marginTop = options.margin?.top || '0';
+                const marginRight = options.margin?.right || '0';
+                const marginBottom = options.margin?.bottom || '0';
+                const marginLeft = options.margin?.left || '0';
+
+                pageSizeCSS = `
+                    @page {
+                        size: ${pptDimensions.width} ${pptDimensions.height};
+                        margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft};
+                    }
+                    html, body {
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                    }
+                `;
+            }
+
+            // Enhanced CSS with font support and page size
             const enhancedCSS = `
                 <style>
+                    ${pageSizeCSS}
                     ${this.printCSS}
                     ${options.fontSupport && options.fontSupport.hindi ? this.hindiFontCSS : ''}
                 </style>
